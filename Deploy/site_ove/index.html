@@ -254,7 +254,8 @@ function renderHero(tasks){
   const active=nonPhase.filter(t=>t.startDate<=today&&t.endDate>=today);
   // Next up if none active
   const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
-  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
+  const curList=active.length?active:(upcoming.length?[upcoming[0]]:[]);
+  const cur=curList.length?curList[0]:null;
 
   if(!cur){
     hero.className='hero no-sub';
@@ -262,30 +263,38 @@ function renderHero(tasks){
     return;
   }
 
-  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
-  const isActive=cur.startDate<=today&&cur.endDate>=today;
-  const totalDays=Math.max(1,daysBetween(cur.startDate,cur.endDate));
-  const elapsedDays=Math.max(0,daysBetween(cur.startDate,today));
-  // On time = still has days left OR complete. Only red if past finish date and not done.
-  const onTime=cur.endDate>=today||prog>=100;
-  const behindBy=Math.max(0,Math.round(daysBetween(cur.endDate,today)));
-  const daysLeft=daysBetween(today,cur.endDate);
+  const isActive=active.length>0;
+  const progList=curList.map(t=>pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress);
+  const avgProg=progList.length?progList.reduce((s,n)=>s+(Number(n)||0),0)/progList.length:0;
+
+  const minEnd=curList.reduce((m,t)=>!m||t.endDate<m?t.endDate:m,null);
+  const onTime=(minEnd?minEnd>=today:true)||avgProg>=100;
+  const behindBy=minEnd?Math.max(0,Math.round(daysBetween(minEnd,today))):0;
+  const daysLeft=minEnd?daysBetween(today,minEnd):0;
   const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
 
+  const listHtml=curList.length>1
+    ?('<div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">'+curList.map(t=>{
+      const p=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
+      const v=(t.vendor||'').trim();
+      return `<div style="font-size:12px;color:var(--txt2)"><span style="color:var(--txt)">${t.name}</span> — ${Math.round(p)}%${v?` <span style="color:var(--dim)">(${v})</span>`:''}</div>`;
+    }).join('')+`</div>`)
+    :'';
+
   hero.className='hero '+(onTime?'on-time':'off-time');
-  hero.innerHTML=`
-    <div class="hero-left">
+  hero.innerHTML=`<div class="hero-left">
       <div class="hero-icon">${onTime?'✅':'🚨'}</div>
       <div>
-        <div class="hero-label">Current Subcontractor</div>
+        <div class="hero-label">${isActive?(curList.length>1?'Current Trades':'Current Subcontractor'):'Next Up'}</div>
         <div class="hero-name">${cur.name}</div>
         <div class="hero-vendor">${cur.vendor||''}</div>
+        ${listHtml}
       </div>
     </div>
     <div class="hero-center">
       <div class="hero-stat">
-        <div class="hero-stat-val">${Math.round(prog)}%</div>
-        <div class="hero-stat-lbl">Complete</div>
+        <div class="hero-stat-val">${Math.round(curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%</div>
+        <div class="hero-stat-lbl">${curList.length>1?'Avg Complete':'Complete'}</div>
       </div>
       <div class="hero-div"></div>
       <div class="hero-stat">
@@ -297,8 +306,8 @@ function renderHero(tasks){
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
       <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
       <div class="hero-prog-wrap">
-        <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,prog)}%"></div></div>
-        <span class="hero-prog-pct">${Math.round(prog)}%</span>
+        <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%"></div></div>
+        <span class="hero-prog-pct">${Math.round(curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%</span>
       </div>
     </div>`;
 }
