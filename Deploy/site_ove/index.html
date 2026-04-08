@@ -89,6 +89,18 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-prog-pct{font-size:12px;font-weight:700}
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
+.trade-cards{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.trade-card{background:rgba(255,255,255,.03);border:1px solid rgba(42,58,85,.65);border-radius:12px;padding:10px 12px;min-width:220px;flex:1}
+.trade-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.trade-card-name{font-size:13px;font-weight:800;color:#fff;line-height:1.1}
+.trade-card-vendor{font-size:11px;color:var(--txt2);margin-top:2px}
+.trade-card-meta{font-size:11px;color:var(--txt2);margin-top:8px;display:flex;justify-content:space-between;gap:10px}
+.trade-chip{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--txt2)}
+.trade-chip.ok{border-color:rgba(34,197,94,.3);color:var(--green);background:rgba(34,197,94,.08)}
+.trade-chip.bad{border-color:rgba(239,68,68,.35);color:var(--red);background:rgba(239,68,68,.08)}
+.trade-bar{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:8px}
+.trade-fill{height:100%;background:var(--green)}
+.trade-card.bad .trade-fill{background:var(--red)}
 
 /* GANTT */
 .gantt-outer{max-width:1600px;margin:0 auto;padding:12px 20px 20px}
@@ -264,51 +276,82 @@ function renderHero(tasks){
   }
 
   const isActive=active.length>0;
-  const progList=curList.map(t=>pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress);
-  const avgProg=progList.length?progList.reduce((s,n)=>s+(Number(n)||0),0)/progList.length:0;
+  const items=curList.map(t=>{
+    const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
+    const end=t.endDate||t.startDate;
+    const overdue=end&&end<today&&prog<100;
+    const overdueDays=end?Math.max(0,Math.round(daysBetween(end,today))):0;
+    const left=end?daysBetween(today,end):0;
+    return{t,prog,end,overdue,overdueDays,left};
+  });
 
-  const minEnd=curList.reduce((m,t)=>!m||t.endDate<m?t.endDate:m,null);
-  const onTime=(minEnd?minEnd>=today:true)||avgProg>=100;
-  const behindBy=minEnd?Math.max(0,Math.round(daysBetween(minEnd,today))):0;
-  const daysLeft=minEnd?daysBetween(today,minEnd):0;
-  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
+  const avgProg=items.length?items.reduce((s,i)=>s+(Number(i.prog)||0),0)/items.length:0;
+  const sumOverdue=items.reduce((s,i)=>s+(i.overdue?i.overdueDays:0),0);
+  const minEnd=items.reduce((m,i)=>!m||!i.end?m:(i.end<m?i.end:m),null);
+  const onTime=(sumOverdue===0)&&((minEnd?minEnd>=today:true)||avgProg>=100);
 
-  const listHtml=curList.length>1
-    ?('<div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">'+curList.map(t=>{
-      const p=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
-      const v=(t.vendor||'').trim();
-      return `<div style="font-size:12px;color:var(--txt2)"><span style="color:var(--txt)">${t.name}</span> — ${Math.round(p)}%${v?` <span style="color:var(--dim)">(${v})</span>`:''}</div>`;
-    }).join('')+`</div>`)
+  const daysLeftArr=items.filter(i=>i.end&&i.end>=today).map(i=>Math.max(0,i.left));
+  const avgDaysLeft=daysLeftArr.length?Math.round(daysLeftArr.reduce((s,n)=>s+n,0)/daysLeftArr.length):0;
+  const daysStr=isActive
+    ?(daysLeftArr.length?(avgDaysLeft===0?'Due today':avgDaysLeft+' avg days left'):(sumOverdue>0?('Overdue '+sumOverdue+'d (cumulative)'):'—'))
+    :'Starts '+fmtDate(cur.startDate);
+
+  const cardsHtml=isActive
+    ?('<div class="trade-cards">'+items.map(i=>{
+      const v=(i.t.vendor||'').trim();
+      const chip=i.overdue?'<span class="trade-chip bad">Overdue</span>':'<span class="trade-chip ok">On Site</span>';
+      const dayTxt=i.overdue?('Overdue '+i.overdueDays+'d'):(i.left>0?(i.left+' days left'):(i.left===0?'Due today':'—'));
+      const cls=i.overdue?'trade-card bad':'trade-card';
+      return `<div class="${cls}">`+
+        `<div class="trade-card-top">`+
+          `<div>`+
+            `<div class="trade-card-name">${i.t.name}</div>`+
+            `<div class="trade-card-vendor">${v}</div>`+
+          `</div>`+
+          `<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">`+
+            chip+
+            `<div style="font-size:14px;font-weight:900;color:#fff">${Math.round(i.prog)}%</div>`+
+          `</div>`+
+        `</div>`+
+        `<div class="trade-bar"><div class="trade-fill" style="width:${Math.min(100,Math.max(0,Number(i.prog)||0))}%"></div></div>`+
+        `<div class="trade-card-meta"><span>${dayTxt}</span><span>${i.t.section?i.t.section:''}</span></div>`+
+      `</div>`;
+    }).join('')+'</div>')
     :'';
 
   hero.className='hero '+(onTime?'on-time':'off-time');
-  hero.innerHTML=`<div class="hero-left">
-      <div class="hero-icon">${onTime?'✅':'🚨'}</div>
-      <div>
-        <div class="hero-label">${isActive?(curList.length>1?'Current Trades':'Current Subcontractor'):'Next Up'}</div>
-        <div class="hero-name">${cur.name}</div>
-        <div class="hero-vendor">${cur.vendor||''}</div>
-        ${listHtml}
+  hero.innerHTML=`
+    <div style="width:100%">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div class="hero-left">
+          <div class="hero-icon">${onTime?'✅':'🚨'}</div>
+          <div>
+            <div class="hero-label">${isActive?'Current Trades':'Next Up'}</div>
+            <div class="hero-name">${isActive?(items.length+' on site'):cur.name}</div>
+            <div class="hero-vendor">${isActive?'':(cur.vendor||'')}</div>
+          </div>
+        </div>
+        <div class="hero-center">
+          <div class="hero-stat">
+            <div class="hero-stat-val">${Math.round(avgProg)}%</div>
+            <div class="hero-stat-lbl">Avg Complete</div>
+          </div>
+          <div class="hero-div"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-val" style="color:var(--txt2);font-size:16px">${daysStr}</div>
+            <div class="hero-stat-lbl">${isActive?'Schedule':'Next Up'}</div>
+          </div>
+          ${sumOverdue>0?`<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">${sumOverdue}d</div><div class="hero-stat-lbl">Delay (Cum.)</div></div>`:''}
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
+          <div class="hero-prog-wrap">
+            <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,avgProg)}%"></div></div>
+            <span class="hero-prog-pct">${Math.round(avgProg)}%</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="hero-center">
-      <div class="hero-stat">
-        <div class="hero-stat-val">${Math.round(curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%</div>
-        <div class="hero-stat-lbl">${curList.length>1?'Avg Complete':'Complete'}</div>
-      </div>
-      <div class="hero-div"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-val" style="color:var(--txt2);font-size:16px">${daysStr}</div>
-        <div class="hero-stat-lbl">${isActive?'Schedule':'Next Up'}</div>
-      </div>
-      ${!onTime?`<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">${behindBy}d</div><div class="hero-stat-lbl">Overdue</div></div>`:''}
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-      <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
-      <div class="hero-prog-wrap">
-        <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%"></div></div>
-        <span class="hero-prog-pct">${Math.round(curList.length>1?avgProg:(pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress))}%</span>
-      </div>
+      ${cardsHtml}
     </div>`;
 }
 
