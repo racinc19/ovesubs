@@ -1,0 +1,9 @@
+{
+  "name": "ovesubs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Static deploy for ovesubs.pages.dev",
+  "scripts": {
+    "deploy:ovesubs": "powershell -ExecutionPolicy Bypass -File ./deploy_ovesubs.ps1"
+  }
+}

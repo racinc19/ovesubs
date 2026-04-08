@@ -1,0 +1,1263 @@
+<!DOCTYPE html><!-- build:20260319sticky -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>OVE subs — Selections</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
+html{font-size:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.4}
+html{overflow-y:scroll}body{overflow-x:clip}
+.container{max-width:1200px;margin:0 auto;padding:20px;padding-top:80px}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:200;opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-success{background:var(--green);color:white}.toast-warn{background:var(--red);color:white}
+.page-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:0;margin-top:12px;flex-wrap:nowrap;gap:12px}
+.page-hdr h1{font-size:11px;font-weight:600;white-space:nowrap}
+.nav-action-btn{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;line-height:1.2;font-family:inherit}
+.nav-action-btn:hover{border-color:var(--blue);color:var(--txt)}
+.nav-action-btn.active,.nav-action-btn.btn-save{background:var(--blue);border-color:var(--blue);color:white}
+.page-hdr .page-hdr-sub{display:none}
+.page-hdr-right{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 16px;border-radius:8px;font-weight:600;font-size:13px;border:none;cursor:pointer;color:white;transition:all .2s}
+.btn-blue{background:var(--blue)}.btn-blue:hover{background:#2563eb}
+.btn-dim{background:var(--bdr2);color:var(--txt2);border:1px solid var(--bdr)}.btn-dim:hover{background:var(--hover);color:var(--txt)}
+.btn-sm{padding:5px 12px;font-size:11px;border-radius:6px}
+.view-toggle{display:flex;background:var(--card);border:1px solid var(--bdr);border-radius:8px;overflow:hidden}
+.view-btn{padding:4px 10px;font-size:11px;font-weight:500;border:none;cursor:pointer;background:none;color:var(--txt2);transition:all .2s;font-family:inherit}
+.view-btn.active{background:var(--blue);color:white}
+.view-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--bdr)}
+.view-row-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.view-row .view-btn{padding:6px 14px;font-size:12px}
+.sel-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:14px}
+.sel-stat{background:var(--card);border-radius:8px;padding:8px 10px;border:1px solid var(--bdr);text-align:center}
+.sel-stat .num{font-size:18px;font-weight:800}.sel-stat .lbl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.sel-stat .num.ns{color:var(--dim)}.sel-stat .num.re{color:var(--orange)}.sel-stat .num.se{color:var(--blue)}.sel-stat .num.or{color:var(--cyan)}.sel-stat .num.rc{color:var(--purple)}.sel-stat .num.in{color:var(--green)}
+.pipeline{background:var(--card);border-radius:8px;padding:10px 14px;border:1px solid var(--bdr);margin-bottom:14px}
+.pipeline-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.pipeline-bar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--bg);gap:2px}
+.pipeline-seg{border-radius:3px;transition:width .5s}
+.nav-sticky{position:fixed;top:56px;left:0;right:0;z-index:40;background:var(--bg);box-shadow:0 4px 12px rgba(0,0,0,.2);padding:0 20px 12px;border-bottom:1px solid var(--bdr)}
+.nav-sticky-spacer{flex-shrink:0}
+.filter-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.type-filter-row{margin-top:12px}
+.filter-btn{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;line-height:1.2}
+.filter-btn:hover{border-color:var(--blue);color:var(--txt)}.filter-btn.active{background:var(--blue);border-color:var(--blue);color:white}
+.search-input{background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:6px 10px;color:var(--txt);font-size:12px;font-family:inherit;outline:none;width:180px;margin-left:auto}
+.search-input:focus{border-color:var(--blue)}.search-input::placeholder{color:var(--dim)}
+.room-nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 0;min-height:40px;border-bottom:1px solid var(--bdr)}
+.room-nav-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;width:100%}
+.room-nav-spacer{display:none;height:88px;flex-shrink:0}
+.room-nav-spacer.visible{display:block}
+.room-nav-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);white-space:nowrap}
+.room-nav-tabs{display:flex;flex-wrap:wrap;gap:4px}
+.room-nav-tab{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;color:var(--txt2);background:var(--card);border:1px solid var(--bdr);cursor:pointer;text-decoration:none;transition:all .2s;font-family:inherit;white-space:nowrap;line-height:1.2}
+.room-nav-tab:hover{color:var(--txt);border-color:var(--blue);background:var(--hover)}
+.room-nav-tab.active{color:white;background:var(--blue);border-color:var(--blue)}
+.level-hdr{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);padding:6px 0;margin:24px 0 8px;border-bottom:1px solid var(--bdr)}
+.level-hdr:first-child{margin-top:0}
+.room-section{background:var(--card);border:1px solid var(--bdr);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.room-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;cursor:pointer;transition:background .15s}
+.room-hdr:hover{background:var(--card2)}
+.room-hdr-left{display:flex;align-items:center;gap:10px}
+.room-hdr h3{font-size:15px;font-weight:700}
+.room-hdr-right{display:flex;align-items:center;gap:10px}
+.room-count{font-size:11px;color:var(--dim)}
+.room-arrow{color:var(--dim);font-size:12px;transition:transform .2s}
+.room-hdr.open .room-arrow{transform:rotate(90deg)}
+.room-body{display:none;overflow:visible}.room-body.open{display:block;visibility:visible}
+.auto-row{display:flex;align-items:center;gap:10px;padding:10px 18px;border-top:1px solid var(--bdr);background:rgba(59,130,246,.04)}
+.auto-label{font-size:12px;font-weight:700;color:var(--blue);white-space:nowrap;min-width:140px}
+.auto-sel{background:var(--card2);border:1px solid var(--bdr);border-radius:6px;color:var(--txt);padding:5px 10px;font-size:13px;min-width:220px;cursor:pointer}
+.auto-badge{font-size:11px;color:#22c55e;font-weight:700}
+.finish-table{width:100%;border-collapse:collapse;border-bottom:1px solid var(--bdr)}
+.finish-table th{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);padding:6px 12px;text-align:left;background:rgba(0,0,0,.2);font-weight:600}
+.finish-table thead th{position:sticky;top:180px;z-index:3;background:var(--card)!important;box-shadow:0 1px 0 var(--bdr)}
+.finish-table thead th:nth-child(1),.finish-table thead th:nth-child(2){left:0;z-index:4}
+.finish-table thead th:nth-child(1){box-shadow:1px 1px 0 var(--bdr)}
+.finish-table thead th:nth-child(2){left:60px;box-shadow:1px 1px 0 var(--bdr)}
+.finish-table td:nth-child(1),.finish-table td:nth-child(2){position:sticky;background:var(--card);z-index:1}
+.finish-table td:nth-child(1){left:0;box-shadow:1px 0 0 var(--bdr)}
+.finish-table td:nth-child(2){left:60px;box-shadow:1px 0 0 var(--bdr)}
+.finish-table .finish-row:hover td:nth-child(1),.finish-table .finish-row:hover td:nth-child(2){background:var(--hover)}
+.finish-row{border-top:1px solid rgba(42,58,85,.4);transition:background .15s}
+.finish-row:hover{background:var(--hover)}
+.finish-row td{padding:8px 12px;vertical-align:middle;font-size:13px}
+.finish-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.ft-floor{background:rgba(59,130,246,.15);color:#60a5fa}.ft-wall{background:rgba(34,197,94,.15);color:#4ade80}
+.ft-ceil{background:rgba(234,179,8,.15);color:#fbbf24}.ft-trim{background:rgba(139,92,246,.15);color:#a78bfa}.ft-door{background:rgba(245,158,11,.15);color:#fb923c}
+.ft-ct{background:rgba(6,182,212,.15);color:#22d3ee}.ft-other{background:rgba(90,109,133,.15);color:var(--txt2)}
+.finish-material{font-weight:600;min-width:180px}
+.finish-edit{background:var(--bg);border:1px solid transparent;border-radius:5px;padding:4px 8px;color:var(--txt);font-size:13px;font-family:inherit;outline:none;width:100%;transition:border .2s}
+.finish-edit:focus{border-color:var(--blue)}.finish-edit::placeholder{color:var(--dim);font-weight:400}
+.finish-qty{width:90px}.finish-vendor{min-width:140px}
+.finish-status select{background:var(--bg);border:1px solid var(--bdr);border-radius:5px;padding:4px 20px 4px 8px;color:var(--txt);font-size:11px;font-family:inherit;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238899b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center;cursor:pointer;min-width:110px}
+.finish-status select.st-not_started{border-color:var(--dim);color:var(--dim)}
+.finish-status select.st-researching{border-color:var(--orange);color:var(--orange)}
+.finish-status select.st-selected{border-color:var(--blue);color:var(--blue)}
+.finish-status select.st-ordered{border-color:var(--cyan);color:var(--cyan)}
+.finish-status select.st-received{border-color:var(--purple);color:var(--purple)}
+.finish-status select.st-installed{border-color:var(--green);color:var(--green)}
+.finish-link a{color:var(--blue);text-decoration:none;font-size:14px}.finish-link a:hover{color:var(--cyan)}
+.del-finish{background:none;border:none;color:transparent;cursor:pointer;font-size:13px;padding:2px 4px;border-radius:3px;transition:all .15s}.copy-finish-btn{background:none;border:none;color:var(--dim);cursor:pointer;font-size:14px;padding:2px 4px;border-radius:3px;opacity:0;transition:opacity .15s}.finish-row:hover .copy-finish-btn{opacity:1}.copy-finish-btn:hover{color:var(--blue);background:rgba(59,130,246,.1)}
+.owner-approve-btn{background:none;border:1px solid var(--bdr);border-radius:5px;color:var(--dim);cursor:pointer;font-size:10px;padding:3px 8px;white-space:nowrap;transition:all .2s;font-family:inherit}
+.owner-approve-btn:hover{border-color:var(--green);color:var(--green)}
+.owner-approved{border-color:var(--green)!important;color:var(--green)!important;background:rgba(34,197,94,.08)!important}
+.owner-approved-stamp{font-size:9px;color:var(--green);display:block;margin-top:2px;white-space:nowrap}
+.pin-modal{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:28px;width:320px;max-width:92vw;text-align:center}
+.pin-modal h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.pin-modal p{font-size:12px;color:var(--dim);margin-bottom:18px}
+.pin-input{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:12px;color:var(--txt);font-size:24px;text-align:center;letter-spacing:8px;font-family:inherit;outline:none;margin-bottom:14px}
+.pin-input:focus{border-color:var(--blue)}
+.pin-error{color:var(--red);font-size:12px;margin-bottom:10px;min-height:16px}
+.finish-row:hover .del-finish{color:var(--dim)}.del-finish:hover{color:var(--red)!important}
+.items-area{padding:0}
+.items-label{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);padding:8px 18px 4px;font-weight:600;display:block}
+.sel-card{display:grid;grid-template-columns:90px 1fr 120px;gap:14px;padding:14px 18px;border-top:1px solid rgba(42,58,85,.3);align-items:start;transition:background .15s;position:relative}
+.sel-card:hover{background:var(--hover)}
+.sel-photo{width:90px;height:72px;border-radius:7px;background:var(--bg);border:1px dashed var(--bdr);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;transition:border-color .2s;flex-shrink:0}
+.sel-photo:hover{border-color:var(--blue)}.sel-photo img{width:100%;height:100%;object-fit:cover;border-radius:6px}.sel-photo .placeholder{font-size:20px;opacity:.3}
+.sel-photo{position:relative}.sel-photo input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.sel-info{min-width:0}.sel-name{font-size:14px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.sel-name-input{flex:1;min-width:120px;font-size:14px;font-weight:700;background:var(--bg);border:none;border-bottom:1px solid transparent;border-radius:0;padding:2px 0;color:var(--txt);font-family:inherit;outline:none;transition:border-color .2s}
+.sel-name-input:hover{border-bottom-color:var(--bdr)}
+.sel-name-input:focus{border-bottom-color:var(--blue)}
+.sel-vendor{font-size:11px;color:var(--dim);margin-bottom:6px}
+.sel-detail-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sel-field{display:flex;flex-direction:column;gap:2px}
+.sel-field label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.sel-field input,.sel-field textarea{background:var(--bg);border:1px solid var(--bdr);border-radius:5px;padding:5px 9px;color:var(--txt);font-size:12px;font-family:inherit;outline:none;transition:border .2s}
+.sel-field input:focus,.sel-field textarea:focus{border-color:var(--blue)}
+.sel-field textarea{resize:vertical;min-height:38px}.sel-field input.compact{width:90px}
+.sel-status select{background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:6px 22px 6px 10px;color:var(--txt);font-size:12px;font-family:inherit;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238899b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;cursor:pointer;width:100%}
+select.st-not_started{border-color:var(--dim);color:var(--dim)}.select.st-researching{border-color:var(--orange);color:var(--orange)}
+select.st-selected{border-color:var(--blue);color:var(--blue)}.select.st-ordered{border-color:var(--cyan);color:var(--cyan)}
+select.st-received{border-color:var(--purple);color:var(--purple)}.select.st-installed{border-color:var(--green);color:var(--green)}
+
+.del-item{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:15px;opacity:0;transition:all .15s;padding:3px 5px;border-radius:4px}
+.sel-card:hover .del-item{opacity:1}.del-item:hover{color:var(--red);background:rgba(239,68,68,.1)}
+.add-row{display:flex;gap:8px;padding:10px 18px;border-top:1px solid rgba(42,58,85,.2)}
+.add-btn{background:none;border:1px dashed var(--bdr);color:var(--dim);padding:6px 14px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;transition:all .2s}
+.add-btn:hover{border-color:var(--blue);color:var(--blue)}
+.mto-section{background:var(--card);border:1px solid var(--bdr);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.mto-cat-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--card2);border-bottom:1px solid var(--bdr);cursor:pointer}
+.mto-cat-hdr h4{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.mto-cat-hdr .arrow{color:var(--dim);font-size:11px;transition:transform .2s}
+.mto-cat-hdr.open .arrow{transform:rotate(90deg)}
+.mto-body{display:none}.mto-body.open{display:block}
+.mto-table{width:100%;border-collapse:collapse}
+.mto-table th{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);padding:6px 14px;text-align:left;background:rgba(0,0,0,.15);font-weight:600}
+.mto-table td{padding:8px 14px;font-size:12px;border-top:1px solid rgba(42,58,85,.3);vertical-align:middle}
+.mto-table tr:hover td{background:var(--hover)}
+.mto-table thead th{background:var(--card2)!important;box-shadow:0 1px 0 var(--bdr)}
+.mto-table td:nth-child(1),.mto-table td:nth-child(2){position:sticky;background:var(--card);z-index:1}
+.mto-table td:nth-child(1){left:0;box-shadow:1px 0 0 var(--bdr)}
+.mto-table td:nth-child(2){left:140px;box-shadow:1px 0 0 var(--bdr)}
+.mto-table tr:hover td:nth-child(1),.mto-table tr:hover td:nth-child(2){background:var(--hover)}
+.mto-body{overflow-x:auto}
+.mto-room-tag{font-size:10px;color:var(--cyan);background:var(--card2);padding:1px 6px;border-radius:3px;display:inline-block}
+.trade-bar{display:flex;align-items:center;gap:10px;padding:12px 0;margin-bottom:12px;border-bottom:1px solid var(--bdr)}
+.trade-bar .view-row-label{margin-right:4px}
+.trade-tabs{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.trade-tab{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid var(--bdr);background:var(--card);color:var(--txt2);cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.trade-tab:hover{border-color:var(--blue);color:var(--txt);background:var(--hover)}
+.trade-tab.active{background:var(--blue);border-color:var(--blue);color:white}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.open{display:flex}.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:150;display:none;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:24px;width:420px;max-width:92vw}
+.modal h3{font-size:16px;font-weight:700;margin-bottom:16px}
+.modal-field{margin-bottom:12px}
+.modal-field label{display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.modal-field input,.modal-field select,.modal-field textarea{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 12px;color:var(--txt);font-size:13px;font-family:inherit;outline:none}
+.modal-field input:focus,.modal-field select:focus,.modal-field textarea:focus{border-color:var(--blue)}
+.modal-field textarea{resize:vertical;min-height:60px}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.btn-reset-rooms{background:none;border:none;color:var(--dim);font-size:11px;cursor:pointer;text-decoration:underline;padding:0;font-family:inherit}
+.btn-reset-rooms:hover{color:var(--cyan)}
+@media(max-width:768px){.sel-card{grid-template-columns:72px 1fr;gap:10px}.sel-status{grid-column:2}.finish-table{display:block;overflow-x:auto}}
+.topnav-right{display:flex;gap:8px;align-items:center;margin-left:auto}.topnav-btn{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}.topnav-btn:hover{border-color:var(--blue);color:var(--txt)}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
+  <div class="topnav-links">
+    <a href="index.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;color:#fff;background:var(--blue);text-decoration:none">Dashboard</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--cyan);text-decoration:none;border:1px solid rgba(6,182,212,.3)">📁 Plans & Permits</a>
+    <a href="selections.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--purple);text-decoration:none;border:1px solid rgba(139,92,246,.3)">🎨 Selections</a>
+    <a href="electrical.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--yellow);text-decoration:none;border:1px solid rgba(234,179,8,.3)">⚡ Electrical</a>
+  </div>
+  <div class="topnav-right">
+    <button class="topnav-btn" onclick="location.reload()">↻ Refresh</button>
+  </div>
+</div></nav>
+<div id="toast" class="toast"></div>
+<div class="nav-sticky" id="navSticky">
+  <div class="room-nav" id="roomNav"><div class="room-nav-inner"><span class="room-nav-label">Jump to room:</span><div class="room-nav-tabs" id="roomNavTabs"></div></div></div>
+  <div class="filter-row type-filter-row" id="typeFilterRow">
+    <span class="view-row-label">Type:</span>
+    <button class="filter-btn type-filter-btn active" onclick="setTypeFilter('all',this)">All</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('faucet',this)">Faucet</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('sink',this)">Sink</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('toilet',this)">Toilet</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('shower',this)">Shower</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('tub',this)">Tub</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('door',this)">Door</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('floor',this)">Floor</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('countertop',this)">Countertop</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('lighting',this)">Lighting</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('appliance',this)">Appliance</button>
+    <button class="filter-btn type-filter-btn" onclick="setTypeFilter('paint',this)">Paint</button>
+  </div>
+  <div class="page-hdr">
+    <div><h1>🎨 Material Selections</h1><div class="page-hdr-sub" style="font-size:12px;color:var(--dim)">Room-by-room finishes, fixtures &amp; materials <span style="color:var(--bdr2);font-size:10px">sync 20260319 - fixture default room</span></div></div>
+    <div class="page-hdr-right" style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap">
+      <button class="nav-action-btn btn-save" id="btnSave" onclick="saveNow()">💾 Save</button>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btnRooms" onclick="setView('rooms')">🏠 Rooms</button>
+        <button class="view-btn" id="btnMTO" onclick="setView('mto')">📋 Sub Schedule</button>
+        <button class="view-btn" id="btnTrade" onclick="setView('trade')">🛒 Purchase List</button>
+      </div>
+      <div id="exportRow" style="display:none;align-items:center;gap:8px">
+        <button class="nav-action-btn" onclick="doExport()">📥 Export CSV</button>
+        <button class="nav-action-btn" onclick="window.print()">🖨️ Print</button>
+      </div>
+    </div>
+  </div>
+  <div id="tradeBar" class="trade-bar" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--bdr)">
+    <span class="view-row-label">Trade:</span>
+    <div id="tradeTabs" class="trade-tabs"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="nav-sticky-spacer" id="navStickySpacer"></div>
+  <div class="sel-stats" id="selStats"></div>
+  <div class="pipeline"><div class="pipeline-label">Selection Progress</div><div class="pipeline-bar" id="pipelineBar"></div></div>
+  <div class="room-nav-spacer" id="roomNavSpacer"></div>
+  <div id="body"></div>
+</div>
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg"></div>
+<div class="modal-bg" id="modalFinish" onclick="if(event.target===this)closeModal('modalFinish')">
+  <div class="modal"><h3>Add Finish Row</h3>
+    <div class="modal-field"><label>Type</label>
+      <select id="mfType"><option>Floor</option><option>Wall</option><option>Wall Tile</option><option>Ceiling</option><option>Trim / Base</option><option>Door</option><option>Door Casing</option><option>Countertop</option><option>Deck / Membrane</option><option>Other</option></select>
+    </div>
+    <div class="modal-field"><label>Material / Selection</label><input id="mfMaterial" placeholder="e.g. Nashville Travertine 24x48"></div>
+    <div class="modal-field" style="display:flex;gap:10px">
+      <div style="flex:1"><label style="display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">SF / Qty</label><input id="mfQty" placeholder="e.g. 420 SF"></div>
+      <div style="flex:1"><label style="display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Vendor</label><input id="mfVendor" placeholder="e.g. TileBar"></div>
+    </div>
+    <div class="modal-field"><label>Link</label><input id="mfLink" placeholder="https://"></div>
+    <div class="modal-field"><label>Notes</label><textarea id="mfNotes" placeholder="Model, color, specs..."></textarea></div>
+    <div class="modal-btns">
+      <button class="btn btn-dim btn-sm" onclick="closeModal('modalFinish')">Cancel</button>
+      <button class="btn btn-blue btn-sm" onclick="saveFinish()">Add Finish</button>
+    </div>
+  </div>
+</div>
+<div class="modal-bg" id="modalItem" onclick="if(event.target===this)closeModal('modalItem')">
+  <div class="modal"><h3>Add Item</h3>
+    <div class="modal-field"><label>Name</label><input id="miName" placeholder="e.g. Kohler Crue Faucet"></div>
+    <div class="modal-field"><label>Vendor</label><input id="miVendor" placeholder="e.g. Kohler / BlvdHome"></div>
+    <div class="modal-field"><label>Link</label><input id="miLink" placeholder="https://"></div>
+    <div class="modal-field"><label>Notes</label><textarea id="miNotes" placeholder="Model #, specs, price..."></textarea></div>
+    <div class="modal-btns">
+      <button class="btn btn-dim btn-sm" onclick="closeModal('modalItem')">Cancel</button>
+      <button class="btn btn-blue btn-sm" onclick="saveItem()">Add Item</button>
+    </div>
+  </div>
+</div>
+<script src="shared.js?v20260224b"></script>
+<script>
+
+const SCRIPT_URL='https://ove-proxy.racinc19.workers.dev';
+const SEL_KEY='rodriguez_sel_v9';
+const OWNER_PIN=SITE_ACCESS_PIN;
+let _pinTarget=null,_pinType=null;
+const STATUS_ORDER=['not_started','researching','selected','ordered','received','installed'];
+const STATUS_LABELS={not_started:'Not Started',researching:'Researching',selected:'Selected',ordered:'Ordered',received:'Received',installed:'Installed'};
+const STATUS_COLORS={not_started:'var(--dim)',researching:'var(--orange)',selected:'var(--blue)',ordered:'var(--cyan)',received:'var(--purple)',installed:'var(--green)'};
+const STAT_CLASSES={not_started:'ns',researching:'re',selected:'se',ordered:'or',received:'rc',installed:'in'};
+const FIN_TYPES={Floor:'ft-floor',Wall:'ft-wall','Wall Tile':'ft-wall',Ceiling:'ft-ceil','Trim / Base':'ft-trim','Door':'ft-door','Door Casing':'ft-trim',Countertop:'ft-ct'};
+const TRADE_BY_TYPE={'Floor':'Flooring & Tile','Wall Tile':'Flooring & Tile','Deck / Membrane':'Flooring & Tile','Wall':'Paint & Drywall','Ceiling':'Paint & Drywall','Trim / Base':'Trim & Millwork','Door Casing':'Trim & Millwork','Door':'Doors & Hardware','Countertop':'Countertops','Other':'Other'};
+function suggestTradeForItem(item){
+  const s=((item.name||'')+' '+(item.vendor||'')+' '+(item.notes||'')).toLowerCase();
+  if(/\b(plumb|sink|faucet|toilet|tub|drain|water heater|navien|softener|filtration|circulation)\b/.test(s))return 'Plumbing';
+  if(/\b(light|recessed|pendant|chandelier|sconce|fluorescent|led strip|fixture|lamp)\b/.test(s))return 'Lighting';
+  if(/\b(electr|switch|outlet|wire)\b/.test(s))return 'Electrical';
+  if(/\b(appliance|refrigerator|dishwasher|range|oven|washer|dryer|hood|ice maker|beverage)\b/.test(s))return 'Appliances';
+  if(/\b(hvac|furnace|ac |condenser|duct)\b/.test(s))return 'HVAC';
+  if(/\b(door|window|garage door|vault)\b/.test(s))return 'Doors & Windows';
+  return 'Fixtures & Equipment';
+}
+let DATA=[],currentFilter='all',currentTypeFilter='all',curView='rooms',_addRoomId=null;
+const TYPE_FILTERS=['all','faucet','sink','toilet','shower','tub','door','floor','countertop','lighting','appliance','paint'];
+function matchesTypeFilter(finish,item,typeKey){
+  if(!typeKey||typeKey==='all')return true;
+  const k=typeKey.toLowerCase();
+  if(finish){
+    if(k==='floor'&&finish.type==='Floor')return true;
+    if(k==='door'&&(finish.type==='Door'||finish.type==='Door Casing'))return true;
+    if(k==='countertop'&&finish.type==='Countertop')return true;
+    if(k==='paint'&&(finish.type==='Wall'||finish.type==='Ceiling'))return true;
+    return false;
+  }
+  if(item){
+    const s=((item.name||'')+' '+(item.vendor||'')+' '+(item.notes||'')).toLowerCase();
+    if(k==='faucet'&&/\b(faucet|sprayer|pull-down)\b/.test(s))return true;
+    if(k==='sink'&&/\bsink\b/.test(s))return true;
+    if(k==='toilet'&&/\b(toilet|bidet)\b/.test(s))return true;
+    if(k==='shower'&&/\b(shower|valve|drain)\b/.test(s))return true;
+    if(k==='tub'&&/\btub\b/.test(s))return true;
+    if(k==='door'&&/\bdoor\b/.test(s))return true;
+    if(k==='lighting'&&/\b(light|recessed|pendant|chandelier|sconce|fixture|lamp)\b/.test(s))return true;
+    if(k==='appliance'&&/\b(refrigerator|dishwasher|range|oven|washer|dryer|hood|ice|beverage|microwave)\b/.test(s))return true;
+    if(k==='paint')return false;
+    return false;
+  }
+  return false;
+}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function esc(s){return(String(s===null||s===undefined?'':s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function escAttr(s){return(String(s===null||s===undefined?'':s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function isAbsoluteUrl(s){return/^https?:\/\//i.test(String(s||'').trim())}
+function isExternalUrl(s){
+  const t=String(s||'').trim();
+  if(!/^https?:\/\//i.test(t))return false;
+  try{const u=new URL(t,location.origin);return u.origin!==location.origin;}catch(e){return true;}
+}
+function cleanUrl(s){return String(s||'').replace(/\\\$/g,'$').replace(/\\/g,'').trim();}
+function normalizeAllUrls(){
+  for(const r of DATA){
+    for(const f of r.finishes||[]){f.link=cleanUrl(f.link);}
+    for(const i of r.items||[]){i.link=cleanUrl(i.link);i.manual=cleanUrl(i.manual);}
+  }
+}
+function extLink(href,label,color,title,fontSize){
+  href=cleanUrl(href);
+  if(!href||!isExternalUrl(href))return '';
+  const c=color==='blue'?'var(--blue)':'var(--cyan)';const fs=fontSize||'18px';
+  return '<a href="'+escAttr(href)+'" target="_blank" rel="noopener noreferrer" style="color:'+c+';font-size:'+fs+';text-decoration:none;line-height:1;display:inline-block;padding:4px;margin:-4px" title="'+esc(title||'Open')+'">'+label+'</a>';
+}
+
+const SEED_ROOMS=[{"level":"Main Level","id":"entry","name":"Entry / Foyer","automationInterface":"","finishes":[{"id":"entry_f1","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109 - kitchen, pantry, entry, great room, powder","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_f2","type":"Door","material":"TruStile TMF1000 MDF - Flush Exterior","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 4 per plans. Flush MDF exterior. 1-3/4in thick, 8ft. TruStile design code: EICnMYsYv","status":"not_started","model":"TMF1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"entry_f3","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_f4","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_f5","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"entry_i6","name":"Entry Stair - Stone","vendor":"TGC","link":"","notes":"$18,700","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"entry_i7","name":"Rammed Earth Feature Wall","vendor":"Oliver Finishing / Clayworks","link":"https://clay-works.com/collections/custom-finishes/rammed-earth/","notes":"$30/sf interior labor + material. Contact: hello@oliverfinishing.com","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"entry_closet","name":"Entry Closet","automationInterface":"","finishes":[{"id":"entry_closet_f8","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"TBD","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Matches entry floor","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_closet_f9","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"entry_closet_f10","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_closet_f11","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_closet_f12","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"entry_closet_f13","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"great_room","name":"Great Room / Living","automationInterface":"","finishes":[{"id":"great_room_f14","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"great_room_f15","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"great_room_f16","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"great_room_f17","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"great_room_f18","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"great_room_i19","name":"Fireplace (1 of 3)","vendor":"TBD","link":"","notes":"Gas fireplace. Per plumbing bid gas piping scope","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"kitchen","name":"Kitchen","automationInterface":"","finishes":[{"id":"kitchen_f20","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"kitchen_f21","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"kitchen_f22","type":"Wall","material":"Paint / Backsplash TBD","qty":"","unit":"","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"kitchen_f23","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"kitchen_f24","type":"Countertop","material":"ET Calacatta Gold Polished - Silestone 3CM","qty":"163 SF","unit":"SF","vendor":"Countertop Source","link":"","notes":"Eased edge, 36\" miter skirt waterfall. $11,958. Quote #253908 by Buck Mays","status":"not_started","model":"Silestone 3CM","color":"Calacatta Gold","leadTime":""}],"items":[{"id":"kitchen_i25","name":"Glacier Bay 33\" Drop-In Sink","vendor":"Glacier Bay","link":"https://www.homedepot.com/p/323933596","notes":"VT3322D1, SS. Single bowl 18-gauge, includes pull-down faucet.","status":"not_started","model":"VT3322D1","color":"Stainless Steel","leadTime":"","photo":""},{"id":"kitchen_i26","name":"Kohler Crue Touchless Faucet (x2)","vendor":"Kohler","link":"https://www.kohler.com/en/products/kitchen-faucets/shop-kitchen-faucets/crue-touchless-pull-down-kitchen-sink-faucet-w-three-function-sprayhead-22974","notes":"#22974. Pull-down, 3-function, touchless. Qty 2 - main sink + island.","status":"not_started","model":"22974","color":"","leadTime":"","photo":""},{"id":"kitchen_i27","name":"Kitchen Island Sink","vendor":"TBD","link":"","notes":"Per plumbing bid: includes disposal + air switch","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"kitchen_i28","name":"Thermador Refrigerator Column","vendor":"Thermador / BlvdHome","link":"https://www.thermador.com/us/products/refrigeration/freedom-columns/t36ir905sp","notes":"T36IR905SP. 36\" Panel Ready refrigerator column. True flush, LED. $16,140 combined via Haley Benware @ BlvdHome","status":"not_started","model":"T36IR905SP","color":"Panel Ready","leadTime":"","photo":""},{"id":"kitchen_i29","name":"Thermador Freezer Column","vendor":"Thermador / BlvdHome","link":"https://www.thermador.com/us/products/refrigeration/freedom-columns/t36if905sp","notes":"T36IF905SP. 36\" Panel Ready freezer column. Internal ice. Paired with T36IR905SP.","status":"not_started","model":"T36IF905SP","color":"Panel Ready","leadTime":"","photo":""},{"id":"kitchen_i30","name":"Thermador Double Oven","vendor":"Thermador / BlvdHome","link":"https://www.thermador.com/us/en/mkt-product/ovens/double-ovens/MEDMC301WS","notes":"MEDMC301WS. Speed oven upper, convection lower, 30\". $8,299","status":"not_started","model":"MEDMC301WS","color":"SS Masterpiece Handles","leadTime":"","photo":""},{"id":"kitchen_i31","name":"Infinity Surfaces Invisible Induction","vendor":"Infinity Surfaces","link":"https://www.infinitysurfaces.it/en/invisible-induction/","notes":"Invisible induction under countertop surface","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"kitchen_i32","name":"Zephyr 48\" Hood Insert","vendor":"Zephyr / BlvdHome","link":"https://zephyronline.com/product/monsoon-b-connect-insert/","notes":"AK9446BS. 700 CFM, LED strip, WiFi. $1,648. ALT: Futuro Futuro 54\" Skylight","status":"not_started","model":"AK9446BS","color":"Stainless Steel","leadTime":"","photo":""},{"id":"kitchen_i33","name":"Futuro Futuro 54\" Skylight Hood (ALT)","vendor":"Futuro Futuro","link":"https://futurofuturo.com/54-skylight-ceiling-soffit-range-hood/","notes":"Alternative to Zephyr. Ceiling-mount soffit design.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"kitchen_i34","name":"Thermador Dishwasher","vendor":"Thermador / BlvdHome","link":"https://www.thermador.com/en/products/dishwashers/DWHD640EPR","notes":"DWHD640EPR. Panel ready, 48 dBA, 3rd rack. FREE via 1-2-Free with fridge purchase.","status":"not_started","model":"DWHD640EPR","color":"Panel Ready","leadTime":"","photo":""},{"id":"kitchen_i35","name":"Zephyr 24\" Beverage Center","vendor":"Zephyr / BlvdHome","link":"https://zephyronline.com/product/panel-ready-single-zone-beverage-cooler/","notes":"PRB24C01CPG. Panel ready, under counter, single zone. $1,498","status":"not_started","model":"PRB24C01CPG","color":"Panel Ready","leadTime":"","photo":""},{"id":"kitchen_i36","name":"Scotsman 15\" Nugget Ice Maker","vendor":"Scotsman / BlvdHome","link":"https://www.scotsman-ice.com/product/scn60ga-1su/","notes":"SCN60GA-1SU. Panel ready. 80 lbs/day, 26 lb storage. $4,720","status":"not_started","model":"SCN60GA-1SU","color":"Panel Ready","leadTime":"","photo":""},{"id":"kitchen_i37","name":"Cabinets","vendor":"Deez","link":"","notes":"$28,600","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"pantry","name":"Pantry","automationInterface":"","finishes":[{"id":"pantry_f38","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"pantry_f39","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"pantry_f40","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"pantry_f41","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"pantry_f42","type":"Countertop","material":"ET Calacatta Gold Polished - Silestone 3CM","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$3,919","status":"not_started","model":"Silestone 3CM","color":"Calacatta Gold","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"dining","name":"Dining Room","automationInterface":"","finishes":[{"id":"dining_f43","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"dining_f44","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"dining_f45","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"dining_f46","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"dining_f47","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"office","name":"Office","automationInterface":"","finishes":[{"id":"office_f48","type":"Floor","material":"Pergo Soft Oak LVP","qty":"incl. 711 SF main","unit":"SF","vendor":"Pergo","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_f49","type":"Door","material":"TruStile FL100 MDF - Full Lite Glass","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/fl-series/fl100","notes":"DOOR 1 per plans. Full-lite glass. MDF, 1-3/4in thick, 8ft. TruStile design code: C8ZT9dSob","status":"not_started","model":"FL100","color":"Bright Gray, clear glass, ORB hinges","leadTime":"7-8 wks"},{"id":"office_f50","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_f51","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_f52","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"office_closet","name":"Office Closet","automationInterface":"","lightingType":"","lightingPhoto":"","finishes":[{"id":"office_closet_f53","type":"Floor","material":"TBD","qty":"","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_closet_f54","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"}],"items":[],"lightingNotes":""},{"level":"Main Level","id":"office_bath","name":"Office Bath","automationInterface":"","finishes":[{"id":"office_bath_f55","type":"Floor","material":"Carrara Giola 24x48 Polished Porcelain","qty":"95 SF","unit":"SF","vendor":"TileBar","link":"","notes":"Per A109 office closet","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_bath_f56","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"office_bath_f57","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"Shower stall walls","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_bath_f58","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_bath_f59","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_bath_f60","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"office_bath_f61","type":"Countertop","material":"TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$666","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"office_bath_i62","name":"HOROW Undermount Sink","vendor":"HOROW","link":"https://horow.com/collections/bathroom-undermount-sinks","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"office_bath_i63","name":"Arc Waterfall Faucet","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"office_bath_i64","name":"HOROW Smart Toilet T05","vendor":"HOROW","link":"https://horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05","notes":"Bidet combo, heated seat, elongated","status":"not_started","model":"T05","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"powder","name":"Powder Bath","automationInterface":"","finishes":[{"id":"powder_f65","type":"Floor","material":"Nashville Travertine 24x48 Matte Porcelain","qty":"incl. 2,587 SF main","unit":"SF","vendor":"Floor Nashville Travertine","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"powder_f66","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"powder_f67","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"powder_f68","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"powder_f69","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"powder_f70","type":"Countertop","material":"TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$587","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"powder_i71","name":"HOROW Undermount Sink","vendor":"HOROW","link":"https://horow.com/collections/bathroom-undermount-sinks","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"powder_i72","name":"Arc Waterfall Faucet","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"powder_i73","name":"HOROW Smart Toilet T05","vendor":"HOROW","link":"https://horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05","notes":"","status":"not_started","model":"T05","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"garage","name":"Garage","automationInterface":"","finishes":[{"id":"garage_f74","type":"Floor","material":"Concrete Slab + Hydrotech MM6125 Coating","qty":"1,697 SF coating","unit":"SF","vendor":"Randy Frei / Advanced Concrete","link":"","notes":"1,717 SF slab + 1,697 SF coating","status":"not_started","model":"","color":"","leadTime":""},{"id":"garage_f75","type":"Door","material":"TruStile TMF1000 MDF - Flush Exterior","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 4 per plans. Flush MDF exterior. 1-3/4in thick, 8ft. TruStile design code: EICnMYsYv","status":"not_started","model":"TMF1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"garage_f76","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"garage_f77","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"garage_i78","name":"Garage Doors - Wayne Dalton 8300 (x4)","vendor":"Wayne Dalton / Sunpro","link":"https://www.wayne-dalton.com/garage-doors/residential/steel-garage-doors/model-8300","notes":"20x9, stacked, frosted R12. LiftMaster 84505R belt drive. $22,409","status":"not_started","model":"8300 R12","color":"Frosted Windows","leadTime":"","photo":""},{"id":"garage_i79","name":"Mop Sink","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"garage_i80","name":"Moen Align Wall Mount Faucet","vendor":"Moen","link":"https://www.moen.com/products/Align","notes":"Garage sink faucet","status":"not_started","model":"Align Series","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Main Level","id":"outdoor_bbq","name":"Outdoor / BBQ / Patio","automationInterface":"","finishes":[{"id":"outdoor_bbq_f81","type":"Floor","material":"Landscape Paver","qty":"2,461 SF","unit":"SF","vendor":"TBD","link":"","notes":"Per A109 - patios, walks on road base","status":"not_started","model":"","color":"","leadTime":""},{"id":"outdoor_bbq_f82","type":"Deck / Membrane","material":"Hydrotech MM6125 Asphalic Membrane","qty":"1,368 SF","unit":"SF","vendor":"Advanced Concrete & Deck Coating","link":"","notes":"Decks/balcony + 1,225 SF concrete pan deck","status":"not_started","model":"","color":"","leadTime":""},{"id":"outdoor_bbq_f83","type":"Countertop","material":"BBQ Countertop TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$7,144","status":"not_started","model":"","color":"","leadTime":""},{"id":"outdoor_bbq_f84","type":"Wall","material":"Stone Veneer / Rammed Earth / Stucco","qty":"TBD","unit":"SF","vendor":"Simco/BSM / Oliver Finishing","link":"","notes":"Specify by zone","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"outdoor_bbq_i85","name":"Outdoor BBQ Sink","vendor":"TBD","link":"","notes":"Per plumbing bid: main level outdoor","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"outdoor_bbq_i86","name":"Hose Bibbs w/ Vacuum Breaker (10 total)","vendor":"TBD","link":"","notes":"Project-wide. 10 total per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"outdoor_bbq_i87","name":"Solar Panel Fencing ~150ft","vendor":"Broken Horn Welding","link":"","notes":"SS + powder coated mild steel bronze. $30,150","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"outdoor_bbq_i88","name":"Custom Man Gates (x2)","vendor":"Broken Horn Welding","link":"","notes":"$5,250 total. 50% deposit req.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"outdoor_bbq_i89","name":"Custom Exterior Guard Rail ~400ft","vendor":"Broken Horn Welding","link":"","notes":"SS + powder coated mild steel bronze. $50,500. Est #18","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Upper Level","id":"primary_suite","name":"Primary Suite","automationInterface":"","finishes":[{"id":"primary_suite_f90","type":"Floor","material":"TBD - verify A110","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"Pergo or Carrara tile - confirm against plan A110","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_suite_f91","type":"Door","material":"TruStile FL100 MDF - Full Lite Glass","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/fl-series/fl100","notes":"DOOR 1 per plans. Full-lite glass. MDF, 1-3/4in thick, 8ft. TruStile design code: C8ZT9dSob","status":"not_started","model":"FL100","color":"Bright Gray, clear glass, ORB hinges","leadTime":"7-8 wks"},{"id":"primary_suite_f92","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_suite_f93","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_suite_f94","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"primary_suite_i95","name":"Fireplace (1 of 3)","vendor":"TBD","link":"","notes":"Gas. Per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_suite_i96","name":"Hidden Door","vendor":"TBD","link":"https://murphydoor.com/","notes":"Per plans sheet A803 - adjacent to vault door on upper level. Budget $27,500","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Upper Level","id":"primary_bath","name":"Primary Bath","automationInterface":"","finishes":[{"id":"primary_bath_f97","type":"Floor","material":"Carrara Giola 24x48 Polished Porcelain","qty":"incl. 688 SF upper","unit":"SF","vendor":"TileBar","link":"","notes":"Per A110 - primary bath, laundry, upper wet areas","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_bath_f98","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"primary_bath_f99","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"Shower stall walls - Carrara Giola 24x48","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_bath_f100","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_bath_f101","type":"Wall Tile","material":"Carrara Giola 24x48 Polished Porcelain","qty":"TBD shower walls","unit":"SF","vendor":"TileBar","link":"","notes":"Shower walls - verify qty from plans","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_bath_f102","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_bath_f103","type":"Countertop","material":"TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$1,535","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"primary_bath_i104","name":"HOROW Undermount Sink Rectangular (x2)","vendor":"HOROW","link":"https://horow.com/collections/bathroom-undermount-sinks","notes":"Qty 2 per Master Plumbing bid","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_bath_i105","name":"Arc Waterfall Faucet","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_bath_i106","name":"HOROW Smart Toilet T05 (x2)","vendor":"HOROW","link":"https://horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05","notes":"2 toilets per plumbing bid","status":"not_started","model":"T05","color":"","leadTime":"","photo":""},{"id":"primary_bath_i107","name":"GRANDJOY Thermostatic Shower Valve (x2)","vendor":"GRANDJOY","link":"https://www.grandjoyhome.com/collections/thermostatic-shower-system","notes":"2 showers in primary per plumbing bid","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_bath_i108","name":"Freestanding Tub","vendor":"TBD","link":"","notes":"Per plumbing bid","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_bath_i109","name":"Tub Filler","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"primary_bath_i110","name":"Oatey 24\" Linear Drain (x2)","vendor":"Oatey","link":"https://www.oatey.com","notes":"2 shower drains","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Upper Level","id":"primary_closet","name":"Primary Closet","automationInterface":"","finishes":[{"id":"primary_closet_f111","type":"Floor","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_closet_f112","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"primary_closet_f113","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_closet_f114","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"primary_closet_f115","type":"Countertop","material":"Titanium Granite - Natural Stone 3CM Polished","qty":"97 SF","unit":"SF","vendor":"Countertop Source","link":"","notes":"Main 18 SF + Upper 79 SF. $1,582","status":"not_started","model":"Titanium Granite","color":"Titanium","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Upper Level","id":"upper_laundry","name":"Upper Laundry","automationInterface":"","finishes":[{"id":"upper_laundry_f116","type":"Floor","material":"Carrara Giola 24x48 Polished Porcelain","qty":"incl. 688 SF upper","unit":"SF","vendor":"TileBar","link":"","notes":"Per A110","status":"not_started","model":"","color":"","leadTime":""},{"id":"upper_laundry_f117","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"upper_laundry_f118","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"upper_laundry_f119","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"upper_laundry_f120","type":"Countertop","material":"Pewter - Upper Shelf","qty":"42 SF","unit":"SF","vendor":"Countertop Source","link":"","notes":"Upper shelf. Total laundry CT $3,956 (incl. main 67 SF)","status":"not_started","model":"Pewter","color":"","leadTime":""}],"items":[{"id":"upper_laundry_i121","name":"Laundry Sink","vendor":"TBD","link":"","notes":"Per plumbing bid","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"upper_laundry_i122","name":"GE Front Load Washer","vendor":"GE / BlvdHome","link":"https://www.geappliances.com/appliance/GE-Front-Load-Washer-GFW655SPVDS","notes":"GFW655SPVDS. 5.0 cf, steam, MicroBan, 28\". Carbon Graphite.","status":"not_started","model":"GFW655SPVDS","color":"Carbon Graphite","leadTime":"","photo":""},{"id":"upper_laundry_i123","name":"GE Front Load Dryer","vendor":"GE / BlvdHome","link":"https://www.geappliances.com/appliance/GE-Electric-Dryer-GFD65ESPVDS","notes":"GFD65ESPVDS. 7.8 cf, steam, 28\". Set $1,740.","status":"not_started","model":"GFD65ESPVDS","color":"Carbon Graphite","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Upper Level","id":"wood_stair","name":"Stairs & Railings","finishes":[],"automationInterface":"","items":[{"id":"wood_stair_i124","name":"Wood Stair","vendor":"RAC","link":"","notes":"$5,500","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"wood_stair_i125","name":"Custom Interior Guard Rail ~15ft","vendor":"Broken Horn Welding","link":"","notes":"SS + powder coated mild steel bronze. $3,750","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"wood_stair_i126","name":"Custom Grab Rail ~55ft","vendor":"Broken Horn Welding","link":"","notes":"$1,350","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"basement_living","name":"Basement Living / Theater","automationInterface":"","finishes":[{"id":"basement_living_f127","type":"Floor","material":"Carpet","qty":"949 SF","unit":"SF","vendor":"TBD","link":"","notes":"Per A110 basement living area","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_living_f128","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"basement_living_f129","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_living_f130","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_living_f131","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"basement_living_i132","name":"Fireplace (1 of 3)","vendor":"TBD","link":"","notes":"Gas. Per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"basement_storage","name":"Basement Storage","automationInterface":"","finishes":[{"id":"basement_storage_f133","type":"Floor","material":"Concrete Grind & Polish","qty":"1,023 SF","unit":"SF","vendor":"RAC","link":"","notes":"Per A110 storage floor","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_storage_f134","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"basement_storage_f135","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_storage_f136","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"basement_bath","name":"Basement Bath","automationInterface":"","finishes":[{"id":"basement_bath_f137","type":"Floor","material":"Carrara Giola 24x48 Polished Porcelain","qty":"29 SF","unit":"SF","vendor":"TileBar","link":"","notes":"Per A110","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_bath_f138","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"basement_bath_f139","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"Shower stall walls","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_bath_f140","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_bath_f141","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_bath_f142","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"basement_bath_f143","type":"Countertop","material":"TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$587","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"basement_bath_i144","name":"HOROW Undermount Sink","vendor":"HOROW","link":"https://horow.com/collections/bathroom-undermount-sinks","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"basement_bath_i145","name":"HOROW Smart Toilet T05","vendor":"HOROW","link":"https://horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05","notes":"","status":"not_started","model":"T05","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"gun_range","name":"Gun Range / Gun Room","automationInterface":"","finishes":[{"id":"gun_range_f146","type":"Floor","material":"Westcoat Grind & Clear","qty":"1,300 SF","unit":"SF","vendor":"Bulletproof Synthetic Coatings","link":"","notes":"Diamond grind + SC primer + urethane matte/satin. Contract #1914. $6,500","status":"not_started","model":"","color":"","leadTime":""},{"id":"gun_range_f147","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"gun_range_f148","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"gun_range_f149","type":"Countertop","material":"Gun Room Countertop TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$2,858","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"gun_range_i150","name":"Vault Door - Brown Safe Estate 8030","vendor":"Brown Safe","link":"https://www.brownsafe.com/estate-vault-doors/model-8030.html","notes":"Protection Rating E, panic room slide lock (+$375), bolt indicator (+$495), electronic lock.","status":"not_started","model":"Estate 8030","color":"","leadTime":"","photo":""},{"id":"gun_range_i151","name":"Action Target Range System","vendor":"Action Target","link":"https://www.actiontarget.com/shooting-range-equipment/","notes":"$104,500","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"panic_room","name":"Panic Room","automationInterface":"","finishes":[{"id":"panic_room_f152","type":"Floor","material":"TBD","qty":"","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"panic_room_f153","type":"Door","material":"TBD","qty":"1","unit":"EA","vendor":"TBD","link":"","notes":"Ballistic rated vault-style door","status":"not_started","model":"","color":"","leadTime":""},{"id":"panic_room_f154","type":"Wall","material":"TBD","qty":"","unit":"","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"panic_room_f155","type":"Ceiling","material":"TBD","qty":"","unit":"","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Basement","id":"mechanical","name":"Mechanical Room","automationInterface":"","finishes":[{"id":"mechanical_f156","type":"Floor","material":"Concrete","qty":"","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"mechanical_i157","name":"Navien NPE-240A2 Tankless WH (x2)","vendor":"Navien","link":"https://www.navieninc.com/products/npe-240a2","notes":"199K BTU each. 20ft flue incl. Per Master Plumbing bid #3486.","status":"not_started","model":"NPE-240A2","color":"","leadTime":"","photo":""},{"id":"mechanical_i158","name":"Water Softener","vendor":"TBD","link":"","notes":"Rough-in only per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"mechanical_i159","name":"Whole House Filtration","vendor":"TBD","link":"","notes":"Rough-in only per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"mechanical_i160","name":"HVAC System","vendor":"Dash HVAC","link":"","notes":"Gas furnace + AC + condenser + evap coil. Full supply/return ductwork. $40,700","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"mechanical_i161","name":"Hot Water Circulation System","vendor":"Master Plumbing","link":"","notes":"Including underground hot water loop. Per plumbing bid.","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"ADU / Casita","id":"adu_living","name":"ADU Living / Hall","automationInterface":"","finishes":[{"id":"adu_living_f162","type":"Floor","material":"Pergo Soft Oak LVP","qty":"incl. 711 SF main","unit":"SF","vendor":"Pergo","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_living_f163","type":"Door","material":"TruStile TMF1000 MDF - Flush Exterior","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 4 per plans. Flush MDF exterior. 1-3/4in thick, 8ft. TruStile design code: EICnMYsYv","status":"not_started","model":"TMF1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"adu_living_f164","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_living_f165","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_living_f166","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"ADU / Casita","id":"adu_kitchen","name":"ADU Kitchen","automationInterface":"","finishes":[{"id":"adu_kitchen_f167","type":"Floor","material":"Pergo Soft Oak LVP","qty":"incl. 711 SF main","unit":"SF","vendor":"Pergo","link":"","notes":"Per A109","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_kitchen_f168","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"adu_kitchen_f169","type":"Wall","material":"Paint / Backsplash TBD","qty":"","unit":"","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_kitchen_f170","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_kitchen_f171","type":"Countertop","material":"ADU Kitchen Countertop TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$6,694","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"adu_kitchen_i172","name":"Guest Kitchenette Sink","vendor":"TBD","link":"","notes":"Per plumbing bid: incl. disposal + air switch + icemaker line","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"adu_kitchen_i173","name":"Frigidaire Gallery Refrigerator","vendor":"Frigidaire / BlvdHome","link":"https://www.frigidaire.com/Kitchen-Appliances/Refrigerators/Side-by-Side-Refrigerators/GRSC2352AF/","notes":"GRSC2352AF. Side-by-side, 22 cf, SS, 36\". $1,225","status":"not_started","model":"GRSC2352AF","color":"Smudge Proof SS","leadTime":"","photo":""},{"id":"adu_kitchen_i174","name":"Frigidaire Electric Range","vendor":"Frigidaire / BlvdHome","link":"https://www.frigidaire.com/Kitchen-Appliances/Ranges/Electric-Range/FCRE3062AS/","notes":"FCRE3062AS. Smoothtop, self-clean, 30\". $748","status":"not_started","model":"FCRE3062AS","color":"Stainless Steel","leadTime":"","photo":""},{"id":"adu_kitchen_i175","name":"Frigidaire Microhood","vendor":"Frigidaire / BlvdHome","link":"https://www.frigidaire.com/Kitchen-Appliances/Microwaves/Over-the-Range-Microwave/FMOS1745BS/","notes":"FMOS1745BS. OTR, 1.7 cf, 30\". $195","status":"not_started","model":"FMOS1745BS","color":"Stainless Steel","leadTime":"","photo":""},{"id":"adu_kitchen_i176","name":"Frigidaire Dishwasher","vendor":"Frigidaire / BlvdHome","link":"https://www.frigidaire.com/Kitchen-Appliances/Dishwashers/Built-In-Dishwashers/FFCD2413US/","notes":"FFCD2413US. Tall tub, 24\". $348","status":"not_started","model":"FFCD2413US","color":"Stainless Steel","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"ADU / Casita","id":"adu_bath1","name":"ADU Bath 1","automationInterface":"","finishes":[{"id":"adu_bath1_f177","type":"Floor","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bath1_f178","type":"Door","material":"TruStile TS1000 MDF - Shaker Panel","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/ts-series/ts1000","notes":"DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY","status":"not_started","model":"TS1000","color":"Bright Gray, ORB hinges","leadTime":"7-8 wks"},{"id":"adu_bath1_f179","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"Shower stall walls","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bath1_f180","type":"Door Casing","material":"TBD","qty":"TBD","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bath1_f181","type":"Wall Tile","material":"TBD","qty":"TBD","unit":"SF","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bath1_f182","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bath1_f183","type":"Countertop","material":"ADU Bath Countertop TBD","qty":"TBD","unit":"SF","vendor":"Countertop Source","link":"","notes":"$697","status":"not_started","model":"","color":"","leadTime":""}],"items":[{"id":"adu_bath1_i184","name":"HOROW Undermount Sink","vendor":"HOROW","link":"https://horow.com/collections/bathroom-undermount-sinks","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"adu_bath1_i185","name":"Arc Waterfall Faucet","vendor":"TBD","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"adu_bath1_i186","name":"HOROW Smart Toilet T05","vendor":"HOROW","link":"https://horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05","notes":"","status":"not_started","model":"T05","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""},{"level":"ADU / Casita","id":"adu_bedroom","name":"ADU Bedroom","automationInterface":"","finishes":[{"id":"adu_bedroom_f187","type":"Floor","material":"Pergo Soft Oak LVP","qty":"incl. 461 SF upper","unit":"SF","vendor":"Pergo","link":"","notes":"Per A110","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bedroom_f188","type":"Door","material":"TruStile TMF1000 MDF - Flush","qty":"1","unit":"EA","vendor":"TruStile / Sunpro","link":"https://www.trustile.com/interior-doors/tmf-series/tmf1000","notes":"DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT","status":"not_started","model":"TMF1000","color":"Off-White, ORB hinges","leadTime":"7-8 wks"},{"id":"adu_bedroom_f189","type":"Wall","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bedroom_f190","type":"Ceiling","material":"Paint - color TBD","qty":"","unit":"","vendor":"Jose","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""},{"id":"adu_bedroom_f191","type":"Trim / Base","material":"Base & Case","qty":"","unit":"LF","vendor":"Sunpro","link":"","notes":"","status":"not_started","model":"","color":"","leadTime":""}],"items":[],"lightingType":"","lightingNotes":""},{"level":"Project-Wide","id":"pw_rammed","name":"Rammed Earth","finishes":[],"items":[{"id":"pw_rammed_i192","name":"Rammed Earth Install","vendor":"Oliver Finishing / Allysa Oliver","link":"https://clay-works.com/collections/custom-finishes/rammed-earth/","notes":"$30/sf interior, $40/sf exterior + lodging/travel. Contact: hello@oliverfinishing.com","status":"not_started","model":"","color":"","leadTime":"","photo":""},{"id":"pw_rammed_i193","name":"Rammed Earth Material","vendor":"Clayworks","link":"https://clay-works.com/collections/custom-finishes/rammed-earth/","notes":"Material supply. $49,500 budget.","status":"not_started","model":"","color":"","leadTime":"","photo":""}],"lightingType":"","lightingNotes":""}];
+
+function requestApproval(type, id){
+  _pinTarget=id; _pinType=type;
+  document.getElementById('pinInput').value='';
+  document.getElementById('pinError').textContent='';
+  document.getElementById('modalPin').classList.add('open');
+  setTimeout(()=>document.getElementById('pinInput').focus(),100);
+}
+function submitPin(){
+  const entered=document.getElementById('pinInput').value;
+  if(entered!==OWNER_PIN){
+    document.getElementById('pinError').textContent='Incorrect PIN. Try again.';
+    document.getElementById('pinInput').value='';
+    return;
+  }
+  const now=new Date();
+  const stamp=now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  const approval={approved:true,stamp,by:'Owner'};
+  if(_pinType==='finish'){
+    for(const r of DATA){const f=r.finishes.find(x=>x.id===_pinTarget);if(f){f.ownerApproval=approval;break;}}
+  } else {
+    const i=findItem(_pinTarget);if(i)i.ownerApproval=approval;
+  }
+  saveData();
+  closeModal('modalPin');
+  render();
+  showToast('✓ Owner Approved');
+}
+function revokeApproval(type,id){
+  if(!confirm('Revoke owner approval?'))return;
+  if(type==='finish'){for(const r of DATA){const f=r.finishes.find(x=>x.id===id);if(f){delete f.ownerApproval;break;}}}
+  else {const i=findItem(id);if(i)delete i.ownerApproval;}
+  saveData();render();showToast('Approval revoked');
+}
+// ── IndexedDB for photos ──────────────────────────────────────────────────
+let photoDB=null;
+function openPhotoDB(){
+  return new Promise((res,rej)=>{
+    if(photoDB)return res(photoDB);
+    const req=indexedDB.open('sel_photos',2);
+    req.onupgradeneeded=e=>{
+      const db=e.target.result;
+      if(db.objectStoreNames.contains('photos'))db.deleteObjectStore('photos');
+      db.createObjectStore('photos');
+    };
+    req.onsuccess=e=>{photoDB=e.target.result;res(photoDB)};
+    req.onerror=e=>rej(e);
+  });
+}
+function savePhoto(id,dataUrl){
+  return openPhotoDB().then(db=>{
+    return new Promise((res,rej)=>{
+      const tx=db.transaction('photos','readwrite');
+      tx.objectStore('photos').put(dataUrl,id);
+      tx.oncomplete=()=>res();
+      tx.onerror=e=>rej(e);
+    });
+  });
+}
+function loadPhoto(id){
+  return openPhotoDB().then(db=>{
+    return new Promise((res,rej)=>{
+      const tx=db.transaction('photos','readonly');
+      const req=tx.objectStore('photos').get(id);
+      req.onsuccess=e=>res(e.target.result||null);
+      req.onerror=e=>rej(e);
+    });
+  });
+}
+function loadAllPhotos(){
+  return openPhotoDB().then(db=>{
+    return new Promise((res,rej)=>{
+      const tx=db.transaction('photos','readonly');
+      const store=tx.objectStore('photos');
+      const map={};
+      const req=store.openCursor();
+      req.onsuccess=e=>{
+        const cursor=e.target.result;
+        if(cursor){map[cursor.key]=cursor.value;cursor.continue();}
+        else res(map);
+      };
+      req.onerror=e=>rej(e);
+    });
+  });
+}
+function resetToDefaultRooms(){
+  if(!confirm('Reload the full room list from this page? This will replace your saved data with the default rooms (your edits will be lost unless you have an export).'))return;
+  [SEL_KEY,SEL_KEY+'_chunks'].forEach(k=>localStorage.removeItem(k));
+  for(let i=0;i<20;i++){const k=SEL_KEY+'_c'+i;if(localStorage.getItem(k)!==null)localStorage.removeItem(k);else break;}
+  DATA=JSON.parse(JSON.stringify(SEED_ROOMS));
+  normalizeAllUrls();
+  saveData();
+  render();
+  showToast('✓ Restored default rooms');
+}
+// ─────────────────────────────────────────────────────────────────────────
+function loadData(){
+  ['rodriguez_sel_v1','rodriguez_sel_v2','rodriguez_sel_v3','rodriguez_sel_v4','rodriguez_sel_v5','rodriguez_sel_v6'].forEach(k=>localStorage.removeItem(k));
+  // Try single key first
+  let raw=localStorage.getItem(SEL_KEY);
+  // Try chunked storage if single key missing
+  if(!raw){
+    const chunks=localStorage.getItem(SEL_KEY+'_chunks');
+    if(chunks){
+      const total=parseInt(chunks,10);
+      let assembled='';
+      for(let i=0;i<total;i++){assembled+=(localStorage.getItem(SEL_KEY+'_c'+i)||'');}
+      if(assembled)raw=assembled;
+    }
+  }
+  if(raw){try{const d=JSON.parse(raw);if(Array.isArray(d)&&d.length>0){DATA=d;normalizeAllUrls();return;}}catch(e){}}
+  DATA=JSON.parse(JSON.stringify(SEED_ROOMS));
+  try{
+    const old=localStorage.getItem('rodriguez_sel_v8');
+    if(old){
+      const oldData=JSON.parse(old);
+      for(const oldRoom of oldData){
+        const newRoom=DATA.find(r=>r.id===oldRoom.id);
+        if(!newRoom)continue;
+        for(const of_ of oldRoom.finishes||[]){
+          const nf=newRoom.finishes.find(f=>f.type===of_.type&&f.material===of_.material);
+          if(nf){nf.status=of_.status||nf.status;nf.notes=of_.notes||nf.notes;nf.model=of_.model||nf.model;nf.color=of_.color||nf.color;nf.leadTime=of_.leadTime||nf.leadTime;nf.link=cleanUrl(of_.link||nf.link||'');}
+        }
+        for(const oi of oldRoom.items||[]){
+          const ni=newRoom.items.find(i=>i.name===oi.name);
+          if(ni){if(oi.status)ni.status=oi.status;if(oi.notes!==undefined)ni.notes=oi.notes;if(oi.model!==undefined)ni.model=oi.model;if(oi.color!==undefined)ni.color=oi.color;if(oi.leadTime!==undefined)ni.leadTime=oi.leadTime;if(oi.link!==undefined)ni.link=cleanUrl(oi.link);if(oi.manual!==undefined)ni.manual=cleanUrl(oi.manual);}
+        }
+      }
+    }
+  }catch(e){}
+  normalizeAllUrls();
+  saveData();
+}
+function migrateRoomFields(){
+  for(const r of DATA){
+    if(!Array.isArray(r.finishes))r.finishes=[];
+    if(!Array.isArray(r.items))r.items=[];
+    if(!('lightingType' in r))r.lightingType='';
+    if(!('lightingNotes' in r))r.lightingNotes='';
+    if(!('lightingStatus' in r))r.lightingStatus='not_started';
+    if(!('lightingPhoto' in r))r.lightingPhoto='';
+  }
+}
+function _saveLocalOnly(){
+  const clean=DATA.map(r=>{const {lightingPhoto,...rr}=r;return {...rr,finishes:r.finishes.map(f=>{const {photo,...rest}=f;return rest;}),items:r.items.map(i=>{const {photo,...rest}=i;return rest;})};});
+  const payload=JSON.stringify(clean);
+  try{localStorage.setItem(SEL_KEY,payload);}catch(e){}
+}
+function saveData(){
+  // Strip photos from DATA before saving to localStorage
+  const clean=DATA.map(r=>{const {lightingPhoto,...rr}=r;return {...rr,finishes:r.finishes.map(f=>{const {photo,...rest}=f;return rest;}),items:r.items.map(i=>{const {photo,...rest}=i;return rest;})};});
+  const payload=JSON.stringify(clean);
+  // Clear old chunk keys first
+  for(let i=0;i<20;i++){const k=SEL_KEY+'_c'+i;if(localStorage.getItem(k)!==null)localStorage.removeItem(k);else break;}
+  try{
+    localStorage.setItem(SEL_KEY,payload);
+    localStorage.removeItem(SEL_KEY+'_chunks');
+  }catch(e){
+    // Quota exceeded — chunk it into 512KB pieces
+    localStorage.removeItem(SEL_KEY);
+    const CHUNK=512*1024;
+    const total=Math.ceil(payload.length/CHUNK);
+    try{
+      for(let i=0;i<total;i++){
+        localStorage.setItem(SEL_KEY+'_c'+i,payload.slice(i*CHUNK,(i+1)*CHUNK));
+      }
+      localStorage.setItem(SEL_KEY+'_chunks',String(total));
+    }catch(e2){
+      showToast('⚠ Storage full — data NOT saved. Clear browser storage.',true);
+      console.error('localStorage full:',e2);
+    }
+  }
+  pushToSheets();
+}
+function showToast(msg,warn){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+(warn?'toast-warn':'toast-success')+' show';setTimeout(()=>t.classList.remove('show'),1800);}
+function findRoom(id){return DATA.find(r=>r.id===id);}
+function findItem(iid){for(const r of DATA)for(const i of r.items)if(i.id===iid)return i;return null;}
+
+function renderStats(){
+  const counts={};STATUS_ORDER.forEach(s=>counts[s]=0);let n=0;
+  for(const r of DATA){for(const f of r.finishes){counts[f.status||'not_started']++;n++;}for(const i of r.items){counts[i.status||'not_started']++;n++;}}
+  if(!n)n=1;
+  document.getElementById('selStats').innerHTML=STATUS_ORDER.map(s=>`<div class="sel-stat"><div class="num ${STAT_CLASSES[s]}">${counts[s]}</div><div class="lbl">${STATUS_LABELS[s]}</div></div>`).join('');
+  document.getElementById('pipelineBar').innerHTML=STATUS_ORDER.map(s=>{const p=counts[s]/n*100;return p>0?`<div class="pipeline-seg" style="width:${p}%;background:${STATUS_COLORS[s]}"></div>`:''}).join('');
+}
+
+function updateNavSpacer(){
+  const h=document.getElementById('navSticky');const s=document.getElementById('navStickySpacer');
+  if(h&&s)s.style.height=h.offsetHeight+'px';
+}
+function syncViewBtns(){
+  const v=curView;
+  ['btnRooms','btnRooms2'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',v==='rooms');});
+  ['btnMTO','btnMTO2'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',v==='mto');});
+  ['btnTrade','btnTrade2'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('active',v==='trade');});
+}
+function setView(v){
+  curView=v;
+  document.getElementById('btnRooms').classList.toggle('active',v==='rooms');
+  document.getElementById('btnMTO').classList.toggle('active',v==='mto');
+  document.getElementById('btnTrade').classList.toggle('active',v==='trade');
+  const r2=document.getElementById('btnRooms2');if(r2)r2.classList.toggle('active',v==='rooms');
+  const m2=document.getElementById('btnMTO2');if(m2)m2.classList.toggle('active',v==='mto');
+  const t2=document.getElementById('btnTrade2');if(t2)t2.classList.toggle('active',v==='trade');
+  const fr=document.getElementById('typeFilterRow');if(fr)fr.style.display=v==='rooms'?'flex':'none';
+  const rn=document.getElementById('roomNav');if(rn)rn.style.display=v==='rooms'?'flex':'none';
+  const rns=document.getElementById('roomNavSpacer');if(rns)rns.classList.toggle('visible',v==='rooms');
+  setTimeout(updateNavSpacer,0);
+  const tb=document.getElementById('tradeBar');if(tb)tb.style.display=(v==='trade'||v==='mto')?'flex':'none';
+  const er=document.getElementById('exportRow');if(er)er.style.display=(v==='trade'||v==='mto')?'flex':'none';
+  if(v!=='trade'&&v!=='mto')curTradeTab='all';
+  render();
+}
+function setFilter(f,btn){currentFilter=f;const row=document.getElementById('filterRow');if(row)row.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');render();}
+function setTypeFilter(t,btn){currentTypeFilter=t;document.querySelectorAll('.type-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+
+function mkSel(id,isFinish,roomId,current,compact){
+  const cls='st-'+(current||'not_started');
+  const mini=compact?'style="min-width:90px;font-size:10px"':'';
+  const fn=isFinish?`updateFinishStatus('${roomId}','${id}',this.value)`:`updateItemField('${id}','status',this.value)`;
+  return `<select class="${cls}" ${mini} onchange="${fn};this.className='st-'+this.value">${STATUS_ORDER.map(s=>`<option value="${s}"${(current||'not_started')===s?' selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select>`;
+}
+
+
+// ── Material memory per finish type ──────────────────────────────────────
+function getFinishByMaterial(type, material){
+  const mat=material.trim().toLowerCase();
+  for(const r of DATA)
+    for(const f of r.finishes)
+      if(f.type===type && f.material && f.material.trim().toLowerCase()===mat && (f.link||f.photo))
+        return f;
+  return null;
+}
+function getMaterialOptions(type){
+  const seen=new Set();
+  for(const r of DATA)
+    for(const f of r.finishes)
+      if(f.type===type&&f.material&&f.material.trim())seen.add(f.material.trim());
+  return [...seen].sort();
+}
+function getLightingOptions(){
+  const seen=new Set();
+  const TYPES=['Recessed','Flush Mount','Pendant','Track','Cove / Strip','Specialty'];
+  TYPES.forEach(t=>seen.add(t));
+  for(const r of DATA)if(r.lightingType&&r.lightingType.trim())seen.add(r.lightingType.trim());
+  return [...seen].sort();
+}
+function updateLighting(roomId,field,val){
+  const r=DATA.find(x=>x.id===roomId);if(!r)return;
+  r[field]=val;
+  if(field==="lightingType"&&val){const src=DATA.find(x=>x.id!==roomId&&x.lightingType&&x.lightingType.trim().toLowerCase()===val.trim().toLowerCase());if(src){if(!r.lightingNotes&&src.lightingNotes)r.lightingNotes=src.lightingNotes;if((!r.lightingStatus||r.lightingStatus==="not_started")&&src.lightingStatus)r.lightingStatus=src.lightingStatus;if(!r.lightingPhoto&&src.lightingPhoto)r.lightingPhoto=src.lightingPhoto;}}
+  saveData();
+  if(field==="lightingStatus")render();else showToast('✓ Saved');
+}
+function materialCell(roomId,fid,type,material,notes){
+  const opts=getMaterialOptions(type);
+  const listId='ml-'+fid;
+  return `<div style="display:flex;flex:1;position:relative">
+    <input class="finish-edit" list="${listId}" value="${esc(material)}" title="${esc(notes)}"
+      onchange="updateFinish('${roomId}','${fid}','material',this.value);autoFillFinish('${roomId}','${fid}','${type.replace(/'/g,"\\'")}',this.value)"
+      placeholder="Material..." style="flex:1;min-width:0">
+    <datalist id="${listId}">${opts.map(o=>`<option value="${esc(o)}">`).join('')}</datalist>
+  </div>`;
+}
+async function render(){
+  renderStats();updateNavSpacer();
+  if(curView==='mto'){renderMTO();return;}
+  if(curView==='trade'){renderByTrade();return;}
+  const q=((document.getElementById('searchInput')||{}).value||'').toLowerCase().trim();
+  const el=document.getElementById('body');const navEl=document.getElementById('roomNav');const navTabsEl=document.getElementById('roomNavTabs');let html='';let navHtml='';let lastLevel='';
+  if(navEl){navEl.style.display='flex';navEl.style.visibility='visible';}
+  const sp=document.getElementById('roomNavSpacer');if(sp)sp.classList.add('visible');
+  const roomsForNav=DATA.length>0?DATA:SEED_ROOMS;
+  if(DATA.length===0){DATA=JSON.parse(JSON.stringify(SEED_ROOMS));saveData();}
+  for(const room of roomsForNav){navHtml+=`<button type="button" class="room-nav-tab" onclick="scrollToRoom('${room.id}')">${esc(room.name)}</button>`;}
+  for(const room of DATA){
+    let finishes=room.finishes||[],items=room.items||[];
+    if(currentFilter!=='all'){finishes=finishes.filter(f=>(f.status||'not_started')===currentFilter);items=items.filter(i=>(i.status||'not_started')===currentFilter);}
+    if(currentTypeFilter!=='all'){finishes=finishes.filter(f=>matchesTypeFilter(f,null,currentTypeFilter));items=items.filter(i=>matchesTypeFilter(null,i,currentTypeFilter));}
+    if(q){finishes=finishes.filter(f=>(f.type+' '+f.material+' '+f.vendor+' '+f.notes).toLowerCase().includes(q));items=items.filter(i=>(i.name+' '+i.vendor+' '+i.notes).toLowerCase().includes(q));}
+    if(!finishes.length&&!items.length&&(currentFilter!=='all'||q))continue;
+    if(room.level!==lastLevel){lastLevel=room.level;html+=`<div class="level-hdr">${room.level}</div>`;}
+    const all=[...(room.finishes||[]),...(room.items||[])];
+    const selCount=all.filter(x=>['selected','ordered','received','installed'].includes(x.status||'not_started')).length;
+    const instCount=all.filter(x=>(x.status||'not_started')==='installed').length;
+    html+=`<div class="room-section" id="room-${room.id}"><div class="room-hdr open" onclick="toggleRoom(this)">
+      <div class="room-hdr-left"><span class="room-arrow">▶</span><h3>${esc(room.name)}</h3></div>
+      <div class="room-hdr-right"><span class="room-count">${selCount}/${all.length} selected · ${instCount} installed</span></div>
+    </div><div class="room-body open">`;
+    const df=currentFilter!=='all'||q?finishes:(room.finishes||[]);
+    if(df.length){
+      html+=`<table class="finish-table"><thead><tr><th width="60">Photo</th><th width="90">Type</th><th>Material / Selection</th><th width="130">Status</th><th width="220">URL</th><th width="24"></th></tr></thead><tbody>`;
+      for(const f of df){
+        const tc=FIN_TYPES[f.type]||'ft-other';
+        html+=`<tr class="finish-row">
+          <td style="padding:6px 8px;width:60px"><label style="width:52px;height:42px;border-radius:6px;background:var(--bg);border:1px dashed var(--bdr);display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;position:relative;flex-shrink:0">${(f.photo||'')?`<img src="${f.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:5px" onclick="event.preventDefault();openLB(this.src)">`:`<span style="font-size:16px;opacity:.3">📷</span>`}<input type="file" accept="image/*" onchange="handleFinishPhoto('${f.id}',this)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"></label></td>
+          <td><span class="finish-type ${tc}">${esc(f.type)}</span></td>
+          <td class="finish-material" style="display:flex;align-items:center;gap:4px">${materialCell(room.id,f.id,f.type,f.material,f.notes)}</td>
+          <td class="finish-status">${mkSel(f.id,true,room.id,f.status,true)}</td>
+          <td class="finish-link" style="min-width:200px">${f.link&&isExternalUrl(cleanUrl(f.link))?'<a href="'+escAttr(cleanUrl(f.link))+'" target="_blank" rel="noopener noreferrer" title="Product page" style="margin-right:4px">🔗</a>':''}<input class="finish-edit" value="${escAttr(cleanUrl(f.link||''))}" placeholder="https://…" onblur="updateFinish('${room.id}','${f.id}','link',this.value)" style="min-width:180px;max-width:280px;font-size:11px" maxlength="2048" title="Product link"></td>
+          <td>${f.ownerApproval?
+            `<button class="owner-approve-btn owner-approved" onclick="revokeApproval('finish','${f.id}')" title="Click to revoke">✓ Approved<span class="owner-approved-stamp">${f.ownerApproval.stamp}</span></button>`:
+            `<button class="owner-approve-btn" onclick="requestApproval('finish','${f.id}')">Approve</button>`
+          }</td>
+          <td style="display:flex;gap:4px;align-items:center"><button class="copy-finish-btn" onclick="copyFinishToRooms('${room.id}','${f.id}')" title="Copy to other rooms">⎘</button><button class="del-finish" onclick="delFinish('${room.id}','${f.id}')" title="Remove">✕</button></td>
+        </tr>`;
+      }
+      html+=`</tbody></table>`;
+    }
+    const di=currentFilter!=='all'||q?items:(room.items||[]);
+    if(di.length){
+      html+=`<div class="items-label">FIXTURES &amp; EQUIPMENT</div>`;
+      for(const item of di){
+        const st='st-'+(item.status||'not_started');
+        const photo=item.photo||'';
+        html+=`<div class="sel-card">
+          <button class="del-item" onclick="delItem('${item.id}')" title="Remove">✕</button>
+          
+          <label class="sel-photo" style="cursor:pointer">
+            ${photo?`<img src="${photo}" onclick="event.preventDefault();openLB(this.src)" style="width:100%;height:100%;object-fit:cover;border-radius:6px;cursor:zoom-in"><span style="position:absolute;bottom:2px;right:2px;background:rgba(0,0,0,.6);border-radius:3px;padding:2px 4px;font-size:9px;color:#fff">✎</span>`:`<div class="placeholder">📷</div>`}
+            <input type="file" accept="image/*" onchange="handlePhoto('${item.id}',this)" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">
+          </label>
+          <div class="sel-info">
+            <div class="sel-name"><input type="text" class="sel-name-input" value="${esc(item.name||'')}" onchange="updateItemField('${item.id}','name',this.value)" onblur="updateItemField('${item.id}','name',this.value)" placeholder="Product name">${extLink(item.link,'🔗','blue','Product page','12px')}${extLink(item.manual,'📄','cyan','Manual','12px')}</div>
+            <div class="sel-vendor">${esc(item.vendor||'TBD')}</div>
+            <div class="sel-detail-row">
+              <div class="sel-field"><label>Model / SKU</label><input value="${esc(item.model||'')}" onchange="updateItemField('${item.id}','model',this.value)" placeholder="Model #" class="compact"></div>
+              <div class="sel-field"><label>Color / Finish</label><input value="${esc(item.color||'')}" onchange="updateItemField('${item.id}','color',this.value)" placeholder="Color" class="compact"></div>
+              <div class="sel-field"><label>Lead Time</label><input value="${esc(item.leadTime||'')}" onchange="updateItemField('${item.id}','leadTime',this.value)" placeholder="e.g. 6 wks" class="compact"></div>
+            </div>
+            <div class="sel-field" style="margin-top:6px;width:100%"><label>Notes</label><textarea onblur="updateItemField('${item.id}','notes',this.value)" placeholder="Specs, links, decisions...">${esc(item.notes||'')}</textarea></div>
+            <div class="sel-detail-row" style="margin-top:6px">
+              <div class="sel-field" style="flex:1;min-width:200px"><label>🔗 Product Link</label><div style="display:flex;gap:4px;align-items:center"><input value="${escAttr(cleanUrl(item.link||''))}" onblur="updateItemField('${item.id}','link',this.value)" placeholder="https://..." class="compact" style="flex:1;min-width:0" maxlength="2048">${extLink(item.link,'↗','blue','Open')}</div></div>
+              <div class="sel-field" style="flex:1;min-width:200px"><label>📄 Manual / Doc</label><div style="display:flex;gap:4px;align-items:center"><input value="${escAttr(cleanUrl(item.manual||''))}" onblur="updateItemField('${item.id}','manual',this.value)" placeholder="https://..." class="compact" style="flex:1;min-width:0" maxlength="2048">${extLink(item.manual,'↗','cyan','Open')}</div></div>
+            </div>
+          </div>
+          <div class="sel-status">
+            <select class="${st}" onchange="updateItemField('${item.id}','status',this.value);this.className='st-'+this.value">
+              ${STATUS_ORDER.map(s=>`<option value="${s}"${(item.status||'not_started')===s?' selected':''}>${STATUS_LABELS[s]}</option>`).join('')}
+            </select>
+            <div style="margin-top:8px">
+              ${item.ownerApproval?
+                `<button class="owner-approve-btn owner-approved" onclick="revokeApproval('item','${item.id}')" title="Click to revoke" style="width:100%">✓ Approved<span class="owner-approved-stamp">${item.ownerApproval.stamp}</span></button>`:
+                `<button class="owner-approve-btn" onclick="requestApproval('item','${item.id}')" style="width:100%">Owner Approve</button>`
+              }
+            </div>
+            ${(item.photo||item.link||item.manual)?`<button class="owner-approve-btn" onclick="applyToAll('${item.id}')" style="width:100%;margin-top:6px;color:var(--cyan);border-color:var(--cyan)" title="Copy photo, link & manual to all items with same name">↓ Apply to all matching</button>`:''}
+          </div>
+        </div>`;
+      }
+    }
+    if(room.level!=='Project-Wide'){
+      html+=`<div class="auto-row"><label class="auto-label">⚡ Automation Interface</label><select class="auto-sel" onchange="updateAutoInterface('${room.id}',this.value)">
+        <option value="">— Not selected —</option>
+        <option value="key_digital"${room.automationInterface==='key_digital'?' selected':''}>Key Digital Keypad (8-button programmable)</option>
+        <option value="axiom_8"${room.automationInterface==='axiom_8'?' selected':''}>Axiom 8" Touchscreen (camera + mic, full automation)</option>
+        <option value="axiom_5"${room.automationInterface==='axiom_5'?' selected':''}>Axiom 5.5" Touchscreen (full automation, no camera)</option>
+        <option value="traditional"${room.automationInterface==='traditional'?' selected':''}>Traditional Rocker Switch</option>
+        <option value="none"${room.automationInterface==='none'?' selected':''}>None</option>
+      </select>${room.automationInterface&&room.automationInterface!=='none'?'<span class="auto-badge">✓ Selected</span>':''}</div>`;
+    }
+    
+    {
+      const lopts=getLightingOptions();
+      const ltid='lt-'+room.id;
+      const lstat=room.lightingStatus||'not_started';
+      const lphoto=room.lightingPhoto?`<img src="${room.lightingPhoto}" onclick="event.preventDefault();openLB(this.src)" style="width:100%;height:100%;object-fit:cover;border-radius:6px;cursor:zoom-in">`:`<div class="placeholder" style="font-size:14px">📷</div>`;
+      html+=`<div class="auto-row"><label class="auto-label">💡 Lighting</label><label class="sel-photo" data-lproom="${room.id}" style="width:52px;height:42px;cursor:pointer;flex-shrink:0">${lphoto}<input type="file" accept="image/*" data-lpfile="${room.id}" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"></label><select class="auto-sel st-${lstat}" data-lrid="${room.id}" data-lfield="lightingStatus">${STATUS_ORDER.map(s=>`<option value="${s}"${lstat===s?' selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select><div style="display:flex;gap:8px;align-items:center;flex:1"><div style="position:relative"><input list="${ltid}" data-ltroom="${room.id}" data-lfield="lightingType" placeholder="Type (Recessed, Pendant…)" style="min-width:180px;padding:5px 8px;border-radius:6px;border:1px solid var(--bdr);background:var(--bg);color:var(--txt);font-size:12px"><datalist id="${ltid}">${lopts.map(o=>`<option value="${esc(o)}">`).join('')}</datalist></div><input data-lrid="${room.id}" data-lfield="lightingNotes" placeholder="Notes / fixture description…" style="flex:1;padding:5px 8px;border-radius:6px;border:1px solid var(--bdr);background:var(--bg);color:var(--txt);font-size:12px">${room.lightingType?'<span class="auto-badge" data-ltbadge="${room.id}">✓</span>':''}</div></div>`;
+    }
+    html+=`<div class="add-row"><button class="add-btn" onclick="openAddFinish('${room.id}')">+ Finish Row</button><button class="add-btn" onclick="openAddItem('${room.id}')">+ Item</button></div></div></div>`;
+  }
+  if(navTabsEl)navTabsEl.innerHTML=navHtml;
+  el.innerHTML=html;
+
+  // Wire lighting events via JS (avoids inline handler quote-escaping issues)
+  // Set input values
+  document.querySelectorAll('input[data-ltroom]').forEach(inp=>{
+    const r=DATA.find(x=>x.id===inp.dataset.ltroom);
+    if(r&&r.lightingType)inp.value=r.lightingType;
+    inp.addEventListener('change',function(){updateLighting(this.dataset.ltroom,'lightingType',this.value);});
+    inp.addEventListener('blur',function(){updateLighting(this.dataset.ltroom,'lightingType',this.value);});
+  });
+  document.querySelectorAll('input[data-lfield="lightingNotes"]').forEach(inp=>{
+    const r=DATA.find(x=>x.id===inp.dataset.lrid);
+    if(r&&r.lightingNotes)inp.value=r.lightingNotes;
+    inp.addEventListener('change',function(){updateLighting(this.dataset.lrid,'lightingNotes',this.value);});
+    inp.addEventListener('blur',function(){updateLighting(this.dataset.lrid,'lightingNotes',this.value);});
+  });
+  document.querySelectorAll('select[data-lfield="lightingStatus"]').forEach(sel=>{
+    sel.addEventListener('change',function(){
+      this.className='auto-sel st-'+this.value;
+      updateLighting(this.dataset.lrid,'lightingStatus',this.value);
+    });
+  });
+  // Wire lighting photo upload
+  document.querySelectorAll('input[data-lpfile]').forEach(inp=>{
+    inp.addEventListener('change',function(){
+      const f=this.files[0];if(!f)return;
+      const rid=this.dataset.lpfile;
+      const rd=new FileReader();
+      rd.onload=function(e){
+        const room=DATA.find(x=>x.id===rid);
+        if(room){
+          room.lightingPhoto=e.target.result;
+          savePhoto(rid,e.target.result);
+          saveData();render();
+        }
+      };
+      rd.readAsDataURL(f);
+    });
+  });
+  // Reload lighting photos from IDB
+  try{
+    indexedDB.open('sel_photos',2).onsuccess=e=>{
+      const store=e.target.result.transaction('photos','readonly').objectStore('photos');
+      store.openCursor().onsuccess=ev=>{
+        const cur=ev.target.result;if(!cur)return;
+        const lbl=document.querySelector('label[data-lproom="'+cur.key+'"]');
+        if(lbl){lbl.innerHTML='<img src="'+cur.value+'" onclick="event.preventDefault();openLB(this.src)" style="width:100%;height:100%;object-fit:cover;border-radius:6px;cursor:zoom-in"><input type=\'file\' accept=\'image/*\' data-lpfile="'+cur.key+'" style=\'position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%\'>';
+          // re-wire after innerHTML update
+          lbl.querySelector('input[data-lpfile]').addEventListener('change',function(){
+            const f=this.files[0];if(!f)return;
+            const rid=this.dataset.lpfile;
+            const rd=new FileReader();
+            rd.onload=function(e2){const room=DATA.find(x=>x.id===rid);if(room){room.lightingPhoto=e2.target.result;savePhoto(rid,e2.target.result);saveData();render();}};
+            rd.readAsDataURL(f);
+          });
+        }
+        for(const r of DATA){if(r.id===cur.key){r.lightingPhoto=cur.value;break;}}
+        cur.continue();
+      };
+    };
+  }catch(e){}
+}
+
+function buildByTrade(){
+  const byTrade={};
+  for(const r of DATA){
+    if(!r)continue;
+    for(const f of r.finishes||[]){
+      const trade=TRADE_BY_TYPE[f.type]||'Other';
+      if(!byTrade[trade])byTrade[trade]=[];
+      byTrade[trade].push({room:r.name,level:r.level,item:f,isFinish:true});
+    }
+    for(const i of r.items||[]){
+      const trade=suggestTradeForItem(i);
+      if(!byTrade[trade])byTrade[trade]=[];
+      byTrade[trade].push({room:r.name,level:r.level,item:i,isFinish:false});
+    }
+  }
+  return byTrade;
+}
+function populateTradeTabs(byTrade){
+  const tabEl=document.getElementById('tradeTabs');
+  if(!tabEl)return;
+  let tabHtml='<button type="button" class="trade-tab '+(curTradeTab==='all'?'active':'')+'" onclick="setTradeTab(\'all\',this)">All</button>';
+  for(const trade of TRADE_ORDER){
+    const n=(byTrade[trade]||[]).length;
+    if(n===0)continue;
+    tabHtml+=`<button type="button" class="trade-tab ${curTradeTab===trade?'active':''}" data-trade="${escAttr(trade)}" onclick="setTradeTab(this.dataset.trade,this)">${esc(trade)} (${n})</button>`;
+  }
+  tabEl.innerHTML=tabHtml;
+}
+
+function renderMTO(){
+  const byTrade=buildByTrade();
+  populateTradeTabs(byTrade);
+  const el=document.getElementById('body');let html='';
+  const tradesToShow=curTradeTab==='all'?TRADE_ORDER:[curTradeTab];
+  for(const trade of tradesToShow){
+    const rows=byTrade[trade];if(!rows||!rows.length)continue;
+    html+=`<div class="mto-section"><div class="mto-cat-hdr open" onclick="toggleMTO(this)"><h4>${esc(trade)} <span style="color:var(--dim);font-weight:400;font-size:11px">(${rows.length})</span></h4><span class="arrow">▶</span></div><div class="mto-body open"><table class="mto-table"><thead><tr><th width="140">Room</th><th width="80">Type</th><th>Material / Item</th><th width="110">SF / Qty</th><th width="150">Vendor</th><th width="120">Status</th><th width="28"></th></tr></thead><tbody>`;
+    for(const {room,item,isFinish} of rows){
+      const st='st-'+(item.status||'not_started');
+      const tc=isFinish?(FIN_TYPES[item.type]||'ft-other'):'ft-other';
+      const typeCell=isFinish?`<span class="finish-type ${tc}">${esc(item.type)}</span>`:`<span style="font-size:10px;color:var(--txt2)">${esc(item.vendor||'TBD')}</span>`;
+      const name=isFinish?item.material:item.name;
+      const note=(item.notes||'').substring(0,70);
+      const link=cleanUrl(item.link||item.manual||'');
+      const linkOk=link&&isExternalUrl(link);
+      html+=`<tr><td><span class="mto-room-tag">${esc(room)}</span></td><td>${typeCell}</td><td><strong>${esc(name)}</strong>${linkOk?' '+extLink(link,'🔗','blue','','12px'):''}${note?`<br><span style="font-size:10px;color:var(--dim)">${esc(note)}${item.notes.length>70?'…':''}</span>`:''}</td><td style="font-size:11px">${esc(isFinish?(item.qty||'—'):(item.model||''))}</td><td style="font-size:11px;color:var(--txt2)">${esc(isFinish?(item.vendor||'TBD'):(item.color||''))}</td><td><select class="${st}" style="min-width:95px;font-size:10px" onchange="updateAnyStatus('${item.id}',this)">${STATUS_ORDER.map(s=>`<option value="${s}"${(item.status||'not_started')===s?' selected':''}>${STATUS_LABELS[s]}</option>`).join('')}</select></td><td>${linkOk?extLink(link,'↗','blue','Open'):''}</td></tr>`;
+    }
+    html+=`</tbody></table></div></div>`;
+  }
+  el.innerHTML=html;
+}
+
+const TRADE_ORDER=['Flooring & Tile','Paint & Drywall','Trim & Millwork','Doors & Hardware','Countertops','Plumbing','Electrical','Lighting','Appliances','HVAC','Doors & Windows','Fixtures & Equipment','Other'];
+let curTradeTab='all';
+function setTradeTab(tab,btn){
+  curTradeTab=tab;
+  document.querySelectorAll('.trade-tab').forEach(b=>{b.classList.toggle('active',b===btn);});
+  render();
+}
+function renderByTrade(){
+  const byTrade=buildByTrade();
+  for(const t in byTrade){
+    for(const row of byTrade[t]){
+      row.type=row.isFinish?row.item.type:'Item';
+      row.material=row.isFinish?row.item.material:(row.item.name||'');
+      row.qty=row.isFinish?(row.item.qty||'—'):(row.item.model||'—');
+      row.unit=row.isFinish?(row.item.unit||''):'';
+    }
+  }
+  populateTradeTabs(byTrade);
+  const el=document.getElementById('body');let html='';
+  const tradesToShow=curTradeTab==='all'?TRADE_ORDER:[curTradeTab];
+  for(const trade of tradesToShow){
+    const rows=byTrade[trade];if(!rows||!rows.length)continue;
+    html+=`<div class="mto-section"><div class="mto-cat-hdr open" onclick="toggleMTO(this)"><h4>${esc(trade)} <span style="color:var(--dim);font-weight:400;font-size:11px">(${rows.length})</span></h4><span class="arrow">▶</span></div><div class="mto-body open"><table class="mto-table"><thead><tr><th width="140">Room</th><th width="90">Type</th><th>Material / Item</th><th width="100">Qty / SF</th><th width="80">Unit</th></tr></thead><tbody>`;
+    for(const row of rows){
+      const typeCell=row.isFinish?`<span class="finish-type ${FIN_TYPES[row.type]||'ft-other'}">${esc(row.type)}</span>`:`<span style="font-size:10px;color:var(--txt2)">Item</span>`;
+      html+=`<tr><td><span class="mto-room-tag">${esc(row.room)}</span></td><td>${typeCell}</td><td><strong>${esc(row.material)}</strong></td><td style="font-size:11px">${esc(row.qty)}</td><td style="font-size:11px;color:var(--txt2)">${esc(row.unit)}</td></tr>`;
+    }
+    html+=`</tbody></table></div></div>`;
+  }
+  el.innerHTML=html;
+}
+
+function exportByTrade(tradeFilter){
+  let csv='Trade,Room,Level,Type,Material/Item,Qty,Unit\n';
+  for(const r of DATA){
+    if(!r)continue;
+    for(const f of r.finishes||[]){
+      const trade=TRADE_BY_TYPE[f.type]||'Other';
+      if(tradeFilter&&trade!==tradeFilter)continue;
+      csv+=`"${trade}","${(r.name||'').replace(/"/g,'""')}","${(r.level||'').replace(/"/g,'""')}","${(f.type||'').replace(/"/g,'""')}","${(f.material||'').replace(/"/g,'""')}","${(f.qty||'').replace(/"/g,'""')}","${(f.unit||'').replace(/"/g,'""')}"\n`;
+    }
+    for(const i of r.items||[]){
+      const trade=suggestTradeForItem(i);
+      if(tradeFilter&&trade!==tradeFilter)continue;
+      csv+=`"${trade}","${(r.name||'').replace(/"/g,'""')}","${(r.level||'').replace(/"/g,'""')}","Item","${(i.name||'').replace(/"/g,'""')}","${(i.model||'').replace(/"/g,'""')}",""\n`;
+    }
+  }
+  const fn=tradeFilter?'rodriguez_'+tradeFilter.replace(/\s+/g,'_').toLowerCase()+'.csv':'rodriguez_quantities_by_trade.csv';
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('✓ Exported');
+}
+function doExport(){
+  if(curView==='trade'||curView==='mto')exportByTrade(curTradeTab==='all'?null:curTradeTab);
+  else exportSelections();
+}
+
+function updateAnyStatus(id,sel){
+  sel.className='st-'+sel.value;
+  for(const r of DATA){
+    const f=r.finishes.find(x=>x.id===id);if(f){f.status=sel.value;saveData();showToast('✓ Saved');return;}
+    const i=r.items.find(x=>x.id===id);if(i){i.status=sel.value;saveData();showToast('✓ Saved');return;}
+  }
+}
+function updateAutoInterface(roomId,val){const r=findRoom(roomId);if(!r)return;r.automationInterface=val;saveData();render();showToast('✓ Saved');}
+
+function autoFillFinish(roomId, fid, type, material){
+  const src=getFinishByMaterial(type, material);
+  if(!src)return;
+  const r=findRoom(roomId);if(!r)return;
+  const f=r.finishes.find(x=>x.id===fid);if(!f)return;
+  let changed=false;
+  if(src.link&&!f.link){f.link=cleanUrl(src.link);changed=true;}
+  if(src.photo&&!f.photo){f.photo=src.photo;changed=true;}
+  if(changed){saveData();render();showToast('✓ URL & photo copied');}
+}
+function updateFinish(roomId,fid,field,val){const r=findRoom(roomId);if(!r)return;const f=r.finishes.find(x=>x.id===fid);if(!f)return;if(field==='link'){val=String(val||'').trim().split(/[\r\n]+/)[0].trim();val=cleanUrl(val);}f[field]=val;saveData();showToast('✓ Saved');}
+function updateFinishStatus(roomId,fid,val){const r=findRoom(roomId);if(!r)return;const f=r.finishes.find(x=>x.id===fid);if(!f)return;f.status=val;saveData();render();}
+function updateItemField(id,field,val){const i=findItem(id);if(!i)return;if(field==='link'||field==='manual'){val=String(val||'').trim().split(/[\r\n]+/)[0].trim();val=cleanUrl(val);}i[field]=val;saveData();if(field==='status'||field==='link'||field==='manual')render();if(field!=='status')showToast('✓ Saved');}
+
+function openAddFinish(roomId){_addRoomId=roomId;['mfMaterial','mfQty','mfVendor','mfLink','mfNotes'].forEach(id=>document.getElementById(id).value='');document.getElementById('mfType').selectedIndex=0;document.getElementById('modalFinish').classList.add('open');document.getElementById('mfMaterial').focus();}
+function saveFinish(){
+  const r=findRoom(_addRoomId);if(!r)return;
+  const mat=document.getElementById('mfMaterial').value.trim();if(!mat){showToast('Material required',true);return;}
+  r.finishes.push({id:uid(),type:document.getElementById('mfType').value,material:mat,qty:document.getElementById('mfQty').value.trim(),unit:'',vendor:document.getElementById('mfVendor').value.trim(),link:cleanUrl(document.getElementById('mfLink').value),notes:document.getElementById('mfNotes').value.trim(),status:'not_started',model:'',color:'',leadTime:'',photo:''});
+  saveData();closeModal('modalFinish');render();showToast('✓ Added');
+}
+function openAddItem(roomId){_addRoomId=roomId;['miName','miVendor','miLink','miNotes'].forEach(id=>document.getElementById(id).value='');document.getElementById('modalItem').classList.add('open');document.getElementById('miName').focus();}
+function saveItem(){
+  const r=findRoom(_addRoomId);if(!r)return;
+  const name=document.getElementById('miName').value.trim();if(!name){showToast('Name required',true);return;}
+  r.items.push({id:uid(),name,vendor:document.getElementById('miVendor').value.trim(),link:cleanUrl(document.getElementById('miLink').value),notes:document.getElementById('miNotes').value.trim(),status:'not_started',model:'',color:'',leadTime:'',photo:''});
+  saveData();closeModal('modalItem');render();showToast('✓ Added');
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+function delFinish(roomId,fid){const r=findRoom(roomId);if(!r)return;const idx=r.finishes.findIndex(x=>x.id===fid);if(idx<0)return;if(!confirm('Remove "'+r.finishes[idx].material+'"?'))return;r.finishes.splice(idx,1);saveData();render();showToast('✓ Removed');}
+function applyToAll(id){
+  const src=findItem(id);
+  if(!src)return;
+  let count=0;
+  for(const room of DATA){
+    for(const i of room.items){
+      if(i.id===id)continue;
+      if(i.name.trim().toLowerCase()===src.name.trim().toLowerCase()){
+        if(src.photo&&!i.photo)i.photo=src.photo;
+        if(src.link)i.link=cleanUrl(src.link);
+        if(src.manual)i.manual=cleanUrl(src.manual);
+        count++;
+      }
+    }
+  }
+  saveData();render();
+  showToast(count>0?'✓ Applied to '+count+' matching items':'No matching items found',count===0);
+}
+
+function delItem(id){for(const r of DATA){const idx=r.items.findIndex(x=>x.id===id);if(idx>=0){if(!confirm('Remove "'+r.items[idx].name+'"?'))return;r.items.splice(idx,1);saveData();render();showToast('✓ Removed');return;}}}
+
+function scrollToRoom(roomId){
+  let el=document.getElementById('room-'+roomId);
+  if(!el){currentFilter='all';document.querySelectorAll('.filter-btn').forEach((b,i)=>{b.classList.remove('active');if(i===0)b.classList.add('active');});const si=document.getElementById('searchInput');if(si)si.value='';render();setTimeout(function(){el=document.getElementById('room-'+roomId);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},80);}
+  else{el.scrollIntoView({behavior:'smooth',block:'start'});}
+  document.querySelectorAll('.room-nav-tab').forEach(t=>t.classList.remove('active'));
+  const tabs=document.querySelectorAll('.room-nav-tab');const idx=DATA.findIndex(r=>r.id===roomId);if(idx>=0&&tabs[idx])tabs[idx].classList.add('active');
+}
+function toggleRoom(hdr){hdr.classList.toggle('open');hdr.nextElementSibling.classList.toggle('open');}
+function toggleMTO(hdr){hdr.classList.toggle('open');hdr.nextElementSibling.classList.toggle('open');}
+
+function triggerPhoto(id,el){el.querySelector('input[type="file"]').click();}
+
+
+function triggerFinishPhoto(id,el){const inp=el.querySelector('input[type=file]');if(inp)inp.click();}
+function handleFinishPhoto(id,input){
+  const f2=input.files[0];if(!f2)return;
+  const rd=new FileReader();
+  rd.onload=e=>{
+    const dataUrl=e.target.result;
+    // Save to IndexedDB immediately so photo survives refresh
+    savePhoto(id,dataUrl).catch(err=>console.warn('IDB finish photo err',err));
+    for(const room of DATA){
+      const fi=room.finishes.find(x=>x.id===id);
+      if(fi){fi.photo=dataUrl;saveData();render();break;}
+    }
+    fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'saveSelPhoto',id,photo:dataUrl})})
+      .then(r=>r.json()).then(d=>{
+        if(d.url){for(const room of DATA){const fi=room.finishes.find(x=>x.id===id);if(fi){fi.photo=d.url;saveData();render();break;}}}
+      }).catch(err=>console.warn('Drive finish photo err',err));
+  };
+  rd.readAsDataURL(f2);
+}
+function handlePhoto(id,input){
+  const f=input.files[0];if(!f)return;
+  const r2=new FileReader();
+  r2.onload=e=>{
+    const dataUrl=e.target.result;
+    // Save to IndexedDB immediately so photo survives refresh
+    savePhoto(id,dataUrl).catch(err=>console.warn('IDB photo err',err));
+    const i=findItem(id);
+    if(i){
+      i.photo=dataUrl;
+      // Autofill model, link, manual from any matching item that already has them
+      const name=i.name.trim().toLowerCase();
+      for(const room of DATA){
+        for(const other of room.items){
+          if(other.id===id)continue;
+          if(other.name.trim().toLowerCase()===name){
+            const copyFields=['model','link','manual','color','vendor','leadTime','notes','status'];
+            for(const f of copyFields){if(other[f]&&!i[f])i[f]=other[f];}
+            break;
+          }
+        }
+      }
+      saveData();render();
+    }
+    // Save to Drive in background
+    fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'saveSelPhoto',id,photo:dataUrl})})
+      .then(r=>r.json()).then(d=>{
+        if(d.url&&i){i.photo=d.url;saveData();render();}
+      }).catch(err=>console.warn('Drive photo save err',err));
+  };
+  r2.readAsDataURL(f);
+}
+function openLB(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');}
+
+function exportSelections(){
+  let csv='Level,Room,Type,Material/Item,SF/Qty,Vendor,Status,Model,Color,Lead Time,Notes\n';
+  for(const r of DATA){
+    for(const f of r.finishes)csv+=`"${r.level}","${r.name}","${f.type}","${(f.material||'').replace(/"/g,'""')}","${f.qty||''}","${f.vendor||''}","${STATUS_LABELS[f.status||'not_started']}","${f.model||''}","${f.color||''}","${f.leadTime||''}","${(f.notes||'').replace(/"/g,'""')}"\n`;
+    for(const i of r.items)csv+=`"${r.level}","${r.name}","Item","${(i.name||'').replace(/"/g,'""')}","","${i.vendor||''}","${STATUS_LABELS[i.status||'not_started']}","${i.model||''}","${i.color||''}","${i.leadTime||''}","${(i.notes||'').replace(/"/g,'""')}"\n`;
+  }
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='rodriguez_selections.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('✓ Exported');
+}
+
+// ── Startup: localStorage is primary, Sheets fills gaps ──
+const SUPABASE_URL='https://mcvkkohtvywwvtndpuvw.supabase.co';
+const SUPABASE_KEY='sb_publishable_WN9vSmDmDJTTXE5uMP0lzQ_yl_ak5tL';
+
+async function supabaseLoad(){
+  const r=await fetch(SUPABASE_URL+'/rest/v1/selections?id=eq.main&select=data',{
+    headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY}
+  });
+  if(!r.ok){if(r.status===403)console.warn('Supabase 403 — check key/RLS; using localStorage');return null;}
+  const j=await r.json();
+  return (j&&j[0]&&j[0].data)?j[0].data:null;
+}
+
+async function supabaseSave(data){
+  const r=await fetch(SUPABASE_URL+'/rest/v1/selections?id=eq.main',{
+    method:'PATCH',
+    headers:{'apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+    body:JSON.stringify({data,updated_at:new Date().toISOString()})
+  });
+  if(!r.ok&&r.status===403)console.warn('Supabase save 403 — sync disabled');
+}
+
+async function init(){
+  _blockSync=true;
+  // Load from Supabase — single source of truth
+  try{
+    const d=await supabaseLoad();
+    if(d && Array.isArray(d) && d.length>0){
+      DATA=d;
+    } else {
+      loadData();
+    }
+  }catch(e){
+    console.warn('Supabase load failed, using localStorage:',e.message);
+    loadData();
+  }
+  migrateRoomFields();
+  // Load photos
+  try{
+    const photos=await new Promise((res,rej)=>{
+      fetch(SCRIPT_URL+'?action=listSelPhotos&_='+Date.now())
+        .then(r=>{if(!r.ok){rej(new Error(r.status));return;}return r.json();}).then(res).catch(rej);
+    });
+    for(const r of DATA){
+      for(const f of r.finishes||[])if(photos[f.id])f.photo=photos[f.id];
+      for(const i of r.items||[])if(photos[i.id])i.photo=photos[i.id];
+    }
+  }catch(e){if(e.message!=='403')console.warn('List photos failed:',e.message);}
+  // Also load from IDB
+  try{
+    const idbPhotos=await loadAllPhotos();
+    for(const r of DATA){
+      for(const f of r.finishes||[])if(idbPhotos[f.id]&&!f.photo)f.photo=idbPhotos[f.id];
+      for(const i of r.items||[])if(idbPhotos[i.id]&&!i.photo)i.photo=idbPhotos[i.id];
+    }
+  }catch(e){}
+  // Reload photos from IDB into DATA after localStorage load
+  try{
+    const idbPhotos=await loadAllPhotos();
+    for(const r of DATA){
+      for(const f of r.finishes||[])if(idbPhotos[f.id]&&!f.photo)f.photo=idbPhotos[f.id];
+      for(const i of r.items||[])if(idbPhotos[i.id]&&!i.photo)i.photo=idbPhotos[i.id];
+    }
+  }catch(e){}
+  _blockSync=false;
+  runMigrations();
+  render();
+  window.addEventListener('resize',updateNavSpacer);
+}
+
+// ── Push changes to Supabase in background (never overwrite with seed) ──
+let _saveTimer=null;
+let _blockSync=false;
+function sortedStringify(obj){
+  if(obj===null)return 'null';
+  if(Array.isArray(obj))return '['+obj.map(sortedStringify).join(',')+']';
+  if(typeof obj==='object')return '{'+Object.keys(obj).sort().map(k=>'"'+k+'":'+sortedStringify(obj[k])).join(',')+'}';
+  return JSON.stringify(obj);
+}
+function isSeedData(clean){return clean.length===SEED_ROOMS.length&&sortedStringify(clean)===sortedStringify(SEED_ROOMS);}
+async function saveNow(){
+  saveData();
+  clearTimeout(_saveTimer);
+  _saveTimer=null;
+  const clean=DATA.map(r=>{const {lightingPhoto,...rr}=r;return {...rr,finishes:r.finishes.map(f=>{const {photo,...rest}=f;return rest;}),items:r.items.map(i=>{const {photo,...rest}=i;return rest;})};});
+  if(!isSeedData(clean)){try{await supabaseSave(clean);showToast('✓ Saved to cloud');}catch(e){showToast('Saved locally. Cloud sync failed.',true);}}
+  else showToast('✓ Saved');
+}
+function pushToSheets(){
+  if(_blockSync)return;
+  clearTimeout(_saveTimer);
+  _saveTimer=setTimeout(()=>{
+    const clean=DATA.map(r=>{const {lightingPhoto,...rr}=r;return {...rr,finishes:r.finishes.map(f=>{const {photo,...rest}=f;return rest;}),items:r.items.map(i=>{const {photo,...rest}=i;return rest;})};});
+    if(isSeedData(clean))return;
+    supabaseSave(clean).then(()=>console.log('Supabase sync ok')).catch(e=>console.warn('Supabase sync failed:',e.message));
+  },2000);
+}
+
+function runMigrations(){
+  let dirty=false;
+  if(DATA.length===0){DATA=JSON.parse(JSON.stringify(SEED_ROOMS));dirty=true;}
+  else {
+    const have=new Set(DATA.map(r=>r.id));
+    for(const seed of SEED_ROOMS){if(!have.has(seed.id)){DATA.push(JSON.parse(JSON.stringify(seed)));have.add(seed.id);dirty=true;}}
+  }
+  // Remove rooms no longer in scope
+  const REMOVE=new Set(['guest_suite','pw_doors','pw_windows','pw_paint','pw_roofing','bed3','adu_bath2','adu_laundry','pw_electrical','pw_plumbing','upper_bath']);
+  for(let i=DATA.length-1;i>=0;i--){if(REMOVE.has(DATA[i].id)){DATA.splice(i,1);dirty=true;}}
+  // Rename bed2 → adu_bedroom
+  const _b2=DATA.find(r=>r.id==='bed2');
+  if(_b2){_b2.id='adu_bedroom';_b2.name='ADU Bedroom';_b2.level='ADU / Casita';dirty=true;}
+  // Ensure adu_bedroom is grouped with ADU (move after adu_bath1)
+  const _aduBed=DATA.find(r=>r.id==='adu_bedroom');
+  const _aduBath1=DATA.findIndex(r=>r.id==='adu_bath1');
+  const _aduBedIdx=DATA.findIndex(r=>r.id==='adu_bedroom');
+  if(_aduBed&&_aduBath1!==-1&&_aduBedIdx<_aduBath1-1){
+    DATA.splice(_aduBedIdx,1);
+    DATA.splice(DATA.findIndex(r=>r.id==='adu_bath1')+1,0,_aduBed);
+    dirty=true;
+  }
+  // Add Panic Room if missing
+  if(!DATA.find(r=>r.id==='panic_room')){
+    const _grIdx=DATA.findIndex(r=>r.id==='gun_range');
+    const _pr={level:'Basement',id:'panic_room',name:'Panic Room',automationInterface:'',
+      finishes:[
+        {id:'f'+Math.random().toString(36).slice(2,9),type:'Floor',material:'TBD',qty:'',unit:'SF',vendor:'TBD',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''},
+        {id:'f'+Math.random().toString(36).slice(2,9),type:'Door',material:'TBD',qty:'1',unit:'EA',vendor:'TBD',link:'',notes:'Ballistic rated vault-style door',status:'not_started',model:'',color:'',leadTime:'',photo:''},
+        {id:'f'+Math.random().toString(36).slice(2,9),type:'Wall',material:'TBD',qty:'',unit:'',vendor:'TBD',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''},
+        {id:'f'+Math.random().toString(36).slice(2,9),type:'Ceiling',material:'TBD',qty:'',unit:'',vendor:'TBD',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''}
+      ],items:[]};
+    if(_grIdx!==-1)DATA.splice(_grIdx+1,0,_pr);else DATA.push(_pr);
+    dirty=true;
+  }
+  // Add Office Closet if missing
+  if(!DATA.find(r=>r.id==='office_closet')){
+    const _obi=DATA.findIndex(r=>r.id==='office_bath');
+    const _oc={level:'Main Level',id:'office_closet',name:'Office Closet',automationInterface:'',lightingType:'',lightingPhoto:'',
+      finishes:[{id:'f'+Math.random().toString(36).slice(2,9),type:'Floor',material:'TBD',qty:'',unit:'SF',vendor:'TBD',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''},
+               {id:'f'+Math.random().toString(36).slice(2,9),type:'Door',material:'TruStile TMF1000 MDF - Flush',qty:'1',unit:'EA',vendor:'TruStile / Sunpro',link:'https://www.trustile.com/interior-doors/tmf-series/tmf1000',notes:'DOOR 2 per plans. Flush MDF. 1-3/4in thick, 8ft. TruStile design code: 1tRmHbBwT',status:'not_started',model:'TMF1000',color:'Off-White, ORB hinges',leadTime:'7-8 wks',photo:''}],items:[]};
+    if(_obi!==-1)DATA.splice(_obi,0,_oc);else DATA.push(_oc);
+    dirty=true;
+  }
+  // Split Thermador combined item
+  for(const r of DATA){
+    const _ti=r.items.findIndex(it=>it.name==='Thermador Fridge + Freezer Columns');
+    if(_ti!==-1){
+      const _orig=r.items[_ti];
+      r.items.splice(_ti,1,
+        {..._orig,id:'i'+Math.random().toString(36).slice(2,9),name:'Thermador Refrigerator Column',model:'T36IR905SP',link:'https://www.thermador.com/us/products/refrigeration/freedom-columns/t36ir905sp',notes:'T36IR905SP. 36" Panel Ready refrigerator column.',manual:_orig.manual||''},
+        {..._orig,id:'i'+Math.random().toString(36).slice(2,9),name:'Thermador Freezer Column',model:'T36IF905SP',link:'https://www.thermador.com/us/products/refrigeration/freedom-columns/t36if905sp',notes:'T36IF905SP. 36" Panel Ready freezer column. Internal ice.',manual:_orig.manual||''}
+      );
+      dirty=true;
+    }
+  }
+  // Add Display/Sound to rooms that should have them - never remove from anywhere
+  const _keepDS=new Set(['outdoor_bbq','office','great_room','primary_suite','primary_bath','adu_bedroom','basement_living']);
+  for(const r of DATA){
+    if(_keepDS.has(r.id)){
+      if(!r.items.find(it=>it.name==='Display')){r.items.push({id:'i'+Math.random().toString(36).slice(2,9),name:'Display',vendor:'TBD',link:'',manual:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''});dirty=true;}
+      if(!r.items.find(it=>it.name==='Sound')){r.items.push({id:'i'+Math.random().toString(36).slice(2,9),name:'Sound',vendor:'TBD',link:'',manual:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''});dirty=true;}
+    }
+  }
+  // Backfill blank Door finish fields from SEED (handles existing localStorage records with empty material)
+  const _seedMap=new Map(SEED_ROOMS.map(r=>[r.id,r]));
+  for(const room of DATA){
+    const _seed=_seedMap.get(room.id);
+    if(!_seed)continue;
+    for(const f of room.finishes){
+      if(f.type!=='Door')continue;
+      if(f.material&&f.material.trim())continue; // already has content
+      const _sf=_seed.finishes.find(sf=>sf.type==='Door');
+      if(!_sf)continue;
+      f.material=_sf.material||f.material;
+      f.model=f.model||_sf.model||'';
+      f.color=f.color||_sf.color||'';
+      f.notes=f.notes||_sf.notes||'';
+      f.link=cleanUrl(f.link||_sf.link||'');
+      f.vendor=f.vendor||_sf.vendor||'';
+      f.leadTime=f.leadTime||_sf.leadTime||'';
+      dirty=true;
+    }
+  }
+  normalizeAllUrls();
+  if(dirty)saveData();
+}
+
+init();
+
+function copyFinishToRooms(roomId, finishId){
+  const srcRoom=DATA.find(r=>r.id===roomId);
+  if(!srcRoom)return;
+  const srcFinish=srcRoom.finishes.find(f=>f.id===finishId);
+  if(!srcFinish)return;
+  const type=srcFinish.type;
+  const fields=['material','qty','vendor','link','notes','model','color','leadTime'];
+  let count=0;
+  for(const r of DATA){
+    if(r.id===roomId)continue;
+    const target=r.finishes.find(f=>f.type===type);
+    if(target){
+      fields.forEach(k=>{
+        if(!srcFinish[k])return;
+        if(k==='link')target.link=cleanUrl(srcFinish.link);
+        else target[k]=srcFinish[k];
+      });
+      count++;
+    }
+  }
+  saveData();render();
+  showToast(`Copied ${type} to ${count} room${count!==1?'s':''}`);
+}
+</script>
+<div class="modal-bg" id="modalPin" onclick="if(event.target===this)closeModal('modalPin')">
+  <div class="pin-modal">
+    <h3>🔐 Owner Approval</h3>
+    <p>Enter owner PIN to approve this selection</p>
+    <input class="pin-input" id="pinInput" type="password" maxlength="10" placeholder="••••" onkeydown="if(event.key==='Enter')submitPin()">
+    <div class="pin-error" id="pinError"></div>
+    <div style="display:flex;gap:8px;justify-content:center">
+      <button class="btn btn-dim btn-sm" onclick="closeModal('modalPin')">Cancel</button>
+      <button class="btn btn-blue btn-sm" onclick="submitPin()">Approve</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

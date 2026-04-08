@@ -1,0 +1,534 @@
+<!DOCTYPE html><!-- build:20260218183456 -->
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Residence — Budget & Schedule</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5}
+.container{max-width:100%;margin:0 auto;padding:20px 28px}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+#loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:16px}
+.spinner{width:48px;height:48px;border:4px solid var(--bdr);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading .msg{color:var(--txt2);font-size:14px}
+#error{display:none;text-align:center;padding:80px 20px;color:var(--red)}
+#error h2{margin-bottom:8px}
+#app{display:none}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite;margin-right:6px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.updated{font-size:11px;color:var(--dim)}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.sum-card{background:var(--card);border-radius:10px;padding:16px;border:1px solid var(--bdr)}
+.sum-card .lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.sum-card .val{font-size:20px;font-weight:700;color:#fff;margin:2px 0}
+.sum-card .val.b{color:var(--blue)}.sum-card .val.g{color:var(--green)}.sum-card .val.y{color:var(--yellow)}.sum-card .val.c{color:var(--cyan)}
+.sum-card .sub{font-size:10px;color:var(--dim)}
+.sbox{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden;margin-bottom:20px}
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;gap:8px}
+.shdr h2{font-size:18px;font-weight:700}
+.shdr .meta{font-size:12px;color:var(--dim)}
+.shdr-actions{display:flex;gap:8px;align-items:center}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:10px 12px;font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--bdr);background:var(--card);white-space:nowrap}
+.sbox th{background:var(--card)}
+.co-sbox th{position:static}
+th.right{text-align:right}th.ctr{text-align:center}
+td{padding:9px 12px;font-size:13px;border-bottom:1px solid rgba(42,58,85,.3);white-space:nowrap}
+tr:hover td{background:var(--hover)}
+tr.phase-row td{background:rgba(59,130,246,.06);border-bottom:1px solid var(--bdr);padding:11px 12px}
+tr.phase-row .phase-name{font-weight:700;color:var(--blue);font-size:14px}
+td.vendor{color:var(--txt2);font-size:12px}
+td.amount{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+td.paid{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;color:var(--green)}
+td.paid.zero{color:var(--dim)}
+td.remaining{text-align:right;font-variant-numeric:tabular-nums;color:var(--txt2);font-size:12px}
+td.date{text-align:center;font-size:11px;color:var(--txt2);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.dur{text-align:center;font-size:11px;color:var(--txt2)}
+.sbox table{table-layout:fixed;width:100%;min-width:1100px}
+.sbox th:nth-child(1){width:17%}.sbox th:nth-child(2){width:10%}.sbox th:nth-child(3){width:8%}.sbox th:nth-child(4){width:9%}.sbox th:nth-child(5){width:8%}.sbox th:nth-child(6){width:5%}.sbox th:nth-child(7){width:8%}.sbox th:nth-child(8){width:8%}.sbox th:nth-child(9){width:4%}.sbox th:nth-child(10){width:8%}.sbox th:nth-child(11){width:4%}
+td.dur{text-align:center;font-size:12px;color:var(--txt2)}
+tr.grand-row td{background:rgba(59,130,246,.12);border-top:2px solid var(--blue);padding:14px 12px;font-size:15px;font-weight:700}
+tr.grand-row td.amount{color:var(--blue)}tr.grand-row td.paid{color:var(--green)}
+.phase-bar{width:100%;height:4px;background:var(--bg);border-radius:2px;margin-top:4px;overflow:hidden}
+.phase-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .4s}
+.mini-bar{width:50px;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:3px}
+.mini-fill{height:100%;border-radius:3px;display:block}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.badge-pending{background:rgba(90,109,133,.2);color:var(--dim)}
+.badge-active{background:rgba(245,158,11,.15);color:var(--orange)}
+.badge-done{background:rgba(34,197,94,.15);color:var(--green)}
+.badge-rejected{background:rgba(239,68,68,.15);color:var(--red)}
+
+/* CO Section */
+.co-sbox{background:var(--card);border-radius:12px;border:1px solid var(--purple);overflow:hidden;margin-bottom:20px}
+.co-shdr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--purple);background:rgba(139,92,246,.05);flex-wrap:wrap;gap:8px}
+.co-shdr h2{font-size:18px;font-weight:700;color:var(--purple)}
+.co-summary{display:flex;gap:12px;padding:16px 20px;flex-wrap:wrap}
+.co-stat{background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:10px 16px;min-width:140px}
+.co-stat .co-stat-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:2px}
+.co-stat .co-stat-val{font-size:18px;font-weight:800}
+tr.co-row td{border-left:3px solid var(--purple)}
+tr.co-row:hover td{background:rgba(139,92,246,.06)}
+tr.co-total td{background:rgba(139,92,246,.08);border-top:1px solid var(--purple);font-weight:700}
+.co-add-btn{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--purple);background:transparent;color:var(--purple);cursor:pointer;transition:all .2s}
+.co-add-btn:hover{background:var(--purple);color:white}
+.co-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100}
+.co-overlay.open{display:block}
+.co-modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:24px;z-index:101;width:440px;max-width:90vw;max-height:90vh;overflow-y:auto}
+.co-modal.open{display:block}
+.co-modal-title{font-size:16px;font-weight:800;margin-bottom:16px;color:var(--purple)}
+.co-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);margin-bottom:12px}
+.co-input{display:block;width:100%;margin-top:4px;padding:8px 10px;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;color:var(--txt);font-size:13px;font-family:inherit}
+.co-input:focus{outline:none;border-color:var(--purple)}
+.co-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.co-modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.co-btn{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit}
+.co-btn-cancel{background:var(--bg);color:var(--txt2);border:1px solid var(--bdr)}
+.co-btn-save{background:var(--purple);color:white}.co-btn-save:hover{opacity:.9}
+.co-act{background:none;border:none;cursor:pointer;font-size:11px;font-weight:600;padding:2px 6px;border-radius:4px}
+.co-act-edit{color:var(--blue)}.co-act-edit:hover{background:rgba(59,130,246,.1)}
+.co-act-del{color:var(--red)}.co-act-del:hover{background:rgba(239,68,68,.1)}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+html{overflow-y:scroll}body{overflow-x:hidden}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="log.html">Daily Log</a>
+    
+    <a href="selections.html">Selections</a>
+    <a href="accounting.html">Accounting</a>
+    <a href="gantt.html">Gantt</a>
+    <a href="draws.html">Draws</a>
+    <a href="budget.html" class="active">Budget & Schedule</a>
+    <a href="subs.html">Subs</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+  </div>
+  <button class="topnav-refresh" onclick="doRefresh()">↻ Refresh</button>
+</div></nav>
+<div id="loading"><div class="spinner"></div><div class="msg">Loading live data…</div></div>
+<div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><button style="background:var(--blue);padding:8px 18px;border-radius:8px;font-weight:500;font-size:13px;border:none;cursor:pointer;color:white;margin-top:16px" onclick="doRefresh()">Retry</button></div>
+<div id="app" class="container">
+  <div class="updated" id="updatedAt" style="margin-bottom:16px"><span class="live-dot"></span>Loading…</div>
+  <div class="summary" id="summaryGrid"></div>
+
+  <!-- Budget Section -->
+  <div class="sbox">
+    <div class="shdr">
+      <h2>📋 Budget</h2>
+      <div class="meta" id="budgetMeta"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th>Item</th><th>Vendor</th><th class="right">Contract</th><th class="ctr">%Comp</th>
+          <th class="right">Invoiced</th><th class="right">Paid</th><th class="right">Outstanding</th>
+          <th class="ctr">Start</th><th class="ctr">Days</th><th class="ctr">Finish</th><th class="ctr">Delay</th>
+        </tr></thead>
+        <tbody id="budgetBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- CO Modal -->
+<div class="co-overlay" id="coOverlay" onclick="closeCOModal()"></div>
+<div class="co-modal" id="coModal">
+  <div class="co-modal-title" id="coModalTitle">Add Change Order</div>
+  <input type="hidden" id="coEditIdx" value="-1">
+  <div class="co-row-2">
+    <label class="co-label">CO Number<input class="co-input" id="coNum" placeholder="CO-001"></label>
+    <label class="co-label">Date<input class="co-input" id="coDate" type="date"></label>
+  </div>
+  <label class="co-label">Description<input class="co-input" id="coDesc" placeholder="Automated sliding doors (3)"></label>
+  <label class="co-label">Vendor<input class="co-input" id="coVendor" placeholder="AutoSlide"></label>
+  <div class="co-row-2">
+    <label class="co-label">CO Amount ($)<input class="co-input" id="coAmt" type="number" step="0.01" placeholder="20038.95"></label>
+    <label class="co-label">Paid to Date ($)<input class="co-input" id="coPaid" type="number" step="0.01" placeholder="0.00"></label>
+  </div>
+  <div class="co-row-2">
+    <label class="co-label">Status
+      <select class="co-input" id="coStatus">
+        <option value="pending">Pending Approval</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </label>
+    <label class="co-label">% Complete
+      <input class="co-input" id="coPct" type="number" min="0" max="100" step="1" placeholder="0">
+    </label>
+  </div>
+  <label class="co-label">Notes<input class="co-input" id="coNotes" placeholder="Optional notes"></label>
+  <div class="co-modal-btns">
+    <button class="co-btn co-btn-cancel" onclick="closeCOModal()">Cancel</button>
+    <button class="co-btn co-btn-save" onclick="saveCO()">Save</button>
+  </div>
+</div>
+
+<script src="shared.js?v1772133761"></script>
+<script>
+var CO_KEY='rodriguez_change_orders_v3';
+var CO_SEED=[{
+  num:'CO-001',desc:'Door Automation — Upgrade (3) sliding doors to automatic (Dining, Primary Bed, Primary Bath)',
+  vendor:'AutoSlide',amount:20038.95,paid:0,date:'2026-02-06',status:'approved',pct:0,
+  notes:'$6,679.65 ea × 3 doors. Original contract $3,168,660. Revised $3,188,698.95'
+}];
+var changeOrders=[];
+function loadCOs(){
+  try{changeOrders=JSON.parse(localStorage.getItem(CO_KEY)||'[]')}catch(e){changeOrders=[]}
+  if(changeOrders.length===0){changeOrders=CO_SEED.slice();saveCOs()}
+}
+function saveCOs(){localStorage.setItem(CO_KEY,JSON.stringify(changeOrders))}
+function coEsc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function openCOModal(idx){
+  var isEdit=typeof idx==='number'&&idx>=0;
+  document.getElementById('coModalTitle').textContent=isEdit?'Edit Change Order':'Add Change Order';
+  document.getElementById('coEditIdx').value=isEdit?idx:-1;
+  if(isEdit){
+    var co=changeOrders[idx];
+    document.getElementById('coNum').value=co.num||'';
+    document.getElementById('coDesc').value=co.desc||'';
+    document.getElementById('coVendor').value=co.vendor||'';
+    document.getElementById('coAmt').value=co.amount||'';
+    document.getElementById('coPaid').value=co.paid||0;
+    document.getElementById('coDate').value=co.date||'';
+    document.getElementById('coStatus').value=co.status||'pending';
+    document.getElementById('coPct').value=co.pct||0;
+    document.getElementById('coNotes').value=co.notes||'';
+  }else{
+    document.getElementById('coNum').value='CO-'+String(changeOrders.length+1).padStart(3,'0');
+    document.getElementById('coDesc').value='';
+    document.getElementById('coVendor').value='';
+    document.getElementById('coAmt').value='';
+    document.getElementById('coPaid').value='';
+    document.getElementById('coDate').value=new Date().toISOString().slice(0,10);
+    document.getElementById('coStatus').value='pending';
+    document.getElementById('coPct').value='0';
+    document.getElementById('coNotes').value='';
+  }
+  document.getElementById('coOverlay').classList.add('open');
+  document.getElementById('coModal').classList.add('open');
+}
+function closeCOModal(){
+  document.getElementById('coOverlay').classList.remove('open');
+  document.getElementById('coModal').classList.remove('open');
+}
+function saveCO(){
+  var idx=parseInt(document.getElementById('coEditIdx').value);
+  var co={
+    num:document.getElementById('coNum').value.trim()||'CO-???',
+    desc:document.getElementById('coDesc').value.trim(),
+    vendor:document.getElementById('coVendor').value.trim(),
+    amount:parseFloat(document.getElementById('coAmt').value)||0,
+    paid:parseFloat(document.getElementById('coPaid').value)||0,
+    date:document.getElementById('coDate').value,
+    status:document.getElementById('coStatus').value,
+    pct:parseInt(document.getElementById('coPct').value)||0,
+    notes:document.getElementById('coNotes').value.trim()
+  };
+  if(idx>=0)changeOrders[idx]=co;else changeOrders.push(co);
+  saveCOs();closeCOModal();doRefresh();
+}
+function deleteCO(idx){
+  if(!confirm('Delete '+changeOrders[idx].num+'?'))return;
+  changeOrders.splice(idx,1);saveCOs();doRefresh();
+}
+
+function render(phases,paidData){
+  // Use COs from sheet, merge with any locally added ones
+  var sheetCOs=paidData.sheetCOs||[];
+  // Merge: sheet COs take precedence, local-only COs appended
+  changeOrders=sheetCOs.slice();
+  var localCOs=[];
+  try{localCOs=JSON.parse(localStorage.getItem(CO_KEY)||'[]')}catch(e){}
+  // Append any local COs not already in sheet (by num)
+  var sheetNums=sheetCOs.map(function(c){return c.num});
+  localCOs.forEach(function(co){if(!sheetNums.includes(co.num))changeOrders.push(co)});
+  var baseTotal=0,basePaid=paidData.totalPaid,itemCount=0,earliest=null,latest=null;
+
+  for(var p=0;p<phases.length;p++){
+    var phase=phases[p];
+    if(phase.name==='options'||phase.name==='contingency')continue;
+    var phaseDrawnTotal=0,phaseBudgetTotal=0,phaseEarliest=null,phaseLatest=null;
+    for(var j=0;j<phase.items.length;j++){
+      var item=phase.items[j];
+      item.paid=paidData.map[phase.name+'|'+item.nameNorm]||0;
+      item.progress=paidData.progressMap[phase.name+'|'+item.nameNorm]||0;
+      phase.paidTotal=(phase.paidTotal||0)+item.paid;
+      phaseDrawnTotal+=item.progress*item.markup;
+      phaseBudgetTotal+=item.markup;
+      if(item.startDate){if(!phaseEarliest||item.startDate<phaseEarliest)phaseEarliest=item.startDate;if(!earliest||item.startDate<earliest)earliest=item.startDate}
+      if(item.endDate){if(!phaseLatest||item.endDate>phaseLatest)phaseLatest=item.endDate;if(!latest||item.endDate>latest)latest=item.endDate}
+    }
+    phase.progress=phaseBudgetTotal>0?(phaseDrawnTotal/phaseBudgetTotal):0;
+    phase.startDate=phaseEarliest;phase.endDate=phaseLatest;
+    baseTotal+=phase.markupTotal;itemCount+=phase.items.length;
+  }
+
+  // CO totals
+  var coApproved=changeOrders.filter(function(c){return c.status==='approved'});
+  var coPending=changeOrders.filter(function(c){return c.status==='pending'});
+  var coRejected=changeOrders.filter(function(c){return c.status==='rejected'});
+  var coApprovedAmt=0,coPendingAmt=0,coPaidTotal=0;
+  for(var i=0;i<coApproved.length;i++){coApprovedAmt+=coApproved[i].amount*((coApproved[i].pct||0)/100);coPaidTotal+=(coApproved[i].paid||0)}
+  for(var i=0;i<coPending.length;i++){coPendingAmt+=coPending[i].amount}
+
+  var revisedTotal=baseTotal+coApprovedAmt;
+  var totalPaid=basePaid+coPaidTotal;
+  var totalRemaining=revisedTotal-totalPaid;
+  var pctPaid=revisedTotal>0?((totalPaid/revisedTotal)*100):0;
+  var today=new Date();
+
+  // Summary cards
+  document.getElementById('summaryGrid').innerHTML=
+    '<div class="sum-card"><div class="lbl">Original Contract</div><div class="val b">'+fmtK(baseTotal)+'</div></div>'+
+    '<div class="sum-card"><div class="lbl">Approved COs</div><div class="val" style="color:var(--purple)">'+(coApprovedAmt>0?'+':'')+fmtK(coApprovedAmt)+'</div>'+(coPendingAmt>0?'<div class="sub">+'+fmtK(coPendingAmt)+' pending</div>':'')+'</div>'+
+    '<div class="sum-card"><div class="lbl">Revised Total</div><div class="val c">'+fmtK(revisedTotal)+'</div></div>'+
+    '<div class="sum-card"><div class="lbl">Total Paid</div><div class="val g">'+fmtK(totalPaid)+'</div></div>'+
+    '<div class="sum-card"><div class="lbl">Remaining</div><div class="val y">'+fmtK(totalRemaining)+'</div></div>'+
+    '<div class="sum-card"><div class="lbl">Timeline</div><div class="val c" style="font-size:16px">'+(earliest?fmtDate(earliest):'—')+' — '+(latest?fmtDate(latest):'—')+'</div></div>';
+
+  // Budget meta
+  document.getElementById('budgetMeta').textContent=
+    phases.filter(function(p){return p.name!=='options'&&p.name!=='contingency'}).length+' phases · '+
+    itemCount+' items · '+pctPaid.toFixed(1)+'% paid';
+
+  // ── Main Budget Table (Contract | %Comp | Invoiced | Paid | Outstanding) ──
+  var html='';
+  // Render Change Orders inline first (matches sheet order)
+  var sheetCOs=paidData.sheetCOs||[];
+  if(sheetCOs.length>0){
+    html+='<tr class="phase-row"><td colspan="11"><span class="phase-name" style="color:var(--purple)">Change Orders</span></td></tr>';
+    for(var ci=0;ci<sheetCOs.length;ci++){
+      var co=sheetCOs[ci];
+      var coOut=co.outstanding||0;
+      var coPct=(co.pct||0);var coPctD=coPct.toFixed(0);
+      var cColor=coPct>=100?'var(--green)':coPct>0?'var(--orange)':'var(--dim)';
+      html+='<tr>'+
+        '<td style="font-weight:600;color:var(--purple)">'+coEsc(co.num)+'</td>'+
+        '<td style="color:var(--txt2)">'+coEsc(co.desc)+'</td>'+
+        '<td class="amount">'+fmt(co.amount)+'</td>'+
+        '<td style="text-align:center"><span class="mini-bar"><span class="mini-fill" style="width:'+coPctD+'%;background:'+cColor+'"></span></span> <span style="color:'+cColor+';font-size:11px;font-weight:600">'+coPctD+'%</span></td>'+
+        '<td class="amount">'+(co.invoiced>0?fmt(co.invoiced):'—')+'</td>'+
+        '<td class="paid">'+(co.paid>0?fmt(co.paid):'—')+'</td>'+
+        '<td class="remaining" style="color:'+(coOut<0?'var(--red)':'var(--dim)')+'">'+(coOut!==0?fmt(coOut):'—')+'</td>'+
+        '<td class="date">—</td><td class="dur">—</td><td class="date">—</td><td class="ctr">—</td>'+
+        '</tr>';
+    }
+  }
+  for(var p=0;p<phases.length;p++){
+    var phase=phases[p];
+    if(phase.name==='options'||phase.name==='contingency')continue;
+    var phasePct=phase.progress.toFixed(0);
+    var pColor=phase.progress>=100?'var(--green)':phase.progress>0?'var(--orange)':'var(--dim)';
+    var phaseInvoiced=phase.items.reduce(function(s,i){return s+(i.invoiced||0)},0);
+    var phaseOutstanding=phase.items.reduce(function(s,i){return s+(i.outstanding||0)},0);
+
+    html+='<tr class="phase-row">'+
+      '<td style="font-weight:700;font-size:14px;color:var(--blue)">'+phase.display+'</td>'+
+      '<td style="font-weight:700;color:var(--txt2)">'+(phase.subtotal>0?fmt(phase.subtotal):'')+'</td>'+
+      '<td></td><td></td><td></td><td></td><td></td>'+
+      '</tr>';
+
+    for(var j=0;j<phase.items.length;j++){
+      var item=phase.items[j];
+      var invoiced=item.invoiced||0;
+      var outstanding=item.outstanding||0;
+      var iPct=item.progress.toFixed(0);
+      var iColor=item.progress>=100?'var(--green)':item.progress>0?'var(--orange)':'var(--dim)';
+
+      html+='<tr><td>'+item.name+'</td><td class="vendor">'+(item.vendor||'—')+'</td>'+
+        '<td class="amount">'+fmt(item.markup)+'</td>'+
+        '<td style="text-align:center"><span class="mini-bar"><span class="mini-fill" style="width:'+iPct+'%;background:'+iColor+'"></span></span> <span style="color:'+iColor+';font-size:11px;font-weight:600">'+iPct+'%</span></td>'+
+        '<td class="amount">'+(invoiced>0?fmt(invoiced):'—')+'</td>'+
+        '<td class="paid '+(item.paid===0?'zero':'')+'">'+(item.paid>0?fmt(item.paid):'—')+'</td>'+
+        '<td class="remaining" style="color:'+(outstanding!==0?'var(--red)':'var(--dim)')+'">'+(outstanding!==0?fmt(outstanding):'—')+'</td>'+
+        '<td class="date">'+(item.startDate?fmtDate(item.startDate):'—')+'</td>'+
+        '<td class="dur">'+(item.duration||'—')+'</td>'+
+        '<td class="date">'+(item.endDate?fmtDate(item.endDate):'—')+'</td>'+
+        '<td class="ctr" style="color:'+(item.delay>0?'var(--red)':'var(--dim)')+'">'+(item.delay!=null&&item.delay!==0?item.delay:'—')+'</td>'+
+        '</tr>';
+    }
+  }
+  // Grand total row
+  var totalInvoiced=0,totalOutstanding=0;
+  for(var p=0;p<phases.length;p++){
+    if(phases[p].name==='options'||phases[p].name==='contingency')continue;
+    for(var j=0;j<phases[p].items.length;j++){
+      totalInvoiced+=(phases[p].items[j].invoiced||0);
+      totalOutstanding+=(phases[p].items[j].outstanding||0);
+    }
+  }
+  html+='<tr class="grand-row"><td colspan="2">Contract Total</td>'+
+    '<td class="amount">'+fmt(baseTotal)+'</td>'+
+    '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>'+
+    '<td class="amount">'+fmt(totalInvoiced)+'</td>'+
+    '<td class="paid">'+fmt(basePaid)+'</td>'+
+    '<td class="amount" style="color:var(--red)">'+fmt(totalOutstanding)+'</td></tr>';
+  document.getElementById('budgetBody').innerHTML=html;
+
+  // ── Schedule Table (Trade | Progress | Start | Days | Finish | Delay | Notes) ──
+  var tasks=paidData.scheduleTasks||[];
+  var sHtml='';
+  var scheduleCount=0;
+  try{
+  for(var t=0;t<tasks.length;t++){
+    var task=tasks[t];
+    if(task.name==='-Duration')continue;
+    scheduleCount++;
+    var tPct=(task.progress||0).toFixed(0);
+    var tColor=task.progress>=100?'var(--green)':task.progress>0?'var(--orange)':'var(--dim)';
+    var delayColor=task.delay>0?'var(--red)':'var(--dim)';
+    if(task.isPhase){
+      sHtml+='<tr class="phase-row"><td colspan="11"><span class="phase-name">'+task.name+'</span></td></tr>';
+    }else{
+      sHtml+='<tr>'+
+        '<td>'+task.name+'</td>'+
+        '<td style="text-align:center"><span class="mini-bar"><span class="mini-fill" style="width:'+tPct+'%;background:'+tColor+'"></span></span> <span style="color:'+tColor+';font-size:11px;font-weight:600">'+tPct+'%</span></td>'+
+        '<td class="date">'+fmtDate(task.startDate)+'</td>'+
+        '<td class="dur">'+(task.duration||'—')+'</td>'+
+        '<td class="date">'+fmtDate(task.endDate)+'</td>'+
+        '<td style="text-align:center;font-weight:'+(task.delay>0?'700':'400')+';color:'+delayColor+'">'+(task.delay||'0')+'</td>'+
+        '<td class="vendor">'+(task.vendor||'—')+'</td></tr>';
+    }
+  }
+  if(scheduleCount===0) sHtml='<tr><td colspan="11" style="text-align:center;color:var(--dim);padding:20px">No schedule data</td></tr>';
+  if(document.getElementById('scheduleBody'))document.getElementById('scheduleBody').innerHTML=sHtml;
+  if(document.getElementById('scheduleMeta'))document.getElementById('scheduleMeta').textContent=scheduleCount+' tasks';
+  }catch(schedErr){console.warn('Schedule render error:',schedErr);if(document.getElementById('scheduleBody'))document.getElementById('scheduleBody').innerHTML='<tr><td colspan="11" style="color:var(--dim);padding:12px">Schedule data unavailable</td></tr>';}
+
+  // ── Change Orders Section ──
+  if(document.getElementById('coMeta'))document.getElementById('coMeta').textContent=
+    changeOrders.length+' total · '+coApproved.length+' approved · '+coPending.length+' pending';
+
+  // CO summary cards
+  if(document.getElementById('coSummary'))document.getElementById('coSummary').innerHTML=
+    '<div class="co-stat"><div class="co-stat-lbl">Approved</div><div class="co-stat-val" style="color:var(--purple)">'+(coApprovedAmt>0?'+':'')+fmt(coApprovedAmt)+'</div></div>'+
+    '<div class="co-stat"><div class="co-stat-lbl">CO Paid</div><div class="co-stat-val" style="color:var(--green)">'+fmt(coPaidTotal)+'</div></div>'+
+    '<div class="co-stat"><div class="co-stat-lbl">CO Remaining</div><div class="co-stat-val" style="color:var(--yellow)">'+fmt(coApprovedAmt-coPaidTotal)+'</div></div>'+
+    '<div class="co-stat"><div class="co-stat-lbl">Pending</div><div class="co-stat-val" style="color:var(--orange)">'+fmt(coPendingAmt)+'</div></div>'+
+    '<div class="co-stat"><div class="co-stat-lbl">Revised Contract</div><div class="co-stat-val" style="color:var(--cyan)">'+fmt(revisedTotal)+'</div></div>';
+
+  // CO table
+  var coHtml='';
+  if(changeOrders.length===0){
+    coHtml='<tr><td colspan="10" style="text-align:center;color:var(--dim);padding:20px">No change orders yet — click <strong style="color:var(--purple)">+ Add Change Order</strong> to create one</td></tr>';
+  }else{
+    for(var i=0;i<changeOrders.length;i++){
+      var co=changeOrders[i];
+      var coRem2=co.amount-(co.paid||0);
+      var coPct=co.pct||0;
+      var ciColor=coPct>=100?'var(--green)':coPct>0?'var(--orange)':'var(--dim)';
+      var coSt,coBadge;
+      if(co.status==='rejected'){coSt='rejected';coBadge='badge-rejected'}
+      else if(co.status==='approved'&&coPct>=100){coSt='done';coBadge='badge-done'}
+      else if(co.status==='approved'&&coPct>0){coSt='active';coBadge='badge-active'}
+      else if(co.status==='approved'){coSt='approved';coBadge='badge-done'}
+      else{coSt='pending';coBadge='badge-pending'}
+
+      coHtml+='<tr class="co-row">'+
+        '<td style="font-weight:700;color:var(--purple)">'+coEsc(co.num)+'</td>'+
+        '<td>'+coEsc(co.desc)+(co.notes?'<div style="font-size:11px;color:var(--dim)">'+coEsc(co.notes)+'</div>':'')+'</td>'+
+        '<td class="vendor">'+coEsc(co.vendor||'—')+'</td>'+
+        '<td class="amount" style="color:var(--purple)">'+fmt(co.amount)+'</td>'+
+        '<td class="paid '+((co.paid||0)===0?'zero':'')+'">'+(co.paid>0?fmt(co.paid):'—')+'</td>'+
+        '<td class="remaining">'+fmt(coRem2)+'</td>'+
+        '<td style="text-align:center"><span class="mini-bar"><span class="mini-fill" style="width:'+coPct+'%;background:'+ciColor+'"></span></span> <span style="color:'+ciColor+';font-size:11px;font-weight:600">'+coPct+'%</span></td>'+
+        '<td class="date">'+(co.date||'—')+'</td>'+
+        '<td style="text-align:center"><span class="badge '+coBadge+'">'+coSt+'</span></td>'+
+        '<td style="text-align:center;white-space:nowrap"><button class="co-act co-act-edit" onclick="openCOModal('+i+')">✏ Edit</button><button class="co-act co-act-del" onclick="deleteCO('+i+')">🗑</button></td></tr>';
+    }
+    // CO total row
+    coHtml+='<tr class="co-total">'+
+      '<td colspan="3">Approved CO Total</td>'+
+      '<td class="amount" style="color:var(--purple)">'+fmt(coApprovedAmt)+'</td>'+
+      '<td class="paid">'+fmt(coPaidTotal)+'</td>'+
+      '<td class="remaining">'+fmt(coApprovedAmt-coPaidTotal)+'</td>'+
+      '<td colspan="4"></td></tr>';
+    // Revised grand total
+    coHtml+='<tr class="grand-row">'+
+      '<td colspan="3">Revised Contract Total</td>'+
+      '<td class="amount">'+fmt(revisedTotal)+'</td>'+
+      '<td class="paid">'+fmt(totalPaid)+'</td>'+
+      '<td class="amount" style="color:var(--yellow)">'+fmt(totalRemaining)+'</td>'+
+      '<td colspan="4"></td></tr>';
+  }
+  if(document.getElementById('coBody'))document.getElementById('coBody').innerHTML=coHtml;
+}
+
+async function doRefresh(){
+  document.getElementById('loading').style.display='flex';
+  document.getElementById('app').style.display='none';
+  document.getElementById('error').style.display='none';
+  try{await init()}catch(e){
+    document.getElementById('loading').style.display='none';
+    document.getElementById('error').style.display='block';
+    document.getElementById('errorDetail').textContent=e.message;
+  }
+}
+async function init(){
+  try{
+    var d=await loadProjectData();
+    var phases=d.main.phases;
+    var paidData={map:{},progressMap:{},totalPaid:d.totals.totalPaid,scheduleTasks:d.main.scheduleTasks||[],sheetCOs:d.main.sheetCOs||[]};
+    for(var p=0;p<phases.length;p++){
+      for(var j=0;j<phases[p].items.length;j++){
+        var item=phases[p].items[j];
+        if(item.paid>0)paidData.map[phases[p].name+'|'+item.nameNorm]=item.paid;
+        if(item.progress>0)paidData.progressMap[phases[p].name+'|'+item.nameNorm]=item.progress;
+      }
+    }
+    // Build schedule lookup by item name
+    var schedLookup={};
+    (paidData.scheduleTasks||[]).forEach(function(t){
+      if(!t.isPhase) schedLookup[t.name.toLowerCase().trim()]=t;
+    });
+    // Merge schedule dates/delay into budget items
+    for(var p=0;p<phases.length;p++){
+      for(var j=0;j<phases[p].items.length;j++){
+        var it=phases[p].items[j];
+        var st=schedLookup[it.name.toLowerCase().trim()];
+        if(st){
+          it.startDate=st.startDate||null;
+          it.endDate=st.endDate||null;
+          it.duration=st.duration||0;
+          it.delay=st.delay||0;
+        }
+      }
+    }
+    render(phases,paidData);
+    document.getElementById('updatedAt').innerHTML='<span class="live-dot"></span>Live from Google Sheet · '+new Date().toLocaleString();
+    document.getElementById('loading').style.display='none';
+    document.getElementById('app').style.display='block';
+  }catch(e){
+    document.getElementById('loading').style.display='none';
+    document.getElementById('error').style.display='block';
+    document.getElementById('errorDetail').textContent=e.message;
+    console.error('Init error:',e);
+  }
+}
+init();
+</script>
+</body>
+</html>

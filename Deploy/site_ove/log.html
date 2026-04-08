@@ -1,0 +1,471 @@
+<!DOCTYPE html><!-- build:20260218183456 -->
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Residence — Daily Log</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;overflow-x:hidden;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5}
+.container{max-width:900px;margin:0 auto;padding:20px}
+
+/* Top Nav */
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Toast */
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:200;opacity:0;transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast-success{background:var(--green);color:white}
+.toast-error{background:var(--red);color:white}
+
+/* Today display */
+.today-display{text-align:center;padding:24px 20px 20px;margin-bottom:20px}
+.today-display .day-name{font-size:28px;font-weight:800;color:#fff}
+.today-display .day-sub{font-size:13px;color:var(--dim);margin-top:4px}
+
+/* Form */
+.form-box{background:var(--card);border-radius:12px;border:1px solid var(--bdr);padding:20px;margin-bottom:24px}
+.form-box h2{font-size:18px;font-weight:700;margin-bottom:16px}
+.form-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.form-group{display:flex;flex-direction:column;gap:4px;flex:1;min-width:150px}
+.form-group label{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+.form-group input,.form-group select,.form-group textarea{background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;color:var(--txt);font-size:14px;font-family:inherit;outline:none;transition:border .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238899b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.form-group input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.6)}
+.form-actions{display:flex;gap:10px;margin-top:16px}
+.btn{padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;border:none;cursor:pointer;color:white;transition:all .2s}
+.btn-blue{background:var(--blue)}.btn-blue:hover{background:#2563eb}
+.btn-dim{background:var(--bdr2);color:var(--txt2)}.btn-dim:hover{background:var(--hover);color:var(--txt)}
+.btn-green{background:var(--green)}.btn-green:hover{background:#16a34a}
+.editing-indicator{display:none;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.25);color:var(--yellow);font-size:12px;font-weight:600;margin-bottom:12px}
+.editing-indicator.show{display:flex}
+
+/* Photo upload */
+.photo-upload{border:2px dashed var(--bdr);border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.photo-upload:hover{border-color:var(--blue);background:rgba(59,130,246,.05)}
+.photo-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.photo-upload .icon{font-size:24px;margin-bottom:4px}
+.photo-upload .hint{font-size:12px;color:var(--dim)}
+.photo-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.photo-previews .thumb{width:80px;height:80px;border-radius:6px;object-fit:cover;border:1px solid var(--bdr)}
+.photo-previews .thumb-wrap{position:relative;display:inline-block}
+.photo-previews .thumb-x{position:absolute;top:-6px;right:-6px;width:20px;height:20px;background:var(--red);color:white;border:none;border-radius:50%;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+
+/* Search */
+.search-bar{display:flex;gap:10px;margin-bottom:16px;align-items:center}
+.search-bar input{flex:1;background:var(--bg);border:1px solid var(--bdr);border-radius:8px;padding:10px 14px;color:var(--txt);font-size:14px;font-family:inherit;outline:none;transition:border .2s}
+.search-bar input:focus{border-color:var(--blue)}
+.search-bar input::placeholder{color:var(--dim)}
+.search-count{font-size:12px;color:var(--dim);white-space:nowrap}
+
+/* Filters */
+.filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--blue);color:var(--txt)}
+.filter-btn.active{background:var(--blue);border-color:var(--blue);color:white}
+.export-bar{display:flex;gap:10px;margin-bottom:16px;justify-content:flex-end}
+
+.feed-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.feed-header h2{font-size:18px;font-weight:700}
+.feed-header .count{font-size:13px;color:var(--dim)}
+
+/* Log entries */
+.log-entry{background:var(--card);border-radius:12px;border:1px solid var(--bdr);padding:16px 20px;margin-bottom:12px;transition:background .15s}
+.log-entry:hover{background:var(--card2)}
+.log-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.log-date{font-weight:700;font-size:15px}
+.log-tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:600;text-transform:uppercase}
+.tag-general{background:rgba(59,130,246,.15);color:var(--blue)}
+.tag-inspection{background:rgba(234,179,8,.15);color:var(--yellow)}
+.tag-delivery{background:rgba(6,182,212,.15);color:var(--cyan)}
+.tag-issue{background:rgba(239,68,68,.15);color:var(--red)}
+.tag-milestone{background:rgba(34,197,94,.15);color:var(--green)}
+.tag-weather{background:rgba(139,92,246,.15);color:var(--purple)}
+.tag-subcontractor{background:rgba(245,158,11,.15);color:var(--orange)}
+.log-notes{font-size:14px;color:var(--txt);line-height:1.6;margin-bottom:8px;white-space:pre-wrap}
+.log-notes mark{background:rgba(59,130,246,.25);color:var(--txt);border-radius:2px;padding:0 2px}
+.log-photos{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.log-photos img{width:120px;height:90px;object-fit:cover;border-radius:6px;border:1px solid var(--bdr);cursor:pointer;transition:transform .2s}
+.log-photos img:hover{transform:scale(1.05)}
+.log-actions{display:flex;gap:8px;margin-top:10px}
+.log-actions button{padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--dim);cursor:pointer;transition:all .15s}
+.log-actions button:hover{border-color:var(--blue);color:var(--blue)}
+.log-actions button.del:hover{border-color:var(--red);color:var(--red)}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--dim)}
+.empty-state .icon{font-size:48px;margin-bottom:12px}
+.empty-state h3{color:var(--txt2);margin-bottom:4px}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+html{overflow-y:scroll}body{overflow-x:hidden}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="log.html" class="active">Daily Log</a>
+    
+    <a href="selections.html">Selections</a>
+    <a href="accounting.html">Accounting</a>
+    <a href="gantt.html">Gantt</a>
+    <a href="draws.html">Draws</a>
+    <a href="budget.html">Budget & Schedule</a>
+    <a href="subs.html">Subs</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+  </div>
+</div></nav>
+
+<div id="toast" class="toast"></div>
+
+<div class="container">
+
+  <div class="today-display">
+    <div class="day-name" id="todayDisplay"></div>
+    <div class="day-sub" id="todaySub"></div>
+  </div>
+
+  <!-- Entry form -->
+  <div class="form-box">
+    <h2>📝 New Entry</h2>
+    <div class="editing-indicator" id="editingBanner">✏️ Editing entry — <a href="#" onclick="cancelEdit();return false" style="color:var(--yellow);text-decoration:underline">Cancel</a></div>
+    <div class="form-row">
+      <div class="form-group" style="max-width:180px">
+        <label>Date</label>
+        <input type="date" id="entryDate">
+      </div>
+      <div class="form-group" style="max-width:200px">
+        <label>Category</label>
+        <select id="entryTag">
+          <option value="general">General</option>
+          <option value="inspection">Inspection</option>
+          <option value="delivery">Delivery</option>
+          <option value="issue">Issue / Problem</option>
+          <option value="milestone">Milestone</option>
+          <option value="weather">Weather / Delay</option>
+          <option value="subcontractor">Subcontractor</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea id="entryNotes" placeholder="What happened today…"></textarea>
+    </div>
+    <div class="form-group" style="margin-top:8px">
+      <label>Photos</label>
+      <div class="photo-upload" id="photoDropZone" data-accepts="images & video">
+        <input type="file" id="photoInput" multiple accept="image/*,video/*">
+        <div class="icon">📷🎥</div>
+        <div class="hint">Click or drag photos / videos here</div>
+      </div>
+      <div class="photo-previews" id="photoPreviews"></div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-green" onclick="saveEntry()" id="saveBtn">Save Entry</button>
+      <button class="btn btn-dim" onclick="clearForm()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Search + Filter -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search entries…" oninput="renderFeed()">
+    <span class="search-count" id="searchCount"></span>
+  </div>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('general',this)">General</button>
+    <button class="filter-btn" onclick="setFilter('inspection',this)">Inspection</button>
+    <button class="filter-btn" onclick="setFilter('delivery',this)">Delivery</button>
+    <button class="filter-btn" onclick="setFilter('issue',this)">Issue</button>
+    <button class="filter-btn" onclick="setFilter('milestone',this)">Milestone</button>
+    <button class="filter-btn" onclick="setFilter('weather',this)">Weather</button>
+    <button class="filter-btn" onclick="setFilter('subcontractor',this)">Subcontractor</button>
+  </div>
+
+  <div class="export-bar">
+    <button class="btn btn-dim" onclick="exportLog()">📥 Export CSV</button>
+  </div>
+
+  <div class="feed-header">
+    <h2>📋 Log Entries</h2>
+    <span class="count" id="entryCount"></span>
+  </div>
+  <div id="logFeed"></div>
+
+  <div style="text-align:center;padding:20px 0;margin-top:12px">
+    <a href="index.html" style="color:var(--blue);font-size:13px;text-decoration:none;font-weight:600">← View Dashboard</a>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg"></div>
+
+<script src="shared.js?v1772133761"></script>
+<script>
+const LOG_KEY='rodriguez_daily_log';
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const DAYSFULL=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+let entries=[],pendingPhotos=[],currentFilter='all',editingId=null;
+// pendingPhotos: [{key:'p_xxx', dataUrl:'data:...'}]
+
+// ═══ TOAST ═══
+function showToast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast toast-'+type+' show';
+  setTimeout(()=>t.classList.remove('show'),2500)
+}
+
+// ═══ LOAD / PERSIST ═══
+function persist(){
+  try{localStorage.setItem(LOG_KEY,JSON.stringify(entries))}
+  catch(e){
+    console.error('persist failed:',e);
+    showToast('Storage error — try removing old entries','error')
+  }
+}
+
+async function load(){
+  try{entries=JSON.parse(localStorage.getItem(LOG_KEY)||'[]')}catch(e){entries=[]}
+  // Migrate: if any entry has base64 photos instead of keys, move them to IDB
+  let migrated=false;
+  for(const entry of entries){
+    if(!entry.photos||!entry.photos.length)continue;
+    const needsMigration=entry.photos.some(p=>p.startsWith('data:'));
+    if(needsMigration){
+      const newKeys=[];
+      for(const p of entry.photos){
+        if(p.startsWith('data:')){
+          const key=genPhotoKey();
+          try{await savePhoto(key,p);newKeys.push(key)}catch(e){console.warn('migration skip',e)}
+        }else{newKeys.push(p)}
+      }
+      entry.photos=newKeys;
+      migrated=true
+    }
+  }
+  if(migrated)persist();
+  renderFeed()
+}
+
+// ═══ DATE INIT ═══
+function setToday(){
+  const d=new Date();
+  document.getElementById('entryDate').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  document.getElementById('todayDisplay').textContent=DAYSFULL[d.getDay()]+', '+MONTHS[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+  document.getElementById('todaySub').textContent='Log entry for today'
+}
+
+// ═══ PHOTOS ═══
+document.getElementById('photoInput').addEventListener('change',e=>handleFiles(e.target.files));
+const dz=document.getElementById('photoDropZone');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='var(--blue)'});
+dz.addEventListener('dragleave',()=>dz.style.borderColor='var(--bdr)');
+dz.addEventListener('drop',e=>{e.preventDefault();dz.style.borderColor='var(--bdr)';handleFiles(e.dataTransfer.files)});
+
+function handleFiles(files){
+  for(const f of files){
+    if(f.type.startsWith('image/')){
+      const r=new FileReader();
+      r.onload=async e=>{
+        const compressed=await compressImage(e.target.result,1200,0.7);
+        const key=genPhotoKey();
+        pendingPhotos.push({key,dataUrl:compressed,mediaType:'image'});
+        renderPreviews()
+      };
+      r.readAsDataURL(f)
+    }else if(f.type.startsWith('video/')){
+      const r=new FileReader();
+      r.onload=async e=>{
+        const key='v_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+        pendingPhotos.push({key,dataUrl:e.target.result,mediaType:'video'});
+        renderPreviews()
+      };
+      r.readAsDataURL(f)
+    }
+  }
+}
+function renderPreviews(){
+  document.getElementById('photoPreviews').innerHTML=pendingPhotos.map((p,i)=>
+    p.mediaType==='video'
+      ?'<div class="thumb-wrap"><video class="thumb" src="'+p.dataUrl+'" muted playsinline style="object-fit:cover"></video><button class="thumb-x" onclick="rmPhoto('+i+')">×</button></div>'
+      :'<div class="thumb-wrap"><img class="thumb" src="'+p.dataUrl+'"><button class="thumb-x" onclick="rmPhoto('+i+')">×</button></div>'
+  ).join('')
+}
+function rmPhoto(i){pendingPhotos.splice(i,1);renderPreviews()}
+
+// ═══ SAVE ═══
+async function saveEntry(){
+  const date=document.getElementById('entryDate').value;
+  const tag=document.getElementById('entryTag').value;
+  const notes=document.getElementById('entryNotes').value.trim();
+  if(!date){showToast('Pick a date','error');return}
+  if(!notes&&!pendingPhotos.length){showToast('Add notes or a photo','error');return}
+
+  // Save photos to IndexedDB, collect keys
+  const photoKeys=[];
+  for(const p of pendingPhotos){
+    try{await savePhoto(p.key,p.dataUrl);photoKeys.push(p.key)}
+    catch(e){console.warn('photo save failed',e)}
+  }
+
+  if(editingId){
+    const idx=entries.findIndex(e=>e.id===editingId);
+    if(idx>=0){
+      entries[idx].date=date;entries[idx].tag=tag;entries[idx].notes=notes;
+      if(photoKeys.length)entries[idx].photos=photoKeys;
+      entries[idx].modified=new Date().toISOString()
+    }
+    editingId=null;
+    document.getElementById('editingBanner').classList.remove('show');
+    document.getElementById('saveBtn').textContent='Save Entry';
+    showToast('✓ Entry updated','success')
+  }else{
+    entries.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),date,tag,notes,photos:photoKeys,created:new Date().toISOString()});
+    showToast('✓ Entry saved — '+entries.length+' total','success')
+  }
+  persist();
+  console.log('Saved '+entries.length+' entries, '+photoKeys.length+' photos to IDB');
+  clearForm();renderFeed()
+}
+
+function clearForm(){
+  document.getElementById('entryNotes').value='';pendingPhotos=[];renderPreviews();
+  if(editingId){editingId=null;document.getElementById('editingBanner').classList.remove('show');document.getElementById('saveBtn').textContent='Save Entry'}
+  setToday()
+}
+function cancelEdit(){clearForm()}
+
+// ═══ DELETE / EDIT ═══
+function deleteEntry(id){
+  if(!confirm('Delete this entry?'))return;
+  const entry=entries.find(e=>e.id===id);
+  if(entry&&entry.photos&&entry.photos.length){
+    deletePhotos(entry.photos).catch(e=>console.warn('photo cleanup',e))
+  }
+  entries=entries.filter(e=>e.id!==id);persist();renderFeed();
+  showToast('Entry deleted','success')
+}
+
+async function editEntry(id){
+  const e=entries.find(x=>x.id===id);if(!e)return;
+  editingId=id;
+  document.getElementById('entryDate').value=e.date;
+  document.getElementById('entryTag').value=e.tag;
+  document.getElementById('entryNotes').value=e.notes;
+  // Load photos from IDB
+  pendingPhotos=[];
+  if(e.photos&&e.photos.length){
+    const dataUrls=await getPhotos(e.photos);
+    e.photos.forEach((key,i)=>{
+      if(dataUrls[i])pendingPhotos.push({key,dataUrl:dataUrls[i],mediaType:key.startsWith('v_')?'video':'image'})
+    })
+  }
+  renderPreviews();
+  document.getElementById('editingBanner').classList.add('show');
+  document.getElementById('saveBtn').textContent='Update Entry';
+  window.scrollTo({top:0,behavior:'smooth'})
+}
+
+// ═══ FILTER ═══
+function setFilter(tag,btn){
+  currentFilter=tag;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');renderFeed()
+}
+
+// ═══ SEARCH + RENDER ═══
+function renderFeed(){
+  const el=document.getElementById('logFeed');
+  const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();
+
+  let filtered=currentFilter==='all'?[...entries]:entries.filter(e=>e.tag===currentFilter);
+
+  if(q){
+    filtered=filtered.filter(e=>{
+      const text=(e.notes||'')+' '+(e.tag||'')+' '+(e.date||'');
+      return text.toLowerCase().includes(q)
+    })
+  }
+
+  filtered.sort((a,b)=>b.date.localeCompare(a.date)||(b.created||'').localeCompare(a.created||''));
+
+  document.getElementById('entryCount').textContent=filtered.length+' of '+entries.length+' entries';
+  document.getElementById('searchCount').textContent=q?filtered.length+' match'+(filtered.length!==1?'es':''):'';
+
+  if(!filtered.length){
+    el.innerHTML='<div class="empty-state"><div class="icon">'+(q?'🔍':'📋')+'</div><h3>'+(q?'No matching entries':'No entries yet')+'</h3><p>'+(q?'Try a different search term':'Add your first daily log entry above')+'</p></div>';
+    return
+  }
+
+  el.innerHTML=filtered.map(e=>{
+    const d=new Date(e.date+'T12:00:00');
+    const ds=(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+    const dn=DAYS[d.getDay()];
+    let noteHtml=esc(e.notes||'');
+    if(q&&noteHtml){
+      const re=new RegExp('('+escRe(q)+')','gi');
+      noteHtml=noteHtml.replace(re,'<mark>$1</mark>')
+    }
+    const ph=(e.photos&&e.photos.length)?'<div class="log-photos" data-photos="'+e.photos.join(',')+'"><span style="color:var(--dim);font-size:12px">Loading '+e.photos.length+' photo(s)…</span></div>':'';
+    return'<div class="log-entry"><div class="log-meta"><span class="log-date">'+dn+' '+ds+'</span><span class="log-tag tag-'+e.tag+'">'+e.tag+'</span></div>'
+      +(noteHtml?'<div class="log-notes">'+noteHtml+'</div>':'')+ph
+      +'<div class="log-actions"><button onclick="editEntry(\''+e.id+'\')">✏️ Edit</button><button class="del" onclick="deleteEntry(\''+e.id+'\')">🗑 Delete</button></div></div>'
+  }).join('');
+
+  // Async load photos from IDB
+  el.querySelectorAll('.log-photos[data-photos]').forEach(async div=>{
+    const keys=div.dataset.photos.split(',').filter(Boolean);
+    if(!keys.length)return;
+    const urls=await getPhotos(keys);
+    div.innerHTML=urls.filter(Boolean).map((u,i)=>{
+      const key=keys[i]||'';
+      return key.startsWith('v_')
+        ?'<video src="'+u+'" controls playsinline style="max-width:100%;max-height:300px;border-radius:6px;display:block;margin:4px 0"></video>'
+        :'<img src="'+u+'" onclick="openLB(this.src)">';
+    }).join('');
+    if(!div.innerHTML)div.remove()
+  })
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function openLB(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open')}
+
+// ═══ EXPORT ═══
+function exportLog(){
+  if(!entries.length){showToast('No entries to export','error');return}
+  let csv='Date,Day,Category,Notes,Photos\n';
+  [...entries].sort((a,b)=>a.date.localeCompare(b.date)).forEach(e=>{
+    const d=new Date(e.date+'T12:00:00');
+    csv+=e.date+','+DAYS[d.getDay()]+','+e.tag+',"'+e.notes.replace(/"/g,'""')+'",'+(e.photos?.length||0)+'\n'
+  });
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='rodriguez_daily_log.csv';a.click();
+  showToast('CSV exported','success')
+}
+
+setToday();load()
+</script>
+</body>
+</html>

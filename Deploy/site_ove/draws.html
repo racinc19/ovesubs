@@ -1,0 +1,236 @@
+<!DOCTYPE html><!-- build:20260218183456 -->
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Residence — Draws</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+#loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px}
+.spinner{width:48px;height:48px;border:4px solid var(--bdr);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+#loading .msg{color:var(--txt2);font-size:14px}
+#error{display:none;text-align:center;padding:80px 20px;color:var(--red)}
+#app{display:none}
+.sbox{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden;margin-bottom:20px}
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;gap:8px}
+.shdr h2{font-size:18px;font-weight:700}
+.shdr .meta{font-size:12px;color:var(--dim)}
+#drawCanvas{width:100%;background:transparent}
+.draw-month{border-bottom:1px solid var(--bdr)}
+.draw-month-hdr{padding:14px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.draw-month-hdr:hover{background:var(--hover)}
+.draw-month-hdr h3{font-size:15px;font-weight:700}
+.draw-month-hdr .total{font-weight:700;font-size:15px;color:var(--blue)}
+.draw-month-hdr .arrow{transition:transform .2s;color:var(--dim);font-size:10px}
+.draw-month-hdr .arrow.open{transform:rotate(180deg)}
+.draw-items{display:none;padding:0 20px 14px}
+.draw-items.open{display:block}
+.draw-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:6px;margin-bottom:4px;background:var(--bg);font-size:13px}
+.draw-item .name{font-weight:600}
+.draw-item .vendor{color:var(--dim);font-size:11px;margin-left:8px}
+.draw-item .amount{font-weight:600;color:var(--blue)}
+.draw-item .draws{color:var(--green);font-size:12px;margin-left:12px}
+.draw-item.co-item{border-left:3px solid var(--purple)}
+.draw-item.co-item .name{color:var(--purple)}
+.draw-item.co-item .amount{color:var(--purple)}
+.co-tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;background:rgba(139,92,246,.15);color:var(--purple);margin-left:6px;vertical-align:middle}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+html{overflow-y:scroll}body{overflow-x:hidden}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="log.html">Daily Log</a>
+    
+    <a href="selections.html">Selections</a>
+    <a href="accounting.html">Accounting</a>
+    <a href="gantt.html">Gantt</a>
+    <a href="draws.html" class="active">Draws</a>
+    <a href="budget.html">Budget & Schedule</a>
+    <a href="subs.html">Subs</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+  </div>
+  <button class="topnav-refresh" onclick="doRefresh()">↻ Refresh</button>
+</div></nav>
+
+<div id="loading"><div class="spinner"></div><div class="msg">Loading draw data…</div></div>
+<div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><br><button style="background:var(--blue);padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;border:none;cursor:pointer;color:white" onclick="doRefresh()">Retry</button></div>
+
+<div id="app" class="container">
+  <div id="chartBox"></div>
+  <div id="schedBox"></div>
+</div>
+
+<script src="shared.js?v1772133761"></script>
+<script>
+var CO_KEY='rodriguez_change_orders_v3';
+var CO_SEED=[{
+  num:'CO-001',desc:'Door Automation — Upgrade (3) sliding doors to automatic (Dining, Primary Bed, Primary Bath)',
+  vendor:'AutoSlide',amount:20038.95,paid:0,date:'2026-02-06',status:'approved',pct:0,
+  notes:'$6,679.65 ea × 3 doors. Original contract $3,168,660. Revised $3,188,698.95'
+}];
+var _data=null;
+
+function loadCOs(){
+  var cos;
+  try{cos=JSON.parse(localStorage.getItem(CO_KEY)||'[]')}catch(e){cos=[]}
+  if(cos.length===0){cos=CO_SEED.slice();localStorage.setItem(CO_KEY,JSON.stringify(cos))}
+  return cos;
+}
+
+function injectCOs(md,asList){
+  var cos=loadCOs();
+  for(var i=0;i<cos.length;i++){
+    var co=cos[i];
+    if(co.status!=='approved'||!co.date)continue;
+    var d=new Date(co.date+'T00:00:00');
+    if(isNaN(d.getTime()))continue;
+    var k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    if(!md[k]){
+      if(asList) md[k]={month:new Date(d.getFullYear(),d.getMonth(),1),total:0,paid:0,items:[]};
+      else md[k]={month:new Date(d.getFullYear(),d.getMonth(),1),budget:0,paid:0};
+    }
+    if(asList){
+      md[k].total+=co.amount;
+      md[k].paid+=(co.paid||0);
+      md[k].items.push({name:co.num+' '+co.desc,vendor:co.vendor||'',markup:co.amount,paid:co.paid||0,isCO:true});
+    }else{
+      md[k].budget+=co.amount;
+      md[k].paid+=(co.paid||0);
+    }
+  }
+}
+
+function renderChart(data){
+  var el=document.getElementById('chartBox');
+  var md={};
+  for(var p=0;p<data.phases.length;p++){if(data.phases[p].name==='options')continue;
+    for(var j=0;j<data.phases[p].items.length;j++){var item=data.phases[p].items[j];if(!item.endDate)continue;
+      var k=item.endDate.getFullYear()+'-'+String(item.endDate.getMonth()+1).padStart(2,'0');
+      if(!md[k])md[k]={month:new Date(item.endDate.getFullYear(),item.endDate.getMonth(),1),budget:0,paid:0};
+      md[k].budget+=item.markup;md[k].paid+=item.paid||0;
+    }}
+  injectCOs(md,false);
+  var sorted=Object.values(md).sort(function(a,b){return a.month-b.month});
+  el.innerHTML='<div class="sbox"><div class="shdr"><h2>💰 Monthly Draw Schedule</h2><div class="meta">Budget + approved COs by completion month</div></div><div style="padding:20px"><canvas id="drawCanvas" height="420"></canvas></div></div>';
+
+  var canvas=document.getElementById('drawCanvas');
+  if(!canvas||!canvas.offsetWidth)return;
+  var ctx=canvas.getContext('2d');
+  var dpr=window.devicePixelRatio||1;
+  var W=canvas.offsetWidth,H=420;
+  canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.height=H+'px';ctx.scale(dpr,dpr);
+  if(!sorted.length)return;
+
+  var pad={t:40,r:85,b:65,l:85};
+  var cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+  var maxBar=Math.max.apply(null,sorted.map(function(d){return d.budget}));
+  var maxCum=sorted.reduce(function(s,d){return s+d.budget},0);
+  var barW=Math.min(48,cW/sorted.length*.65);
+  var gap=(cW-barW*sorted.length)/(sorted.length+1);
+
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='rgba(42,58,85,.4)';ctx.lineWidth=1;
+  for(var i=0;i<=5;i++){
+    var y=pad.t+cH*(1-i/5);
+    ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+    ctx.fillStyle='#5a6d85';ctx.font='10px sans-serif';
+    ctx.textAlign='right';ctx.fillText(fmtK(maxBar*i/5),pad.l-8,y+4);
+    ctx.textAlign='left';ctx.fillText(fmtK(maxCum*i/5),W-pad.r+8,y+4);
+  }
+
+  var cum=0;var pts=[];
+  sorted.forEach(function(d,i){
+    var x=pad.l+gap+(barW+gap)*i;
+    var bH=(d.budget/maxBar)*cH;var y2=pad.t+cH-bH;
+    var grad=ctx.createLinearGradient(x,y2,x,y2+bH);
+    grad.addColorStop(0,'rgba(59,130,246,.85)');grad.addColorStop(1,'rgba(59,130,246,.5)');
+    ctx.fillStyle=grad;ctx.beginPath();
+    if(ctx.roundRect)ctx.roundRect(x,y2,barW,bH,3);else ctx.rect(x,y2,barW,bH);
+    ctx.fill();
+    if(d.paid>0){var pH=(d.paid/maxBar)*cH;ctx.fillStyle='rgba(34,197,94,.6)';ctx.fillRect(x,pad.t+cH-pH,barW,pH)}
+    if(bH>25){ctx.fillStyle='white';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(fmtK(d.budget),x+barW/2,y2+14)}
+    ctx.save();ctx.fillStyle='#8899b0';ctx.font='10px sans-serif';ctx.textAlign='center';
+    ctx.translate(x+barW/2,H-pad.b+14);if(sorted.length>10)ctx.rotate(-Math.PI/6);ctx.fillText(fmtMoShort(d.month),0,0);ctx.restore();
+    cum+=d.budget;pts.push({x:x+barW/2,y:pad.t+cH-(cum/maxCum)*cH});
+  });
+
+  if(pts.length>1){
+    ctx.strokeStyle='#22c55e';ctx.lineWidth=2.5;ctx.setLineDash([]);ctx.beginPath();
+    pts.forEach(function(p,i){i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)});ctx.stroke();
+    pts.forEach(function(p){ctx.fillStyle='#22c55e';ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill()});
+  }
+  ctx.fillStyle='#3b82f6';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText('Monthly Budget ($)',W/2,H-4);
+  ctx.fillStyle='#22c55e';ctx.font='10px sans-serif';ctx.save();ctx.translate(W-8,pad.t+cH/2);ctx.rotate(Math.PI/2);ctx.fillText('Cumulative',0,0);ctx.restore();
+}
+
+function renderSchedule(data){
+  var el=document.getElementById('schedBox');
+  var months={};
+  for(var p=0;p<data.phases.length;p++){if(data.phases[p].name==='options')continue;
+    for(var j=0;j<data.phases[p].items.length;j++){var item=data.phases[p].items[j];if(!item.endDate)continue;
+      var k=item.endDate.getFullYear()+'-'+String(item.endDate.getMonth()+1).padStart(2,'0');
+      if(!months[k])months[k]={month:new Date(item.endDate.getFullYear(),item.endDate.getMonth(),1),total:0,paid:0,items:[]};
+      months[k].total+=item.markup;months[k].paid+=item.paid||0;months[k].items.push(item);
+    }}
+  injectCOs(months,true);
+  var sorted=Object.entries(months).sort(function(a,b){return a[0].localeCompare(b[0])});
+  var cum=0,html='';
+  for(var s=0;s<sorted.length;s++){
+    var key=sorted[s][0],m=sorted[s][1];
+    cum+=m.total;
+    var itemsHtml='';
+    for(var i=0;i<m.items.length;i++){
+      var it=m.items[i];
+      var drawn=it.paid>0?'<span class="draws">✓ '+fmt(it.paid)+'</span>':'';
+      var cls=it.isCO?'draw-item co-item':'draw-item';
+      var tag=it.isCO?'<span class="co-tag">CO</span>':'';
+      itemsHtml+='<div class="'+cls+'"><div><span class="name">'+it.name+'</span>'+tag+'<span class="vendor">'+(it.vendor||'')+'</span></div><div><span class="amount">'+fmt(it.markup)+'</span>'+drawn+'</div></div>';
+    }
+    var paidNote=m.paid>0?' · <span style="color:var(--green)">'+fmt(m.paid)+' drawn</span>':'';
+    var coCount=m.items.filter(function(x){return x.isCO}).length;
+    var coNote=coCount>0?' · <span style="color:var(--purple)">'+coCount+' CO'+(coCount>1?'s':'')+'</span>':'';
+    html+='<div class="draw-month"><div class="draw-month-hdr" onclick="toggleDraw(this)"><h3>'+fmtMo(m.month)+'</h3><div style="display:flex;align-items:center;gap:16px"><span style="font-size:12px;color:var(--dim)">'+m.items.length+' items · Cumul: '+fmtK(cum)+paidNote+coNote+'</span><span class="total">'+fmt(m.total)+'</span><span class="arrow">▼</span></div></div><div class="draw-items">'+itemsHtml+'</div></div>';
+  }
+  el.innerHTML='<div class="sbox"><div class="shdr"><h2>📑 Draw Schedule by Month</h2><div class="meta">Click to expand · '+sorted.length+' months · Includes approved COs</div></div>'+html+'</div>';
+}
+
+function toggleDraw(hdr){hdr.querySelector('.arrow').classList.toggle('open');hdr.nextElementSibling.classList.toggle('open')}
+
+async function doRefresh(){
+  document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';document.getElementById('error').style.display='none';
+  try{await init()}catch(e){document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message}
+}
+async function init(){
+  try{
+    var d=await loadProjectData();
+    _data=d.main;
+    document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block';
+    setTimeout(function(){renderChart(_data);renderSchedule(_data)},50);
+  }catch(e){document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message}
+}
+window.addEventListener('resize',function(){if(_data)renderChart(_data)});
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Residence — Subcontractor Portal</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+#loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px}
+.spinner{width:48px;height:48px;border:4px solid var(--bdr);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading .msg{color:var(--txt2);font-size:14px}
+#app{display:none}
+
+/* Nav */
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+
+/* Hero */
+.hero{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.hero-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.hero-sub{font-size:14px;color:var(--txt2)}
+.hero-badge{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+
+/* Table */
+.sbox{background:var(--card);border-radius:12px;border:1px solid var(--bdr);overflow:hidden;margin-bottom:24px}
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;gap:8px}
+.shdr h2{font-size:16px;font-weight:700}
+.phase-label{display:inline-block;padding:2px 10px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:rgba(59,130,246,.15);color:var(--blue)}
+
+table{width:100%;border-collapse:collapse}
+thead tr{border-bottom:2px solid var(--bdr)}
+thead th{padding:10px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);text-align:left}
+tbody tr{border-bottom:1px solid rgba(42,58,85,.4);transition:background .15s}
+tbody tr:hover{background:var(--hover)}
+tbody tr:last-child{border-bottom:none}
+tbody tr.phase-row{background:rgba(59,130,246,.04);border-bottom:1px solid var(--bdr)}
+tbody td{padding:10px 16px;font-size:13px}
+tbody tr.phase-row td{font-weight:700;color:var(--blue);font-size:14px}
+
+.vendor-link{color:var(--cyan);text-decoration:none;font-weight:600;padding:3px 10px;border-radius:6px;background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.2);transition:all .2s;white-space:nowrap;display:inline-block}
+.vendor-link:hover{background:rgba(6,182,212,.2);border-color:rgba(6,182,212,.4)}
+
+.prog-wrap{display:flex;align-items:center;gap:8px}
+.prog-bar{flex:1;height:6px;background:var(--bdr);border-radius:3px;overflow:hidden;min-width:60px}
+.prog-fill{height:100%;border-radius:3px;transition:width .3s}
+.prog-fill.done{background:var(--green)}
+.prog-fill.active{background:var(--orange)}
+.prog-fill.todo{background:var(--bdr2)}
+.prog-pct{font-size:11px;color:var(--txt2);min-width:38px;text-align:right}
+
+.date-cell{font-size:12px;color:var(--txt2);white-space:nowrap}
+
+/* Filter bar */
+.filter-bar{display:flex;gap:8px;padding:12px 20px;border-bottom:1px solid var(--bdr);flex-wrap:wrap;align-items:center}
+.filter-bar input{background:var(--bg);border:1px solid var(--bdr);border-radius:8px;color:var(--txt);padding:6px 12px;font-size:13px;outline:none;transition:border-color .2s;width:220px}
+.filter-bar input:focus{border-color:var(--blue)}
+.filter-bar input::placeholder{color:var(--dim)}
+.filter-label{font-size:12px;color:var(--dim)}
+
+html{overflow-y:scroll}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="log.html">Daily Log</a>
+    <a href="selections.html">Selections</a>
+    <a href="accounting.html">Accounting</a>
+    <a href="gantt.html">Gantt</a>
+    <a href="draws.html">Draws</a>
+    <a href="budget.html">Budget & Schedule</a>
+    <a href="subs.html" class="active">Subs</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+  </div>
+  <button class="topnav-refresh" onclick="doRefresh()">↻ Refresh</button>
+</div></nav>
+
+<div id="loading"><div class="spinner"></div><div class="msg">Loading subcontractor schedule…</div></div>
+
+<div id="app" class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-title">Subcontractor Portal</div>
+      <div class="hero-sub">Full project schedule — click your company name to access your portal</div>
+    </div>
+    <div class="hero-badge">Oak Valley Estates Lot 5</div>
+  </div>
+
+  <div class="sbox">
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <input type="text" id="filterInput" placeholder="Trade or vendor name…" oninput="applyFilter()">
+    </div>
+    <div class="shdr">
+      <h2>Project Schedule</h2>
+      <span style="font-size:12px;color:var(--dim)" id="taskCount"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Trade / Task</th>
+          <th>Vendor</th>
+          <th>Start</th>
+          <th>Finish</th>
+          <th style="min-width:140px">Progress</th>
+        </tr>
+      </thead>
+      <tbody id="schedBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="shared.js?v1772133761"></script>
+<script>
+let allRows=[];
+
+function slugify(s){return encodeURIComponent(s.trim())}
+
+function progClass(p){
+  if(p>=100)return'done';
+  if(p>0)return'active';
+  return'todo';
+}
+
+function renderTable(tasks){
+  const tbody=document.getElementById('schedBody');
+  allRows=[];
+  tasks.forEach(t=>{
+    const tr=document.createElement('tr');
+    if(t.isPhase)tr.classList.add('phase-row');
+    const vendorCell=t.vendor&&!t.isPhase
+      ?`<a class="vendor-link" href="sub.html?v=${slugify(t.vendor)}">${t.vendor}</a>`
+      :`<span style="color:var(--dim);font-size:12px">${t.vendor||'—'}</span>`;
+    const p=Math.round(t.progress*100)/100;
+    const cls=progClass(p);
+    tr.innerHTML=`
+      <td>${t.isPhase?`<span class="phase-label">Phase</span> `:''}${t.name}</td>
+      <td>${vendorCell}</td>
+      <td class="date-cell">${fmtDate(t.startDate)}</td>
+      <td class="date-cell">${fmtDate(t.endDate)}</td>
+      <td>
+        <div class="prog-wrap">
+          <div class="prog-bar"><div class="prog-fill ${cls}" style="width:${Math.min(p,100)}%"></div></div>
+          <span class="prog-pct">${p.toFixed(0)}%</span>
+        </div>
+      </td>`;
+    tr.dataset.trade=(t.name||'').toLowerCase();
+    tr.dataset.vendor=(t.vendor||'').toLowerCase();
+    tbody.appendChild(tr);
+    allRows.push(tr);
+  });
+  document.getElementById('taskCount').textContent=tasks.filter(t=>!t.isPhase).length+' tasks';
+}
+
+function applyFilter(){
+  const q=document.getElementById('filterInput').value.toLowerCase().trim();
+  allRows.forEach(tr=>{
+    if(!q){tr.style.display='';return}
+    const match=tr.dataset.trade.includes(q)||tr.dataset.vendor.includes(q);
+    tr.style.display=match?'':'none';
+  });
+}
+
+async function init(){
+  try{
+    const data=await loadProjectData();
+    const tasks=data.main.scheduleTasks||[];
+    renderTable(tasks);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('app').style.display='';
+  }catch(e){
+    document.getElementById('loading').innerHTML=`<div style="color:var(--red);text-align:center"><h3>Failed to load</h3><p style="font-size:13px;color:var(--dim);margin-top:8px">${e.message}</p><br><button class="topnav-refresh" onclick="doRefresh()">Retry</button></div>`;
+  }
+}
+
+function doRefresh(){location.reload()}
+init();
+</script>
+</body>
+</html>
