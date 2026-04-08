@@ -90,10 +90,12 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
 .trade-cards{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.trade-section{width:100%}
+.trade-section-h{font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin:8px 2px 6px}
 .trade-card{background:rgba(255,255,255,.03);border:1px solid rgba(42,58,85,.65);border-radius:12px;padding:10px 12px;min-width:220px;flex:1}
 .trade-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.trade-card-name{font-size:13px;font-weight:800;color:#fff;line-height:1.1}
-.trade-card-vendor{font-size:11px;color:var(--txt2);margin-top:2px}
+.trade-card-name{font-size:14px;font-weight:900;color:#fff;line-height:1.1}
+.trade-card-trade{font-size:11px;color:var(--txt2);margin-top:2px}
 .trade-card-meta{font-size:11px;color:var(--txt2);margin-top:8px;display:flex;justify-content:space-between;gap:10px}
 .trade-chip{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--txt2)}
 .trade-chip.ok{border-color:rgba(34,197,94,.3);color:var(--green);background:rgba(34,197,94,.08)}
@@ -297,26 +299,40 @@ function renderHero(tasks){
     :'Starts '+fmtDate(cur.startDate);
 
   const cardsHtml=isActive
-    ?('<div class="trade-cards">'+items.map(i=>{
-      const v=(i.t.vendor||'').trim();
-      const chip=i.overdue?'<span class="trade-chip bad">Overdue</span>':'<span class="trade-chip ok">On Site</span>';
-      const dayTxt=i.overdue?('Overdue '+i.overdueDays+'d'):(i.left>0?(i.left+' days left'):(i.left===0?'Due today':'—'));
-      const cls=i.overdue?'trade-card bad':'trade-card';
-      return `<div class="${cls}">`+
-        `<div class="trade-card-top">`+
-          `<div>`+
-            `<div class="trade-card-name">${i.t.name}</div>`+
-            `<div class="trade-card-vendor">${v}</div>`+
-          `</div>`+
-          `<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">`+
-            chip+
-            `<div style="font-size:14px;font-weight:900;color:#fff">${Math.round(i.prog)}%</div>`+
-          `</div>`+
-        `</div>`+
-        `<div class="trade-bar"><div class="trade-fill" style="width:${Math.min(100,Math.max(0,Number(i.prog)||0))}%"></div></div>`+
-        `<div class="trade-card-meta"><span>${dayTxt}</span><span>${i.t.section?i.t.section:''}</span></div>`+
-      `</div>`;
-    }).join('')+'</div>')
+    ?(function(){
+      const bySection={};
+      for(const i of items){
+        const k=String(i.t.section||'').trim()||'On Site';
+        (bySection[k]=bySection[k]||[]).push(i);
+      }
+      const sections=Object.keys(bySection);
+      return '<div class="trade-cards">'+sections.map(sec=>{
+        const group=bySection[sec]||[];
+        const cards=group.map(i=>{
+          const v=(i.t.vendor||'').trim();
+          const title=v||i.t.name;
+          const trade=v?i.t.name:'';
+          const chip=i.overdue?'<span class="trade-chip bad">Overdue</span>':'<span class="trade-chip ok">On Site</span>';
+          const dayTxt=i.overdue?('Overdue '+i.overdueDays+'d'):(i.left>0?(i.left+' days left'):(i.left===0?'Due today':'—'));
+          const cls=i.overdue?'trade-card bad':'trade-card';
+          return `<div class="${cls}">`+
+            `<div class="trade-card-top">`+
+              `<div>`+
+                `<div class="trade-card-name">${title}</div>`+
+                `<div class="trade-card-trade">${trade}</div>`+
+              `</div>`+
+              `<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">`+
+                chip+
+                `<div style="font-size:14px;font-weight:900;color:#fff">${Math.round(i.prog)}%</div>`+
+              `</div>`+
+            `</div>`+
+            `<div class="trade-bar"><div class="trade-fill" style="width:${Math.min(100,Math.max(0,Number(i.prog)||0))}%"></div></div>`+
+            `<div class="trade-card-meta"><span>${dayTxt}</span><span>${sec}</span></div>`+
+          `</div>`;
+        }).join('');
+        return `<div class="trade-section"><div class="trade-section-h">${sec}</div>${cards}</div>`;
+      }).join('')+'</div>';
+    })()
     :'';
 
   hero.className='hero '+(onTime?'on-time':'off-time');
