@@ -373,6 +373,20 @@ async function loadProjectData(){
     totalBudget+=p.markupTotal;
     totalPaid+=p.paidTotal;
   }
+
+  // Add approved Change Orders from sheet into the headline totals
+  // (Approved CO amount increases revised contract regardless of % complete)
+  let coApprovedAmt=0,coPaidTotal=0;
+  for(const co of (sheetCOs||[])){
+    if(!co)continue;
+    const status=String(co.status||'').toLowerCase().trim();
+    if(status==='approved'){
+      coApprovedAmt+=Number(co.amount||0)||0;
+      coPaidTotal+=Number(co.paid||0)||0;
+    }
+  }
+  totalBudget+=coApprovedAmt;
+  totalPaid+=coPaidTotal;
   const totals={totalBudget,totalPaid,progress:totalBudget>0?(totalPaid/totalBudget*100):0};
 
   const main={phases,headerInfo,totals,scheduleTasks,sheetCOs};
