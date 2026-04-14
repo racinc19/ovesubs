@@ -18,14 +18,14 @@
 html{overflow-y:scroll}
 body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
 .topnav{position:fixed;top:0;left:0;width:100vw;z-index:100;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
-.topnav-inner{max-width:100%;margin:0 auto;display:flex;align-items:center;gap:8px;min-height:56px;flex-wrap:wrap;padding:8px 0}
-.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;white-space:nowrap;margin-right:8px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
 .topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-.topnav-links{display:flex;gap:4px;align-items:center;flex-wrap:wrap;flex:1}
-.topnav-links a{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
 .topnav-links a:hover{color:var(--txt);background:var(--hover)}
 .topnav-links a.active{color:white;background:var(--blue)}
-.topnav-right{display:flex;gap:8px;align-items:center;margin-left:auto}
+.topnav-right{display:flex;gap:8px;align-items:center}
 .topnav-btn{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
 .topnav-btn:hover{border-color:var(--blue);color:var(--txt)}
 .unlock{border-color:rgba(234,179,8,.4);color:var(--yellow)}
