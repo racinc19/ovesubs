@@ -89,20 +89,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-prog-pct{font-size:12px;font-weight:700}
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
-.trade-cards{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-.trade-section{width:100%}
-.trade-section-h{font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin:8px 2px 6px}
-.trade-card{background:rgba(255,255,255,.03);border:1px solid rgba(42,58,85,.65);border-radius:12px;padding:10px 12px;min-width:220px;flex:1}
-.trade-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.trade-card-name{font-size:14px;font-weight:900;color:#fff;line-height:1.1}
-.trade-card-trade{font-size:11px;color:var(--txt2);margin-top:2px}
-.trade-card-meta{font-size:11px;color:var(--txt2);margin-top:8px;display:flex;justify-content:space-between;gap:10px}
-.trade-chip{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.12);color:var(--txt2)}
-.trade-chip.ok{border-color:rgba(34,197,94,.3);color:var(--green);background:rgba(34,197,94,.08)}
-.trade-chip.bad{border-color:rgba(239,68,68,.35);color:var(--red);background:rgba(239,68,68,.08)}
-.trade-bar{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:8px}
-.trade-fill{height:100%;background:var(--green)}
-.trade-card.bad .trade-fill{background:var(--red)}
 
 /* GANTT */
 .gantt-outer{max-width:1600px;margin:0 auto;padding:12px 20px 20px}
@@ -217,7 +203,7 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
-<script src="shared.js?v1772133761"></script>
+<script src="shared.js?v20260414_1"></script>
 <script>
 const ADMIN_PIN=SITE_ACCESS_PIN;
 const ADMIN_KEY='rac_admin';
@@ -268,8 +254,7 @@ function renderHero(tasks){
   const active=nonPhase.filter(t=>t.startDate<=today&&t.endDate>=today);
   // Next up if none active
   const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
-  const curList=active.length?active:(upcoming.length?[upcoming[0]]:[]);
-  const cur=curList.length?curList[0]:null;
+  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
 
   if(!cur){
     hero.className='hero no-sub';
@@ -277,97 +262,44 @@ function renderHero(tasks){
     return;
   }
 
-  const isActive=active.length>0;
-  const items=curList.map(t=>{
-    const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
-    const end=t.endDate||t.startDate;
-    const overdue=end&&end<today&&prog<100;
-    const overdueDays=end?Math.max(0,Math.round(daysBetween(end,today))):0;
-    const left=end?daysBetween(today,end):0;
-    return{t,prog,end,overdue,overdueDays,left};
-  });
-
-  const avgProg=items.length?items.reduce((s,i)=>s+(Number(i.prog)||0),0)/items.length:0;
-  const sumOverdue=items.reduce((s,i)=>s+(i.overdue?i.overdueDays:0),0);
-  const minEnd=items.reduce((m,i)=>!m||!i.end?m:(i.end<m?i.end:m),null);
-  const onTime=(sumOverdue===0)&&((minEnd?minEnd>=today:true)||avgProg>=100);
-
-  const daysLeftArr=items.filter(i=>i.end&&i.end>=today).map(i=>Math.max(0,i.left));
-  const avgDaysLeft=daysLeftArr.length?Math.round(daysLeftArr.reduce((s,n)=>s+n,0)/daysLeftArr.length):0;
-  const daysStr=isActive
-    ?(daysLeftArr.length?(avgDaysLeft===0?'Due today':avgDaysLeft+' avg days left'):(sumOverdue>0?('Overdue '+sumOverdue+'d (cumulative)'):'—'))
-    :'Starts '+fmtDate(cur.startDate);
-
-  const cardsHtml=isActive
-    ?(function(){
-      const bySection={};
-      for(const i of items){
-        const k=String(i.t.section||'').trim()||'On Site';
-        (bySection[k]=bySection[k]||[]).push(i);
-      }
-      const sections=Object.keys(bySection);
-      return '<div class="trade-cards">'+sections.map(sec=>{
-        const group=bySection[sec]||[];
-        const cards=group.map(i=>{
-          const v=(i.t.vendor||'').trim();
-          const title=v||i.t.name;
-          const trade=v?i.t.name:'';
-          const chip=i.overdue?'<span class="trade-chip bad">Overdue</span>':'<span class="trade-chip ok">On Site</span>';
-          const dayTxt=i.overdue?('Overdue '+i.overdueDays+'d'):(i.left>0?(i.left+' days left'):(i.left===0?'Due today':'—'));
-          const cls=i.overdue?'trade-card bad':'trade-card';
-          return `<div class="${cls}">`+
-            `<div class="trade-card-top">`+
-              `<div>`+
-                `<div class="trade-card-name">${title}</div>`+
-                `<div class="trade-card-trade">${trade}</div>`+
-              `</div>`+
-              `<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">`+
-                chip+
-                `<div style="font-size:14px;font-weight:900;color:#fff">${Math.round(i.prog)}%</div>`+
-              `</div>`+
-            `</div>`+
-            `<div class="trade-bar"><div class="trade-fill" style="width:${Math.min(100,Math.max(0,Number(i.prog)||0))}%"></div></div>`+
-            `<div class="trade-card-meta"><span>${dayTxt}</span><span>${sec}</span></div>`+
-          `</div>`;
-        }).join('');
-        return `<div class="trade-section"><div class="trade-section-h">${sec}</div>${cards}</div>`;
-      }).join('')+'</div>';
-    })()
-    :'';
+  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
+  const isActive=cur.startDate<=today&&cur.endDate>=today;
+  const totalDays=Math.max(1,daysBetween(cur.startDate,cur.endDate));
+  const elapsedDays=Math.max(0,daysBetween(cur.startDate,today));
+  // On time = still has days left OR complete. Only red if past finish date and not done.
+  const onTime=cur.endDate>=today||prog>=100;
+  const behindBy=Math.max(0,Math.round(daysBetween(cur.endDate,today)));
+  const daysLeft=daysBetween(today,cur.endDate);
+  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
 
   hero.className='hero '+(onTime?'on-time':'off-time');
   hero.innerHTML=`
-    <div style="width:100%">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-        <div class="hero-left">
-          <div class="hero-icon">${onTime?'✅':'🚨'}</div>
-          <div>
-            <div class="hero-label">${isActive?'Current Trades':'Next Up'}</div>
-            <div class="hero-name">${isActive?(items.length+' on site'):cur.name}</div>
-            <div class="hero-vendor">${isActive?'':(cur.vendor||'')}</div>
-          </div>
-        </div>
-        <div class="hero-center">
-          <div class="hero-stat">
-            <div class="hero-stat-val">${Math.round(avgProg)}%</div>
-            <div class="hero-stat-lbl">Avg Complete</div>
-          </div>
-          <div class="hero-div"></div>
-          <div class="hero-stat">
-            <div class="hero-stat-val" style="color:var(--txt2);font-size:16px">${daysStr}</div>
-            <div class="hero-stat-lbl">${isActive?'Schedule':'Next Up'}</div>
-          </div>
-          ${sumOverdue>0?`<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">${sumOverdue}d</div><div class="hero-stat-lbl">Delay (Cum.)</div></div>`:''}
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-          <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
-          <div class="hero-prog-wrap">
-            <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,avgProg)}%"></div></div>
-            <span class="hero-prog-pct">${Math.round(avgProg)}%</span>
-          </div>
-        </div>
+    <div class="hero-left">
+      <div class="hero-icon">${onTime?'✅':'🚨'}</div>
+      <div>
+        <div class="hero-label">Current Subcontractor</div>
+        <div class="hero-name">${cur.name}</div>
+        <div class="hero-vendor">${cur.vendor||''}</div>
       </div>
-      ${cardsHtml}
+    </div>
+    <div class="hero-center">
+      <div class="hero-stat">
+        <div class="hero-stat-val">${Math.round(prog)}%</div>
+        <div class="hero-stat-lbl">Complete</div>
+      </div>
+      <div class="hero-div"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" style="color:var(--txt2);font-size:16px">${daysStr}</div>
+        <div class="hero-stat-lbl">${isActive?'Schedule':'Next Up'}</div>
+      </div>
+      ${!onTime?`<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">${behindBy}d</div><div class="hero-stat-lbl">Overdue</div></div>`:''}
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+      <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
+      <div class="hero-prog-wrap">
+        <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,prog)}%"></div></div>
+        <span class="hero-prog-pct">${Math.round(prog)}%</span>
+      </div>
     </div>`;
 }
 
