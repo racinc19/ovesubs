@@ -216,9 +216,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 </div>
 
 <div id="app">
-  <div class="hero-wrap">
-    <div class="hero no-sub" id="hero"></div>
-  </div>
   <div class="gantt-phase-tracker" id="ganttPhaseTracker"></div>
   <div class="gantt-outer">
     <div class="gantt-wrap">
@@ -260,13 +257,6 @@ function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved c
 function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
 function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
 
-function renderHeroHeader(tasks){
-  const h=getPrimarySubcontractorHeroState(tasks,{});
-  const hero=document.getElementById('hero');
-  hero.className=h.className;
-  hero.innerHTML=h.html;
-}
-
 function renderGanttReadonly(tasks){
   const today=new Date();today.setHours(0,0,0,0);
   const gi=document.getElementById('gi');
@@ -302,8 +292,6 @@ function renderGanttReadonly(tasks){
     mhdr.appendChild(el);
     d=new Date(d.getFullYear(),d.getMonth()+1,1);
   }}
-
-  renderHeroHeader(tasks);
 
   for(const t of filtered){
     if(!t.startDate)continue;
@@ -377,7 +365,7 @@ async function init(){
     const{main}=await loadProjectData();
     allTasks=main.scheduleTasks||[];
     const pt=document.getElementById('ganttPhaseTracker');
-    if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);
+    if(pt)pt.innerHTML=renderActivityTrackersOnly(main);
     renderGanttReadonly(allTasks);
     document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block'
   }catch(e){
