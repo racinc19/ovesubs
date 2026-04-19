@@ -6,9 +6,6 @@ const SITE_ACCESS_PIN='1234';
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
-// SUBS tab — publish this tab and replace the gid below
-// Columns: A=Vendor(exact match), B=PIN, C=ContractAmt, D=DriveFolderURL
-const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -26,6 +23,18 @@ const SCHEDULE_PHASE_NAMES=['deposit','pre construction','site','structural','me
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
   'contingency','options'];
 const PHASE_KEYS=PHASE_NAMES.slice();
+
+// Hosted CO document URLs (relative to site root) — used when CO has no docUrl/docLink
+const CO_DOC_URLS={
+  'CO-001':'co_docs/CO-001.pdf','CO-002':'co_docs/CO-002.docx','CO-003':'co_docs/CO-003.pdf',
+  'CO-004':'co_docs/CO-004.pdf','CO-005':'co_docs/CO-005.pdf','CO-006':'co_docs/CO-006.pdf',
+  'CO-007':'co_docs/CO-007.pdf','CO-008':'co_docs/CO-008.docx','CO-010':'co_docs/CO-010.docx',
+  'CO-011':'co_docs/CO-011.pdf','CO-012':'co_docs/CO-012.pdf'
+};
+function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
+// Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
+function coDedupeKey(co){const n=(co.num||co.name||'').trim();const m1=n.match(/^Change\s+(\d+(?:\.\d+)?)$/i);if(m1){const v=m1[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}const m2=n.match(/CO-?(\d+(?:\.\d+)?)/i);if(m2){const v=m2[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}return null;}
+function coDocUrl(co){return co.docUrl||co.docLink||((typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))&&CO_DOC_URLS[(typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))]||null);}
 
 let P_START=new Date(2026,1,7);
 let P_END=new Date(2027,0,14);
@@ -76,12 +85,44 @@ function parseBudgetTab(rows){
     totalBudget=parseAmt(rows[3][6])||parseAmt(rows[3][2])||parseAmt(rows[3][1])||0;
     totalProfit=parseAmt(rows[3][13])||0
   }
+  let totalPaidOverride=0;
+  let buildGrossTotals=null;
+  let paidCol=5;
+  for(let r=0;r<Math.min(5,rows.length);r++){
+    const row=rows[r];if(!row)continue;
+    for(let c=0;c<Math.min(row.length,15);c++){
+      const cell=(row[c]||'').trim().toLowerCase();
+      if(cell==='paid'){paidCol=c;break}
+    }
+  }
+  for(let r=1;r<Math.min(14,rows.length);r++){
+    const row=rows[r];if(!row||!row[0])continue;
+    const a0=(row[0]||'').trim().toLowerCase();
+    const a1=(row[1]||'').trim().toLowerCase();
+    if(/build gross|^total$/.test(a0)||/build gross|^total$/.test(a1)){
+      buildGrossTotals={
+        invoiced:parseAmt(row[4]||0),
+        paid:parseAmt(row[5]||0),
+        outstanding:parseAmt(row[6]||0),
+        draftCol:parseAmt(row[7]||0)
+      };
+      const pv=parseAmt(row[paidCol]||0);
+      if(Math.abs(pv)>1000)totalPaidOverride=Math.abs(pv);
+      break
+    }
+  }
+  if(totalPaidOverride===0&&rows[3]&&rows[3][5]){
+    const v=parseAmt(rows[3][5]);
+    if(v>0)totalPaidOverride=Math.abs(v);
+  }
 
-  // Parse Change Orders from rows 5-8 (before phase data)
+  // Parse Change Orders — scan rows until we hit Deposit or a phase (no fixed row cap)
   const changeOrdersFromSheet=[];
-  for(let i=4;i<10;i++){
+  for(let i=4;i<rows.length;i++){
     const r=rows[i];if(!r||!r[0])continue;
     const n=(r[0]||'').trim();
+    const nL=norm(n);
+    if(PHASE_NAMES.includes(nL))break;
     if(!n.match(/^Change\s+\d+/i))continue;
     changeOrdersFromSheet.push({
       num:n,
@@ -91,6 +132,7 @@ function parseBudgetTab(rows){
       invoiced:parseAmt(r[4]),
       paid:parseAmt(r[5]),
       outstanding:parseAmt(r[6]),
+      draftCol:parseAmt(r[7]||0),
       status:'approved'
     });
   }
@@ -131,6 +173,7 @@ function parseBudgetTab(rows){
     const invoiced=parseAmt(r[4]);     // Invoiced (col E)
     const paid=parseAmt(r[5]);         // Paid (col F)
     const outstanding=parseAmt(r[6]);  // Outstanding (col G)
+    const draftCol=parseAmt(r[7]||0);  // Optional col H (e.g. DO / draft order)
     const markup=itemized;
 
     curPhase.items.push({
@@ -146,6 +189,7 @@ function parseBudgetTab(rows){
       paid:paid,
       invoiced:invoiced,
       outstanding:outstanding,
+      draftCol:draftCol,
       profit:0,
       drawAmounts:[],
       totalDrawnBase:0
@@ -159,38 +203,73 @@ function parseBudgetTab(rows){
   }
 
   const headerInfo={sqft,budget:totalBudget,duration:0,completion:''};
-  return{phases,headerInfo,changeOrders:changeOrdersFromSheet}
+  return{phases,headerInfo,changeOrders:changeOrdersFromSheet,totalPaidOverride,buildGrossTotals}
 }
 
 // ═══ PARSE SCHEDULE TAB ═══
+/** Find header row + column indices — published CSV column order is not guaranteed */
+function detectScheduleColumnIndices(rows){
+  const idx={trade:0,vendor:1,progress:2,start:4,days:5,finish:6,delay:7};
+  let dataStart=7;
+  let found=false;
+  for(let r=0;r<Math.min(45,rows.length);r++){
+    const row=rows[r];
+    if(!row||row.length<5)continue;
+    const lower=row.map(c=>String(c||'').trim().toLowerCase());
+    const hasStart=lower.some(h=>h==='start'||h==='start date');
+    const hasFinish=lower.some(h=>h==='finish'||h==='finish date'||h==='end');
+    if(!hasStart||!hasFinish)continue;
+    dataStart=r+1;
+    found=true;
+    for(let c=0;c<row.length;c++){
+      const h=lower[c];
+      if(!h)continue;
+      if(h==='trade'||h==='trade name'||h==='task')idx.trade=c;
+      else if(h==='vendor'||h==='sub'||h.includes('vendor')||h.includes('subcontractor'))idx.vendor=c;
+      else if(h.includes('progress')||h==='% comp'||h==='% complete'||h==='%')idx.progress=c;
+      else if(h==='start'||h==='start date')idx.start=c;
+      else if((h==='days'||h==='day')&&!h.includes('delay'))idx.days=c;
+      else if(h==='finish'||h==='finish date'||h==='end')idx.finish=c;
+      else if(h==='delay'||h==='delay days'||(h.includes('delay')&&!h.includes('undelay')))idx.delay=c;
+    }
+    break;
+  }
+  if(!found)dataStart=7;
+  return{idx,dataStart};
+}
+function parseDelayDays(s){
+  const v=parseInt(String(s==null?'':s).trim(),10);
+  return isNaN(v)?0:Math.max(0,v);
+}
+
 function parseScheduleTab(rows){
-  // Row 6 (index 6): headers — Trade, [B], Progress, [D], Start, Days, Finish, Delay
-  // Row 7+: ALL rows are data — phase names included as rows with their own dates
-  // No section headers to skip — every row with a date is a task
+  // Default: Row 7+ data — Trade, [B], Progress, [D], Start, Days, Finish, Delay
+  const{idx,dataStart:ds}=detectScheduleColumnIndices(rows);
 
   const tasks=[];
   let earliest=null,latest=null;
   let currentPhase='';
   const seenPhases={};
 
-  for(let i=7;i<rows.length;i++){
+  for(let i=ds;i<rows.length;i++){
     const r=rows[i];if(!r)continue;
-    const trade=(r[0]||'').trim();
-    const progressStr=(r[2]||'').trim();
-    const startStr=(r[4]||'').trim();
-    const daysStr=(r[5]||'').trim();
-    const finishStr=(r[6]||'').trim();
-    const delayStr=(r[7]||'').trim();
+    const gv=c=>(r[c]!==undefined&&r[c]!==null?String(r[c]):'').trim();
+    const trade=gv(idx.trade);
+    const progressStr=gv(idx.progress);
+    const startStr=gv(idx.start);
+    const daysStr=gv(idx.days);
+    const finishStr=gv(idx.finish);
+    const delayStr=gv(idx.delay);
 
     if(!trade&&!startStr)continue;
     if(trade==='-Duration')continue; // skip summary row
 
-    const vendor=(r[1]||'').trim();
+    const vendor=gv(idx.vendor);
     const progress=parsePct(progressStr);
     const start=parseDate(startStr);
-    const days=parseInt(daysStr)||0;
+    const days=parseInt(daysStr,10)||0;
     const finish=parseDate(finishStr);
-    const delay=parseInt(delayStr)||0;
+    const delay=parseDelayDays(delayStr);
 
     // Track if this is a phase-level row (first occurrence only)
     const nameL=norm(trade);
@@ -302,8 +381,7 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
         if(t.endDate)item.endDate=t.endDate;
         if(t.duration)item.duration=t.duration;
         if(t.vendor&&!item.vendor)item.vendor=t.vendor;
-        // Budget %comp (col D) is always truth — push it back to the schedule task
-        t.progress=item.progress;
+        // Budget %comp is always truth - never override from schedule
         matchedTasks.add(t)
       }
       if(item.startDate&&(!pStart||item.startDate<pStart))pStart=item.startDate;
@@ -343,20 +421,273 @@ function fmtDate(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'
 function fmtMo(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()}
 function fmtMoShort(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+" '"+String(d.getFullYear()).slice(2)}
 
+// ═══ Schedule / Gantt (dashboard + Gantt pages — one source of truth) ═══
+function escHtml(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const SCHEDULE_SKIP_PHASES=['deposit','pre construction'];
+function filterScheduleTasksForDisplay(scheduleTasks){
+  let skipPhase=false;
+  return(scheduleTasks||[]).filter(t=>{
+    if(t.isPhase){skipPhase=SCHEDULE_SKIP_PHASES.includes(t.nameNorm);return!skipPhase;}
+    return!skipPhase;
+  });
+}
+function scheduleDayStart(d){const x=new Date(d);x.setHours(0,0,0,0);return x;}
+/** Finish date including Delay column (days after sheet Finish) — used for hero, Gantt overdue/active */
+function taskScheduleEnd(t){
+  if(!t)return null;
+  const e=t.endDate||t.startDate;
+  if(!e)return null;
+  const dly=Math.max(0,parseInt(t.delay,10)||0);
+  return new Date(e.getTime()+dly*864e5);
+}
+
+/** Compact row for 2nd+ trades active the same day (e.g. Slab under Site Utilities) */
+function buildHeroConcurrentSubline(t,pending,today){
+  pending=pending||{};
+  const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
+  const te=taskScheduleEnd(t);
+  const onTime=!te||te>=today||prog>=100;
+  const daysLeft=daysBetween(today,te);
+  const daysStr=daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days';
+  const subCls=onTime?'hero-row-sub on-time':'hero-row-sub off-time';
+  return'<div class="'+subCls+'"><div class="hero-sub-left"><span class="hero-sub-name">'+escHtml(t.name)+'</span><span class="hero-sub-vendor">'+escHtml(t.vendor||'')+'</span></div><div class="hero-sub-mid"><span class="hero-sub-pct">'+Math.round(prog)+'%</span><span class="hero-sub-days">'+daysStr+'</span></div><div class="hero-sub-prog"><div class="hero-prog-bar hero-prog-bar-sm"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-sub-pct-lbl">'+Math.round(prog)+'%</span></div></div>';
+}
+
+/** @returns {{className:string,html:string}} */
+function getPrimarySubcontractorHeroState(scheduleTasks,pending){
+  pending=pending||{};
+  const today=scheduleDayStart(new Date());
+  const nonPhase=(scheduleTasks||[]).filter(t=>!t.isPhase&&t.startDate&&taskScheduleEnd(t));
+  const active=nonPhase.filter(t=>t.startDate<=today&&taskScheduleEnd(t)>=today).sort((a,b)=>a.startDate-b.startDate);
+  const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
+  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
+  if(!cur)return{className:'hero no-sub',html:'<span style="font-size:13px;color:var(--dim)">No active subcontractor scheduled</span>'};
+  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
+  const isActive=cur.startDate<=today&&taskScheduleEnd(cur)>=today;
+  const te=taskScheduleEnd(cur);
+  const onTime=!te||te>=today||prog>=100;
+  const behindBy=Math.max(0,Math.round(daysBetween(te,today)));
+  const daysLeft=daysBetween(today,te);
+  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
+  const cls='hero '+(onTime?'on-time':'off-time');
+  let primary='<div class="hero-left"><div class="hero-icon">'+(onTime?'✅':'🚨')+'</div><div><div class="hero-label">Current Subcontractor</div><div class="hero-name">'+escHtml(cur.name)+'</div><div class="hero-vendor">'+escHtml(cur.vendor||'')+'</div></div></div><div class="hero-center"><div class="hero-stat"><div class="hero-stat-val">'+Math.round(prog)+'%</div><div class="hero-stat-lbl">Complete</div></div><div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val hero-stat-sched">'+daysStr+'</div><div class="hero-stat-lbl">'+(isActive?'Schedule':'Next Up')+'</div></div>'+(!onTime?'<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">'+behindBy+'d</div><div class="hero-stat-lbl">Overdue</div></div>':'')+'</div><div class="hero-right-col"><div class="hero-badge">'+(onTime?'ON SCHEDULE':'BEHIND SCHEDULE')+'</div><div class="hero-prog-wrap"><div class="hero-prog-bar"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-prog-pct">'+Math.round(prog)+'%</span></div></div>';
+  primary='<div class="hero-row-primary">'+primary+'</div>';
+  let html=primary;
+  if(active.length>1){
+    let sub='';
+    for(let i=1;i<active.length;i++)sub+=buildHeroConcurrentSubline(active[i],pending,today);
+    html+='<div class="hero-substack">'+sub+'</div>';
+  }
+  return{className:cls,html:html};
+}
+
+/** Dashboard phase tracker (PHASES + ACTIVITIES rows) — same HTML on index + gantt */
+function renderPhaseTrackerHTML(data){
+  const phases=(data&&data.phases||[]).filter(p=>p.name!=='options');
+  if(!phases.length)return'';
+
+  const now=new Date();
+  const today0=new Date(now);today0.setHours(0,0,0,0);
+  const scheduleTasks=(data&&data.scheduleTasks)||[];
+  const hasSchedule=Array.isArray(scheduleTasks)&&scheduleTasks.length;
+
+  const effectiveEnd=t=>{
+    if(!(t&&t.endDate))return null;
+    const dly=Math.max(0,parseInt(t.delay)||0);
+    return new Date(t.endDate.getTime()+dly*864e5);
+  };
+  const pctVal=t=>{
+    const raw=Number(t&&t.progress);
+    const base=isFinite(raw)?Math.max(0,Math.min(100,raw)):0;
+    const ee=effectiveEnd(t);
+    if(ee&&today0>ee)return 100;
+    return base;
+  };
+
+  const SIMP=[
+    {key:'deposit',label:'Deposit'},
+    {key:'site',label:'Site'},
+    {key:'structural',label:'Structural'},
+    {key:'mechanical',label:'Mechanical'},
+    {key:'roof',label:'Roof'},
+    {key:'exterior',label:'Exterior'},
+    {key:'ceiling',label:'Ceiling'},
+    {key:'carpentry',label:'Carpentry'},
+    {key:'equipment',label:'Equipment/Finishes'},
+    {key:'landscape',label:'Landscape'}
+  ];
+
+  const simpTasksFor=(t,k)=>{
+    const sec=(t&&t.section)||'';
+    const name=(t&&t.nameNorm)||'';
+    if(k==='deposit')return sec==='deposit'||sec==='pre construction';
+    if(k==='site')return sec==='site';
+    if(k==='structural')return sec==='structural';
+    if(k==='mechanical')return sec==='mechanical rough';
+    if(k==='roof')return name==='roofing'||name==='roofing ';
+    if(k==='exterior')return sec==='exterior sealing'&&name!=='roofing'&&name!=='roofing ';
+    if(k==='ceiling')return sec==='wall/cieling finish';
+    if(k==='carpentry')return sec==='carpentery';
+    if(k==='equipment')return sec==='equipment/ finishes';
+    if(k==='landscape')return sec==='landscape';
+    return false;
+  };
+
+  const buildSimp=()=>{
+    const nonPhase=scheduleTasks.filter(t=>t&&!t.isPhase&&t.startDate);
+    const out=SIMP.map(p=>{
+      const tasks=nonPhase.filter(t=>simpTasksFor(t,p.key));
+      let start=null,end=null;
+      for(const t of tasks){
+        if(t.startDate&&(!start||t.startDate<start))start=t.startDate;
+        const ee=effectiveEnd(t)||t.endDate||t.startDate;
+        if(ee&&(!end||ee>end))end=ee;
+      }
+      const done=tasks.length?tasks.every(t=>pctVal(t)>=100):false;
+      const active=tasks.some(t=>{
+        if(!t||!t.startDate)return false;
+        const ee=effectiveEnd(t)||t.endDate||t.startDate;
+        const inWindow=(t.startDate<=today0)&&(!ee||today0<=ee);
+        const pv=pctVal(t);
+        return inWindow && pv<100;
+      });
+      return {key:p.key,label:p.label,tasks,start,end,done,active};
+    });
+    const activeIdx=out.map((p,i)=>p.active?i:-1).filter(i=>i>=0);
+
+    let idx=-1;
+    for(let i=0;i<out.length;i++){
+      const p=out[i];
+      if(!(p.start&&p.end))continue;
+      if(!p.done&&today0>=p.start&&today0<=p.end){idx=i;break;}
+    }
+    if(idx===-1){
+      let best=Infinity;
+      for(let i=0;i<out.length;i++){
+        const p=out[i];
+        if(!p.start)continue;
+        const ts=p.start.getTime();
+        if(ts>=today0.getTime()&&ts<best){best=ts;idx=i;}
+      }
+    }
+    if(idx===-1){
+      idx=0;
+      for(let i=0;i<out.length;i++){
+        if(!out[i].done){idx=i;break;}
+        if(i===out.length-1)idx=i;
+      }
+    }
+    return {list:out,currentIdx:idx,activeIdx};
+  };
+
+  const simp=hasSchedule?buildSimp():null;
+
+  let currentIdx=-1;
+  let bestActiveStart=-Infinity;
+  for(let i=0;i<phases.length;i++){
+    const p=phases[i];
+    if(!p.startDate)continue;
+    const s=new Date(p.startDate);
+    if(isNaN(s))continue;
+    let active=false;
+    if(p.endDate){
+      const e=new Date(p.endDate);
+      if(!isNaN(e)) active = (now>=s&&now<=e);
+      else active = (now>=s);
+    }else{
+      active = (now>=s);
+    }
+    if(active){
+      const st=s.getTime();
+      if(st>=bestActiveStart){bestActiveStart=st;currentIdx=i;}
+    }
+  }
+  if(currentIdx===-1){
+    let bestStart=Infinity;
+    for(let i=0;i<phases.length;i++){
+      const p=phases[i];
+      if(!p.startDate)continue;
+      const s=new Date(p.startDate).getTime();
+      if(!isFinite(s))continue;
+      if(s>=now.getTime()&&s<bestStart){bestStart=s;currentIdx=i;}
+    }
+  }
+  if(currentIdx===-1){
+    currentIdx=0;
+    for(let i=0;i<phases.length;i++){
+      if(phases[i].progress<100){currentIdx=i;break;}
+      if(i===phases.length-1)currentIdx=i;
+    }
+  }
+
+  const current=phases[currentIdx];
+
+  let html='';
+
+  html+='<div class="phase-steps"><div class="phase-steps-label">PHASES</div><div class="phase-steps-row">';
+  if(simp){
+    const minActive=simp.activeIdx&&simp.activeIdx.length?Math.min(...simp.activeIdx):simp.currentIdx;
+    simp.list.forEach((p,i)=>{
+      const cls=(i<minActive)?'done':((simp.activeIdx||[]).indexOf(i)>=0?'active':(i===simp.currentIdx?'active':''));
+      html+=`<div class="phase-step ${cls}" title="${p.label}"></div>`;
+    });
+    html+='</div><div class="phase-step-all-labels">'+simp.list.map(p=>`<div class="phase-step-all-label">${p.label}</div>`).join('')+'</div></div>';
+  }else{
+    phases.forEach((p,i)=>{
+      const cls=i<currentIdx?'done':(i===currentIdx?'active':'');
+      html+=`<div class="phase-step ${cls}" title="${p.display}: ${p.progress.toFixed(0)}%"></div>`;
+    });
+    html+='</div><div class="phase-step-all-labels">'+phases.map(p=>`<div class="phase-step-all-label">${p.display}</div>`).join('')+'</div></div>';
+  }
+
+  {
+    const blocks=(simp&&simp.activeIdx&&simp.activeIdx.length)?simp.activeIdx:[simp?simp.currentIdx:currentIdx];
+    blocks.forEach((bIdx)=>{
+      const items=simp?simp.list[bIdx].tasks:(current&&current.items)||[];
+      const label=simp?simp.list[bIdx].label:(current?current.display:'');
+      const firstActiveIdx=items.findIndex(it=>{
+        if(!it)return false;
+        const pv=pctVal(it);
+        return pv>0&&pv<100;
+      });
+      const itemRow=items.map((it)=>{
+        const done=it&&pctVal(it)>=100;
+        const active=it&&pctVal(it)>0&&pctVal(it)<100;
+        const forcedDone=firstActiveIdx>=0 && items.indexOf(it)<firstActiveIdx;
+        const cls=(done||forcedDone)?'done':(active?'active':'');
+        const name=(it&&it.name)?String(it.name):'';
+        const pct=it&&it.progress!=null?Number(it.progress).toFixed(0):'0';
+        const title=(name?name:'Item')+': '+pct+'%';
+        return `<div class="item-step ${cls}" title="${title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}"></div>`;
+      }).join('');
+      if(items.length){
+        html+='<div class="item-steps"><div class="item-steps-label">ACTIVITIES — '+label+'</div><div class="item-steps-row">'+itemRow+'</div>'
+          +'<div class="item-step-all-labels">'+items.map(it=>`<div class="item-step-all-label">${(it&&it.name)||''}</div>`).join('')+'</div></div>';
+      }
+    });
+  }
+
+  return html;
+}
+
 // ═══ LOAD ALL DATA LIVE ═══
 async function loadProjectData(){
   const ts=Date.now();
 
+  const fetchOpts={cache:"no-store",redirect:"follow"};
   const[budgetCSV,scheduleCSV]=await Promise.all([
-    fetch(BUDGET_URL+'&_='+ts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
-    fetch(SCHEDULE_URL+'&_='+ts).then(r=>{
+    fetch(BUDGET_URL+"&_="+ts,fetchOpts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
+    fetch(SCHEDULE_URL+"&_="+ts,fetchOpts).then(r=>{
       if(!r.ok){console.warn('Schedule tab HTTP '+r.status);return ''}
       return r.text()
     }).catch(e=>{console.warn('Schedule fetch failed:',e.message);return ''})
   ]);
 
   const budgetRows=parseCSV(budgetCSV);
-  const{phases,headerInfo,changeOrders:sheetCOs}=parseBudgetTab(budgetRows);
+  const{phases,headerInfo,changeOrders:sheetCOs,totalPaidOverride,buildGrossTotals}=parseBudgetTab(budgetRows);
 
   let scheduleTasks=[];
   if(scheduleCSV){
@@ -374,8 +705,6 @@ async function loadProjectData(){
     totalPaid+=p.paidTotal;
   }
 
-  // Add approved Change Orders from sheet into the headline totals
-  // (Approved CO amount increases revised contract regardless of % complete)
   let coApprovedAmt=0,coPaidTotal=0;
   for(const co of (sheetCOs||[])){
     if(!co)continue;
@@ -387,9 +716,10 @@ async function loadProjectData(){
   }
   totalBudget+=coApprovedAmt;
   totalPaid+=coPaidTotal;
+  if(totalPaidOverride>0)totalPaid=totalPaidOverride;
   const totals={totalBudget,totalPaid,progress:totalBudget>0?(totalPaid/totalBudget*100):0};
 
-  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs};
+  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs,buildGrossTotals};
   const draws=buildDrawSchedule(phases);
 
   return{main,draws,totals}
