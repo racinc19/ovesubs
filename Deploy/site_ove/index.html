@@ -253,7 +253,14 @@ function renderGanttReadonly(tasks){
   const mhdr=document.getElementById('mhdr');
   gi.innerHTML='';mhdr.innerHTML='';
 
-  const filtered=filterScheduleTasksForDisplay(tasks);
+  let skipPhase=false;
+  const filtered=(tasks||[]).filter(t=>{
+    if(t.isPhase){
+      skipPhase=['deposit','pre construction'].includes(t.nameNorm);
+      return !skipPhase;
+    }
+    return !skipPhase;
+  });
 
   let gMin=Infinity,gMax=-Infinity;
   for(const t of filtered){
