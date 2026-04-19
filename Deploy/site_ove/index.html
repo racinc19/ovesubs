@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Rodriguez Residence — Gantt Chart</title>
+<title>OVE subs - Schedule</title>
 <style>
 :root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -36,7 +36,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .topnav-refresh{flex:0 0 auto;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
 .topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
 
-/* Hero + concurrent on-site rows (2nd trade under primary, e.g. Slab + Site Utilities) */
 .hero-wrap{max-width:1600px;margin:0 auto;padding:16px 20px 0}
 .hero{border-radius:14px;padding:0;display:flex;flex-direction:column;align-items:stretch;position:relative;overflow:hidden;border:1px solid transparent}
 .hero.no-sub{padding:18px 24px}
@@ -90,7 +89,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-prog-pct{font-size:12px;font-weight:700}
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
-/* Dashboard phase tracker (same as index.html) */
 .gantt-phase-tracker{max-width:1600px;margin:0 auto;padding:0 20px 8px}
 .phase-steps{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--bdr);margin-top:12px}
 .phase-steps-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:14px}
@@ -109,7 +107,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .item-step-all-labels{display:flex;gap:4px;margin-top:8px;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.3px}
 .item-step-all-label{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* Gantt (aligned with OVE subs schedule) */
 .gantt-outer{max-width:1600px;margin:0 auto;padding:12px 20px 24px}
 .gantt-wrap{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
 .gantt-head{position:sticky;top:56px;z-index:20;background:var(--card2);border-bottom:2px solid var(--bdr);display:flex}
@@ -157,22 +154,17 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 </head>
 <body>
 <nav class="topnav"><div class="topnav-inner">
-  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
   <div class="topnav-links">
-    <a href="index.html">Dashboard</a>
-    <a href="log.html">Daily Log</a>
-    <a href="selections.html">Selections</a>
-    <a href="accounting.html">Accounting</a>
-    <a href="accounting.html#co">Change Orders</a>
-    <a href="gantt.html" class="active">Gantt</a>
-    <a href="draws.html">Draws</a>
-    <a href="budget.html">Budget & Schedule</a>
-    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Plans & Permits</a>
+    <a href="selections.html" style="color:var(--purple)">🎨 Selections</a>
+    <a href="electrical.html" style="color:var(--yellow)">⚡ Electrical</a>
   </div>
   <button class="topnav-refresh" onclick="doRefresh()">↻ Refresh</button>
 </div></nav>
 
-<div id="loading"><div class="spinner"></div><div class="msg">Loading Gantt chart…</div></div>
+<div id="loading"><div class="spinner"></div><div class="msg">Loading schedule...</div></div>
 <div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><br><button class="btn btn-blue" onclick="doRefresh()">Retry</button></div>
 
 <div id="app">

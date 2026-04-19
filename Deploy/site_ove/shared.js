@@ -1,7 +1,7 @@
-// shared.js — Rodriguez Residence Tracker — 100% LIVE from Google Sheet
+// shared.js ΓÇö Rodriguez Residence Tracker ΓÇö 100% LIVE from Google Sheet
 // NO hardcoded data. Everything pulled from published sheet on every page load.
 
-// Site-wide PIN: schedule Admin (🔒 Admin) + owner approval on Selections. Change only here.
+// Site-wide PIN: schedule Admin (≡ƒöÆ Admin) + owner approval on Selections. Change only here.
 const SITE_ACCESS_PIN='1234';
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
@@ -11,7 +11,7 @@ const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical 
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
   'contingency','options'];
 
-// Spelling corrections only — don't rename what's in the sheet
+// Spelling corrections only ΓÇö don't rename what's in the sheet
 const PHASE_SPELL_FIX={
   'pre construction':'Pre Construction',
   'wall/cieling finish':'Wall/Ceiling Finish',
@@ -24,7 +24,7 @@ const SCHEDULE_PHASE_NAMES=['deposit','pre construction','site','structural','me
   'contingency','options'];
 const PHASE_KEYS=PHASE_NAMES.slice();
 
-// Hosted CO document URLs (relative to site root) — used when CO has no docUrl/docLink
+// Hosted CO document URLs (relative to site root) ΓÇö used when CO has no docUrl/docLink
 const CO_DOC_URLS={
   'CO-001':'co_docs/CO-001.pdf','CO-002':'co_docs/CO-002.docx','CO-003':'co_docs/CO-003.pdf',
   'CO-004':'co_docs/CO-004.pdf','CO-005':'co_docs/CO-005.pdf','CO-006':'co_docs/CO-006.pdf',
@@ -32,7 +32,7 @@ const CO_DOC_URLS={
   'CO-011':'co_docs/CO-011.pdf','CO-012':'co_docs/CO-012.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
-// Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
+// Normalized key for dedupe ΓÇö CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
 function coDedupeKey(co){const n=(co.num||co.name||'').trim();const m1=n.match(/^Change\s+(\d+(?:\.\d+)?)$/i);if(m1){const v=m1[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}const m2=n.match(/CO-?(\d+(?:\.\d+)?)/i);if(m2){const v=m2[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}return null;}
 function coDocUrl(co){return co.docUrl||co.docLink||((typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))&&CO_DOC_URLS[(typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))]||null);}
 
@@ -40,7 +40,7 @@ let P_START=new Date(2026,1,7);
 let P_END=new Date(2027,0,14);
 let TOTAL_DAYS=Math.round((P_END-P_START)/864e5);
 
-// ═══ CSV PARSING ═══
+// ΓòÉΓòÉΓòÉ CSV PARSING ΓòÉΓòÉΓòÉ
 function parseCSV(text){
   const rows=[];let cur='',inQ=false,row=[];
   for(let i=0;i<text.length;i++){
@@ -77,7 +77,7 @@ function parseDate(s){
   return isNaN(d.getTime())?null:d
 }
 
-// ═══ PARSE BUDGET TAB ═══
+// ΓòÉΓòÉΓòÉ PARSE BUDGET TAB ΓòÉΓòÉΓòÉ
 function parseBudgetTab(rows){
   let sqft=0,totalBudget=0,totalProfit=0;
   if(rows[2])sqft=parseAmt(rows[2][0])||6993;
@@ -116,7 +116,7 @@ function parseBudgetTab(rows){
     if(v>0)totalPaidOverride=Math.abs(v);
   }
 
-  // Parse Change Orders — scan rows until we hit Deposit or a phase (no fixed row cap)
+  // Parse Change Orders ΓÇö scan rows until we hit Deposit or a phase (no fixed row cap)
   const changeOrdersFromSheet=[];
   for(let i=4;i<rows.length;i++){
     const r=rows[i];if(!r||!r[0])continue;
@@ -206,8 +206,8 @@ function parseBudgetTab(rows){
   return{phases,headerInfo,changeOrders:changeOrdersFromSheet,totalPaidOverride,buildGrossTotals}
 }
 
-// ═══ PARSE SCHEDULE TAB ═══
-/** Find header row + column indices — published CSV column order is not guaranteed */
+// ΓòÉΓòÉΓòÉ PARSE SCHEDULE TAB ΓòÉΓòÉΓòÉ
+/** Find header row + column indices ΓÇö published CSV column order is not guaranteed */
 function detectScheduleColumnIndices(rows){
   const idx={trade:0,vendor:1,progress:2,start:4,days:5,finish:6,delay:7};
   let dataStart=7;
@@ -243,7 +243,7 @@ function parseDelayDays(s){
 }
 
 function parseScheduleTab(rows){
-  // Default: Row 7+ data — Trade, [B], Progress, [D], Start, Days, Finish, Delay
+  // Default: Row 7+ data ΓÇö Trade, [B], Progress, [D], Start, Days, Finish, Delay
   const{idx,dataStart:ds}=detectScheduleColumnIndices(rows);
 
   const tasks=[];
@@ -302,7 +302,7 @@ function parseScheduleTab(rows){
     })
   }
 
-  // ── Recompute phase dates/duration from actual children ──
+  // ΓöÇΓöÇ Recompute phase dates/duration from actual children ΓöÇΓöÇ
   for(let p=0;p<tasks.length;p++){
     if(!tasks[p].isPhase)continue;
     const phaseName=tasks[p].nameNorm;
@@ -326,8 +326,8 @@ function parseScheduleTab(rows){
   return{tasks,earliest,latest}
 }
 
-// ═══ CROSS-REFERENCE BUDGET + SCHEDULE ═══
-// Aliases: budget name → schedule name for items that don't match exactly
+// ΓòÉΓòÉΓòÉ CROSS-REFERENCE BUDGET + SCHEDULE ΓòÉΓòÉΓòÉ
+// Aliases: budget name ΓåÆ schedule name for items that don't match exactly
 const NAME_ALIASES={
   'permits':'permit',
   'door':'finish carpentry',
@@ -358,7 +358,7 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
   for(const phase of budgetPhases){
     let pStart=null,pEnd=null;
 
-    // Phase-level progress from schedule — this is the source of truth
+    // Phase-level progress from schedule ΓÇö this is the source of truth
     const phaseTask=taskByName[phase.name];
     if(phaseTask){
       if(phaseTask.startDate)phase.startDate=phaseTask.startDate;
@@ -396,7 +396,7 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
   }
 }
 
-// ═══ BUILD DRAW SCHEDULE FROM BUDGET ═══
+// ΓòÉΓòÉΓòÉ BUILD DRAW SCHEDULE FROM BUDGET ΓòÉΓòÉΓòÉ
 function buildDrawSchedule(phases){
   const monthMap={};
   for(const p of phases){
@@ -414,14 +414,14 @@ function buildDrawSchedule(phases){
   return Object.keys(monthMap).sort().map(k=>monthMap[k])
 }
 
-// ═══ FORMAT HELPERS ═══
+// ΓòÉΓòÉΓòÉ FORMAT HELPERS ΓòÉΓòÉΓòÉ
 function fmt(n){return'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function fmtK(n){return n>=1e6?'$'+(n/1e6).toFixed(2)+'M':n>=1e3?'$'+(n/1e3).toFixed(0)+'K':fmt(n)}
-function fmtDate(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()}
+function fmtDate(d){if(!d)return'ΓÇö';return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()}
 function fmtMo(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()}
 function fmtMoShort(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+" '"+String(d.getFullYear()).slice(2)}
 
-// ═══ Schedule / Gantt (dashboard + Gantt pages — one source of truth) ═══
+// ΓòÉΓòÉΓòÉ Schedule / Gantt (dashboard + Gantt pages ΓÇö one source of truth) ΓòÉΓòÉΓòÉ
 function escHtml(s){
   return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
@@ -435,7 +435,7 @@ function filterScheduleTasksForDisplay(scheduleTasks){
   });
 }
 function scheduleDayStart(d){const x=new Date(d);x.setHours(0,0,0,0);return x;}
-/** Finish date including Delay column (days after sheet Finish) — used for hero, Gantt overdue/active */
+/** Finish date including Delay column (days after sheet Finish) ΓÇö used for hero, Gantt overdue/active */
 function taskScheduleEnd(t){
   if(!t)return null;
   const e=t.endDate||t.startDate;
@@ -473,7 +473,7 @@ function getPrimarySubcontractorHeroState(scheduleTasks,pending){
   const daysLeft=daysBetween(today,te);
   const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
   const cls='hero '+(onTime?'on-time':'off-time');
-  let primary='<div class="hero-left"><div class="hero-icon">'+(onTime?'✅':'🚨')+'</div><div><div class="hero-label">Current Subcontractor</div><div class="hero-name">'+escHtml(cur.name)+'</div><div class="hero-vendor">'+escHtml(cur.vendor||'')+'</div></div></div><div class="hero-center"><div class="hero-stat"><div class="hero-stat-val">'+Math.round(prog)+'%</div><div class="hero-stat-lbl">Complete</div></div><div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val hero-stat-sched">'+daysStr+'</div><div class="hero-stat-lbl">'+(isActive?'Schedule':'Next Up')+'</div></div>'+(!onTime?'<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">'+behindBy+'d</div><div class="hero-stat-lbl">Overdue</div></div>':'')+'</div><div class="hero-right-col"><div class="hero-badge">'+(onTime?'ON SCHEDULE':'BEHIND SCHEDULE')+'</div><div class="hero-prog-wrap"><div class="hero-prog-bar"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-prog-pct">'+Math.round(prog)+'%</span></div></div>';
+  let primary='<div class="hero-left"><div class="hero-icon">'+(onTime?'Γ£à':'≡ƒÜ¿')+'</div><div><div class="hero-label">Current Subcontractor</div><div class="hero-name">'+escHtml(cur.name)+'</div><div class="hero-vendor">'+escHtml(cur.vendor||'')+'</div></div></div><div class="hero-center"><div class="hero-stat"><div class="hero-stat-val">'+Math.round(prog)+'%</div><div class="hero-stat-lbl">Complete</div></div><div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val hero-stat-sched">'+daysStr+'</div><div class="hero-stat-lbl">'+(isActive?'Schedule':'Next Up')+'</div></div>'+(!onTime?'<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">'+behindBy+'d</div><div class="hero-stat-lbl">Overdue</div></div>':'')+'</div><div class="hero-right-col"><div class="hero-badge">'+(onTime?'ON SCHEDULE':'BEHIND SCHEDULE')+'</div><div class="hero-prog-wrap"><div class="hero-prog-bar"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-prog-pct">'+Math.round(prog)+'%</span></div></div>';
   primary='<div class="hero-row-primary">'+primary+'</div>';
   let html=primary;
   if(active.length>1){
@@ -484,7 +484,7 @@ function getPrimarySubcontractorHeroState(scheduleTasks,pending){
   return{className:cls,html:html};
 }
 
-/** Dashboard phase tracker (PHASES + ACTIVITIES rows) — same HTML on index + gantt */
+/** Dashboard phase tracker (PHASES + ACTIVITIES rows) ΓÇö same HTML on index + gantt */
 function renderPhaseTrackerHTML(data){
   const phases=(data&&data.phases||[]).filter(p=>p.name!=='options');
   if(!phases.length)return'';
@@ -664,7 +664,7 @@ function renderPhaseTrackerHTML(data){
         return `<div class="item-step ${cls}" title="${title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}"></div>`;
       }).join('');
       if(items.length){
-        html+='<div class="item-steps"><div class="item-steps-label">ACTIVITIES — '+label+'</div><div class="item-steps-row">'+itemRow+'</div>'
+        html+='<div class="item-steps"><div class="item-steps-label">ACTIVITIES ΓÇö '+label+'</div><div class="item-steps-row">'+itemRow+'</div>'
           +'<div class="item-step-all-labels">'+items.map(it=>`<div class="item-step-all-label">${(it&&it.name)||''}</div>`).join('')+'</div></div>';
       }
     });
@@ -673,7 +673,7 @@ function renderPhaseTrackerHTML(data){
   return html;
 }
 
-// ═══ LOAD ALL DATA LIVE ═══
+// ΓòÉΓòÉΓòÉ LOAD ALL DATA LIVE ΓòÉΓòÉΓòÉ
 async function loadProjectData(){
   const ts=Date.now();
 
@@ -729,7 +729,7 @@ function getBudgetData(){
   return{phases:[],headerInfo:{sqft:6993,budget:0,duration:0,completion:''}}
 }
 
-// ═══ IndexedDB Photo Store ═══
+// ΓòÉΓòÉΓòÉ IndexedDB Photo Store ΓòÉΓòÉΓòÉ
 const PHOTO_DB='rodriguez_photos';
 const PHOTO_STORE='photos';
 let _photoDB=null;
