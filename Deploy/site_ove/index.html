@@ -257,11 +257,43 @@ function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved c
 function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
 function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
 
+function filterScheduleTasksForDisplayLocal(scheduleTasks){
+  let skipPhase=false;
+  return (scheduleTasks||[]).filter(t=>{
+    if(t.isPhase){
+      skipPhase=['deposit','pre construction'].includes(t.nameNorm);
+      return !skipPhase;
+    }
+    return !skipPhase;
+  });
+}
+function taskScheduleEndLocal(t){
+  if(!t)return null;
+  const e=t.endDate||t.startDate;
+  if(!e)return null;
+  const dly=Math.max(0,parseInt(t.delay,10)||0);
+  return new Date(e.getTime()+dly*864e5);
+}
+function escHtmlLocal(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 function renderHeroHeader(tasks){
-  const h=getPrimarySubcontractorHeroState(tasks,pending);
+  const today=new Date();today.setHours(0,0,0,0);
   const hero=document.getElementById('hero');
-  hero.className=h.className;
-  hero.innerHTML=h.html;
+  const nonPhase=(tasks||[]).filter(t=>!t.isPhase&&t.startDate&&taskScheduleEndLocal(t));
+  const active=nonPhase.filter(t=>t.startDate<=today&&taskScheduleEndLocal(t)>=today).sort((a,b)=>a.startDate-b.startDate);
+  const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
+  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
+  if(!cur){hero.className='hero no-sub';hero.innerHTML='<span style="font-size:13px;color:var(--dim)">No active subcontractor scheduled</span>';return;}
+  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
+  const isActive=cur.startDate<=today&&taskScheduleEndLocal(cur)>=today;
+  const te=taskScheduleEndLocal(cur);
+  const onTime=!te||te>=today||prog>=100;
+  const behindBy=Math.max(0,Math.round(daysBetween(te,today)));
+  const daysLeft=daysBetween(today,te);
+  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
+  hero.className='hero '+(onTime?'on-time':'off-time');
+  hero.innerHTML='<div class="hero-row-primary"><div class="hero-left"><div class="hero-icon">'+(onTime?'✅':'🚨')+'</div><div><div class="hero-label">Current Subcontractor</div><div class="hero-name">'+escHtmlLocal(cur.name)+'</div><div class="hero-vendor">'+escHtmlLocal(cur.vendor||'')+'</div></div></div><div class="hero-center"><div class="hero-stat"><div class="hero-stat-val">'+Math.round(prog)+'%</div><div class="hero-stat-lbl">Complete</div></div><div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val hero-stat-sched">'+daysStr+'</div><div class="hero-stat-lbl">'+(isActive?'Schedule':'Next Up')+'</div></div>'+(!onTime?'<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">'+behindBy+'d</div><div class="hero-stat-lbl">Overdue</div></div>':'')+'</div><div class="hero-right-col"><div class="hero-badge">'+(onTime?'ON SCHEDULE':'BEHIND SCHEDULE')+'</div><div class="hero-prog-wrap"><div class="hero-prog-bar"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-prog-pct">'+Math.round(prog)+'%</span></div></div></div>';
 }
 
 function renderGanttReadonly(tasks){
@@ -270,12 +302,12 @@ function renderGanttReadonly(tasks){
   const mhdr=document.getElementById('mhdr');
   gi.innerHTML='';mhdr.innerHTML='';
 
-  const filtered=filterScheduleTasksForDisplay(tasks);
+  const filtered=filterScheduleTasksForDisplayLocal(tasks);
 
   let gMin=Infinity,gMax=-Infinity;
   for(const t of filtered){
     if(t.startDate)gMin=Math.min(gMin,t.startDate.getTime());
-    const eff=taskScheduleEnd(t);
+    const eff=taskScheduleEndLocal(t);
     if(eff)gMax=Math.max(gMax,eff.getTime());
     else if(t.endDate)gMax=Math.max(gMax,t.endDate.getTime());
   }
@@ -306,7 +338,7 @@ function renderGanttReadonly(tasks){
     if(!t.startDate)continue;
     const s=t.startDate,e=t.endDate||s;
     const dly=Math.max(0,parseInt(t.delay,10)||0);
-    const effEnd=taskScheduleEnd(t)||e;
+    const effEnd=taskScheduleEndLocal(t)||e;
     const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
     const overdue=!t.isPhase&&effEnd<today&&prog<100;
     const active=!t.isPhase&&s<=today&&effEnd>=today;
@@ -316,8 +348,8 @@ function renderGanttReadonly(tasks){
     row.className='g-row'+(t.isPhase?' ph':'')+(active?' act':'')+(overdue?' ov':'');
 
     const lbl=document.createElement('div');lbl.className='g-lbl';
-    const vsub=t.vendor&&!t.isPhase?'<div class="g-sub">'+escHtml(t.vendor)+'</div>':'';
-    const nm=t.isPhase?escHtml(PHASE_SPELL_FIX[t.nameNorm]||t.name):escHtml(t.name);
+    const vsub=t.vendor&&!t.isPhase?'<div class="g-sub">'+escHtmlLocal(t.vendor)+'</div>':'';
+    const nm=t.isPhase?escHtmlLocal(PHASE_SPELL_FIX[t.nameNorm]||t.name):escHtmlLocal(t.name);
     lbl.innerHTML='<div class="g-name">'+nm+'</div>'+vsub;
 
     const tl=document.createElement('div');tl.className='g-tl';
@@ -385,7 +417,7 @@ async function init(){
     const{main}=await loadProjectData();
     allTasks=main.scheduleTasks||[];
     const pt=document.getElementById('ganttPhaseTracker');
-    if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);
+    if(pt)pt.innerHTML='';
     renderGanttReadonly(allTasks);
     document.getElementById('loading').style.display='none';
     document.getElementById('app').style.display='block';
