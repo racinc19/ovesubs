@@ -343,8 +343,12 @@ function fmtDate(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'
 function fmtMo(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()}
 function fmtMoShort(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+" '"+String(d.getFullYear()).slice(2)}
 
+function renderPhaseTrackerHTML(main){
+  return '';
+}
+
 function renderActivityTrackersOnly(main){
-  const full=renderPhaseTrackerHTML(main)||'';
+  const full='';
   const start=full.indexOf('<div class="item-steps">');
   return start>=0?full.slice(start):'';
 }
