@@ -33,8 +33,31 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .topnav-links a:hover{color:var(--txt);background:var(--hover)}
 .topnav-links a.active{color:white;background:var(--blue)}
-.topnav-refresh{flex:0 0 auto;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
-.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+.topnav-right{display:flex;gap:8px;align-items:center}
+.topnav-btn{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-btn:hover{border-color:var(--blue);color:var(--txt)}
+.unlock{border-color:rgba(234,179,8,.4);color:var(--yellow)}
+.unlock:hover{background:rgba(234,179,8,.08)}
+.locked{border-color:rgba(34,197,94,.4);color:var(--green)}
+
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-bg.hidden{display:none}
+.modal{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:36px 32px;max-width:360px;width:90%;text-align:center;position:relative}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.modal p{font-size:13px;color:var(--txt2);margin-bottom:24px}
+.pin-row{display:flex;justify-content:center;gap:10px;margin-bottom:20px}
+.pin-d{width:50px;height:58px;border-radius:10px;border:2px solid var(--bdr);background:var(--bg);color:var(--txt);font-size:22px;font-weight:700;text-align:center;outline:none;transition:border-color .2s;caret-color:transparent}
+.pin-d:focus{border-color:var(--blue)}
+.pin-submit{width:100%;padding:13px;border-radius:10px;background:var(--blue);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer}
+.pin-submit:disabled{opacity:.35;cursor:default}
+.pin-err{color:var(--red);font-size:12px;margin-top:12px;min-height:18px}
+.modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer}
+.save-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--yellow);border-radius:12px;padding:12px 24px;display:none;align-items:center;gap:14px;z-index:50;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.save-bar.vis{display:flex}
+.save-bar span{font-size:13px;color:var(--yellow);font-weight:600}
+.save-bar button{padding:8px 18px;border-radius:8px;border:none;font-size:13px;font-weight:700;cursor:pointer}
+.sbtn{background:var(--yellow);color:#000}
+.cbtn{background:none;border:1px solid var(--bdr)!important;color:var(--txt2)}
 
 .hero-wrap{max-width:1600px;margin:0 auto;padding:16px 20px 0}
 .hero{border-radius:14px;padding:0;display:flex;flex-direction:column;align-items:stretch;position:relative;overflow:hidden;border:1px solid transparent}
@@ -161,11 +184,36 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
     <a href="selections.html" style="color:var(--purple)">🎨 Selections</a>
     <a href="electrical.html" style="color:var(--yellow)">⚡ Electrical</a>
   </div>
-  <button class="topnav-refresh" onclick="doRefresh()">↻ Refresh</button>
+  <div class="topnav-right">
+    <button class="topnav-btn" onclick="doRefresh()">↻ Refresh</button>
+    <button class="topnav-btn unlock" id="adminBtn" onclick="toggleAdmin()">🔒 Admin</button>
+  </div>
 </div></nav>
 
 <div id="loading"><div class="spinner"></div><div class="msg">Loading schedule...</div></div>
 <div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><br><button class="btn btn-blue" onclick="doRefresh()">Retry</button></div>
+
+<div class="modal-bg hidden" id="pinModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePin()">×</button>
+    <h3>Admin Access</h3>
+    <p>Enter PIN to unlock progress editing</p>
+    <div class="pin-row">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="pd0" oninput="pIn(0)" onkeydown="pKey(event,0)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="pd1" oninput="pIn(1)" onkeydown="pKey(event,1)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="pd2" oninput="pIn(2)" onkeydown="pKey(event,2)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="pd3" oninput="pIn(3)" onkeydown="pKey(event,3)">
+    </div>
+    <button class="pin-submit" id="pinOk" disabled onclick="checkPin()">Unlock</button>
+    <div class="pin-err" id="pinErr"></div>
+  </div>
+</div>
+
+<div class="save-bar" id="saveBar">
+  <span>⚠ Unsaved changes</span>
+  <button class="cbtn" onclick="cancelEdits()">Cancel</button>
+  <button class="sbtn" onclick="saveEdits()">Save</button>
+</div>
 
 <div id="app">
   <div class="hero-wrap">
@@ -194,8 +242,23 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 
 <script src="shared.js?v20260424_schedulecols"></script>
 <script>
+const ADMIN_PIN=SITE_ACCESS_PIN;
+const ADMIN_KEY='rac_admin';
 const GANTT_LBL=250;
+let isAdmin=sessionStorage.getItem(ADMIN_KEY)==='1';
+let pending={};
 let allTasks=[];
+
+function toggleAdmin(){isAdmin?exitAdmin():openPin()}
+function openPin(){document.getElementById('pinModal').classList.remove('hidden');document.getElementById('pd0').focus()}
+function closePin(){document.getElementById('pinModal').classList.add('hidden');[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pinOk').disabled=true;document.getElementById('pinErr').textContent=''}
+function pIn(i){const e=document.getElementById('pd'+i);e.value=e.value.replace(/\D/g,'');if(e.value&&i<3)document.getElementById('pd'+(i+1)).focus();document.getElementById('pinOk').disabled=[0,1,2,3].map(j=>document.getElementById('pd'+j).value).join('').length!==4;document.getElementById('pinErr').textContent=''}
+function pKey(e,i){if(e.key==='Backspace'&&!document.getElementById('pd'+i).value&&i>0)document.getElementById('pd'+(i-1)).focus();if(e.key==='Enter')checkPin()}
+function checkPin(){const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');if(p===ADMIN_PIN){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}}
+function applyAdmin(){document.getElementById('adminBtn').textContent='🔓 Admin ON';document.getElementById('adminBtn').classList.remove('unlock');document.getElementById('adminBtn').classList.add('locked');document.getElementById('gb').classList.add('adm')}
+function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved changes?'))return;isAdmin=false;pending={};sessionStorage.removeItem(ADMIN_KEY);document.getElementById('adminBtn').textContent='🔒 Admin';document.getElementById('adminBtn').classList.add('unlock');document.getElementById('adminBtn').classList.remove('locked');document.getElementById('gb').classList.remove('adm');document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
+function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
+function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
 
 function renderHeroHeader(tasks){
   const h=getPrimarySubcontractorHeroState(tasks,{});
@@ -247,7 +310,7 @@ function renderGanttReadonly(tasks){
     const s=t.startDate,e=t.endDate||s;
     const dly=Math.max(0,parseInt(t.delay,10)||0);
     const effEnd=taskScheduleEnd(t)||e;
-    const prog=t.progress;
+    const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
     const overdue=!t.isPhase&&effEnd<today&&prog<100;
     const active=!t.isPhase&&s<=today&&effEnd>=today;
     const done=prog>=100;
@@ -274,6 +337,7 @@ function renderGanttReadonly(tasks){
       bar.appendChild(fill);
     }
     tl.appendChild(bar);
+    if(!t.isPhase){const inp=document.createElement('input');inp.type='number';inp.min=0;inp.max=100;inp.className='g-inp';inp.value=Math.round(prog);inp.addEventListener('change',function(){const v=Math.min(100,Math.max(0,parseFloat(this.value)||0));this.value=v;pending[t.nameNorm]=v;document.getElementById('saveBar').classList.add('vis');renderHeroHeader(tasks)});tl.appendChild(inp)}
     if(dly>0&&e&&effEnd>e){
       const rightEff=Math.min(100,daysBetween(gS,effEnd)/gD*100);
       const wDel=Math.max(.25,rightEff-rightWork);
@@ -301,6 +365,7 @@ function renderGanttReadonly(tasks){
     gb.scrollLeft=Math.max(0,tw-bw/2);
   });
   gb.onscroll=()=>{mhdr.parentElement.scrollLeft=gb.scrollLeft};
+  if(isAdmin)applyAdmin();
 }
 
 async function doRefresh(){

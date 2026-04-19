@@ -1,17 +1,20 @@
-// shared.js ΓÇö Rodriguez Residence Tracker ΓÇö 100% LIVE from Google Sheet
+// shared.js — Rodriguez Residence Tracker — 100% LIVE from Google Sheet
 // NO hardcoded data. Everything pulled from published sheet on every page load.
 
-// Site-wide PIN: schedule Admin (≡ƒöÆ Admin) + owner approval on Selections. Change only here.
+// Site-wide PIN: schedule Admin (🔒 Admin) + owner approval on Selections. Change only here.
 const SITE_ACCESS_PIN='1234';
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
+// SUBS tab — publish this tab and replace the gid below
+// Columns: A=Vendor(exact match), B=PIN, C=ContractAmt, D=DriveFolderURL
+const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
   'contingency','options'];
 
-// Spelling corrections only ΓÇö don't rename what's in the sheet
+// Spelling corrections only — don't rename what's in the sheet
 const PHASE_SPELL_FIX={
   'pre construction':'Pre Construction',
   'wall/cieling finish':'Wall/Ceiling Finish',
@@ -23,18 +26,6 @@ const SCHEDULE_PHASE_NAMES=['deposit','pre construction','site','structural','me
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
   'contingency','options'];
 const PHASE_KEYS=PHASE_NAMES.slice();
-
-// Hosted CO document URLs (relative to site root) ΓÇö used when CO has no docUrl/docLink
-const CO_DOC_URLS={
-  'CO-001':'co_docs/CO-001.pdf','CO-002':'co_docs/CO-002.docx','CO-003':'co_docs/CO-003.pdf',
-  'CO-004':'co_docs/CO-004.pdf','CO-005':'co_docs/CO-005.pdf','CO-006':'co_docs/CO-006.pdf',
-  'CO-007':'co_docs/CO-007.pdf','CO-008':'co_docs/CO-008.docx','CO-010':'co_docs/CO-010.docx',
-  'CO-011':'co_docs/CO-011.pdf','CO-012':'co_docs/CO-012.pdf'
-};
-function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
-// Normalized key for dedupe ΓÇö CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
-function coDedupeKey(co){const n=(co.num||co.name||'').trim();const m1=n.match(/^Change\s+(\d+(?:\.\d+)?)$/i);if(m1){const v=m1[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}const m2=n.match(/CO-?(\d+(?:\.\d+)?)/i);if(m2){const v=m2[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}return null;}
-function coDocUrl(co){return co.docUrl||co.docLink||((typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))&&CO_DOC_URLS[(typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))]||null);}
 
 let P_START=new Date(2026,1,7);
 let P_END=new Date(2027,0,14);
