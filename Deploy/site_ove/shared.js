@@ -664,6 +664,12 @@ function renderPhaseTrackerHTML(data){
   return html;
 }
 
+function renderActivityTrackersOnly(main){
+  const full=renderPhaseTrackerHTML(main)||'';
+  const start=full.indexOf('<div class="item-steps">');
+  return start>=0?full.slice(start):'';
+}
+
 // ΓòÉΓòÉΓòÉ LOAD ALL DATA LIVE ΓòÉΓòÉΓòÉ
 async function loadProjectData(){
   const ts=Date.now();
