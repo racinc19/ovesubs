@@ -250,7 +250,18 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
-<script src="shared.js?v20260419_ganttmerge"></script>
+<script src="shared.js?v=20260420_taskend"></script>
+<script>
+if(typeof taskScheduleEnd!=='function'){
+window.taskScheduleEnd=function(t){
+if(!t)return null;
+var e=t.endDate||t.startDate;
+if(!e)return null;
+var dly=Math.max(0,parseInt(t.delay,10)||0);
+return new Date(e.getTime()+dly*864e5);
+};
+}
+</script>
 <script>
 const ADMIN_PIN=SITE_ACCESS_PIN;
 const ADMIN_KEY='rac_admin';
