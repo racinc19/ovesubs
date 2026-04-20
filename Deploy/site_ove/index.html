@@ -294,7 +294,7 @@ function renderGanttReadonly(tasks){
 
   for(const t of filtered){
     if(!t.startDate)continue;
-    const s=t.startDate,e=t.endDate||s;
+    const s=t.startDate,e=taskScheduleEndLocal(t)||t.endDate||s;
     const dly=Math.max(0,parseInt(t.delay,10)||0);
     const effEnd=taskScheduleEnd(t)||e;
     const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
