@@ -343,14 +343,256 @@ function fmtDate(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'
 function fmtMo(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()}
 function fmtMoShort(d){return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+" '"+String(d.getFullYear()).slice(2)}
 
-function renderPhaseTrackerHTML(main){
-  return '';
+// ═══ Schedule / Gantt (dashboard + Gantt pages — one source of truth) ═══
+function escHtml(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function renderActivityTrackersOnly(main){
-  const full='';
-  const start=full.indexOf('<div class="item-steps">');
-  return start>=0?full.slice(start):'';
+const SCHEDULE_SKIP_PHASES=['deposit','pre construction'];
+function filterScheduleTasksForDisplay(scheduleTasks){
+  let skipPhase=false;
+  return(scheduleTasks||[]).filter(t=>{
+    if(t.isPhase){skipPhase=SCHEDULE_SKIP_PHASES.includes(t.nameNorm);return!skipPhase;}
+    return!skipPhase;
+  });
+}
+function scheduleDayStart(d){const x=new Date(d);x.setHours(0,0,0,0);return x;}
+/** Finish date including Delay column (days after sheet Finish) — used for hero, Gantt overdue/active */
+function taskScheduleEnd(t){
+  if(!t)return null;
+  const e=t.endDate||t.startDate;
+  if(!e)return null;
+  const dly=Math.max(0,parseInt(t.delay,10)||0);
+  return new Date(e.getTime()+dly*864e5);
+}
+
+/** Compact row for 2nd+ trades active the same day (e.g. Slab under Site Utilities) */
+function buildHeroConcurrentSubline(t,pending,today){
+  pending=pending||{};
+  const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
+  const te=taskScheduleEnd(t);
+  const onTime=!te||te>=today||prog>=100;
+  const daysLeft=daysBetween(today,te);
+  const daysStr=daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days';
+  const subCls=onTime?'hero-row-sub on-time':'hero-row-sub off-time';
+  return'<div class="'+subCls+'"><div class="hero-sub-left"><span class="hero-sub-name">'+escHtml(t.name)+'</span><span class="hero-sub-vendor">'+escHtml(t.vendor||'')+'</span></div><div class="hero-sub-mid"><span class="hero-sub-pct">'+Math.round(prog)+'%</span><span class="hero-sub-days">'+daysStr+'</span></div><div class="hero-sub-prog"><div class="hero-prog-bar hero-prog-bar-sm"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-sub-pct-lbl">'+Math.round(prog)+'%</span></div></div>';
+}
+
+/** @returns {{className:string,html:string}} */
+function getPrimarySubcontractorHeroState(scheduleTasks,pending){
+  pending=pending||{};
+  const today=scheduleDayStart(new Date());
+  const nonPhase=(scheduleTasks||[]).filter(t=>!t.isPhase&&t.startDate&&taskScheduleEnd(t));
+  const active=nonPhase.filter(t=>t.startDate<=today&&taskScheduleEnd(t)>=today).sort((a,b)=>a.startDate-b.startDate);
+  const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
+  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
+  if(!cur)return{className:'hero no-sub',html:'<span style="font-size:13px;color:var(--dim)">No active subcontractor scheduled</span>'};
+  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
+  const isActive=cur.startDate<=today&&taskScheduleEnd(cur)>=today;
+  const te=taskScheduleEnd(cur);
+  const onTime=!te||te>=today||prog>=100;
+  const behindBy=Math.max(0,Math.round(daysBetween(te,today)));
+  const daysLeft=daysBetween(today,te);
+  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
+  const cls='hero '+(onTime?'on-time':'off-time');
+  let primary='<div class="hero-left"><div class="hero-icon">'+(onTime?'✅':'🚨')+'</div><div><div class="hero-label">Current Subcontractor</div><div class="hero-name">'+escHtml(cur.name)+'</div><div class="hero-vendor">'+escHtml(cur.vendor||'')+'</div></div></div><div class="hero-center"><div class="hero-stat"><div class="hero-stat-val">'+Math.round(prog)+'%</div><div class="hero-stat-lbl">Complete</div></div><div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val hero-stat-sched">'+daysStr+'</div><div class="hero-stat-lbl">'+(isActive?'Schedule':'Next Up')+'</div></div>'+(!onTime?'<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">'+behindBy+'d</div><div class="hero-stat-lbl">Overdue</div></div>':'')+'</div><div class="hero-right-col"><div class="hero-badge">'+(onTime?'ON SCHEDULE':'BEHIND SCHEDULE')+'</div><div class="hero-prog-wrap"><div class="hero-prog-bar"><div class="hero-prog-fill" style="width:'+Math.min(100,prog)+'%"></div></div><span class="hero-prog-pct">'+Math.round(prog)+'%</span></div></div>';
+  primary='<div class="hero-row-primary">'+primary+'</div>';
+  let html=primary;
+  if(active.length>1){
+    let sub='';
+    for(let i=1;i<active.length;i++)sub+=buildHeroConcurrentSubline(active[i],pending,today);
+    html+='<div class="hero-substack">'+sub+'</div>';
+  }
+  return{className:cls,html:html};
+}
+
+/** Dashboard phase tracker (PHASES + ACTIVITIES rows) — same HTML on index + gantt */
+function renderPhaseTrackerHTML(data){
+  const phases=(data&&data.phases||[]).filter(p=>p.name!=='options');
+  if(!phases.length)return'';
+
+  const now=new Date();
+  const today0=new Date(now);today0.setHours(0,0,0,0);
+  const scheduleTasks=(data&&data.scheduleTasks)||[];
+  const hasSchedule=Array.isArray(scheduleTasks)&&scheduleTasks.length;
+
+  const effectiveEnd=t=>{
+    if(!(t&&t.endDate))return null;
+    const dly=Math.max(0,parseInt(t.delay)||0);
+    return new Date(t.endDate.getTime()+dly*864e5);
+  };
+  const pctVal=t=>{
+    const raw=Number(t&&t.progress);
+    const base=isFinite(raw)?Math.max(0,Math.min(100,raw)):0;
+    const ee=effectiveEnd(t);
+    if(ee&&today0>ee)return 100;
+    return base;
+  };
+
+  const SIMP=[
+    {key:'deposit',label:'Deposit'},
+    {key:'site',label:'Site'},
+    {key:'structural',label:'Structural'},
+    {key:'mechanical',label:'Mechanical'},
+    {key:'roof',label:'Roof'},
+    {key:'exterior',label:'Exterior'},
+    {key:'ceiling',label:'Ceiling'},
+    {key:'carpentry',label:'Carpentry'},
+    {key:'equipment',label:'Equipment/Finishes'},
+    {key:'landscape',label:'Landscape'}
+  ];
+
+  const simpTasksFor=(t,k)=>{
+    const sec=(t&&t.section)||'';
+    const name=(t&&t.nameNorm)||'';
+    if(k==='deposit')return sec==='deposit'||sec==='pre construction';
+    if(k==='site')return sec==='site';
+    if(k==='structural')return sec==='structural';
+    if(k==='mechanical')return sec==='mechanical rough';
+    if(k==='roof')return name==='roofing'||name==='roofing ';
+    if(k==='exterior')return sec==='exterior sealing'&&name!=='roofing'&&name!=='roofing ';
+    if(k==='ceiling')return sec==='wall/cieling finish';
+    if(k==='carpentry')return sec==='carpentery';
+    if(k==='equipment')return sec==='equipment/ finishes';
+    if(k==='landscape')return sec==='landscape';
+    return false;
+  };
+
+  const buildSimp=()=>{
+    const nonPhase=scheduleTasks.filter(t=>t&&!t.isPhase&&t.startDate);
+    const out=SIMP.map(p=>{
+      const tasks=nonPhase.filter(t=>simpTasksFor(t,p.key));
+      let start=null,end=null;
+      for(const t of tasks){
+        if(t.startDate&&(!start||t.startDate<start))start=t.startDate;
+        const ee=effectiveEnd(t)||t.endDate||t.startDate;
+        if(ee&&(!end||ee>end))end=ee;
+      }
+      const done=tasks.length?tasks.every(t=>pctVal(t)>=100):false;
+      const active=tasks.some(t=>{
+        if(!t||!t.startDate)return false;
+        const ee=effectiveEnd(t)||t.endDate||t.startDate;
+        const inWindow=(t.startDate<=today0)&&(!ee||today0<=ee);
+        const pv=pctVal(t);
+        return inWindow && pv<100;
+      });
+      return {key:p.key,label:p.label,tasks,start,end,done,active};
+    });
+    const activeIdx=out.map((p,i)=>p.active?i:-1).filter(i=>i>=0);
+
+    let idx=-1;
+    for(let i=0;i<out.length;i++){
+      const p=out[i];
+      if(!(p.start&&p.end))continue;
+      if(!p.done&&today0>=p.start&&today0<=p.end){idx=i;break;}
+    }
+    if(idx===-1){
+      let best=Infinity;
+      for(let i=0;i<out.length;i++){
+        const p=out[i];
+        if(!p.start)continue;
+        const ts=p.start.getTime();
+        if(ts>=today0.getTime()&&ts<best){best=ts;idx=i;}
+      }
+    }
+    if(idx===-1){
+      idx=0;
+      for(let i=0;i<out.length;i++){
+        if(!out[i].done){idx=i;break;}
+        if(i===out.length-1)idx=i;
+      }
+    }
+    return {list:out,currentIdx:idx,activeIdx};
+  };
+
+  const simp=hasSchedule?buildSimp():null;
+
+  let currentIdx=-1;
+  let bestActiveStart=-Infinity;
+  for(let i=0;i<phases.length;i++){
+    const p=phases[i];
+    if(!p.startDate)continue;
+    const s=new Date(p.startDate);
+    if(isNaN(s))continue;
+    let active=false;
+    if(p.endDate){
+      const e=new Date(p.endDate);
+      if(!isNaN(e)) active = (now>=s&&now<=e);
+      else active = (now>=s);
+    }else{
+      active = (now>=s);
+    }
+    if(active){
+      const st=s.getTime();
+      if(st>=bestActiveStart){bestActiveStart=st;currentIdx=i;}
+    }
+  }
+  if(currentIdx===-1){
+    let bestStart=Infinity;
+    for(let i=0;i<phases.length;i++){
+      const p=phases[i];
+      if(!p.startDate)continue;
+      const s=new Date(p.startDate).getTime();
+      if(!isFinite(s))continue;
+      if(s>=now.getTime()&&s<bestStart){bestStart=s;currentIdx=i;}
+    }
+  }
+  if(currentIdx===-1){
+    currentIdx=0;
+    for(let i=0;i<phases.length;i++){
+      if(phases[i].progress<100){currentIdx=i;break;}
+      if(i===phases.length-1)currentIdx=i;
+    }
+  }
+
+  const current=phases[currentIdx];
+
+  let html='';
+
+  html+='<div class="phase-steps"><div class="phase-steps-label">PHASES</div><div class="phase-steps-row">';
+  if(simp){
+    const minActive=simp.activeIdx&&simp.activeIdx.length?Math.min(...simp.activeIdx):simp.currentIdx;
+    simp.list.forEach((p,i)=>{
+      const cls=(i<minActive)?'done':((simp.activeIdx||[]).indexOf(i)>=0?'active':(i===simp.currentIdx?'active':''));
+      html+=`<div class="phase-step ${cls}" title="${p.label}"></div>`;
+    });
+    html+='</div><div class="phase-step-all-labels">'+simp.list.map(p=>`<div class="phase-step-all-label">${p.label}</div>`).join('')+'</div></div>';
+  }else{
+    phases.forEach((p,i)=>{
+      const cls=i<currentIdx?'done':(i===currentIdx?'active':'');
+      html+=`<div class="phase-step ${cls}" title="${p.display}: ${p.progress.toFixed(0)}%"></div>`;
+    });
+    html+='</div><div class="phase-step-all-labels">'+phases.map(p=>`<div class="phase-step-all-label">${p.display}</div>`).join('')+'</div></div>';
+  }
+
+  {
+    const blocks=(simp&&simp.activeIdx&&simp.activeIdx.length)?simp.activeIdx:[simp?simp.currentIdx:currentIdx];
+    blocks.forEach((bIdx)=>{
+      const items=simp?simp.list[bIdx].tasks:(current&&current.items)||[];
+      const label=simp?simp.list[bIdx].label:(current?current.display:'');
+      const firstActiveIdx=items.findIndex(it=>{
+        if(!it)return false;
+        const pv=pctVal(it);
+        return pv>0&&pv<100;
+      });
+      const itemRow=items.map((it)=>{
+        const done=it&&pctVal(it)>=100;
+        const active=it&&pctVal(it)>0&&pctVal(it)<100;
+        const forcedDone=firstActiveIdx>=0 && items.indexOf(it)<firstActiveIdx;
+        const cls=(done||forcedDone)?'done':(active?'active':'');
+        const name=(it&&it.name)?String(it.name):'';
+        const pct=it&&it.progress!=null?Number(it.progress).toFixed(0):'0';
+        const title=(name?name:'Item')+': '+pct+'%';
+        return `<div class="item-step ${cls}" title="${title.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}"></div>`;
+      }).join('');
+      if(items.length){
+        html+='<div class="item-steps"><div class="item-steps-label">ACTIVITIES — '+label+'</div><div class="item-steps-row">'+itemRow+'</div>'
+          +'<div class="item-step-all-labels">'+items.map(it=>`<div class="item-step-all-label">${(it&&it.name)||''}</div>`).join('')+'</div></div>';
+      }
+    });
+  }
+
+  return html;
 }
 
 // ═══ LOAD ALL DATA LIVE ═══
