@@ -289,6 +289,17 @@ let subsEntries=[];
 let currentHeroTask=null;
 let currentSubEntry=null;
 
+function handleHeroPortalActivate(e){
+  const hero=document.getElementById('hero');
+  if(!hero||hero.dataset.portalEnabled!=='1')return;
+  if(e){
+    if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  openSubPortal();
+}
+
 function toggleAdmin(){isAdmin?exitAdmin():openPin()}
 function openPin(){document.getElementById('pinModal').classList.remove('hidden');document.getElementById('pd0').focus()}
 function closePin(){document.getElementById('pinModal').classList.add('hidden');[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pinOk').disabled=true;document.getElementById('pinErr').textContent=''}
@@ -359,14 +370,22 @@ function renderHeroHeader(tasks){
   const hero=document.getElementById('hero');
   hero.className=h.className;
   hero.innerHTML=h.html;
+  hero.onclick=null;
+  hero.onkeydown=null;
+  hero.removeAttribute('role');
+  hero.removeAttribute('tabindex');
+  hero.dataset.portalEnabled='0';
   if(currentHeroTask){
     hero.style.cursor='pointer';
     hero.title='Open subcontractor portal';
-    hero.onclick=openSubPortal;
+    hero.dataset.portalEnabled='1';
+    hero.setAttribute('role','button');
+    hero.setAttribute('tabindex','0');
+    hero.addEventListener('click',handleHeroPortalActivate,{once:true});
+    hero.addEventListener('keydown',handleHeroPortalActivate,{once:true});
   }else{
     hero.style.cursor='default';
     hero.title='';
-    hero.onclick=null;
   }
 }
 
