@@ -217,6 +217,22 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
+<div class="modal-bg hidden" id="subPinModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSubPin()">×</button>
+    <h3 id="subPinTitle">Subcontractor Portal</h3>
+    <p id="subPinText">Enter your subcontractor PIN to continue</p>
+    <div class="pin-row">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="sp0" oninput="subPIn(0)" onkeydown="subPKey(event,0)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="sp1" oninput="subPIn(1)" onkeydown="subPKey(event,1)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="sp2" oninput="subPIn(2)" onkeydown="subPKey(event,2)">
+      <input class="pin-d" maxlength="1" inputmode="numeric" id="sp3" oninput="subPIn(3)" onkeydown="subPKey(event,3)">
+    </div>
+    <button class="pin-submit" id="subPinOk" disabled onclick="checkSubPin()">Open Portal</button>
+    <div class="pin-err" id="subPinErr"></div>
+  </div>
+</div>
+
 <div class="save-bar" id="saveBar">
   <span>⚠ Unsaved changes</span>
   <button class="cbtn" onclick="cancelEdits()">Cancel</button>
@@ -269,6 +285,9 @@ const GANTT_LBL=250;
 let isAdmin=sessionStorage.getItem(ADMIN_KEY)==='1';
 let pending={};
 let allTasks=[];
+let subsEntries=[];
+let currentHeroTask=null;
+let currentSubEntry=null;
 
 function toggleAdmin(){isAdmin?exitAdmin():openPin()}
 function openPin(){document.getElementById('pinModal').classList.remove('hidden');document.getElementById('pd0').focus()}
@@ -281,11 +300,74 @@ function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved c
 function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
 function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
 
+function getCurrentHeroTask(tasks){
+  const today=new Date();today.setHours(0,0,0,0);
+  const nonPhase=(tasks||[]).filter(t=>!t.isPhase&&t.startDate&&taskScheduleEnd(t));
+  const active=nonPhase.filter(t=>t.startDate<=today&&taskScheduleEnd(t)>=today).sort((a,b)=>a.startDate-b.startDate);
+  const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
+  return active.length?active[0]:upcoming.length?upcoming[0]:null;
+}
+
+function findSubsEntryForTask(task){
+  if(!task)return null;
+  const vendorNorm=norm(task.vendor||'');
+  if(vendorNorm){
+    const exact=subsEntries.find(e=>e.vendorNorm===vendorNorm);
+    if(exact)return exact;
+  }
+  const tradeNorm=norm(task.name||'');
+  return subsEntries.find(e=>tradeNorm&&e.vendorNorm.includes(tradeNorm));
+}
+
+function openSubPin(){
+  document.getElementById('subPinModal').classList.remove('hidden');
+  document.getElementById('subPinTitle').textContent=currentSubEntry&&currentSubEntry.vendor?currentSubEntry.vendor+' Portal':'Subcontractor Portal';
+  document.getElementById('subPinText').textContent='Enter your subcontractor PIN to continue';
+  document.getElementById('sp0').focus();
+}
+function closeSubPin(){
+  document.getElementById('subPinModal').classList.add('hidden');
+  [0,1,2,3].forEach(i=>document.getElementById('sp'+i).value='');
+  document.getElementById('subPinOk').disabled=true;
+  document.getElementById('subPinErr').textContent='';
+}
+function subPIn(i){const e=document.getElementById('sp'+i);e.value=e.value.replace(/\D/g,'');if(e.value&&i<3)document.getElementById('sp'+(i+1)).focus();document.getElementById('subPinOk').disabled=[0,1,2,3].map(j=>document.getElementById('sp'+j).value).join('').length!==4;document.getElementById('subPinErr').textContent=''}
+function subPKey(e,i){if(e.key==='Backspace'&&!document.getElementById('sp'+i).value&&i>0)document.getElementById('sp'+(i-1)).focus();if(e.key==='Enter')checkSubPin()}
+function checkSubPin(){const p=[0,1,2,3].map(i=>document.getElementById('sp'+i).value).join('');if(!currentSubEntry){closeSubPin();return}if(p===String(currentSubEntry.pin||'')){closeSubPin();window.open(currentSubEntry.driveUrl,'_blank','noopener,noreferrer')}else{document.getElementById('subPinErr').textContent='Incorrect subcontractor PIN';[0,1,2,3].forEach(i=>document.getElementById('sp'+i).value='');document.getElementById('sp0').focus();document.getElementById('subPinOk').disabled=true}}
+function openSubPortal(){
+  if(!currentHeroTask){
+    alert('No subcontractor is currently available for portal access.');
+    return;
+  }
+  const entry=findSubsEntryForTask(currentHeroTask);
+  if(!entry){
+    alert('No subcontractor portal mapping was found for '+(currentHeroTask.vendor||currentHeroTask.name||'this subcontractor')+'.');
+    return;
+  }
+  if(!entry.driveUrl){
+    alert('No portal URL is configured for '+entry.vendor+'.');
+    return;
+  }
+  currentSubEntry=entry;
+  if(entry.pin){openSubPin();return}
+  window.open(entry.driveUrl,'_blank','noopener,noreferrer');
+}
+
 function renderHeroHeader(tasks){
+  currentHeroTask=getCurrentHeroTask(tasks);
   const h=getPrimarySubcontractorHeroState(tasks,pending);
   const hero=document.getElementById('hero');
   hero.className=h.className;
   hero.innerHTML=h.html;
+  if(currentHeroTask){
+    hero.style.cursor='pointer';
+    hero.title='Open subcontractor portal';
+    hero.onclick=openSubPortal;
+  }else{
+    hero.style.cursor='default';
+    hero.title='';
+    hero.onclick=null;
+  }
 }
 
 function renderGanttReadonly(tasks){
@@ -408,6 +490,7 @@ async function init(){
   try{
     const{main}=await loadProjectData();
     allTasks=main.scheduleTasks||[];
+    subsEntries=main.subsEntries||[];
     const pt=document.getElementById('ganttPhaseTracker');
     if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);
     renderGanttReadonly(allTasks);

@@ -68,6 +68,21 @@ function parseDate(s){
   return isNaN(d.getTime())?null:d
 }
 
+function parseSubsTab(rows){
+  const entries=[];
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i];
+    if(!r)continue;
+    const vendor=(r[0]||'').trim();
+    const pin=(r[1]||'').trim();
+    const contractAmt=parseAmt(r[2]);
+    const driveUrl=(r[3]||'').trim();
+    if(!vendor)continue;
+    entries.push({vendor,vendorNorm:norm(vendor),pin,contractAmt,driveUrl});
+  }
+  return entries;
+}
+
 // ═══ PARSE BUDGET TAB ═══
 function parseBudgetTab(rows){
   let sqft=0,totalBudget=0,totalProfit=0;
@@ -599,12 +614,16 @@ function renderPhaseTrackerHTML(data){
 async function loadProjectData(){
   const ts=Date.now();
 
-  const[budgetCSV,scheduleCSV]=await Promise.all([
+  const[budgetCSV,scheduleCSV,subsCSV]=await Promise.all([
     fetch(BUDGET_URL+'&_='+ts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
     fetch(SCHEDULE_URL+'&_='+ts).then(r=>{
       if(!r.ok){console.warn('Schedule tab HTTP '+r.status);return ''}
       return r.text()
-    }).catch(e=>{console.warn('Schedule fetch failed:',e.message);return ''})
+    }).catch(e=>{console.warn('Schedule fetch failed:',e.message);return ''}),
+    fetch(SUBS_URL+'&_='+ts).then(r=>{
+      if(!r.ok){console.warn('Subs tab HTTP '+r.status);return ''}
+      return r.text()
+    }).catch(e=>{console.warn('Subs fetch failed:',e.message);return ''})
   ]);
 
   const budgetRows=parseCSV(budgetCSV);
@@ -616,6 +635,8 @@ async function loadProjectData(){
     const sched=parseScheduleTab(scheduleRows);
     scheduleTasks=sched.tasks;
   }
+
+  const subsEntries=subsCSV?parseSubsTab(parseCSV(subsCSV)):[];
 
   crossRefBudgetSchedule(phases,scheduleTasks);
 
@@ -641,7 +662,7 @@ async function loadProjectData(){
   totalPaid+=coPaidTotal;
   const totals={totalBudget,totalPaid,progress:totalBudget>0?(totalPaid/totalBudget*100):0};
 
-  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs};
+  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs,subsEntries};
   const draws=buildDrawSchedule(phases);
 
   return{main,draws,totals}
