@@ -1,0 +1,16 @@
+Goal:
+- Create a brand new Deploy/site_ove/index.html for ovesubs.
+- Keep the OVE subs nav so navigation within the site still works.
+- Replace the page body beneath the nav with the Oak Valley gantt experience.
+- Do not preserve the broken hybrid page logic.
+
+Source pieces:
+- OVE nav shell/source: C:\Users\racin\Desktop\ovesubs\Deploy\site_ove\index.html (nav structure only)
+- Oak gantt source: C:\Users\racin\Desktop\Oak-Valley-Estates\Deploy\deploy_live\gantt.html
+- Oak shared logic source: C:\Users\racin\Desktop\Oak-Valley-Estates\Deploy\deploy_live\shared.js
+
+Desired outcome:
+- New clean index.html with OVE nav at top.
+- Oak gantt body/content below nav.
+- No old OVE dashboard hero/edit hybrid leftovers unless intentionally added.
+- Must load without missing helper/function errors.
