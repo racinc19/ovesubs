@@ -164,14 +164,6 @@ function renderTable(tasks){
       </td>`;
     tr.dataset.trade=(t.name||'').toLowerCase();
     tr.dataset.vendor=(t.vendor||'').toLowerCase();
-    // Make entire row clickable for vendor rows
-    if(t.vendor&&!t.isPhase){
-      tr.style.cursor='pointer';
-      tr.addEventListener('click',(e)=>{
-        if(e.target.closest('a'))return; // let link clicks work normally
-        location.href='sub.html?v='+slugify(t.vendor);
-      });
-    }
     tbody.appendChild(tr);
     allRows.push(tr);
   });
