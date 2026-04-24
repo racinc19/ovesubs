@@ -202,7 +202,7 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
-<script src="shared.js?v1772133761"></script>
+<script src="shared.js?v20260424a"></script>
 <script>
 const ADMIN_PIN=SITE_ACCESS_PIN;
 const ADMIN_KEY='rac_admin';
@@ -350,7 +350,29 @@ function render(tasks){
   renderHero(tasks);
 
   for(const t of filtered){
-    if(!t.startDate)continue;
+    if(!t.startDate){
+      if(t._fromSubs && t.vendor){
+        const row=document.createElement('div');
+        row.className='g-row';
+        const lbl=document.createElement('div');
+        lbl.className='g-lbl';
+        lbl.style.minHeight='44px';
+        lbl.innerHTML=`<div class="g-name">${t.name}</div><div class="g-sub"><a href="sub.html?v=${encodeURIComponent(t.vendor)}" style="color:var(--cyan);text-decoration:none;font-size:10px;font-weight:600" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ ${t.vendor}</a></div>`;
+        const tl=document.createElement('div');
+        tl.className='g-tl';
+        tl.style.minHeight='44px';
+        tl.style.display='flex';
+        tl.style.alignItems='center';
+        const note=document.createElement('div');
+        note.style.cssText='font-size:11px;color:var(--dim);padding:0 8px';
+        note.textContent='On Subs register — set start/finish in the Schedule tab to show a timeline bar';
+        tl.appendChild(note);
+        row.appendChild(lbl);
+        row.appendChild(tl);
+        gi.appendChild(row);
+      }
+      continue;
+    }
     const s=t.startDate,e=t.endDate||s;
     const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
     const overdue=!t.isPhase&&e<today&&prog<100;

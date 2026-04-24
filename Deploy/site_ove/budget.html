@@ -185,7 +185,7 @@ html{overflow-y:scroll}body{overflow-x:hidden}
   </div>
 </div>
 
-<script src="shared.js?v1772133761"></script>
+<script src="shared.js?v20260424a"></script>
 <script>
 var CO_KEY='rodriguez_change_orders_v3';
 var CO_SEED=[{
@@ -291,7 +291,7 @@ function render(phases,paidData){
   var coPending=changeOrders.filter(function(c){return c.status==='pending'});
   var coRejected=changeOrders.filter(function(c){return c.status==='rejected'});
   var coApprovedAmt=0,coPendingAmt=0,coPaidTotal=0;
-  for(var i=0;i<coApproved.length;i++){coApprovedAmt+=coApproved[i].amount;coPaidTotal+=(coApproved[i].paid||0)}
+  for(var i=0;i<coApproved.length;i++){coApprovedAmt+=coApproved[i].amount*((coApproved[i].pct||0)/100);coPaidTotal+=(coApproved[i].paid||0)}
   for(var i=0;i<coPending.length;i++){coPendingAmt+=coPending[i].amount}
 
   var revisedTotal=baseTotal+coApprovedAmt;

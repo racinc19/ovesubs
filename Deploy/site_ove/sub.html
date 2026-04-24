@@ -259,7 +259,7 @@ tr:last-child td{border-bottom:none}
 
 </div></div><!-- end portal-content -->
 <div id="sels-content" style="display:none;padding-top:56px"><div id="sels-inner" style="max-width:1200px;margin:0 auto;padding:24px 20px"></div></div>
-<script src="shared.js?v1772133761"></script>
+<script src="shared.js?v20260424a"></script>
 <script>
 const SUPA='https://mcvkkohtvywwvtndpuvw.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdmtrb2h0dnl3d3Z0bmRwdXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3ODU1ODMsImV4cCI6MjA4NzM2MTU4M30.q-_tb3az_HbCpaZXS-wLUq1wcoZQ5x7hBFlw1zeIuJ8';
@@ -276,6 +276,20 @@ const DOCS=[
 const params=new URLSearchParams(location.search);
 const VENDOR=decodeURIComponent(params.get('v')||'').trim();
 const SKEY='sub_'+VENDOR.replace(/[^a-z0-9]/gi,'_');
+
+// `?v=` in email/links may be a "business name" (e.g. DeezCabnuts) while the Subs sheet
+// col B (portal id) is shorter (e.g. Deez). One URL can match the same sheet row.
+function urlVendorMatchesSheet(urlParam, sheetColB){
+  if(!urlParam||!sheetColB)return false;
+  const a=String(urlParam).toLowerCase().replace(/\s+/g,' ').trim();
+  const b=String(sheetColB).toLowerCase().replace(/\s+/g,' ').trim();
+  if(a===b)return true;
+  const A={'deezcabnuts':['deez'],'deez':['deezcabnuts']};
+  const toks=A[a];
+  if(toks&&toks.includes(b))return true;
+  if(A[b]&&A[b].includes(a))return true;
+  return false;
+}
 
 // Show vendor name
 const vel=document.getElementById('vname');
@@ -302,23 +316,25 @@ async function checkPin(){
   try{
     const txt=await fetch(SUBS_URL+'&_='+Date.now()).then(r=>{if(!r.ok)throw new Error('Subs HTTP '+r.status);return r.text()});
     const rows=parseCSV(txt);
-    let found=null;
+    let found=null; const tradeSet=new Set();
     for(let i=1;i<rows.length;i++){
       const r=rows[i];if(!r||!r[1])continue;
       const v=(r[1]||'').trim();
-      if(v.toLowerCase()===VENDOR.toLowerCase()){
+      if(urlVendorMatchesSheet(VENDOR,v)){
+        if((r[0]||'').trim().length)tradeSet.add(norm((r[0]||'').trim()));
         if(!found)found={vendor:v,pin:(r[2]||'').trim(),contract:parseAmt(r[3]),invoiced:parseAmt(r[4]),paid:parseAmt(r[5])};
         else{found.contract+=parseAmt(r[3]);found.invoiced+=parseAmt(r[4]);found.paid+=parseAmt(r[5]);}
       }
     }
-    if(!found){err('Vendor not found: "'+VENDOR+'". Check Subs tab.');btn.disabled=false;msg('');return;}
+    if(found)found.matchedTradeNorms=Array.from(tradeSet);
+    if(!found){err('Vendor not found: "'+VENDOR+'". Check Subs tab. Name in column B or use a known alias (e.g. DeezCabnuts for Deez).');btn.disabled=false;msg('');return;}
     if(found.pin!==pin){
       err('Incorrect PIN.');
       [0,1,2,3].forEach(i=>document.getElementById('p'+i).value='');
       document.getElementById('p0').focus();btn.disabled=false;msg('');return;
     }
     msg('Loading portal…');
-    sessionStorage.setItem(SKEY,JSON.stringify({vendor:found.vendor,pin,contract:found.contract}));
+    sessionStorage.setItem(SKEY,JSON.stringify({vendor:found.vendor,pin,contract:found.contract,matchedTradeNorms:found.matchedTradeNorms||[]}));
     const pd=await loadProjectData();
     showPortal(found,pd);
   }catch(e){
@@ -338,9 +354,17 @@ function showPortal(row,pd){
   document.getElementById('portal').style.display='block';
   document.getElementById('hname').textContent=row.vendor;
 
-  const tasks=(pd?.main?.scheduleTasks||[]).filter(t=>
-    !t.isPhase&&(t.vendor||'').trim().toLowerCase()===row.vendor.trim().toLowerCase()
-  );
+  const mt=row.matchedTradeNorms||[];
+  const tasks=(pd?.main?.scheduleTasks||[]).filter(t=>{
+    if(t.isPhase)return false;
+    const sv=(t.vendor||'').trim();
+    if(sv&&sv.toLowerCase()===row.vendor.trim().toLowerCase())return true;
+    if(!sv&&mt.length){
+      const tn=norm(t.name);
+      for(const m of mt){if(m===tn||m===t.nameNorm)return true}
+    }
+    return false;
+  });
   const avg=tasks.length?tasks.reduce((s,t)=>s+t.progress,0)/tasks.length:0;
   const c=row.contract||0,e=c*avg/100,r=c-e;
 

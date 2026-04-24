@@ -128,7 +128,7 @@ html{overflow-y:scroll}
   </div>
 </div>
 
-<script src="shared.js?v1772133761"></script>
+<script src="shared.js?v20260424a"></script>
 <script>
 let allRows=[];
 
@@ -147,7 +147,7 @@ function renderTable(tasks){
     const tr=document.createElement('tr');
     if(t.isPhase)tr.classList.add('phase-row');
     const vendorCell=t.vendor&&!t.isPhase
-      ?`<a class="vendor-link" href="sub.html?v=${slugify(t.vendor)}" onclick="event.stopPropagation()">${t.vendor}</a>`
+      ?`<a class="vendor-link" href="sub.html?v=${slugify(t.vendor)}">${t.vendor}</a>`
       :`<span style="color:var(--dim);font-size:12px">${t.vendor||'—'}</span>`;
     const p=Math.round(t.progress*100)/100;
     const cls=progClass(p);
