@@ -1,0 +1,1009 @@
+<!DOCTYPE html><!-- build:20260218183733 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Residence — Invoice</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--cyan:#06b6d4;--purple:#8b5cf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.container{max-width:1100px;margin:0 auto;padding:24px 20px}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.toolbar-left{display:flex;align-items:center;gap:12px}
+.toolbar h1{font-size:20px;font-weight:800}
+.refresh-note{font-size:11px;color:var(--dim)}
+.toolbar-right{display:flex;gap:8px;flex-wrap:wrap}
+.btn-pri{background:linear-gradient(135deg,#06b6d4,#3b82f6);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(6,182,212,.3)}
+.btn-pri:hover{filter:brightness(1.1)}
+.btn-sec{background:var(--card2);color:var(--txt);border:1px solid var(--bdr);padding:9px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.btn-sec:hover{border-color:var(--blue)}
+
+.tabs{display:flex;gap:4px;margin-bottom:20px;border-bottom:2px solid var(--bdr)}
+.tab{padding:10px 20px;font-size:13px;font-weight:700;color:var(--txt2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab:hover{color:var(--txt)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab .cnt{background:var(--bdr);color:var(--txt2);font-size:10px;padding:1px 6px;border-radius:8px;margin-left:6px}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+.toast{position:fixed;top:72px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;z-index:200;opacity:0;transition:all .3s;pointer-events:none;background:var(--green);color:white}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.loading{text-align:center;padding:60px;color:var(--dim);font-size:14px}
+.empty{text-align:center;color:var(--dim);padding:40px;font-size:13px}
+
+/* ══ THE INVOICE ══ */
+.invoice-wrap{background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,.4)}
+
+.inv-header{background:linear-gradient(135deg,#0c4a6e 0%,#1e3a8a 100%);padding:32px 40px;display:flex;justify-content:space-between;align-items:flex-start}
+.inv-brand{display:flex;align-items:center;gap:16px}
+.inv-mark{width:60px;height:60px;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;color:white;font-size:22px;font-weight:900;letter-spacing:-1px;border:2px solid rgba(255,255,255,.2)}
+.inv-company{color:white}
+.inv-company .co-name{font-size:24px;font-weight:900;letter-spacing:-.5px;line-height:1.1}
+.inv-company .co-sub{font-size:11px;opacity:.6;text-transform:uppercase;letter-spacing:1.2px;margin-top:4px}
+.inv-company .co-info{font-size:12px;opacity:.75;margin-top:10px;line-height:1.7}
+.inv-title{text-align:right;color:white}
+.inv-title .word{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1;opacity:.9}
+.inv-title .num{font-size:14px;font-weight:700;opacity:.7;margin-top:6px}
+.inv-title .status-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:8px;text-transform:uppercase;letter-spacing:.8px}
+.status-current{background:rgba(6,182,212,.3);border:1px solid rgba(6,182,212,.5);color:#67e8f9}
+.status-paid{background:rgba(34,197,94,.3);border:1px solid rgba(34,197,94,.5);color:#86efac}
+
+.inv-billing{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid #e2e8f0}
+.bill-col{padding:24px 32px;border-right:1px solid #e2e8f0}
+.bill-col:last-child{border-right:none}
+.bill-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;margin-bottom:10px}
+.bill-name{font-size:15px;font-weight:800;color:#0f172a;margin-bottom:4px}
+.bill-addr{font-size:12px;color:#475569;line-height:1.7}
+.detail-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #f8fafc}
+.detail-row:last-child{border:none}
+.dk{color:#94a3b8}.dv{font-weight:700;color:#0f172a}
+.due-red{color:#dc2626!important}
+
+/* summary bar */
+.inv-summary{display:grid;grid-template-columns:repeat(4,1fr);background:#f8fafc;border-bottom:1px solid #e2e8f0}
+.sum-cell{padding:16px 24px;border-right:1px solid #e2e8f0;text-align:center}
+.sum-cell:last-child{border-right:none}
+.sum-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#94a3b8;margin-bottom:4px}
+.sum-val{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+
+/* line items */
+.inv-table{width:100%;border-collapse:collapse}
+.inv-table th{background:#1e3a8a;padding:11px 20px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#bae6fd}
+.inv-table th.r{text-align:right}
+.inv-table th.c{text-align:center}
+.inv-table td{padding:11px 20px;font-size:13px;border-bottom:1px solid #f1f5f9;color:#0f172a;vertical-align:middle}
+.inv-table td.r{text-align:right;font-variant-numeric:tabular-nums}
+.inv-table td.c{text-align:center}
+.inv-table tr.ph-row td{background:#f0f9ff;font-weight:800;color:#0891b2;font-size:12px;text-transform:uppercase;letter-spacing:.5px;padding:8px 20px;border-bottom:1px solid #e0f2fe}
+.inv-table tr.it-row:nth-child(even) td{background:#fafafa}
+.inv-table tr.it-row:hover td{background:#f0f9ff}
+.inv-table tr.paid-row td{background:#f0fdf4;color:#166534}
+.inv-table tr.paid-row td.r{color:#16a34a}
+.pbar-wrap{display:flex;align-items:center;gap:6px;justify-content:center}
+.pbar{height:5px;background:#e2e8f0;border-radius:3px;overflow:hidden;width:48px}
+.pbar .fill{height:100%;background:#0891b2;border-radius:3px}
+.paid-pill{display:inline-block;padding:1px 8px;background:#dcfce7;color:#166534;border-radius:10px;font-size:10px;font-weight:700;border:1px solid #86efac}
+
+/* totals */
+.inv-totals{padding:20px 32px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:flex-end}
+.tot-box{min-width:300px}
+.t-row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;border-bottom:1px solid #f1f5f9;color:#0f172a}
+.t-row:last-child{border:none}
+.t-row.grand{font-size:20px;font-weight:900;border-top:2px solid #0891b2;padding-top:14px;margin-top:6px;color:#0891b2}
+.tk{color:#64748b}
+
+/* remit */
+.inv-remit{margin:0;border-top:1px solid #e2e8f0}
+.remit-head{background:linear-gradient(135deg,#0c4a6e,#1e3a8a);padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+.remit-head .rt{color:white;font-size:14px;font-weight:800}
+.remit-head .rs{color:rgba(255,255,255,.65);font-size:11px;margin-top:2px}
+.remit-body{padding-top:56px;display:grid;grid-template-columns:1fr 1fr;padding:24px 32px;gap:32px;background:#f0f9ff}
+.rf-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#0891b2;margin-bottom:5px}
+.rf-val{font-size:13px;font-weight:600;color:#0f172a;margin-bottom:14px}
+.rf-ph{color:#94a3b8;font-style:italic;font-weight:400}
+.ref-val{color:#0891b2;font-weight:700}
+.remit-note{padding:12px 32px;background:#dbeafe;font-size:11px;color:#1e40af;border-top:1px solid #bfdbfe;line-height:1.6}
+
+/* footer */
+.inv-footer{padding:24px 32px;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #e2e8f0;background:white}
+.sig-block{border-top:1px solid #cbd5e1;padding-top:8px;min-width:220px}
+.sig-lbl{font-size:11px;color:#64748b;margin-top:4px}
+.foot-note{font-size:10px;color:#94a3b8;text-align:right;line-height:1.8}
+
+/* history */
+.hist-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.hist-card:hover{border-color:var(--cyan)}
+.hc-num{font-size:14px;font-weight:800;color:var(--cyan)}
+.hc-meta{font-size:11px;color:var(--dim);margin-top:2px}
+.hc-amt{font-size:20px;font-weight:800}
+.hc-btns button{padding:5px 12px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;margin-left:6px}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.b-paid{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.b-sent{background:rgba(6,182,212,.15);color:var(--cyan);border:1px solid rgba(6,182,212,.3)}
+.b-del{background:none;border:1px solid var(--red)!important;color:var(--red)}
+
+/* CO tab */
+.search-bar{display:flex;gap:8px;margin-bottom:16px}
+.search-bar input{flex:1;background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:8px 14px;color:var(--txt);font-family:inherit;font-size:13px;outline:none}
+.search-bar input::placeholder{color:var(--dim)}
+.upload-zone{border:2px dashed var(--bdr);border-radius:12px;padding:32px;text-align:center;cursor:pointer;background:var(--card);margin-bottom:16px}
+.upload-zone:hover{border-color:var(--blue);background:var(--hover)}
+.upload-zone .ico{font-size:36px;margin-bottom:8px}
+.upload-zone .utxt{font-size:13px;color:var(--txt2)}
+.upload-zone .utxt b{color:var(--blue)}
+.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.doc-card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:16px}
+.doc-card:hover{border-color:var(--purple)}
+.doc-type{font-size:10px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px;background:rgba(139,92,246,.15);color:var(--purple);border:1px solid rgba(139,92,246,.3)}
+.doc-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.doc-amt{font-size:16px;font-weight:800;margin-bottom:8px}
+.doc-meta{font-size:11px;color:var(--dim);margin-bottom:8px}
+.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:100;display:flex;align-items:center;justify-content:center}
+.modal{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:24px;width:480px;max-width:90vw;max-height:85vh;overflow-y:auto}
+.modal h3{font-size:16px;margin-bottom:16px}
+.modal label{display:block;font-size:11px;color:var(--dim);margin-bottom:4px;margin-top:12px;text-transform:uppercase;letter-spacing:.5px}
+.modal input,.modal select,.modal textarea{width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:inherit;font-size:13px;outline:none}
+.modal textarea{height:60px;resize:vertical}
+.modal-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.modal-btns button{padding:8px 18px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600}
+.btn-cancel{background:var(--bg);color:var(--txt2);border:1px solid var(--bdr)!important}
+.btn-save{background:var(--blue);color:white}
+
+@media print{
+  .topnav,.toolbar,.tabs,.hist-section{display:none!important}
+  body{padding-top:56px;background:white}
+  .container{padding:0;max-width:100%}
+  .invoice-wrap{border-radius:0;box-shadow:none}
+  @page{margin:.5in}
+}
+@media(max-width:700px){
+  .inv-billing{grid-template-columns:1fr}
+  .bill-col{border-right:none;border-bottom:1px solid #e2e8f0}
+  .inv-summary{grid-template-columns:repeat(2,1fr)}
+  .remit-body{padding-top:56px;grid-template-columns:1fr}
+  .inv-header{flex-direction:column;gap:16px}
+  .inv-title{text-align:left}
+}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
+.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
+html{overflow-y:scroll}body{overflow-x:hidden}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="log.html">Daily Log</a>
+    
+    <a href="selections.html">Selections</a>
+    <a href="accounting.html" class="active">Accounting</a>
+    <a href="gantt.html">Gantt</a>
+    <a href="draws.html">Draws</a>
+    <a href="budget.html">Budget & Schedule</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="color:var(--cyan)">📁 Drive</a>
+  </div>
+</div></nav>
+
+<div id="toast" class="toast"></div>
+<div id="modalWrap"></div>
+
+<div class="container">
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <h1>📄 Invoice</h1>
+      <span class="refresh-note" id="refreshNote">Loading...</span>
+    </div>
+    <div class="toolbar-right">
+      <button class="btn-sec" onclick="loadSheet()">🔄 Refresh</button>
+      <button class="btn-sec" onclick="switchTab('hist')">🗂 History</button>
+      <button class="btn-sec" onclick="switchTab('co')">📋 Change Orders</button>
+      <button class="btn-sec" onclick="exportQB()" style="border-color:var(--green);color:var(--green)">📦 Export to QuickBooks</button>
+      <button class="btn-pri" onclick="saveAndPrint()">⬇️ Save &amp; Download</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="inv" onclick="switchTab('inv')">Invoice</div>
+    <div class="tab" data-tab="hist" onclick="switchTab('hist')">History</div>
+    <div class="tab" data-tab="co" onclick="switchTab('co')">Change Orders</div>
+  </div>
+
+  <!-- LIVE INVOICE -->
+  <div id="tab-inv" class="tab-panel active">
+    <div id="invoiceWrap"><div class="loading">⏳ Loading live invoice from sheet...</div></div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="tab-hist" class="tab-panel">
+    <h2 style="font-size:16px;font-weight:800;margin-bottom:16px">Invoice History</h2>
+    <div id="invHist"></div>
+  </div>
+
+  <!-- CHANGE ORDERS -->
+  <div id="tab-co" class="tab-panel">
+    <div class="search-bar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <input id="coSearch" placeholder="Search change orders..." oninput="renderCOs()" style="flex:1;min-width:180px">
+      <button class="btn-sec" onclick="populateCOsFromSeed()" style="font-size:12px">📋 Populate COs</button>
+      <button class="btn-sec" onclick="syncCOsFromSheet()" style="font-size:12px">🔄 Sync from sheet</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div class="upload-zone" onclick="openCOModal()" style="margin-bottom:0">
+        <div class="ico">✏️</div>
+        <div class="utxt">Click to <b>add manually</b></div>
+      </div>
+      <div class="upload-zone" onclick="document.getElementById('coFileIn').click()" style="margin-bottom:0;border-color:var(--blue)">
+        <div class="ico">🤖</div>
+        <div class="utxt">Upload doc — <b>AI will parse it</b></div>
+        <div class="utxt" style="font-size:11px;margin-top:4px;color:var(--dim)">.docx or .pdf</div>
+      </div>
+    </div>
+    <input type="file" id="coFileIn" accept=".pdf,.docx" style="display:none" onchange="parseCODoc(this)">
+    <div id="coGrid" class="doc-grid"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="shared.js?v20260424a"></script>
+<script>
+var INV_KEY='rac_invoices_v2';
+var BUDGET_CO_KEY='rodriguez_change_orders_v3';
+var CO_SEED=[
+  {num:'CO-001',desc:'Door Automation — Upgrade (3) sliding doors to automatic (Dining, Primary Bed, Primary Bath)',vendor:'AutoSlide',amount:20038.95,paid:0,date:'2026-02-06',status:'approved',pct:0,notes:''},
+  {num:'CO-002',desc:'ActionTarget Upgrade',vendor:'ActionTarget',amount:0,paid:0,date:'',status:'pending',pct:0,notes:''},
+  {num:'CO-003',desc:'Solar Fence — Wind modification',vendor:'',amount:0,paid:0,date:'',status:'approved',pct:0,notes:''},
+  {num:'CO-004',desc:'Shooting Range / Gun Range HVAC',vendor:'',amount:0,paid:0,date:'',status:'approved',pct:0,notes:''},
+  {num:'CO-005',desc:'AV Panel & Smart Fixture Upgrade — Nest to Axion, smart mirrors, uplift cabinet',vendor:'RAC Inc.',amount:0,paid:0,date:'2026-02-25',status:'approved',pct:0,notes:''},
+  {num:'CO-006',desc:'Hose Bibs & Outlets',vendor:'RAC Inc.',amount:0,paid:0,date:'',status:'approved',pct:0,notes:''},
+  {num:'CO-007',desc:'Secret Door Security Upgrade — Dual operational modes, forced entry protection, ballistic resistance',vendor:'Creative Home Engineering',amount:56525,paid:0,date:'2026-02-25',status:'pending',pct:0,notes:''},
+  {num:'CO-008',desc:'Well Water System',vendor:'',amount:0,paid:0,date:'',status:'pending',pct:0,notes:''},
+  {num:'CO-010',desc:'Plumbing Fixture Changes',vendor:'',amount:0,paid:0,date:'',status:'pending',pct:0,notes:''},
+  {num:'CO-011',desc:'Solar Fence Orientation — Upright to laid down (landscape)',vendor:'TBD',amount:0,paid:0,date:'2026-03-21',status:'pending',pct:0,notes:''},
+  {num:'CO-012',desc:'Front Entry & Casita Door — D-ML-01 omitted scope, D-AD-01 upgrade',vendor:'RAC Inc.',amount:5047.60,paid:0,date:'2026-03-21',status:'pending',pct:0,notes:''}
+];
+var INVOICES=[];
+var COS=[];
+var LIVE=null;
+
+function loadInvoices(){try{INVOICES=JSON.parse(localStorage.getItem(INV_KEY))||[];}catch(e){INVOICES=[];}}
+function saveInvoices(){localStorage.setItem(INV_KEY,JSON.stringify(INVOICES));}
+function loadCOs(){
+  try{COS=JSON.parse(localStorage.getItem(BUDGET_CO_KEY))||[];}catch(e){COS=[];}
+  if(COS.length===0){COS=CO_SEED.slice();localStorage.setItem(BUDGET_CO_KEY,JSON.stringify(COS));}
+  else{populateCOsFromSeed(true);}
+  dedupeCOs();
+}
+function dedupeCOs(){
+  var seen={};
+  var out=[];
+  for(var i=0;i<COS.length;i++){
+    var c=COS[i];
+    var key=typeof coDocKey==='function'?coDocKey(c):(c.num||c.name||'').trim();
+    var k=key||('_'+i);
+    if(seen[k])continue;
+    seen[k]=true;
+    if(key&&!c.docUrl&&typeof coDocUrl==='function'){var u=coDocUrl(c);if(u)c.docUrl=u;}
+    out.push(c);
+  }
+  if(out.length!==COS.length){COS=out;saveCOs();}
+}
+function saveCOs(){localStorage.setItem(BUDGET_CO_KEY,JSON.stringify(COS));}
+
+function showToast(msg,col){var t=document.getElementById('toast');t.textContent=msg;t.style.background=col||'var(--green)';t.className='toast show';setTimeout(function(){t.classList.remove('show');},2200);}
+function money(n){return '$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function safeEsc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function pad(n){return n<10?'0'+n:String(n);}
+function invNumber(){var d=new Date();return 'INV-'+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());}
+function fmtDate(s){if(!s)return '—';var d=new Date(s+'T12:00:00');return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+function dueDate(s){var d=new Date(s+'T12:00:00');d.setDate(d.getDate()+30);return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();}
+
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('active',t.dataset.tab===id);});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='hist') renderInvHistory();
+  if(id==='co') renderCOs();
+  if(id==='inv') renderInvoice();
+}
+
+// ── LOAD SHEET ──
+async function loadSheet(){
+  document.getElementById('invoiceWrap').innerHTML='<div class="loading">⏳ Loading live data from sheet...</div>';
+  document.getElementById('refreshNote').textContent='Loading...';
+  try{
+    var data=await loadProjectData();
+    LIVE=data;
+    document.getElementById('refreshNote').textContent='Live · '+new Date().toLocaleTimeString();
+    renderInvoice();
+  }catch(err){
+    document.getElementById('invoiceWrap').innerHTML='<div class="loading" style="color:#ef4444">⚠️ '+safeEsc(err.message)+'</div>';
+    document.getElementById('refreshNote').textContent='Error';
+  }
+}
+
+// ── BUILD LINE ITEM DATA ──
+function buildItems(){
+  if(!LIVE) return [];
+  var sections=[];
+  LIVE.main.phases.forEach(function(phase){
+    if(phase.name==='options'||phase.name==='contingency') return;
+    var items=[];
+    phase.items.forEach(function(item){
+      if(!item.markup||item.markup<1) return;
+      var key=phase.name+'|'+item.nameNorm;
+      var pct=item.progress||0;
+      if(pct<=0) return;
+      var earned=item.markup*(pct/100);
+      var prev=item.paid||0;
+      var thisAmt=Math.max(0,earned-prev);
+
+      items.push({key:key,name:item.name,vendor:item.vendor||'',markup:item.markup,pct:pct,earned:earned,prev:prev,thisAmt:thisAmt,billable:thisAmt>0.01});
+    });
+    if(items.length) sections.push({display:phase.display||phase.name,items:items});
+  });
+  // Add Change Orders section
+  var sheetCOs=(LIVE&&LIVE.main&&LIVE.main.sheetCOs)||[];
+  var coItems=[];
+  sheetCOs.forEach(function(co){
+    var pct=co.pct||0;
+    if(pct<=0) return;
+    var earned=co.amount*(pct/100);
+    var prev=co.paid||0;
+    var thisAmt=Math.max(0,earned-prev);
+    coItems.push({key:co.num,name:co.num+' — '+co.desc,vendor:'',markup:co.amount,pct:pct,earned:earned,prev:prev,thisAmt:thisAmt,billable:thisAmt>0.01});
+  });
+  if(coItems.length) sections.unshift({display:'Change Orders',items:coItems});
+  return sections;
+}
+
+// ── RENDER LIVE INVOICE ──
+function renderInvoice(){
+  if(!LIVE){document.getElementById('invoiceWrap').innerHTML='<div class="loading">⏳ Loading...</div>';return;}
+  loadInvoices();
+  var sections=buildItems();
+  var dateStr=todayStr();
+  var num=invNumber();
+
+  var totalContract=0,totalEarned=0,totalPrev=0,totalThis=0;
+  // Full contract = sum from totals
+  if(LIVE&&LIVE.main&&LIVE.main.totals){totalContract=LIVE.main.totals.totalBudget||0;}
+  var sheetCOs2=(LIVE&&LIVE.main&&LIVE.main.sheetCOs)||[];
+  sheetCOs2.forEach(function(co){if(co.status==='approved')totalContract+=co.amount;});
+  sections.forEach(function(s){s.items.forEach(function(i){totalEarned+=i.earned;totalPrev+=i.prev;totalThis+=i.thisAmt;});});
+
+  var rows='';
+  sections.forEach(function(sec){
+    rows+='<tr class="ph-row"><td colspan="6">'+safeEsc(sec.display)+'</td></tr>';
+    sec.items.forEach(function(item){
+      var paidMark=!item.billable&&item.prev>0.01?'<span class="paid-pill">PAID</span>':'';
+      var thisDisp=item.billable?money(item.thisAmt):(item.prev>0.01?'<span style="color:#16a34a;font-weight:700">Paid</span>':'—');
+      var rowClass=(!item.billable&&item.prev>0.01)?'paid-row':'it-row';
+      rows+='<tr class="'+rowClass+'">'+
+        '<td>'+safeEsc(item.name)+' '+paidMark+'</td>'+
+        '<td class="c"><div class="pbar-wrap"><div class="pbar"><div class="fill" style="width:'+item.pct+'%"></div></div>'+item.pct.toFixed(0)+'%</div></td>'+
+        '<td class="r">'+money(item.markup)+'</td>'+
+        '<td class="r" style="color:#9ca3af">'+(item.prev>0.01?money(item.prev):'—')+'</td>'+
+        '<td class="r" style="font-weight:'+(item.billable?700:400)+'">'+thisDisp+'</td>'+
+      '</tr>';
+    });
+  });
+
+  var html=
+  '<div class="invoice-wrap">'+
+    '<div class="inv-header">'+
+      '<div class="inv-brand">'+
+        '<div class="inv-mark">RAC</div>'+
+        '<div class="inv-company">'+
+          '<div class="co-name">RAC Inc.</div>'+
+          '<div class="co-sub">General Contracting</div>'+
+          '<div class="co-info">Craig Engel<br>1267 N 1390 W · St. George, UT 84770<br>435-229-7360 · racinc19@gmail.com</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="inv-title">'+
+        '<div class="word">INVOICE</div>'+
+        '<div class="num">'+num+'</div>'+
+        '<div class="status-badge status-current">Current</div>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="inv-billing">'+
+      '<div class="bill-col">'+
+        '<div class="bill-lbl">Bill To</div>'+
+        '<div class="bill-name">ARJR Kanarraville Holdings LLC</div>'+
+        '<div class="bill-addr">Oak Valley Estates Lot 5<br>646 W Liberty Lane<br>Kanarraville, UT 84742</div>'+
+      '</div>'+
+      '<div class="bill-col">'+
+        '<div class="bill-lbl">Project</div>'+
+        '<div class="bill-name">Rodriguez Residence</div>'+
+        '<div class="bill-addr">6,993 SF Custom Home<br>Oak Valley Estates<br>Kanarraville, UT</div>'+
+      '</div>'+
+      '<div class="bill-col">'+
+        '<div class="bill-lbl">Invoice Details</div>'+
+        '<div class="detail-row"><span class="dk">Invoice #</span><span class="dv">'+num+'</span></div>'+
+        '<div class="detail-row"><span class="dk">Date</span><span class="dv">'+fmtDate(dateStr)+'</span></div>'+
+        '<div class="detail-row"><span class="dk">Due Date</span><span class="dv due-red">'+dueDate(dateStr)+'</span></div>'+
+        '<div class="detail-row"><span class="dk">Terms</span><span class="dv">Net 30</span></div>'+
+        '<div class="detail-row"><span class="dk">Contract Value</span><span class="dv">'+money(totalContract)+'</span></div>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="inv-summary">'+
+      '<div class="sum-cell"><div class="sum-lbl">Total Earned</div><div class="sum-val" style="color:#0891b2">'+money(totalEarned)+'</div></div>'+
+      '<div class="sum-cell"><div class="sum-lbl">Previously Invoiced</div><div class="sum-val" style="color:#64748b">'+money(totalPrev)+'</div></div>'+
+      '<div class="sum-cell"><div class="sum-lbl">This Invoice</div><div class="sum-val" style="color:#0891b2;font-size:22px">'+money(totalThis)+'</div></div>'+
+      '<div class="sum-cell"><div class="sum-lbl">Remaining Balance</div><div class="sum-val" style="color:#d97706">'+money(totalContract-totalEarned)+'</div></div>'+
+    '</div>'+
+
+    '<table class="inv-table">'+
+    '<thead><tr>'+
+      '<th>Description</th>'+
+      '<th class="c">% Complete</th><th class="r">Contract Value</th>'+
+      '<th class="r">Prev. Invoiced</th><th class="r">This Invoice</th>'+
+    '</tr></thead>'+
+    '<tbody>'+rows+'</tbody>'+
+    '</table>'+
+
+    '<div class="inv-totals">'+
+      '<div class="tot-box">'+
+        '<div class="t-row"><span class="tk">Subtotal</span><span>'+money(totalThis)+'</span></div>'+
+        '<div class="t-row"><span class="tk">Tax</span><span>—</span></div>'+
+        '<div class="t-row grand"><span>Amount Due</span><span>'+money(totalThis)+'</span></div>'+
+      '</div>'+
+    '</div>'+
+
+    '<div class="inv-remit">'+
+      '<div class="remit-head">'+
+        '<div><div class="rt">💳 Remit Payment — ACH / Bank Transfer</div><div class="rs">Reference '+num+' with all payments</div></div>'+
+      '</div>'+
+      '<div class="remit-body">'+
+        '<div>'+
+          '<div class="rf-lbl">Bank Name</div><div class="rf-val rf-ph">[Bank Name]</div>'+
+          '<div class="rf-lbl">Account Name</div><div class="rf-val">RAC Inc.</div>'+
+          '<div class="rf-lbl">Account Type</div><div class="rf-val rf-ph">[Checking / Savings]</div>'+
+        '</div>'+
+        '<div>'+
+          '<div class="rf-lbl">Routing Number</div><div class="rf-val rf-ph">[Routing Number]</div>'+
+          '<div class="rf-lbl">Account Number</div><div class="rf-val rf-ph">[Account Number]</div>'+
+          '<div class="rf-lbl">Reference / Memo</div><div class="rf-val ref-val">'+num+' — Rodriguez Residence</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="remit-note">⚠️ Contact Craig Engel at 435-229-7360 to verify banking details before sending funds.</div>'+
+    '</div>'+
+
+    '<div class="inv-footer">'+
+      '<div class="sig-block"><div style="height:40px"></div><div class="sig-lbl">Craig Engel — RAC Inc.</div></div>'+
+      '<div class="foot-note">RAC Inc. · St. George, UT · racinc19@gmail.com<br>'+num+' · Generated '+fmtDate(dateStr)+'<br>Thank you for your business.</div>'+
+    '</div>'+
+  '</div>'+
+
+  '<div class="hist-section" style="margin-top:28px">'+
+    '<h2 style="font-size:15px;font-weight:800;margin-bottom:12px;color:var(--txt2)">Invoice History</h2>'+
+    '<div id="invHistInline"></div>'+
+  '</div>';
+
+  document.getElementById('invoiceWrap').innerHTML=html;
+  renderInvHistoryInline();
+}
+
+// ── SAVE & PRINT ──
+function saveAndPrint(){
+  if(!LIVE){showToast('Refresh first','var(--red)');return;}
+  loadInvoices();
+  var sections=buildItems();
+  var lineItems=[];
+  sections.forEach(function(s){s.items.forEach(function(i){if(i.billable)lineItems.push({key:i.key,name:i.name,vendor:i.vendor,markup:i.markup,pct:i.pct,earned:i.earned,prev:i.prev,amount:i.thisAmt});});});
+  if(!lineItems.length){showToast('Nothing new to invoice — all items paid','var(--yellow)');return;}
+  var total=lineItems.reduce(function(s,i){return s+i.amount;},0);
+  var baseNum=invNumber();
+  var sameDay=INVOICES.filter(function(i){return i.id.startsWith(baseNum);});
+  var num=sameDay.length?baseNum+String.fromCharCode(65+sameDay.length):baseNum;
+  var inv={id:num,date:todayStr(),lineItems:lineItems,total:total,status:'sent'};
+  INVOICES.push(inv);
+  saveInvoices();
+  renderInvoice();
+  window.print();
+  showToast('✓ '+num+' saved');
+}
+
+// ── HISTORY (inline on invoice tab) ──
+function renderInvHistoryInline(){
+  loadInvoices();
+  var el=document.getElementById('invHistInline');
+  if(!el) return;
+  if(!INVOICES.length){el.innerHTML='<div class="empty" style="color:#94a3b8;padding:20px;text-align:center;font-size:13px">No saved invoices yet — click Save &amp; Download to record this invoice.</div>';return;}
+  el.innerHTML=INVOICES.slice().reverse().map(function(inv,ri){
+    var idx=INVOICES.length-1-ri;
+    var bc=inv.status==='paid'?'b-paid':'b-sent';
+    return '<div class="hist-card">'+
+      '<div><div style="display:flex;align-items:center;gap:10px"><span class="hc-num">'+safeEsc(inv.id)+'</span><span class="badge '+bc+'">'+inv.status.toUpperCase()+'</span></div>'+
+      '<div class="hc-meta">📅 '+fmtDate(inv.date)+' · '+inv.lineItems.length+' line items</div></div>'+
+      '<div class="hc-amt">'+money(inv.total)+'</div>'+
+      '<div class="hc-btns">'+
+      (inv.status!=='paid'?'<button onclick="markPaid('+idx+')" style="background:var(--green);color:white">✓ Mark Paid</button>':'')+
+      '<button onclick="deleteInv('+idx+')" class="b-del" style="padding:5px 10px;border-radius:6px;background:none;border:1px solid var(--red);color:var(--red);cursor:pointer;font-size:11px;font-weight:600;margin-left:6px">🗑️</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function renderInvHistory(){
+  loadInvoices();
+  var el=document.getElementById('invHist');
+  if(!el) return;
+  if(!INVOICES.length){el.innerHTML='<div class="empty">No invoices yet</div>';return;}
+  el.innerHTML=INVOICES.slice().reverse().map(function(inv,ri){
+    var idx=INVOICES.length-1-ri;
+    var bc=inv.status==='paid'?'b-paid':'b-sent';
+    return '<div class="hist-card">'+
+      '<div><div style="display:flex;align-items:center;gap:10px"><span class="hc-num">'+safeEsc(inv.id)+'</span><span class="badge '+bc+'">'+inv.status.toUpperCase()+'</span></div>'+
+      '<div class="hc-meta">📅 '+fmtDate(inv.date)+' · '+inv.lineItems.length+' line items</div></div>'+
+      '<div class="hc-amt">'+money(inv.total)+'</div>'+
+      '<div class="hc-btns">'+
+      (inv.status!=='paid'?'<button onclick="markPaid('+idx+')" style="background:var(--green);color:white">✓ Mark Paid</button>':'')+
+      '<button onclick="deleteInv('+idx+')" style="padding:5px 10px;border-radius:6px;background:none;border:1px solid var(--red);color:var(--red);cursor:pointer;font-size:11px;font-weight:600;margin-left:6px">🗑️</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function markPaid(idx){loadInvoices();INVOICES[idx].status='paid';saveInvoices();renderInvoice();showToast('✓ Marked paid');}
+function deleteInv(idx){loadInvoices();if(!confirm('Delete '+INVOICES[idx].id+'?'))return;INVOICES.splice(idx,1);saveInvoices();renderInvoice();showToast('✓ Deleted');}
+
+// ── QUICKBOOKS IIF EXPORT ──
+function exportQB(){
+  if(!LIVE){showToast('Refresh sheet first','var(--red)');return;}
+  loadInvoices();
+  var sections=buildItems();
+  var lineItems=[];
+  sections.forEach(function(s){
+    s.items.forEach(function(i){
+      if(i.billable) lineItems.push(i);
+    });
+  });
+  if(!lineItems.length){showToast('Nothing to export — no new earned amount','var(--yellow)');return;}
+
+  var num=invNumber();
+  var dateStr=todayStr();
+  // QB date format MM/DD/YYYY
+  var d=new Date(dateStr+'T12:00:00');
+  var qbDate=pad(d.getMonth()+1)+'/'+pad(d.getDate())+'/'+d.getFullYear();
+  var dueD=new Date(dateStr+'T12:00:00');
+  dueD.setDate(dueD.getDate()+30);
+  var qbDue=pad(dueD.getMonth()+1)+'/'+pad(dueD.getDate())+'/'+dueD.getFullYear();
+
+  // IIF format — headers then transaction lines
+  var lines=[];
+
+  // Account header (needed once)
+  lines.push('!ACCNT\tNAME\tACCNTTYPE');
+  lines.push('ACCNT\tAccounts Receivable\tAR');
+  lines.push('ACCNT\tConstruction Income\tINC');
+  lines.push('');
+
+  // Customer header
+  lines.push('!CUST\tNAME\tBSTREET\tBCITY\tBSTATE\tBZIP');
+  lines.push('CUST\tARJR Kanarraville Holdings LLC\t646 W Liberty Lane\tKanarraville\tUT\t84742');
+  lines.push('');
+
+  // Invoice header definition
+  lines.push('!TRNS\tTRNSTYPE\tDATE\tACCNT\tNAME\tAMOUNT\tDOCNUM\tMEMO\tTERMS\tDUEDATE');
+  lines.push('!SPL\tTRNSTYPE\tDATE\tACCNT\tNAME\tAMOUNT\tMEMO\tQNTY\tPRICE');
+  lines.push('!ENDTRNS');
+  lines.push('');
+
+  var total=lineItems.reduce(function(s,i){return s+i.thisAmt;},0);
+
+  // TRNS line — the invoice header
+  lines.push(
+    'TRNS\t'+'INVOICE\t'+
+    qbDate+'\t'+
+    'Accounts Receivable\t'+
+    'ARJR Kanarraville Holdings LLC\t'+
+    total.toFixed(2)+'\t'+
+    num+'\t'+
+    'Rodriguez Residence\t'+
+    'Net 30\t'+
+    qbDue
+  );
+
+  // SPL lines — one per line item
+  lineItems.forEach(function(item){
+    lines.push(
+      'SPL\t'+'INVOICE\t'+
+      qbDate+'\t'+
+      'Construction Income\t'+
+      safeEsc(item.name).replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"')+'\t'+
+      (-item.thisAmt).toFixed(2)+'\t'+
+      item.pct.toFixed(0)+'% Complete - '+item.name+(item.vendor?' ('+item.vendor+')':'')+'\t'+
+      '1\t'+
+      item.thisAmt.toFixed(2)
+    );
+  });
+
+  lines.push('ENDTRNS');
+  lines.push('');
+
+  // Build CSV using QuickBooks Online exact required column headers
+  var csvLines=[];
+  csvLines.push('*InvoiceNo,*Customer,*InvoiceDate,*DueDate,Terms,Location,Memo,Item(Product/Service),Item Descrip,Item Qty,Item Rate,*ItemAmount,Taxable');
+  lineItems.forEach(function(item,idx){
+    var desc=item.pct.toFixed(0)+'% Complete - '+item.name+(item.vendor?' ('+item.vendor+')':'');
+    csvLines.push([
+      num,
+      idx===0?'ARJR Kanarraville Holdings LLC':'',
+      idx===0?qbDate:'',
+      idx===0?qbDue:'',
+      idx===0?'Net 30':'',
+      '',
+      idx===0?'Rodriguez Residence':'',
+      '',
+      '"'+desc.replace(/"/g,'""')+'"',
+      '1',
+      item.thisAmt.toFixed(2),
+      item.thisAmt.toFixed(2),
+      'N'
+    ].join(','));
+  });
+  var csv=csvLines.join('\r\n');
+  var blob=new Blob([csv],{type:'text/csv'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download=num+'.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('✓ '+num+'.csv downloaded — import via QB File → Utilities → Import → Excel Files');
+}
+
+// ── CO DOCUMENT STORAGE (IndexedDB) ──
+var CO_DB='rodriguez_co_docs';
+var pendingParseFile=null;
+var pendingAttachFile=null;
+function storeCODoc(key,file,cb){
+  var req=indexedDB.open(CO_DB,1);
+  req.onupgradeneeded=function(e){e.target.result.createObjectStore('docs',{keyPath:'id'});};
+  req.onsuccess=function(e){
+    var db=e.target.result;
+    var r=new FileReader();
+    r.onload=function(){
+      var tx=db.transaction('docs','readwrite');
+      tx.objectStore('docs').put({id:key,data:r.result,filename:file.name,type:file.type});
+      tx.oncomplete=function(){
+        db.close();
+        if(cb)cb();
+      };
+      tx.onerror=function(){db.close();if(cb)cb();};
+    };
+    r.readAsDataURL(file);
+  };
+}
+function viewCODoc(key){
+  var req=indexedDB.open(CO_DB,1);
+  req.onsuccess=function(e){
+    var db=e.target.result;
+    var tx=db.transaction('docs','readonly');
+    var get=tx.objectStore('docs').get(key);
+    get.onsuccess=function(){
+      if(get.result){
+        var w=window.open('','_blank');
+        w.document.write('<iframe src="'+get.result.data+'" style="width:100%;height:100%;border:none"></iframe>');
+      }else{showToast('No stored document for this CO','var(--orange)');}
+      db.close();
+    };
+  };
+}
+
+// ── CHANGE ORDERS ──
+function approveCO(idx){
+  loadCOs();
+  COS[idx].status='approved';
+  COS[idx].approvedDate=new Date().toISOString().slice(0,10);
+  saveCOs();renderCOs();showToast('✓ CO Approved');
+}
+function approveViaSigned(idx,input){
+  var file=input.files[0];
+  if(!file) return;
+  input.value='';
+  showToast('🤖 Checking signed doc...');
+  var isPdf=file.name.toLowerCase().endsWith('.pdf');
+  var done=function(text){
+    var userMsg={role:'user',content:'This is a signed change order document. Extract: 1) Is it signed? (yes/no) 2) Signer name if present. Return ONLY JSON: {"signed":true/false,"signerName":"name or empty"}\n\n'+text};
+    fetch('https://broken-haze-7f97.racinc19.workers.dev',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:200,messages:[userMsg]})
+    }).then(function(r){return r.json();}).then(function(data){
+      var txt='';(data.content||[]).forEach(function(b){if(b.type==='text')txt+=b.text;});
+      var clean=txt.replace(/```json|```/g,'').trim();
+      var result=JSON.parse(clean);
+      if(result.signed){
+        loadCOs();
+        COS[idx].status='approved';
+        COS[idx].approvedDate=new Date().toISOString().slice(0,10);
+        COS[idx].approvedBy=result.signerName||'Client';
+        COS[idx].signedDoc=file.name;
+        COS[idx].docStored=true;
+        storeCODoc((COS[idx].num||COS[idx].name||'CO-'+idx),file,function(){
+          saveCOs();renderCOs();showToast('✓ Signature detected — CO Approved');
+        });
+      } else {
+        showToast('⚠️ No signature detected');
+      }
+    }).catch(function(err){console.error(err);showToast('✗ Check failed');});
+  };
+  if(isPdf){
+    var r=new FileReader();
+    r.onload=function(e){
+      var b64=e.target.result.split(',')[1];
+      var userMsg={role:'user',content:[
+        {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
+        {type:'text',text:'Is this document signed? Who signed it? Return ONLY JSON: {"signed":true/false,"signerName":"name or empty"}'}
+      ]};
+      fetch('https://broken-haze-7f97.racinc19.workers.dev',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:200,messages:[userMsg]})
+      }).then(function(r2){return r2.json();}).then(function(data){
+        var txt='';(data.content||[]).forEach(function(b){if(b.type==='text')txt+=b.text;});
+        var clean=txt.replace(/```json|```/g,'').trim();
+        var result=JSON.parse(clean);
+        if(result.signed){
+          loadCOs();
+          COS[idx].status='approved';
+          COS[idx].approvedDate=new Date().toISOString().slice(0,10);
+          COS[idx].approvedBy=result.signerName||'Client';
+          COS[idx].signedDoc=file.name;
+          COS[idx].docStored=true;
+          storeCODoc((COS[idx].num||COS[idx].name||'CO-'+idx),file,function(){
+            saveCOs();renderCOs();showToast('✓ Signature detected — CO Approved');
+          });
+        } else {
+          showToast('⚠️ No signature detected');
+        }
+      }).catch(function(err){console.error(err);showToast('✗ Check failed');});
+    };
+    r.readAsDataURL(file);
+  } else {
+    var r2=new FileReader();
+    r2.onload=function(e){
+      mammoth.extractRawText({arrayBuffer:e.target.result}).then(function(res){done(res.value);});
+    };
+    r2.readAsArrayBuffer(file);
+  }
+}
+function populateCOsFromSeed(silent){
+  if(!silent)loadCOs();
+  var existingKeys={};
+  COS.forEach(function(c){var k=typeof coDocKey==='function'?coDocKey(c):(c.num||c.name||'').trim();if(k)existingKeys[k]=true;else existingKeys['_'+c.num]=true;});
+  var added=0;
+  CO_SEED.forEach(function(seed){
+    var n=(seed.num||'').trim();
+    if(!n)return;
+    var sk=typeof coDocKey==='function'?coDocKey(seed):n;
+    if(sk&&existingKeys[sk])return;
+    if(existingKeys['_'+n])return;
+    var docUrl=typeof coDocUrl==='function'?coDocUrl(seed):null;
+    var c={num:n,desc:seed.desc||'',vendor:seed.vendor||'',amount:parseFloat(seed.amount)||0,paid:parseFloat(seed.paid)||0,date:seed.date||'',status:seed.status||'pending',pct:seed.pct||0,notes:seed.notes||''};
+    if(docUrl)c.docUrl=docUrl;
+    COS.push(c);
+    if(sk)existingKeys[sk]=true;else existingKeys['_'+n]=true;
+    added++;
+  });
+  if(added){saveCOs();if(!silent)showToast('✓ Added '+added+' change orders');}
+  else if(!silent){showToast('All known COs already in list');}
+  if(added||!silent)renderCOs();
+}
+function syncCOsFromSheet(){
+  if(!LIVE||!LIVE.main||!LIVE.main.sheetCOs){showToast('Load sheet first — click Refresh','var(--yellow)');return;}
+  loadCOs();
+  var sheetCOs=LIVE.main.sheetCOs;
+  var existingKeys={};
+  COS.forEach(function(c){var k=typeof coDocKey==='function'?coDocKey(c):(c.num||c.name||'').trim();if(k)existingKeys[k]=true;});
+  var added=0;
+  sheetCOs.forEach(function(co){
+    var n=(co.num||'').trim();
+    if(!n)return;
+    var sk=typeof coDocKey==='function'?coDocKey(co):n;
+    if(sk&&existingKeys[sk])return;
+    var docUrl=typeof coDocUrl==='function'?coDocUrl(co):null;
+    var c={num:n,desc:co.desc||'',vendor:'',amount:parseFloat(co.amount)||0,paid:parseFloat(co.paid)||0,date:'',status:co.status||'approved',pct:co.pct||0,notes:''};
+    if(docUrl)c.docUrl=docUrl;
+    COS.push(c);
+    if(sk)existingKeys[sk]=true;added++;
+  });
+  if(added){dedupeCOs();saveCOs();showToast('✓ Added '+added+' COs from sheet');}
+  else{showToast('All sheet COs already in list');}
+  renderCOs();
+}
+function coDisplay(c){return{name:c.name||c.num||'CO',desc:(c.description||c.desc||''),vendor:c.vendor,amount:c.amount,date:c.date,status:c.status};}
+function coSortKey(c){var n=(c.num||c.name||'').trim();var m=n.match(/^CO-?(\d+)/i);return m?parseInt(m[1],10):9999;}
+function renderCOs(){
+  loadCOs();
+  var q=(document.getElementById('coSearch').value||'').toLowerCase();
+  var list=COS.filter(function(c){var d=coDisplay(c);return !q||((d.name||'')+(d.desc||'')+(d.vendor||'')).toLowerCase().includes(q);});
+  list.sort(function(a,b){return coSortKey(a)-coSortKey(b);});
+  var grid=document.getElementById('coGrid');
+  if(!list.length){grid.innerHTML='<div class="empty">No change orders yet</div>';return;}
+  var approvedTotal=COS.filter(function(c){return c.status==='approved';}).reduce(function(s,c){return s+parseFloat(c.amount||0);},0);
+  var banner=approvedTotal>0?'<div style="background:rgba(16,185,129,.15);border:1px solid #10b981;border-radius:10px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center"><span style="color:#10b981;font-weight:700;font-size:13px">✓ APPROVED CO TOTAL — ADD TO BUDGET</span><span style="color:#10b981;font-size:18px;font-weight:800">'+money(approvedTotal)+'</span></div>':'';
+  grid.innerHTML=banner+list.map(function(c){
+    var i=COS.indexOf(c);
+    var d=coDisplay(c);
+    var bc=c.status==='approved'?'b-paid':c.status==='rejected'?'b-rej':'b-sent';
+    var approveBtns=c.status!=='approved'?
+      '<label style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;background:none;border:1px solid #10b981;color:#10b981;cursor:pointer;font-size:11px;font-weight:600">'
+      +'<input type="file" accept=".pdf,.docx" style="display:none" onchange="approveViaSigned('+i+',this)">'
+      +'📄 Upload Signed</label>'
+      +' <button onclick="approveCO('+i+')" style="padding:4px 10px;border-radius:6px;background:none;border:1px solid #10b981;color:#10b981;cursor:pointer;font-size:11px;font-weight:600">✓ Approve</button>'
+      :'<span style="font-size:11px;color:#10b981">✓ Approved'+(c.approvedDate?' '+c.approvedDate:'')+(c.approvedBy?' by '+safeEsc(c.approvedBy):'')+(c.signedDoc?' 📄':'')+'</span>';
+    var coKey=c.num||c.name||'CO-'+i;
+    var docUrl=c.docUrl||c.docLink||(typeof coDocUrl==='function'?coDocUrl(c):null);
+    var viewDocBtn=docUrl?'<a href="'+safeEsc(docUrl)+'" target="_blank" rel="noopener" style="padding:4px 10px;border-radius:6px;background:none;border:1px solid var(--cyan);color:var(--cyan);cursor:pointer;font-size:11px;font-weight:600;text-decoration:none">📄 View document</a>':c.docStored?'<button onclick="viewCODoc('+JSON.stringify(coKey)+')" style="padding:4px 10px;border-radius:6px;background:none;border:1px solid var(--cyan);color:var(--cyan);cursor:pointer;font-size:11px;font-weight:600">📄 View document</button>':'';
+    return '<div class="doc-card"><span class="doc-type">Change Order</span> <span class="badge '+bc+'">'+safeEsc(c.status||'pending').toUpperCase()+'</span>'
+      +'<div class="doc-name" style="margin-top:8px">'+safeEsc(d.name||'Untitled')+'</div>'
+      +(d.vendor?'<div style="font-size:12px;color:var(--cyan);margin-bottom:4px">'+safeEsc(d.vendor)+'</div>':'')
+      +(d.amount?'<div class="doc-amt">'+money(parseFloat(d.amount))+'</div>':'')
+      +'<div class="doc-meta">'+(d.date?d.date:'')+(d.desc?' · '+safeEsc(d.desc):'')+'</div>'
+      +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center">'+viewDocBtn+approveBtns
+      +' <button onclick="openCOModal(COS['+i+'],'+i+')" style="padding:4px 10px;border-radius:6px;background:none;border:1px solid var(--cyan);color:var(--cyan);cursor:pointer;font-size:11px;font-weight:600">✏ Edit</button>'
+      +' <button onclick="deleteCO('+i+')" style="padding:4px 10px;border-radius:6px;background:none;border:1px solid var(--red);color:var(--red);cursor:pointer;font-size:11px;font-weight:600">🗑️ Delete</button></div>'
+      +'</div>';
+  }).join('');
+}
+// ── CO AI PARSE ──
+function parseCODoc(input){
+  var file=input.files[0];
+  if(!file) return;
+  input.value='';
+  pendingParseFile=file;
+  showToast('🤖 Reading doc...');
+  var isPdf=file.name.toLowerCase().endsWith('.pdf');
+  if(isPdf){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var b64=e.target.result.split(',')[1];
+      var userMsg={role:'user',content:[
+        {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
+        {type:'text',text:'Extract change order fields. Return ONLY valid JSON with keys: name, vendor, amount (number), date (YYYY-MM-DD), status (pending/approved/rejected), description. Use empty string or 0 if not found.'}
+      ]};
+      callWorker(userMsg);
+    };
+    reader.readAsDataURL(file);
+  } else {
+    var reader2=new FileReader();
+    reader2.onload=function(e){
+      mammoth.extractRawText({arrayBuffer:e.target.result}).then(function(result){
+        var text=result.value;
+        var userMsg={role:'user',content:'Extract change order fields from this document text. Return ONLY valid JSON with keys: name, vendor, amount (number, no $), date (YYYY-MM-DD), status (pending/approved/rejected), description. Use empty string or 0 if not found.\n\n'+text};
+        callWorker(userMsg);
+      }).catch(function(){
+        showToast('\u2717 Could not read docx');
+      });
+    };
+    reader2.readAsArrayBuffer(file);
+  }
+}
+function callWorker(userMsg){
+  fetch('https://broken-haze-7f97.racinc19.workers.dev',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:500,messages:[userMsg]})
+  }).then(function(r){return r.json();}).then(function(data){
+    var txt='';
+    (data.content||[]).forEach(function(b){if(b.type==='text')txt+=b.text;});
+    var clean=txt.replace(/```json|```/g,'').trim();
+    var co=JSON.parse(clean);
+    openCOModal(co);
+    showToast('\u2713 Parsed \u2014 review and save');
+  }).catch(function(err){
+    console.error(err);
+    showToast('\u2717 Parse failed \u2014 check console');
+    openCOModal();
+  });
+}
+function openCOModal(pre,editIdx){
+  pre=pre||{};
+  var nameVal=(pre.num||pre.name||'');
+  var descVal=(pre.desc||pre.description||'');
+  var urlVal=(pre.docUrl||pre.docLink||'');
+  var coKey=pre.num||pre.name||'';
+  var viewDocHtml=(urlVal||pre.docStored)?'<a href="'+(urlVal||'#')+'" '+(urlVal?'target="_blank" rel="noopener"':'onclick="event.preventDefault();viewCODoc('+JSON.stringify(coKey)+');return false"')+' style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:rgba(6,182,212,.15);border:1px solid var(--cyan);color:var(--cyan);font-size:13px;font-weight:700;text-decoration:none;margin-bottom:16px">📄 View document</a>':'';
+  document.getElementById('modalWrap').innerHTML='<div class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal">'+
+    '<h3>'+(editIdx>=0?'Edit Change Order':pre.name?'🤖 Review Parsed CO':'Add Change Order')+'</h3>'+
+    viewDocHtml+
+    (pre.name&&!pre.num?'<div style="font-size:11px;color:var(--dim);margin-bottom:12px">Fields pre-filled from uploaded doc. Review and save.</div>':'')+
+    '<label>CO Name</label><input id="mName" placeholder="e.g. CO-002 Camera Addition" value="'+safeEsc(nameVal)+'">'+
+    '<div class="modal-row"><div><label>Vendor</label><input id="mVendor" value="'+safeEsc(pre.vendor||'')+'"></div><div><label>Amount ($)</label><input type="number" step="0.01" id="mAmt" value="'+(pre.amount||'')+'"></div></div>'+
+    '<div class="modal-row"><div><label>Date</label><input type="date" id="mDate" value="'+(pre.date||todayStr())+'"></div><div><label>Status</label><select id="mSt"><option value="pending"'+((!pre.status||pre.status==="pending")?" selected":"")+'>Pending</option><option value="approved"'+(pre.status==="approved"?" selected":"")+'>Approved</option><option value="rejected"'+(pre.status==="rejected"?" selected":"")+'>Rejected</option></select></div></div>'+
+    '<label>Document link</label><input id="mDocUrl" placeholder="Paste Drive link or URL (optional)" value="'+safeEsc(urlVal)+'">'+
+    (editIdx>=0?'<label>Or upload a file</label><label style="display:flex;align-items:center;gap:8px;padding:10px;background:var(--bg);border:1px dashed var(--bdr);border-radius:8px;cursor:pointer"><input type="file" id="mDocFile" accept=".pdf,.docx" style="display:none" onchange="onAttachDoc(this)"> <span id="mDocFileLbl">Choose PDF or docx — one click to view</span></label>':'')+
+    '<label>Notes</label><textarea id="mDesc" placeholder="Optional...">'+safeEsc(descVal)+'</textarea>'+
+    '<input type="hidden" id="mEditIdx" value="'+(editIdx>=0?editIdx:'-1')+'">'+
+    '<div class="modal-btns"><button class="btn-cancel" onclick="closeModal()">Cancel</button><button class="btn-save" onclick="saveCO()">Save</button></div>'+
+  '</div></div>';
+}
+function saveCO(){
+  var n=document.getElementById('mName').value;
+  var docUrl=(document.getElementById('mDocUrl')&&document.getElementById('mDocUrl').value||'').trim();
+  var co={num:n,desc:document.getElementById('mDesc').value,vendor:document.getElementById('mVendor').value,amount:parseFloat(document.getElementById('mAmt').value)||0,paid:0,date:document.getElementById('mDate').value,status:document.getElementById('mSt').value,pct:0,notes:'',docUrl:docUrl||undefined};
+  if(!co.docUrl)delete co.docUrl;
+  loadCOs();
+  var idx=parseInt(document.getElementById('mEditIdx')&&document.getElementById('mEditIdx').value||'-1',10);
+  if(idx>=0&&idx<COS.length){
+    if(pendingAttachFile){
+      co.docStored=true;
+      storeCODoc(n,pendingAttachFile,function(){
+        pendingAttachFile=null;
+        COS[idx]=co;
+        saveCOs();closeModal();renderCOs();showToast('✓ Saved — document attached, one click to view');
+      });
+    }else{
+      COS[idx]=co;
+      pendingAttachFile=null;
+      saveCOs();closeModal();renderCOs();showToast('✓ Saved');
+    }
+  }else{
+    if(pendingParseFile){
+      co.docStored=true;
+      storeCODoc(n,pendingParseFile,function(){
+        pendingParseFile=null;
+        COS.push(co);
+        saveCOs();closeModal();renderCOs();showToast('✓ Saved');
+      });
+    }else{
+      COS.push(co);
+      saveCOs();closeModal();renderCOs();showToast('✓ Saved');
+    }
+  }
+}
+function deleteCO(idx){loadCOs();if(!confirm('Delete?'))return;COS.splice(idx,1);saveCOs();renderCOs();showToast('✓ Deleted');}
+function onAttachDoc(input){pendingAttachFile=input.files[0]||null;var lbl=document.getElementById('mDocFileLbl');if(lbl)lbl.textContent=pendingAttachFile?pendingAttachFile.name:'Choose PDF or docx — one click to view';input.value='';}
+function closeModal(){pendingParseFile=null;pendingAttachFile=null;document.getElementById('modalWrap').innerHTML='';}
+
+// ── MIGRATE OLD DATA ──
+(function migrate(){
+  // 1) Restore from old Accounting store (rac_cos_v1) — one-time recovery
+  try{
+    var oldAcct=JSON.parse(localStorage.getItem('rac_cos_v1')||'[]');
+    if(oldAcct.length>0&&!localStorage.getItem('rac_cos_v1_restored')){
+      var converted=oldAcct.map(function(c){
+        return {num:c.name||'CO',desc:c.description||'',vendor:c.vendor||'',amount:parseFloat(c.amount)||0,paid:0,date:c.date||'',status:c.status||'pending',pct:0,notes:c.approvedBy?'Approved by '+c.approvedBy:'',approvedDate:c.approvedDate,approvedBy:c.approvedBy,signedDoc:c.signedDoc,docUrl:c.docUrl||c.docLink};
+      });
+      localStorage.setItem('rodriguez_change_orders_v3',JSON.stringify(converted));
+      localStorage.setItem('rac_cos_v1_restored','1');
+    }
+  }catch(e){}
+  // 2) rodriguez_docs_v1 → Budget store
+  loadCOs();
+  var added=0;
+  try{
+    var old=JSON.parse(localStorage.getItem('rodriguez_docs_v1')||'[]');
+    var existingKeys=COS.map(function(c){return (c.num||c.name||'')+(c.date||'');});
+    old.forEach(function(doc){
+      if(doc.type==='co'){
+        var k=(doc.name||'')+(doc.date||'');
+        if(existingKeys.indexOf(k)===-1){
+          COS.push({num:doc.name||'CO',desc:doc.description||'',vendor:doc.vendor||'',amount:doc.amount||0,paid:0,date:doc.date||'',status:doc.status||'pending',pct:0,notes:''});
+          existingKeys.push(k);added++;
+        }
+      }
+    });
+    if(added)saveCOs();
+  }catch(e){}
+})();
+
+// ── INIT ──
+loadSheet();
+</script>
+</body>
+</html>
