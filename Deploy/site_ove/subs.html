@@ -164,6 +164,14 @@ function renderTable(tasks){
       </td>`;
     tr.dataset.trade=(t.name||'').toLowerCase();
     tr.dataset.vendor=(t.vendor||'').toLowerCase();
+    // Make entire row clickable for vendor rows
+    if(t.vendor&&!t.isPhase){
+      tr.style.cursor='pointer';
+      tr.addEventListener('click',(e)=>{
+        if(e.target.closest('a'))return;
+        location.href='sub.html?v='+slugify(t.vendor);
+      });
+    }
     tbody.appendChild(tr);
     allRows.push(tr);
   });
@@ -185,7 +193,7 @@ async function init(){
     const tasks=data.main.scheduleTasks||[];
     renderTable(tasks);
     document.getElementById('loading').style.display='none';
-    document.getElementById('app').style.display='';
+    document.getElementById('app').style.display='block';
   }catch(e){
     document.getElementById('loading').innerHTML=`<div style="color:var(--red);text-align:center"><h3>Failed to load</h3><p style="font-size:13px;color:var(--dim);margin-top:8px">${e.message}</p><br><button class="topnav-refresh" onclick="doRefresh()">Retry</button></div>`;
   }
