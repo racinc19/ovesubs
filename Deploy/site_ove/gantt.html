@@ -1,22 +1,22 @@
-<!DOCTYPE html><!-- build:20260221gantt03 -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rodriguez Residence — Schedule</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>OVE subs — Gantt</title>
 <style>
 :root{
   --bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;
   --bdr:#2a3a55;--bdr2:#354766;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;
   --blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;
-  --orange:#f59e0b;--cyan:#06b6d4;
+  --orange:#f59e0b;--cyan:#06b6d4;--purple:#8b5cf6;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-y:scroll}
-body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5;overflow-x:hidden}
 .topnav{position:fixed;top:0;left:0;width:100vw;z-index:100;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
 .topnav-inner{max-width:100%;margin:0 auto;display:flex;align-items:center;gap:8px;min-height:56px;flex-wrap:wrap;padding:8px 0}
 .topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;white-space:nowrap;margin-right:8px}
@@ -39,7 +39,10 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 #loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px}
 .spinner{width:48px;height:48px;border:4px solid var(--bdr);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
 #loading .msg{color:var(--txt2);font-size:14px}
+#error{display:none;text-align:center;padding:80px 20px;color:var(--red)}
 #app{display:none}
+.btn{padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;border:none;cursor:pointer;color:white}
+.btn-blue{background:var(--blue)}
 
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
@@ -55,12 +58,31 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .pin-err{color:var(--red);font-size:12px;margin-top:12px;min-height:18px}
 .modal-close{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer}
 
-/* HERO */
+/* HERO — concurrent on-site rows under primary */
 .hero-wrap{max-width:1600px;margin:0 auto;padding:16px 20px 0}
-.hero{border-radius:14px;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;overflow:hidden;border:1px solid transparent}
+.hero{border-radius:14px;padding:0;display:flex;flex-direction:column;align-items:stretch;position:relative;overflow:hidden;border:1px solid transparent}
+.hero.no-sub{padding:18px 24px}
 .hero.on-time{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(6,182,212,.04));border-color:rgba(34,197,94,.25);animation:glow-on 3s ease-in-out infinite}
 .hero.off-time{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(245,158,11,.05));border-color:rgba(239,68,68,.3);animation:glow-off 3s ease-in-out infinite}
 .hero.no-sub{background:var(--card);border-color:var(--bdr)}
+.hero-row-primary{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 24px}
+.hero-right-col{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.hero-substack{border-top:1px solid rgba(42,58,85,.55);background:rgba(0,0,0,.12)}
+.hero-row-sub{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 24px;flex-wrap:wrap}
+.hero-row-sub+.hero-row-sub{border-top:1px solid rgba(42,58,85,.25)}
+.hero-sub-left{display:flex;flex-direction:column;gap:2px;min-width:140px}
+.hero-sub-name{font-size:15px;font-weight:700;color:var(--txt)}
+.hero-sub-vendor{font-size:11px;color:var(--txt2)}
+.hero-sub-mid{display:flex;align-items:center;gap:14px}
+.hero-sub-pct{font-size:18px;font-weight:800}
+.hero-row-sub.on-time .hero-sub-pct{color:var(--green)}
+.hero-row-sub.off-time .hero-sub-pct{color:var(--red)}
+.hero-sub-days{font-size:13px;font-weight:700;color:var(--txt)}
+.hero-sub-prog{display:flex;align-items:center;gap:8px}
+.hero-prog-bar-sm{width:100px;height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.hero-sub-pct-lbl{font-size:11px;font-weight:700;color:var(--dim)}
+.hero-row-sub.on-time .hero-prog-fill{background:var(--green)}
+.hero-row-sub.off-time .hero-prog-fill{background:var(--red)}
 .hero-left{display:flex;align-items:center;gap:14px}
 .hero-icon{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .on-time .hero-icon{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)}
@@ -75,8 +97,9 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-stat{text-align:center}
 .hero-stat-val{font-size:22px;font-weight:800;line-height:1}
 .hero-stat-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-top:2px}
-.on-time .hero-stat-val{color:var(--green)}
-.off-time .hero-stat-val{color:var(--red)}
+.on-time .hero-center>.hero-stat .hero-stat-val:not(.hero-stat-sched){color:var(--green)}
+.off-time .hero-center>.hero-stat .hero-stat-val:not(.hero-stat-sched){color:var(--red)}
+.hero-stat-val.hero-stat-sched{color:var(--txt);font-size:16px;font-weight:800}
 .hero-div{width:1px;height:36px;background:var(--bdr)}
 .hero-badge{padding:7px 16px;border-radius:20px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;animation:badge-pulse 2s ease-in-out infinite}
 .on-time .hero-badge{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.35)}
@@ -89,9 +112,26 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-prog-pct{font-size:12px;font-weight:700}
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
-
+/* Dashboard phase tracker */
+.gantt-phase-tracker{max-width:1600px;margin:0 auto;padding:0 20px 8px}
+.phase-steps{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--bdr);margin-top:12px}
+.phase-steps-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:14px}
+.phase-steps-row{display:flex;gap:4px;align-items:center}
+.phase-step{flex:1;height:6px;border-radius:3px;background:var(--bdr);transition:background .3s}
+.phase-step.done{background:var(--green)}
+.phase-step.active{background:var(--yellow);box-shadow:0 0 8px rgba(234,179,8,.35)}
+.phase-step-all-labels{display:flex;gap:4px;margin-top:8px;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.3px}
+.phase-step-all-label{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-steps{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--bdr);margin-top:12px}
+.item-steps-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:14px}
+.item-steps-row{display:flex;gap:4px;align-items:center}
+.item-step{flex:1;height:6px;border-radius:3px;background:var(--bdr);transition:background .3s}
+.item-step.done{background:var(--green)}
+.item-step.active{background:var(--yellow)}
+.item-step-all-labels{display:flex;gap:4px;margin-top:8px;font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.3px}
+.item-step-all-label{flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* GANTT */
-.gantt-outer{max-width:1600px;margin:0 auto;padding:12px 20px 20px}
+.gantt-outer{max-width:1600px;margin:0 auto;padding:12px 20px 24px}
 .gantt-wrap{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
 .gantt-head{position:sticky;top:56px;z-index:20;background:var(--card2);border-bottom:2px solid var(--bdr);display:flex}
 .head-label{width:250px;min-width:250px;padding:8px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);border-right:1px solid var(--bdr);flex-shrink:0}
@@ -123,13 +163,12 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .g-bar.dn{background:var(--green)}
 .g-bar.ac{background:var(--orange)}
 .g-bar.od{background:var(--red)}
-.g-delay{position:absolute;top:50%;transform:translateY(-50%);height:12px;border-radius:3px;background:rgba(239,68,68,.18);border:1px dashed rgba(239,68,68,.75);min-width:3px;pointer-events:none}
-.g-row.ph .g-delay{height:6px;border-radius:3px}
-.g-row.act .g-delay{height:20px;border-radius:5px}
-.g-dlbl{position:absolute;top:-14px;left:2px;font-size:9px;font-weight:800;color:var(--red);white-space:nowrap}
 .g-fill{position:absolute;left:0;top:0;bottom:0;border-radius:inherit}
 .ac .g-fill{background:var(--green)}
 .od .g-fill{background:rgba(255,255,255,.15)}
+.g-delay{position:absolute;top:50%;transform:translateY(-50%);height:12px;border-radius:3px;background:rgba(239,68,68,.18);border:1px dashed rgba(239,68,68,.75);min-width:2px;pointer-events:auto;z-index:2}
+.g-row.ph .g-delay{height:6px}
+.g-row.act .g-delay{height:20px;border-radius:5px}
 .g-inp{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:52px;height:22px;background:var(--bg);border:1px solid var(--bdr2);border-radius:4px;color:var(--txt);font-size:12px;font-weight:600;text-align:center;outline:none;display:none;z-index:5}
 .g-inp:focus{border-color:var(--blue)}
 .adm .g-inp{display:block}
@@ -149,11 +188,12 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 </head>
 <body>
 <nav class="topnav"><div class="topnav-inner">
-  <a href="index.html" class="topnav-brand"><span class="dot"></span>Rodriguez Residence</a>
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
   <div class="topnav-links">
     <a href="index.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:700;color:#fff;background:var(--blue);text-decoration:none">Dashboard</a>
     <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--cyan);text-decoration:none;border:1px solid rgba(6,182,212,.3)">📁 Plans & Permits</a>
     <a href="selections.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--purple);text-decoration:none;border:1px solid rgba(139,92,246,.3)">🎨 Selections</a>
+    <a href="electrical.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--yellow);text-decoration:none;border:1px solid rgba(234,179,8,.3)">⚡ Electrical</a>
   </div>
   <div class="topnav-right">
     <button class="topnav-btn" onclick="doRefresh()">↻ Refresh</button>
@@ -182,11 +222,14 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   <button class="cbtn" onclick="cancelEdits()">Cancel</button>
   <button class="sbtn" onclick="saveEdits()">Save</button>
 </div>
-
-<div id="loading"><div class="spinner"></div><div class="msg">Loading schedule…</div></div>
+<div id="loading"><div class="spinner"></div><div class="msg">Loading Gantt chart…</div></div>
+<div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><br><button class="btn btn-blue" onclick="doRefresh()">Retry</button></div>
 
 <div id="app">
-  <div class="hero-wrap"><div class="hero no-sub" id="hero"></div></div>
+  <div class="hero-wrap">
+    <div class="hero no-sub" id="hero"></div>
+  </div>
+  <div class="gantt-phase-tracker" id="ganttPhaseTracker"></div>
   <div class="gantt-outer">
     <div class="gantt-wrap">
       <div class="gantt-head">
@@ -198,140 +241,71 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
       </div>
       <div class="legend">
         <div class="li"><div class="ld" style="background:var(--green)"></div>Complete</div>
-        <div class="li"><div class="ld" style="background:var(--orange)"></div>Active / Current Sub</div>
+        <div class="li"><div class="ld" style="background:var(--orange)"></div>Active / on site</div>
         <div class="li"><div class="ld" style="background:var(--red)"></div>Overdue</div>
         <div class="li"><div class="ld" style="background:var(--bdr2)"></div>Upcoming</div>
+        <div class="li"><div class="ld" style="background:rgba(239,68,68,.25);border:1px dashed rgba(239,68,68,.8)"></div>Delay (after finish)</div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="shared.js?v20260424a"></script>
+<script src="shared.js?v=20260420_taskend"></script>
+<script>
+if(typeof taskScheduleEnd!=='function'){
+window.taskScheduleEnd=function(t){
+if(!t)return null;
+var e=t.endDate||t.startDate;
+if(!e)return null;
+var dly=Math.max(0,parseInt(t.delay,10)||0);
+return new Date(e.getTime()+dly*864e5);
+};
+}
+</script>
 <script>
 const ADMIN_PIN=SITE_ACCESS_PIN;
 const ADMIN_KEY='rac_admin';
+const GANTT_LBL=250;
 let isAdmin=sessionStorage.getItem(ADMIN_KEY)==='1';
 let pending={};
 let allTasks=[];
 
-// PIN
 function toggleAdmin(){isAdmin?exitAdmin():openPin()}
 function openPin(){document.getElementById('pinModal').classList.remove('hidden');document.getElementById('pd0').focus()}
 function closePin(){document.getElementById('pinModal').classList.add('hidden');[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pinOk').disabled=true;document.getElementById('pinErr').textContent=''}
 function pIn(i){const e=document.getElementById('pd'+i);e.value=e.value.replace(/\D/g,'');if(e.value&&i<3)document.getElementById('pd'+(i+1)).focus();document.getElementById('pinOk').disabled=[0,1,2,3].map(j=>document.getElementById('pd'+j).value).join('').length!==4;document.getElementById('pinErr').textContent=''}
 function pKey(e,i){if(e.key==='Backspace'&&!document.getElementById('pd'+i).value&&i>0)document.getElementById('pd'+(i-1)).focus();if(e.key==='Enter')checkPin()}
-function checkPin(){
-  const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');
-  if(p===ADMIN_PIN){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}
-  else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}
-}
-function applyAdmin(){
-  document.getElementById('adminBtn').textContent='🔓 Admin ON';
-  document.getElementById('adminBtn').classList.remove('unlock');
-  document.getElementById('adminBtn').classList.add('locked');
-  document.getElementById('gb').classList.add('adm');
-}
-function exitAdmin(){
-  if(Object.keys(pending).length&&!confirm('Discard unsaved changes?'))return;
-  isAdmin=false;pending={};sessionStorage.removeItem(ADMIN_KEY);
-  document.getElementById('adminBtn').textContent='🔒 Admin';
-  document.getElementById('adminBtn').classList.add('unlock');
-  document.getElementById('adminBtn').classList.remove('locked');
-  document.getElementById('gb').classList.remove('adm');
-  document.getElementById('saveBar').classList.remove('vis');
-  render(allTasks);
-}
-function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks)}
-function saveEdits(){
-  for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}
-  pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks);
-  alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.');
-}
+function checkPin(){const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');if(p===ADMIN_PIN){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}}
+function applyAdmin(){document.getElementById('adminBtn').textContent='🔓 Admin ON';document.getElementById('adminBtn').classList.remove('unlock');document.getElementById('adminBtn').classList.add('locked');document.getElementById('gb').classList.add('adm')}
+function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved changes?'))return;isAdmin=false;pending={};sessionStorage.removeItem(ADMIN_KEY);document.getElementById('adminBtn').textContent='🔒 Admin';document.getElementById('adminBtn').classList.add('unlock');document.getElementById('adminBtn').classList.remove('locked');document.getElementById('gb').classList.remove('adm');document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
+function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
+function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
 
-// HERO — reads %Comp from budget (via task.progress already set by crossRefBudgetSchedule)
-function renderHero(tasks){
-  const today=new Date();today.setHours(0,0,0,0);
+function renderHeroHeader(tasks){
+  const h=getPrimarySubcontractorHeroState(tasks,pending);
   const hero=document.getElementById('hero');
-  const nonPhase=tasks.filter(t=>!t.isPhase&&t.startDate);
-  const effEnd=t=>{
-    const e=t.endDate||null;
-    if(!e)return null;
-    const dly=Math.max(0,parseInt(t.delay)||0);
-    return new Date(e.getTime()+dly*864e5);
-  };
-  // Current: started and not yet finished
-  const active=nonPhase.filter(t=>{
-    if(!(t.startDate<=today))return false;
-    const e=effEnd(t)||t.endDate;
-    return e?e>=today:true;
-  });
-  // Next up if none active
-  const upcoming=nonPhase.filter(t=>t.startDate>today).sort((a,b)=>a.startDate-b.startDate);
-  const cur=active.length?active[0]:upcoming.length?upcoming[0]:null;
-
-  if(!cur){
-    hero.className='hero no-sub';
-    hero.innerHTML='<span style="font-size:13px;color:var(--dim)">No active subcontractor scheduled</span>';
-    return;
-  }
-
-  const prog=pending[cur.nameNorm]!==undefined?pending[cur.nameNorm]:cur.progress;
-  const curEnd=effEnd(cur)||cur.endDate;
-  const isActive=cur.startDate<=today&&(curEnd?curEnd>=today:true);
-  const totalDays=Math.max(1,daysBetween(cur.startDate,curEnd||cur.startDate));
-  const elapsedDays=Math.max(0,daysBetween(cur.startDate,today));
-  // On time = still has days left OR complete. Only red if past finish date and not done.
-  const onTime=(curEnd?curEnd>=today:true)||prog>=100;
-  const behindBy=Math.max(0,Math.round(daysBetween(curEnd||today,today)));
-  const daysLeft=daysBetween(today,curEnd||today);
-  const daysStr=isActive?(daysLeft>0?daysLeft+' days left':daysLeft===0?'Due today':'Overdue '+Math.abs(daysLeft)+' days'):'Starts '+fmtDate(cur.startDate);
-
-  hero.className='hero '+(onTime?'on-time':'off-time');
-  hero.innerHTML=`
-    <div class="hero-left">
-      <div class="hero-icon">${onTime?'✅':'🚨'}</div>
-      <div>
-        <div class="hero-label">Current Subcontractor</div>
-        <div class="hero-name">${cur.name}</div>
-        <div class="hero-vendor">${cur.vendor||''}</div>
-      </div>
-    </div>
-    <div class="hero-center">
-      <div class="hero-stat">
-        <div class="hero-stat-val">${Math.round(prog)}%</div>
-        <div class="hero-stat-lbl">Complete</div>
-      </div>
-      <div class="hero-div"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-val" style="color:var(--txt2);font-size:16px">${daysStr}</div>
-        <div class="hero-stat-lbl">${isActive?'Schedule':'Next Up'}</div>
-      </div>
-      ${!onTime?`<div class="hero-div"></div><div class="hero-stat"><div class="hero-stat-val">${behindBy}d</div><div class="hero-stat-lbl">Overdue</div></div>`:''}
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-      <div class="hero-badge">${onTime?'ON SCHEDULE':'BEHIND SCHEDULE'}</div>
-      <div class="hero-prog-wrap">
-        <div class="hero-prog-bar"><div class="hero-prog-fill" style="width:${Math.min(100,prog)}%"></div></div>
-        <span class="hero-prog-pct">${Math.round(prog)}%</span>
-      </div>
-    </div>`;
+  hero.className=h.className;
+  hero.innerHTML=h.html;
 }
 
-// GANTT
-function render(tasks){
+function renderGanttReadonly(tasks){
   const today=new Date();today.setHours(0,0,0,0);
   const gi=document.getElementById('gi');
   const mhdr=document.getElementById('mhdr');
   gi.innerHTML='';mhdr.innerHTML='';
 
-  const filtered=tasks;
+  const filtered=filterScheduleTasksForDisplay(tasks);
 
   let gMin=Infinity,gMax=-Infinity;
   for(const t of filtered){
     if(t.startDate)gMin=Math.min(gMin,t.startDate.getTime());
-    if(t.endDate)gMax=Math.max(gMax,t.endDate.getTime());
+    const eff=taskScheduleEnd(t);
+    if(eff)gMax=Math.max(gMax,eff.getTime());
+    else if(t.endDate)gMax=Math.max(gMax,t.endDate.getTime());
   }
-  if(!isFinite(gMin)){gMin=P_START.getTime();gMax=P_END.getTime()}
+  if(!isFinite(gMin)){gMin=today.getTime()-30*864e5;gMax=today.getTime()+90*864e5}
+  gMin=Math.min(gMin,today.getTime()-20*864e5);
+  gMax=Math.max(gMax,today.getTime()+45*864e5);
 
   const gS=new Date(new Date(gMin).getFullYear(),new Date(gMin).getMonth(),1);
   const gER=new Date(gMax);
@@ -339,7 +313,6 @@ function render(tasks){
   const gD=Math.max(1,daysBetween(gS,gE));
   const todayPct=Math.min(100,Math.max(0,daysBetween(gS,today)/gD*100));
 
-  // Month headers
   {let d=new Date(gS);while(d<=gE){
     const isCur=d.getMonth()===today.getMonth()&&d.getFullYear()===today.getFullYear();
     const dim=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
@@ -351,58 +324,50 @@ function render(tasks){
     d=new Date(d.getFullYear(),d.getMonth()+1,1);
   }}
 
-  renderHero(tasks);
+  renderHeroHeader(tasks);
 
   for(const t of filtered){
-    if(!t.startDate){
-      if(t._fromSubs && t.vendor){
-        const row=document.createElement('div');
-        row.className='g-row';
-        const lbl=document.createElement('div');
-        lbl.className='g-lbl';
-        lbl.style.minHeight='44px';
-        lbl.innerHTML=`<div class="g-name">${t.name}</div><div class="g-sub"><a href="sub.html?v=${encodeURIComponent(t.vendor)}" style="color:var(--cyan);text-decoration:none;font-size:10px;font-weight:600" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ ${t.vendor}</a></div>`;
-        const tl=document.createElement('div');
-        tl.className='g-tl';
-        tl.style.minHeight='44px';
-        tl.style.display='flex';
-        tl.style.alignItems='center';
-        const note=document.createElement('div');
-        note.style.cssText='font-size:11px;color:var(--dim);padding:0 8px';
-        note.textContent='On Subs register — set start/finish in the Schedule tab to show a timeline bar';
-        tl.appendChild(note);
-        row.appendChild(lbl);
-        row.appendChild(tl);
-        gi.appendChild(row);
-      }
-      continue;
-    }
+    if(!t.startDate)continue;
     const s=t.startDate,e=t.endDate||s;
+    const dly=Math.max(0,parseInt(t.delay,10)||0);
+    const effEnd=taskScheduleEnd(t)||e;
     const prog=pending[t.nameNorm]!==undefined?pending[t.nameNorm]:t.progress;
-    const done=(prog>=100);
-    const active=(prog>0&&prog<100);
+    const overdue=!t.isPhase&&effEnd<today&&prog<100;
+    const active=!t.isPhase&&s<=today&&effEnd>=today;
+    const done=prog>=100;
 
     const row=document.createElement('div');
-    row.className='g-row'+(t.isPhase?' ph':'');
+    row.className='g-row'+(t.isPhase?' ph':'')+(active?' act':'')+(overdue?' ov':'');
 
     const lbl=document.createElement('div');lbl.className='g-lbl';
-    lbl.innerHTML=`<div class="g-name">${t.isPhase?(PHASE_SPELL_FIX[t.nameNorm]||t.name):t.name}</div>${t.vendor&&!t.isPhase?`<div class="g-sub"><a href="sub.html?v=${encodeURIComponent(t.vendor)}" style="color:var(--cyan);text-decoration:none;font-size:10px;font-weight:600" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ ${t.vendor}</a></div>`:''}`;
+    const vsub=t.vendor&&!t.isPhase?'<div class="g-sub">'+escHtml(t.vendor)+'</div>':'';
+    const nm=t.isPhase?escHtml(PHASE_SPELL_FIX[t.nameNorm]||t.name):escHtml(t.name);
+    lbl.innerHTML='<div class="g-name">'+nm+'</div>'+vsub;
 
     const tl=document.createElement('div');tl.className='g-tl';
     const left=Math.max(0,daysBetween(gS,s)/gD*100);
-    const right=Math.min(100,daysBetween(gS,e)/gD*100);
-    const w=Math.max(.3,right-left);
-    const bc=done?'dn':active?'ac':'';
+    const rightWork=Math.min(100,daysBetween(gS,e)/gD*100);
+    const wWork=Math.max(.3,rightWork-left);
+    const bc=done?'dn':overdue?'od':active?'ac':'';
     const bar=document.createElement('div');
     bar.className='g-bar '+bc;
-    bar.style.left=left+'%';bar.style.width=w+'%';
+    bar.style.left=left+'%';bar.style.width=wWork+'%';
     if(!t.isPhase&&prog>0&&!done){
       const fill=document.createElement('div');
       fill.className='g-fill';fill.style.width=Math.min(100,prog)+'%';
       bar.appendChild(fill);
     }
     tl.appendChild(bar);
-
+    if(dly>0&&e&&effEnd>e){
+      const rightEff=Math.min(100,daysBetween(gS,effEnd)/gD*100);
+      const wDel=Math.max(.25,rightEff-rightWork);
+      const del=document.createElement('div');
+      del.className='g-delay';
+      del.style.left=rightWork+'%';
+      del.style.width=wDel+'%';
+      del.title='Delay: '+dly+' day'+(dly===1?'':'s')+' (after finish)';
+      tl.appendChild(del);
+    }
     if(!t.isPhase){
       const inp=document.createElement('input');
       inp.type='number';inp.min=0;inp.max=100;inp.className='g-inp';
@@ -411,52 +376,47 @@ function render(tasks){
         const v=Math.min(100,Math.max(0,parseFloat(this.value)||0));
         this.value=v;pending[t.nameNorm]=v;
         document.getElementById('saveBar').classList.add('vis');
-        renderHero(tasks);
+        renderHeroHeader(tasks);
       });
       tl.appendChild(inp);
     }
-
     row.appendChild(lbl);row.appendChild(tl);
     gi.appendChild(row);
   }
 
   const tm=document.createElement('div');
   tm.className='today-mk';
-  tm.style.left='calc(250px + (100% - 250px) * '+todayPct+' / 100)';
+  tm.style.left='calc('+GANTT_LBL+'px + (100% - '+GANTT_LBL+'px) * '+todayPct+' / 100)';
   tm.innerHTML='<div class="today-lbl">▼ Today</div>';
   gi.appendChild(tm);
 
   const gb=document.getElementById('gb');
   requestAnimationFrame(()=>{
-    const bw=gb.clientWidth-250;
-    const tw=(gi.scrollWidth-250)*todayPct/100;
+    const bw=gb.clientWidth-GANTT_LBL;
+    const tw=(gi.scrollWidth-GANTT_LBL)*todayPct/100;
     gb.scrollLeft=Math.max(0,tw-bw/2);
   });
   gb.onscroll=()=>{mhdr.parentElement.scrollLeft=gb.scrollLeft};
   if(isAdmin)applyAdmin();
 }
 
-function buildSubNav(tasks){
-  const el=document.getElementById('subNavLinks');
-  if(!el)return;
-  const vendors=[...new Set(tasks.filter(t=>!t.isPhase&&t.vendor).map(t=>t.vendor.trim()))].sort();
-  el.innerHTML=vendors.map(v=>`<a href="sub.html?v=${encodeURIComponent(v)}" class="topnav-links" style="padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;white-space:nowrap;transition:all .2s" onmouseover="this.style.color='#fff';this.style.background='var(--hover)'" onmouseout="this.style.color='var(--txt2)';this.style.background=''">${v}</a>`).join('');
+async function doRefresh(){
+  document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';document.getElementById('error').style.display='none';
+  try{await init()}catch(e){document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message}
 }
-
-async function doRefresh(){document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';await init()}
 async function init(){
   try{
     const{main}=await loadProjectData();
     allTasks=main.scheduleTasks||[];
-    buildSubNav(allTasks);
-    render(allTasks);
-    document.getElementById('loading').style.display='none';
-    document.getElementById('app').style.display='block';
+    const pt=document.getElementById('ganttPhaseTracker');
+    if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);
+    renderGanttReadonly(allTasks);
+    document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block'
   }catch(e){
-    document.getElementById('loading').innerHTML=`<div style="text-align:center;color:var(--red)"><h3>⚠ Failed to load</h3><p style="font-size:13px;color:var(--dim);margin-top:8px">${e.message}</p><br><button onclick="doRefresh()" style="margin-top:12px;padding:8px 20px;border-radius:8px;background:var(--blue);color:#fff;border:none;cursor:pointer">Retry</button></div>`;
+    document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message
   }
 }
-init();
+init()
 </script>
 </body>
 </html>
