@@ -260,7 +260,7 @@ tr:last-child td{border-bottom:none}
 
 </div></div><!-- end portal-content -->
 <div id="sels-content" style="display:none;padding-top:56px"><div id="sels-inner" style="max-width:1200px;margin:0 auto;padding:24px 20px"></div></div>
-<script src="shared.js?v20260429_invoice_pending"></script>
+<script src="shared.js?v20260429_company_info"></script>
 <script>
 const SUPA='https://mcvkkohtvywwvtndpuvw.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdmtrb2h0dnl3d3Z0bmRwdXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3ODU1ODMsImV4cCI6MjA4NzM2MTU4M30.q-_tb3az_HbCpaZXS-wLUq1wcoZQ5x7hBFlw1zeIuJ8';
@@ -593,11 +593,23 @@ function renderEmails(){
   if(!siEmails.length)el.innerHTML='<div style="font-size:12px;color:var(--dim);margin-bottom:6px">No email addresses added yet.</div>';
 }
 
-function loadInfo(vendor){
+async function loadInfo(vendor){
   try{
+    let d=null;
     const raw=localStorage.getItem('sub_info_'+vendor);
-    if(!raw)return initInfo();
-    const d=JSON.parse(raw);
+    if(raw){
+      d=JSON.parse(raw);
+    }else{
+      try{
+        const r=await fetch('sub_info.json?_='+Date.now());
+        if(r.ok){
+          const all=await r.json();
+          const url=new URLSearchParams(location.search).get('v')||'';
+          d=all[String(vendor||'').toLowerCase()]||all[String(url).toLowerCase()]||null;
+        }
+      }catch(e){}
+    }
+    if(!d)return initInfo();
     ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
       const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
     });

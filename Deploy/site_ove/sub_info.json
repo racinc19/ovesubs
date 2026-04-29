@@ -1,0 +1,430 @@
+{
+  "creative engineering": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "480-899-3477"
+    ],
+    "emails": [],
+    "source": "Construction\\Bids\\Security Door\\Revision 2 Secret Door Cost Proposal - Rodriquez (1).pdf (bid)",
+    "sheet_vendor": "Creative Engineering",
+    "updated": "2026-04-29T22:06:58.485895+00:00"
+  },
+  "deezcabnuts": {
+    "company": "DeezCabnuts",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "Cody",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "deezcabnuts@gmail.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\Deez_Cabnuts\\DeezCabnuts_Cabinet_Contract_Rodriguez.docx",
+    "sheet_vendor": "Deez",
+    "updated": "2026-04-29T22:06:58.485908+00:00"
+  },
+  "deez": {
+    "company": "DeezCabnuts",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "Cody",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "deezcabnuts@gmail.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\Deez_Cabnuts\\DeezCabnuts_Cabinet_Contract_Rodriguez.docx",
+    "sheet_vendor": "Deez",
+    "updated": "2026-04-29T22:06:58.485908+00:00"
+  },
+  "alysa oliver": {
+    "company": "Allysa Oliver LLC",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "hello@oliverfinishing.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\Oliver_Finishing_Clayworks_Subcontract_Rodriguez_v2.docx + Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\make_oliver_clayworks_contract.py",
+    "sheet_vendor": "Alysa Oliver",
+    "updated": "2026-04-29T22:06:58.485912+00:00"
+  },
+  "stg": {
+    "company": "St George Windows, Doors & More LLC",
+    "license": "",
+    "address": "5505 W 290 N",
+    "city": "Hurricane",
+    "state": "UT",
+    "zip": "84737",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-673-7377"
+    ],
+    "emails": [
+      "billing@stgwindows.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\St_George_Windows_Doors\\St_George_Windows_Doors_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\St_George_Windows_Doors\\make_stg_glass_contract.py",
+    "sheet_vendor": "STG",
+    "updated": "2026-04-29T22:06:58.485914+00:00"
+  },
+  "clayworks": {
+    "company": "Allysa Oliver LLC",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "hello@oliverfinishing.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\Oliver_Finishing_Clayworks_Subcontract_Rodriguez_v2.docx + Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\make_oliver_clayworks_contract.py",
+    "sheet_vendor": "Clayworks",
+    "updated": "2026-04-29T22:06:58.485917+00:00"
+  },
+  "action target": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "888.377.8033"
+    ],
+    "emails": [],
+    "source": "Construction\\Bids\\Range\\Rodriguez Home Range_RAC, UT V2 Feb 2026.pdf (bid)",
+    "sheet_vendor": "Action Target",
+    "updated": "2026-04-29T22:06:58.485919+00:00"
+  },
+  "blackstone": {
+    "company": "BlackstoneX LLC",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "Dominic Kelsch",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "dom@blackstonex.net"
+    ],
+    "source": "Construction\\Project\\Contracts\\BlackstoneX\\Rodriguez_Site_Contract_Blackstonex.docx",
+    "sheet_vendor": "Blackstone",
+    "updated": "2026-04-29T22:06:58.485922+00:00"
+  },
+  "frie": {
+    "company": "RANDY FREI CONSTRUCTION INC.",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435.986.3993",
+      "435.986.0440"
+    ],
+    "emails": [
+      "rafconstruction@infowest.com"
+    ],
+    "source": "Construction\\Bids\\Concrete\\Est_19643_from_RANDY_FREI_CONSTRUCTION_INC._16620.pdf (bid)",
+    "sheet_vendor": "Frie",
+    "updated": "2026-04-29T22:06:58.485924+00:00"
+  },
+  "sunpro": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-634-2220"
+    ],
+    "emails": [],
+    "source": "Construction\\Bids\\Lumber\\Quote 936458.pdf (bid)",
+    "sheet_vendor": "Sunpro",
+    "updated": "2026-04-29T22:06:58.485926+00:00"
+  },
+  "cherotech": {
+    "company": "",
+    "license": "13950801-5501",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [],
+    "emails": [],
+    "source": "Construction\\Project\\Contracts\\Cherotech\\Cherotech_Framing_Subcontract (1).docx",
+    "sheet_vendor": "Cherotech",
+    "updated": "2026-04-29T22:06:58.485928+00:00"
+  },
+  "master": {
+    "company": "Master Plumbing Systems",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 574-1763"
+    ],
+    "emails": [],
+    "source": "Construction\\Bids\\Plumbing\\Est_3486_from_Master_Plumbing_Systems_4192.pdf (bid)",
+    "sheet_vendor": "Master",
+    "updated": "2026-04-29T22:06:58.485930+00:00"
+  },
+  "breck": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-632-5322"
+    ],
+    "emails": [
+      "breckelectric@gmail.com"
+    ],
+    "source": "Construction\\Bids\\Electrical\\Breck Electric Inc. Estimate for RAC Inc - Rodriguez Home (1).pdf (bid)",
+    "sheet_vendor": "Breck",
+    "updated": "2026-04-29T22:06:58.485932+00:00"
+  },
+  "sunroc": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-634-2220"
+    ],
+    "emails": [],
+    "source": "Construction\\Bids\\Doors\\Exterior\\Quote 936543.pdf (bid)",
+    "sheet_vendor": "Sunroc",
+    "updated": "2026-04-29T22:06:58.485934+00:00"
+  },
+  "rancho": {
+    "company": "Rancho Stucco LLC",
+    "license": "",
+    "address": "PO Box 790195",
+    "city": "Virgin",
+    "state": "UT",
+    "zip": "84779",
+    "contact": "",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "ranchostuccollc@gmail.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\Rancho_Stucco\\Rancho_Stucco_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\Rancho_Stucco\\make_rancho_stucco_contract.py",
+    "sheet_vendor": "Rancho",
+    "updated": "2026-04-29T22:06:58.485936+00:00"
+  },
+  "simco": {
+    "company": "BSM Residential",
+    "license": "",
+    "address": "3376 E 380 St N",
+    "city": "St. George",
+    "state": "UT",
+    "zip": "84790",
+    "contact": "",
+    "website": "www.bsmresidential.com",
+    "phones": [
+      "(435) 466-1100"
+    ],
+    "emails": [
+      "josette@bsmmasonry.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\BSM_Stone\\BSM_Stone_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\BSM_Stone\\make_bsm_stone_contract.py",
+    "sheet_vendor": "Simco",
+    "updated": "2026-04-29T22:06:58.485948+00:00"
+  },
+  "lp": {
+    "company": "D2 Building Solutions",
+    "license": "",
+    "address": "5099 Wheeler Way",
+    "city": "Hurricane",
+    "state": "UT",
+    "zip": "84737",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 688-1337"
+    ],
+    "emails": [
+      "nathan@d2bldg.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\D2_Insulation\\D2_Insulation_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\D2_Insulation\\make_d2_insulation_contract.py",
+    "sheet_vendor": "LP",
+    "updated": "2026-04-29T22:06:58.485950+00:00"
+  },
+  "h&e": {
+    "company": "H & E Drywall",
+    "license": "",
+    "address": "1018 S 1740 E",
+    "city": "St. George",
+    "state": "UT",
+    "zip": "84790",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 236-5652"
+    ],
+    "emails": [
+      "hedrywall1022@gmail.com"
+    ],
+    "source": "Construction\\Project\\Contracts\\H_E_Drywall\\H_E_Drywall_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\H_E_Drywall\\make_he_drywall_contract.py",
+    "sheet_vendor": "H&E",
+    "updated": "2026-04-29T22:06:58.485952+00:00"
+  },
+  "jose": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 256-1387"
+    ],
+    "emails": [
+      "coatingprosllc@gmail.com"
+    ],
+    "source": "Construction\\Bids\\Coatings\\Coatings.pdf (bid)",
+    "sheet_vendor": "Jose",
+    "updated": "2026-04-29T22:06:58.485953+00:00"
+  },
+  "countertop source": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 251-8257"
+    ],
+    "emails": [
+      "buck.mays@countertopsource.com",
+      "info@countertopsource.com"
+    ],
+    "source": "Construction\\Bids\\Countertop\\Quote Drawing-9-16-2025.pdf (bid)",
+    "sheet_vendor": "Countertop source",
+    "updated": "2026-04-29T22:06:58.485956+00:00"
+  },
+  "a&l": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [],
+    "emails": [
+      "alfinishcarpentry@gmail.com"
+    ],
+    "source": "Construction\\Bids\\Carpentry\\Estimate# 4460 interior trim install.pdf (bid)",
+    "sheet_vendor": "A&L",
+    "updated": "2026-04-29T22:06:58.485958+00:00"
+  },
+  "kuhn's": {
+    "company": "Dash Heating & Air",
+    "license": "",
+    "address": "135 N 900 E",
+    "city": "St. George",
+    "state": "UT",
+    "zip": "84770",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-272-2783"
+    ],
+    "emails": [],
+    "source": "Construction\\Project\\Contracts\\Dash_HVAC\\Rodriguez_HVAC_Contract_Dash.docx + Construction\\Project\\Contracts\\Dash_HVAC\\Liberty_Lane_HVAC_Subcontract.docx",
+    "sheet_vendor": "kuhn's",
+    "updated": "2026-04-29T22:06:58.485960+00:00"
+  },
+  "blvd": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "(435) 229-9475"
+    ],
+    "emails": [
+      "haley.benware@blvdhome.com"
+    ],
+    "source": "Construction\\Bids\\Appliance\\Rac Inc - Oak Valley Estates Lot 5 - Rodriguez Residence.pdf (bid)",
+    "sheet_vendor": "Blvd",
+    "updated": "2026-04-29T22:06:58.485963+00:00"
+  },
+  "d4": {
+    "company": "",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "",
+    "website": "",
+    "phones": [
+      "435-572-5132"
+    ],
+    "emails": [
+      "tigmatic@gmail.com"
+    ],
+    "source": "Construction\\Bids\\Solar\\Estimate 1225 (1).pdf (bid)",
+    "sheet_vendor": "D4",
+    "updated": "2026-04-29T22:06:58.485964+00:00"
+  }
+}
