@@ -204,7 +204,6 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 
 <script src="shared.js?v20260424a"></script>
 <script>
-const ADMIN_PIN=SITE_ACCESS_PIN;
 const ADMIN_KEY='rac_admin';
 let isAdmin=sessionStorage.getItem(ADMIN_KEY)==='1';
 let pending={};
@@ -216,9 +215,9 @@ function openPin(){document.getElementById('pinModal').classList.remove('hidden'
 function closePin(){document.getElementById('pinModal').classList.add('hidden');[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pinOk').disabled=true;document.getElementById('pinErr').textContent=''}
 function pIn(i){const e=document.getElementById('pd'+i);e.value=e.value.replace(/\D/g,'');if(e.value&&i<3)document.getElementById('pd'+(i+1)).focus();document.getElementById('pinOk').disabled=[0,1,2,3].map(j=>document.getElementById('pd'+j).value).join('').length!==4;document.getElementById('pinErr').textContent=''}
 function pKey(e,i){if(e.key==='Backspace'&&!document.getElementById('pd'+i).value&&i>0)document.getElementById('pd'+(i-1)).focus();if(e.key==='Enter')checkPin()}
-function checkPin(){
+async function checkPin(){
   const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');
-  if(p===ADMIN_PIN){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}
+  if(await checkSitePin(p)){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}
   else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}
 }
 function applyAdmin(){

@@ -77,11 +77,15 @@ function parseBudgetTab(rows){
     totalProfit=parseAmt(rows[3][13])||0
   }
 
-  // Parse Change Orders from rows 5-8 (before phase data)
+  // Parse Change Orders — scan rows until we hit a phase (no fixed row cap).
+  // Insertions of new COs (e.g. CO-013, CO-014) push later rows down, so a
+  // hardcoded upper bound silently drops them. Mirrors deploy_live/shared.js.
   const changeOrdersFromSheet=[];
-  for(let i=4;i<10;i++){
+  for(let i=4;i<rows.length;i++){
     const r=rows[i];if(!r||!r[0])continue;
     const n=(r[0]||'').trim();
+    const nL=norm(n);
+    if(PHASE_NAMES.includes(nL))break;
     if(!n.match(/^Change\s+\d+/i))continue;
     changeOrdersFromSheet.push({
       num:n,

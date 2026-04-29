@@ -288,7 +288,6 @@ select.st-received{border-color:var(--purple);color:var(--purple)}.select.st-ins
 
 const SCRIPT_URL='https://ove-proxy.racinc19.workers.dev';
 const SEL_KEY='rodriguez_sel_v9';
-const OWNER_PIN=SITE_ACCESS_PIN;
 let _pinTarget=null,_pinType=null;
 const STATUS_ORDER=['not_started','researching','selected','ordered','received','installed'];
 const STATUS_LABELS={not_started:'Not Started',researching:'Researching',selected:'Selected',ordered:'Ordered',received:'Received',installed:'Installed'};
@@ -365,9 +364,9 @@ function requestApproval(type, id){
   document.getElementById('modalPin').classList.add('open');
   setTimeout(()=>document.getElementById('pinInput').focus(),100);
 }
-function submitPin(){
+async function submitPin(){
   const entered=document.getElementById('pinInput').value;
-  if(entered!==OWNER_PIN){
+  if(!(await checkSitePin(entered))){
     document.getElementById('pinError').textContent='Incorrect PIN. Try again.';
     document.getElementById('pinInput').value='';
     return;

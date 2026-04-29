@@ -74,6 +74,7 @@ tr:last-child td{border-bottom:none}
 .treq{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
 .tok{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.2)}
 .topt{background:rgba(91,99,112,.15);color:var(--dim);border:1px solid rgba(91,99,112,.2)}
+.tpending{background:rgba(245,158,11,.14);color:var(--orange);border:1px solid rgba(245,158,11,.35)}
 .dbtns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ubtn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;white-space:nowrap}
 .ubtn.primary{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.4);color:var(--blue)}
@@ -259,7 +260,7 @@ tr:last-child td{border-bottom:none}
 
 </div></div><!-- end portal-content -->
 <div id="sels-content" style="display:none;padding-top:56px"><div id="sels-inner" style="max-width:1200px;margin:0 auto;padding:24px 20px"></div></div>
-<script src="shared.js?v20260424a"></script>
+<script src="shared.js?v20260429_invoice_pending"></script>
 <script>
 const SUPA='https://mcvkkohtvywwvtndpuvw.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdmtrb2h0dnl3d3Z0bmRwdXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3ODU1ODMsImV4cCI6MjA4NzM2MTU4M30.q-_tb3az_HbCpaZXS-wLUq1wcoZQ5x7hBFlw1zeIuJ8';
@@ -272,6 +273,13 @@ const DOCS=[
   {id:'addendum',label:'Addendum',req:false},
   {id:'invoice',label:'Invoice',req:false},
 ];
+
+// Vendors whose latest invoice has been pulled by RAC and forwarded to billing.
+// Update this map (and ship via Deploy/ship_ove_subs.ps1) when an invoice changes state.
+// Keyed on the Subs sheet col-B vendor id (e.g. "Deez", not "DeezCabnuts").
+const INVOICE_PENDING_BY_RAC={
+  'Deez':{date:'2026-04-29',note:'Invoice received by RAC and forwarded to billing for processing'},
+};
 
 const params=new URLSearchParams(location.search);
 const VENDOR=decodeURIComponent(params.get('v')||'').trim();
@@ -416,12 +424,14 @@ async function renderDocs(vendor){
   DOCS.forEach((doc,i)=>{
     const ok=exists[i];
     const row=document.createElement('div');row.className='doc-row';row.id='dr-'+doc.id;
-    const tagCls=ok?'tok':doc.req?'treq':'topt';
-    const tagTxt=ok?'✓ Uploaded':doc.req?'Required':'Optional';
+    const pending=(doc.id==='invoice'&&ok)?INVOICE_PENDING_BY_RAC[vendor]:null;
+    const tagCls=pending?'tpending':ok?'tok':doc.req?'treq':'topt';
+    const tagTxt=pending?('⏳ Pending Review · '+pending.date):ok?'✓ Uploaded':doc.req?'Required':'Optional';
+    const noteTxt=pending?pending.note:ok?'On file — upload again to replace':'PDF only · Max 10MB';
     row.innerHTML=`
       <div>
         <div class="dname">${doc.label}<span class="dtag ${tagCls}">${tagTxt}</span></div>
-        <div class="dnote">${ok?'On file — upload again to replace':'PDF only · Max 10MB'}</div>
+        <div class="dnote">${noteTxt}</div>
       </div>
       <div class="dbtns">
         ${ok?`<a class="vbtn" href="${pubUrl(vendor,doc.id)}" target="_blank">View PDF</a>`:''}
