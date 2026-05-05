@@ -837,3 +837,19 @@ function compressImage(dataUrl,maxW,quality){
 }
 
 function genPhotoKey(){return 'p_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+
+// Auto-correct invoice history directly on load so the user doesn't need a console snippet
+(function(){
+  var KEY='rac_monthly_invoice_rows_v1';
+  try{
+    var current = localStorage.getItem(KEY);
+    if(!current || current.indexOf('2026-02') !== -1 || current.indexOf('349065.52') === -1) {
+      var fixed = [
+        {id:'m_1', ym:'2026-03', label:'March 2026 Invoice', amount: 400154.48, paid: 400154.48, status:'paid'},
+        {id:'m_2', ym:'2026-04', label:'April 2026 Invoice', amount: 349065.52, paid: 349065.52, status:'paid'},
+        {id:'m_3', ym:'2026-05', label:'May 2026 Invoice', amount: 91623.98, paid: 0, status:'due'}
+      ];
+      localStorage.setItem(KEY, JSON.stringify(fixed));
+    }
+  }catch(e){}
+})();
