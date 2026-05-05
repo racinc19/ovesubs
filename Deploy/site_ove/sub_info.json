@@ -110,15 +110,17 @@
     "city": "Provo",
     "state": "UT",
     "zip": "84606",
-    "contact": "",
-    "website": "",
+    "contact": "Jessica Young",
+    "website": "www.actiontarget.com",
     "phones": [
       "888.377.8033"
     ],
-    "emails": [],
+    "emails": [
+      "jyoung@actiontarget.com"
+    ],
     "source": "Construction\\Bids\\Range\\Rodriguez Home Range_RAC, UT V2 Feb 2026.pdf (bid) + Construction\\Bids\\Range\\Rodriguez Home Range_RAC, UT V2 Feb 2026.pdf (letterhead p2)",
     "sheet_vendor": "Action Target",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "updated": "2026-05-05T18:00:00.000000+00:00"
   },
   "blackstone": {
     "company": "BlackstoneX LLC",
