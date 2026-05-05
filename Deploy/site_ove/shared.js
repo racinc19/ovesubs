@@ -1,14 +1,12 @@
 // shared.js — Rodriguez Residence Tracker — 100% LIVE from Google Sheet
 // NO hardcoded data. Everything pulled from published sheet on every page load.
 
-// Site-wide PIN: schedule Admin (🔒 Admin) + owner approval on Selections. Change only here.
-const SITE_ACCESS_PIN='1234';
+// Site PIN stored as SHA-256 hash only — plaintext never in source. Change hash here to change PIN.
+const SITE_ACCESS_PIN_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
+async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(entered));const hex=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');return hex===SITE_ACCESS_PIN_HASH;}
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
-// SUBS tab — publish this tab and replace the gid below
-// Columns: A=Vendor(exact match), B=PIN, C=ContractAmt, D=DriveFolderURL
-const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -26,6 +24,19 @@ const SCHEDULE_PHASE_NAMES=['deposit','pre construction','site','structural','me
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
   'contingency','options'];
 const PHASE_KEYS=PHASE_NAMES.slice();
+
+// Hosted CO document URLs (relative to site root) — used when CO has no docUrl/docLink
+const CO_DOC_URLS={
+  'CO-001':'co_docs/CO-001.pdf','CO-002':'co_docs/CO-002.docx','CO-003':'co_docs/CO-003.pdf',
+  'CO-004':'co_docs/CO-004.pdf','CO-005':'co_docs/CO-005.pdf','CO-006':'co_docs/CO-006.pdf',
+  'CO-007':'co_docs/CO-007.pdf','CO-008':'co_docs/CO-008.docx','CO-010':'co_docs/CO-010.docx',
+  'CO-011':'co_docs/CO-011.pdf','CO-012':'co_docs/CO-012.pdf',
+  'CO-013':'co_docs/CO-013.pdf','CO-014':'co_docs/CO-014.pdf'
+};
+function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
+// Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
+function coDedupeKey(co){const n=(co.num||co.name||'').trim();const m1=n.match(/^Change\s+(\d+(?:\.\d+)?)$/i);if(m1){const v=m1[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}const m2=n.match(/CO-?(\d+(?:\.\d+)?)/i);if(m2){const v=m2[1];return v.includes('.')?'CO-'+v:'CO-'+String(parseInt(v,10)).padStart(3,'0');}return null;}
+function coDocUrl(co){return co.docUrl||co.docLink||((typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))&&CO_DOC_URLS[(typeof coDedupeKey==='function'?coDedupeKey(co):coDocKey(co))]||null);}
 
 let P_START=new Date(2026,1,7);
 let P_END=new Date(2027,0,14);
@@ -76,10 +87,38 @@ function parseBudgetTab(rows){
     totalBudget=parseAmt(rows[3][6])||parseAmt(rows[3][2])||parseAmt(rows[3][1])||0;
     totalProfit=parseAmt(rows[3][13])||0
   }
+  let totalPaidOverride=0;
+  let buildGrossTotals=null;
+  let paidCol=5;
+  for(let r=0;r<Math.min(5,rows.length);r++){
+    const row=rows[r];if(!row)continue;
+    for(let c=0;c<Math.min(row.length,15);c++){
+      const cell=(row[c]||'').trim().toLowerCase();
+      if(cell==='paid'){paidCol=c;break}
+    }
+  }
+  for(let r=1;r<Math.min(14,rows.length);r++){
+    const row=rows[r];if(!row||!row[0])continue;
+    const a0=(row[0]||'').trim().toLowerCase();
+    const a1=(row[1]||'').trim().toLowerCase();
+    if(/build gross|^total$/.test(a0)||/build gross|^total$/.test(a1)){
+      buildGrossTotals={
+        invoiced:parseAmt(row[4]||0),
+        paid:parseAmt(row[5]||0),
+        outstanding:parseAmt(row[6]||0),
+        draftCol:parseAmt(row[7]||0)
+      };
+      const pv=parseAmt(row[paidCol]||0);
+      if(Math.abs(pv)>1000)totalPaidOverride=Math.abs(pv);
+      break
+    }
+  }
+  if(totalPaidOverride===0&&rows[3]&&rows[3][5]){
+    const v=parseAmt(rows[3][5]);
+    if(v>0)totalPaidOverride=Math.abs(v);
+  }
 
-  // Parse Change Orders — scan rows until we hit a phase (no fixed row cap).
-  // Insertions of new COs (e.g. CO-013, CO-014) push later rows down, so a
-  // hardcoded upper bound silently drops them. Mirrors deploy_live/shared.js.
+  // Parse Change Orders — scan rows until we hit Deposit or a phase (no fixed row cap)
   const changeOrdersFromSheet=[];
   for(let i=4;i<rows.length;i++){
     const r=rows[i];if(!r||!r[0])continue;
@@ -95,6 +134,7 @@ function parseBudgetTab(rows){
       invoiced:parseAmt(r[4]),
       paid:parseAmt(r[5]),
       outstanding:parseAmt(r[6]),
+      draftCol:parseAmt(r[7]||0),
       status:'approved'
     });
   }
@@ -135,6 +175,7 @@ function parseBudgetTab(rows){
     const invoiced=parseAmt(r[4]);     // Invoiced (col E)
     const paid=parseAmt(r[5]);         // Paid (col F)
     const outstanding=parseAmt(r[6]);  // Outstanding (col G)
+    const draftCol=parseAmt(r[7]||0);  // Optional col H (e.g. DO / draft order)
     const markup=itemized;
 
     curPhase.items.push({
@@ -150,6 +191,7 @@ function parseBudgetTab(rows){
       paid:paid,
       invoiced:invoiced,
       outstanding:outstanding,
+      draftCol:draftCol,
       profit:0,
       drawAmounts:[],
       totalDrawnBase:0
@@ -163,38 +205,73 @@ function parseBudgetTab(rows){
   }
 
   const headerInfo={sqft,budget:totalBudget,duration:0,completion:''};
-  return{phases,headerInfo,changeOrders:changeOrdersFromSheet}
+  return{phases,headerInfo,changeOrders:changeOrdersFromSheet,totalPaidOverride,buildGrossTotals}
 }
 
 // ═══ PARSE SCHEDULE TAB ═══
+/** Find header row + column indices — published CSV column order is not guaranteed */
+function detectScheduleColumnIndices(rows){
+  const idx={trade:0,vendor:1,progress:2,start:4,days:5,finish:6,delay:7};
+  let dataStart=7;
+  let found=false;
+  for(let r=0;r<Math.min(45,rows.length);r++){
+    const row=rows[r];
+    if(!row||row.length<5)continue;
+    const lower=row.map(c=>String(c||'').trim().toLowerCase());
+    const hasStart=lower.some(h=>h==='start'||h==='start date');
+    const hasFinish=lower.some(h=>h==='finish'||h==='finish date'||h==='end');
+    if(!hasStart||!hasFinish)continue;
+    dataStart=r+1;
+    found=true;
+    for(let c=0;c<row.length;c++){
+      const h=lower[c];
+      if(!h)continue;
+      if(h==='trade'||h==='trade name'||h==='task')idx.trade=c;
+      else if(h==='vendor'||h==='sub'||h.includes('vendor')||h.includes('subcontractor'))idx.vendor=c;
+      else if(h.includes('progress')||h==='% comp'||h==='% complete'||h==='%')idx.progress=c;
+      else if(h==='start'||h==='start date')idx.start=c;
+      else if((h==='days'||h==='day')&&!h.includes('delay'))idx.days=c;
+      else if(h==='finish'||h==='finish date'||h==='end')idx.finish=c;
+      else if(h==='delay'||h==='delay days'||(h.includes('delay')&&!h.includes('undelay')))idx.delay=c;
+    }
+    break;
+  }
+  if(!found)dataStart=7;
+  return{idx,dataStart};
+}
+function parseDelayDays(s){
+  const v=parseInt(String(s==null?'':s).trim(),10);
+  return isNaN(v)?0:Math.max(0,v);
+}
+
 function parseScheduleTab(rows){
-  // Row 6 (index 6): headers — Trade, [B], Progress, [D], Start, Days, Finish, Delay
-  // Row 7+: ALL rows are data — phase names included as rows with their own dates
-  // No section headers to skip — every row with a date is a task
+  // Default: Row 7+ data — Trade, [B], Progress, [D], Start, Days, Finish, Delay
+  const{idx,dataStart:ds}=detectScheduleColumnIndices(rows);
 
   const tasks=[];
   let earliest=null,latest=null;
   let currentPhase='';
   const seenPhases={};
 
-  for(let i=7;i<rows.length;i++){
+  for(let i=ds;i<rows.length;i++){
     const r=rows[i];if(!r)continue;
-    const trade=(r[0]||'').trim();
-    const progressStr=(r[2]||'').trim();
-    const startStr=(r[4]||'').trim();
-    const daysStr=(r[5]||'').trim();
-    const finishStr=(r[6]||'').trim();
-    const delayStr=(r[7]||'').trim();
+    const gv=c=>(r[c]!==undefined&&r[c]!==null?String(r[c]):'').trim();
+    const trade=gv(idx.trade);
+    const progressStr=gv(idx.progress);
+    const startStr=gv(idx.start);
+    const daysStr=gv(idx.days);
+    const finishStr=gv(idx.finish);
+    const delayStr=gv(idx.delay);
 
     if(!trade&&!startStr)continue;
     if(trade==='-Duration')continue; // skip summary row
 
-    const vendor=(r[1]||'').trim();
+    const vendor=gv(idx.vendor);
     const progress=parsePct(progressStr);
     const start=parseDate(startStr);
-    const days=parseInt(daysStr)||0;
+    const days=parseInt(daysStr,10)||0;
     const finish=parseDate(finishStr);
-    const delay=parseInt(delayStr)||0;
+    const delay=parseDelayDays(delayStr);
 
     // Track if this is a phase-level row (first occurrence only)
     const nameL=norm(trade);
@@ -306,8 +383,7 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
         if(t.endDate)item.endDate=t.endDate;
         if(t.duration)item.duration=t.duration;
         if(t.vendor&&!item.vendor)item.vendor=t.vendor;
-        // Budget %comp (col D) is always truth — push it back to the schedule task
-        t.progress=item.progress;
+        // Budget %comp is always truth - never override from schedule
         matchedTasks.add(t)
       }
       if(item.startDate&&(!pStart||item.startDate<pStart))pStart=item.startDate;
@@ -323,20 +399,50 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
 }
 
 // ═══ BUILD DRAW SCHEDULE FROM BUDGET ═══
-function buildDrawSchedule(phases){
+// changeOrders: array of CO objects from parseBudgetTab (sheetCOs)
+function buildDrawSchedule(phases,changeOrders){
+  const today=new Date();
+  const curYear=today.getFullYear(),curMon=today.getMonth();
+  const curKey=curYear+'-'+String(curMon+1).padStart(2,'0');
+  const curDate=new Date(curYear,curMon,1);
   const monthMap={};
+  function ensureMo(key,d){if(!monthMap[key])monthMap[key]={month:new Date(d.getFullYear(),d.getMonth(),1),items:[],total:0,paid:0,outstanding:0};}
+
   for(const p of phases){
     if(p.name==='options'||p.name==='contingency')continue;
     for(const item of p.items){
       const d=item.endDate||item.startDate;
       if(!d)continue;
       const key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
-      if(!monthMap[key])monthMap[key]={month:new Date(d.getFullYear(),d.getMonth(),1),items:[],total:0,paid:0};
-      monthMap[key].items.push({name:item.name,vendor:item.vendor,markup:item.markup,paid:item.paid,phase:p.display});
+      ensureMo(key,d);
+      monthMap[key].items.push({name:item.name,vendor:item.vendor,markup:item.markup,paid:item.paid,outstanding:item.outstanding||0,phase:p.display});
       monthMap[key].total+=item.markup;
       monthMap[key].paid+=item.paid;
+      monthMap[key].outstanding+=item.outstanding||0;
+      // CARRYOVER: past month item with unpaid balance → roll outstanding into current month
+      if(key<curKey&&item.outstanding>0){
+        ensureMo(curKey,curDate);
+        monthMap[curKey].items.push({name:item.name+' [carryover]',vendor:item.vendor,markup:item.outstanding,paid:0,outstanding:item.outstanding,phase:p.display,isCarryover:true});
+        monthMap[curKey].total+=item.outstanding;
+        monthMap[curKey].outstanding+=item.outstanding;
+      }
     }
   }
+
+  // CHANGE ORDERS: approved COs → current month (sheet parse has no approved-date column)
+  for(const co of (changeOrders||[])){
+    if(!co)continue;
+    const status=String(co.status||'').toLowerCase().trim();
+    if(status!=='approved')continue;
+    const amt=Number(co.amount||0)||0;
+    const pd=Number(co.paid||0)||0;
+    if(!amt)continue;
+    ensureMo(curKey,curDate);
+    monthMap[curKey].items.push({name:(co.num||'CO')+(co.desc?' \u2013 '+co.desc:''),vendor:'',markup:amt,paid:pd,phase:'Change Orders',isCO:true});
+    monthMap[curKey].total+=amt;
+    monthMap[curKey].paid+=pd;
+  }
+
   return Object.keys(monthMap).sort().map(k=>monthMap[k])
 }
 
@@ -603,16 +709,17 @@ function renderPhaseTrackerHTML(data){
 async function loadProjectData(){
   const ts=Date.now();
 
+  const fetchOpts={cache:"no-store",redirect:"follow"};
   const[budgetCSV,scheduleCSV]=await Promise.all([
-    fetch(BUDGET_URL+'&_='+ts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
-    fetch(SCHEDULE_URL+'&_='+ts).then(r=>{
+    fetch(BUDGET_URL+"&_="+ts,fetchOpts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
+    fetch(SCHEDULE_URL+"&_="+ts,fetchOpts).then(r=>{
       if(!r.ok){console.warn('Schedule tab HTTP '+r.status);return ''}
       return r.text()
     }).catch(e=>{console.warn('Schedule fetch failed:',e.message);return ''})
   ]);
 
   const budgetRows=parseCSV(budgetCSV);
-  const{phases,headerInfo,changeOrders:sheetCOs}=parseBudgetTab(budgetRows);
+  const{phases,headerInfo,changeOrders:sheetCOs,totalPaidOverride,buildGrossTotals}=parseBudgetTab(budgetRows);
 
   let scheduleTasks=[];
   if(scheduleCSV){
@@ -623,15 +730,14 @@ async function loadProjectData(){
 
   crossRefBudgetSchedule(phases,scheduleTasks);
 
-  let totalBudget=0,totalPaid=0;
+  let baseBudget=0,basePaid=0;
   for(const p of phases){
     if(p.name==='options'||p.name==='contingency')continue;
-    totalBudget+=p.markupTotal;
-    totalPaid+=p.paidTotal;
+    baseBudget+=p.markupTotal;
+    basePaid+=p.paidTotal;
   }
+  let totalBudget=baseBudget,totalPaid=basePaid;
 
-  // Add approved Change Orders from sheet into the headline totals
-  // (Approved CO amount increases revised contract regardless of % complete)
   let coApprovedAmt=0,coPaidTotal=0;
   for(const co of (sheetCOs||[])){
     if(!co)continue;
@@ -643,10 +749,11 @@ async function loadProjectData(){
   }
   totalBudget+=coApprovedAmt;
   totalPaid+=coPaidTotal;
-  const totals={totalBudget,totalPaid,progress:totalBudget>0?(totalPaid/totalBudget*100):0};
+  if(totalPaidOverride>0)totalPaid=totalPaidOverride;
+  const totals={totalBudget,totalPaid,baseBudget,basePaid,progress:totalBudget>0?(totalPaid/totalBudget*100):0};
 
-  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs};
-  const draws=buildDrawSchedule(phases);
+  const main={phases,headerInfo,totals,scheduleTasks,sheetCOs,buildGrossTotals};
+  const draws=buildDrawSchedule(phases,sheetCOs);
 
   return{main,draws,totals}
 }

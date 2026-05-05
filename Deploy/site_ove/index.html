@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!-- build:20260221gantt03 -->
 <html lang="en">
 <head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>OVE subs — Dashboard</title>
+<title>OVE subs — Schedule</title>
 <style>
 :root{
   --bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;
@@ -39,10 +39,7 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 #loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px}
 .spinner{width:48px;height:48px;border:4px solid var(--bdr);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
 #loading .msg{color:var(--txt2);font-size:14px}
-#error{display:none;text-align:center;padding:80px 20px;color:var(--red)}
 #app{display:none}
-.btn{padding:10px 20px;border-radius:8px;font-weight:600;font-size:13px;border:none;cursor:pointer;color:white}
-.btn-blue{background:var(--blue)}
 
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
@@ -112,7 +109,7 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .hero-prog-pct{font-size:12px;font-weight:700}
 .on-time .hero-prog-pct{color:var(--green)}
 .off-time .hero-prog-pct{color:var(--red)}
-/* Dashboard phase tracker */
+/* Dashboard phase tracker (same as client gantt.html) */
 .gantt-phase-tracker{max-width:1600px;margin:0 auto;padding:0 20px 8px}
 .phase-steps{background:var(--card);border-radius:12px;padding:16px 20px;border:1px solid var(--bdr);margin-top:12px}
 .phase-steps-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:14px}
@@ -194,13 +191,13 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
     <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--cyan);text-decoration:none;border:1px solid rgba(6,182,212,.3)">📁 Plans & Permits</a>
     <a href="selections.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--purple);text-decoration:none;border:1px solid rgba(139,92,246,.3)">🎨 Selections</a>
     <a href="electrical.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--yellow);text-decoration:none;border:1px solid rgba(234,179,8,.3)">⚡ Electrical</a>
-    <a href="subs.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--green);text-decoration:none;border:1px solid rgba(34,197,94,.3)">🔑 Click Portal</a>
   </div>
   <div class="topnav-right">
     <button class="topnav-btn" onclick="doRefresh()">↻ Refresh</button>
     <button class="topnav-btn unlock" id="adminBtn" onclick="toggleAdmin()">🔒 Admin</button>
   </div>
 </div></nav>
+<div class="proj-stamp" title="Trade identification">Cabinet installation: <strong>Deez</strong> (DeezCabnuts)</div>
 
 <div class="modal-bg hidden" id="pinModal">
   <div class="modal">
@@ -223,13 +220,11 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   <button class="cbtn" onclick="cancelEdits()">Cancel</button>
   <button class="sbtn" onclick="saveEdits()">Save</button>
 </div>
-<div id="loading"><div class="spinner"></div><div class="msg">Loading Gantt chart…</div></div>
-<div id="error"><h2>⚠ Failed to load data</h2><div class="detail" id="errorDetail"></div><br><button class="btn btn-blue" onclick="doRefresh()">Retry</button></div>
+
+<div id="loading"><div class="spinner"></div><div class="msg">Loading schedule…</div></div>
 
 <div id="app">
-  <div class="hero-wrap">
-    <div class="hero no-sub" id="hero"></div>
-  </div>
+  <div class="hero-wrap"><div class="hero no-sub" id="hero"></div></div>
   <div class="gantt-phase-tracker" id="ganttPhaseTracker"></div>
   <div class="gantt-outer">
     <div class="gantt-wrap">
@@ -251,45 +246,59 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
-<script src="shared.js?v=20260420_taskend"></script>
+<script src="shared.js?v20260504_fix"></script>
 <script>
-if(typeof taskScheduleEnd!=='function'){
-window.taskScheduleEnd=function(t){
-if(!t)return null;
-var e=t.endDate||t.startDate;
-if(!e)return null;
-var dly=Math.max(0,parseInt(t.delay,10)||0);
-return new Date(e.getTime()+dly*864e5);
-};
-}
-</script>
-<script>
-const ADMIN_PIN=SITE_ACCESS_PIN;
+const ADMIN_PIN_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
 const ADMIN_KEY='rac_admin';
-const GANTT_LBL=250;
 let isAdmin=sessionStorage.getItem(ADMIN_KEY)==='1';
 let pending={};
 let allTasks=[];
 
+// PIN
 function toggleAdmin(){isAdmin?exitAdmin():openPin()}
 function openPin(){document.getElementById('pinModal').classList.remove('hidden');document.getElementById('pd0').focus()}
 function closePin(){document.getElementById('pinModal').classList.add('hidden');[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pinOk').disabled=true;document.getElementById('pinErr').textContent=''}
 function pIn(i){const e=document.getElementById('pd'+i);e.value=e.value.replace(/\D/g,'');if(e.value&&i<3)document.getElementById('pd'+(i+1)).focus();document.getElementById('pinOk').disabled=[0,1,2,3].map(j=>document.getElementById('pd'+j).value).join('').length!==4;document.getElementById('pinErr').textContent=''}
 function pKey(e,i){if(e.key==='Backspace'&&!document.getElementById('pd'+i).value&&i>0)document.getElementById('pd'+(i-1)).focus();if(e.key==='Enter')checkPin()}
-function checkPin(){const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');if(p===ADMIN_PIN){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}}
-function applyAdmin(){document.getElementById('adminBtn').textContent='🔓 Admin ON';document.getElementById('adminBtn').classList.remove('unlock');document.getElementById('adminBtn').classList.add('locked');document.getElementById('gb').classList.add('adm')}
-function exitAdmin(){if(Object.keys(pending).length&&!confirm('Discard unsaved changes?'))return;isAdmin=false;pending={};sessionStorage.removeItem(ADMIN_KEY);document.getElementById('adminBtn').textContent='🔒 Admin';document.getElementById('adminBtn').classList.add('unlock');document.getElementById('adminBtn').classList.remove('locked');document.getElementById('gb').classList.remove('adm');document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
-function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks)}
-function saveEdits(){for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}pending={};document.getElementById('saveBar').classList.remove('vis');renderGanttReadonly(allTasks);alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.')}
+async function checkPin(){
+  const p=[0,1,2,3].map(i=>document.getElementById('pd'+i).value).join('');
+  const h=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(p)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(h===ADMIN_PIN_HASH){isAdmin=true;sessionStorage.setItem(ADMIN_KEY,'1');closePin();applyAdmin()}
+  else{document.getElementById('pinErr').textContent='Incorrect PIN';[0,1,2,3].forEach(i=>document.getElementById('pd'+i).value='');document.getElementById('pd0').focus();document.getElementById('pinOk').disabled=true}
+}
+function applyAdmin(){
+  document.getElementById('adminBtn').textContent='🔓 Admin ON';
+  document.getElementById('adminBtn').classList.remove('unlock');
+  document.getElementById('adminBtn').classList.add('locked');
+  document.getElementById('gb').classList.add('adm');
+}
+function exitAdmin(){
+  if(Object.keys(pending).length&&!confirm('Discard unsaved changes?'))return;
+  isAdmin=false;pending={};sessionStorage.removeItem(ADMIN_KEY);
+  document.getElementById('adminBtn').textContent='🔒 Admin';
+  document.getElementById('adminBtn').classList.add('unlock');
+  document.getElementById('adminBtn').classList.remove('locked');
+  document.getElementById('gb').classList.remove('adm');
+  document.getElementById('saveBar').classList.remove('vis');
+  render(allTasks);
+}
+function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks)}
+function saveEdits(){
+  for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}
+  pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks);
+  alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.');
+}
 
-function renderHeroHeader(tasks){
+// HERO + on-site / up-next strip (shared.js — same as client Gantt page)
+function renderHero(tasks){
   const h=getPrimarySubcontractorHeroState(tasks,pending);
   const hero=document.getElementById('hero');
   hero.className=h.className;
   hero.innerHTML=h.html;
 }
 
-function renderGanttReadonly(tasks){
+// GANTT — skips deposit/pre-construction (filterScheduleTasksForDisplay in shared.js)
+function render(tasks){
   const today=new Date();today.setHours(0,0,0,0);
   const gi=document.getElementById('gi');
   const mhdr=document.getElementById('mhdr');
@@ -314,6 +323,7 @@ function renderGanttReadonly(tasks){
   const gD=Math.max(1,daysBetween(gS,gE));
   const todayPct=Math.min(100,Math.max(0,daysBetween(gS,today)/gD*100));
 
+  // Month headers
   {let d=new Date(gS);while(d<=gE){
     const isCur=d.getMonth()===today.getMonth()&&d.getFullYear()===today.getFullYear();
     const dim=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
@@ -325,10 +335,32 @@ function renderGanttReadonly(tasks){
     d=new Date(d.getFullYear(),d.getMonth()+1,1);
   }}
 
-  renderHeroHeader(tasks);
+  renderHero(tasks);
 
   for(const t of filtered){
-    if(!t.startDate)continue;
+    if(!t.startDate){
+      if(t._fromSubs && t.vendor){
+        const row=document.createElement('div');
+        row.className='g-row';
+        const lbl=document.createElement('div');
+        lbl.className='g-lbl';
+        lbl.style.minHeight='44px';
+        lbl.innerHTML=`<div class="g-name">${t.name}</div><div class="g-sub"><a href="sub.html?v=${encodeURIComponent(t.vendor)}" style="color:var(--cyan);text-decoration:none;font-size:10px;font-weight:600" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ ${t.vendor}</a></div>`;
+        const tl=document.createElement('div');
+        tl.className='g-tl';
+        tl.style.minHeight='44px';
+        tl.style.display='flex';
+        tl.style.alignItems='center';
+        const note=document.createElement('div');
+        note.style.cssText='font-size:11px;color:var(--dim);padding:0 8px';
+        note.textContent='On Subs register — set start/finish in the Schedule tab to show a timeline bar';
+        tl.appendChild(note);
+        row.appendChild(lbl);
+        row.appendChild(tl);
+        gi.appendChild(row);
+      }
+      continue;
+    }
     const s=t.startDate,e=t.endDate||s;
     const dly=Math.max(0,parseInt(t.delay,10)||0);
     const effEnd=taskScheduleEnd(t)||e;
@@ -341,9 +373,7 @@ function renderGanttReadonly(tasks){
     row.className='g-row'+(t.isPhase?' ph':'')+(active?' act':'')+(overdue?' ov':'');
 
     const lbl=document.createElement('div');lbl.className='g-lbl';
-    const vsub=t.vendor&&!t.isPhase?'<div class="g-sub">'+escHtml(t.vendor)+'</div>':'';
-    const nm=t.isPhase?escHtml(PHASE_SPELL_FIX[t.nameNorm]||t.name):escHtml(t.name);
-    lbl.innerHTML='<div class="g-name">'+nm+'</div>'+vsub;
+    lbl.innerHTML=`<div class="g-name">${t.name}</div>${t.vendor&&!t.isPhase?`<div class="g-sub"><a href="sub.html?v=${encodeURIComponent(t.vendor)}" style="color:var(--cyan);text-decoration:none;font-size:10px;font-weight:600" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">↗ ${t.vendor}</a></div>`:''}`;
 
     const tl=document.createElement('div');tl.className='g-tl';
     const left=Math.max(0,daysBetween(gS,s)/gD*100);
@@ -369,6 +399,7 @@ function renderGanttReadonly(tasks){
       del.title='Delay: '+dly+' day'+(dly===1?'':'s')+' (after finish)';
       tl.appendChild(del);
     }
+
     if(!t.isPhase){
       const inp=document.createElement('input');
       inp.type='number';inp.min=0;inp.max=100;inp.className='g-inp';
@@ -377,47 +408,54 @@ function renderGanttReadonly(tasks){
         const v=Math.min(100,Math.max(0,parseFloat(this.value)||0));
         this.value=v;pending[t.nameNorm]=v;
         document.getElementById('saveBar').classList.add('vis');
-        renderHeroHeader(tasks);
+        renderHero(tasks);
       });
       tl.appendChild(inp);
     }
+
     row.appendChild(lbl);row.appendChild(tl);
     gi.appendChild(row);
   }
 
   const tm=document.createElement('div');
   tm.className='today-mk';
-  tm.style.left='calc('+GANTT_LBL+'px + (100% - '+GANTT_LBL+'px) * '+todayPct+' / 100)';
+  tm.style.left='calc(250px + (100% - 250px) * '+todayPct+' / 100)';
   tm.innerHTML='<div class="today-lbl">▼ Today</div>';
   gi.appendChild(tm);
 
   const gb=document.getElementById('gb');
   requestAnimationFrame(()=>{
-    const bw=gb.clientWidth-GANTT_LBL;
-    const tw=(gi.scrollWidth-GANTT_LBL)*todayPct/100;
+    const bw=gb.clientWidth-250;
+    const tw=(gi.scrollWidth-250)*todayPct/100;
     gb.scrollLeft=Math.max(0,tw-bw/2);
   });
   gb.onscroll=()=>{mhdr.parentElement.scrollLeft=gb.scrollLeft};
   if(isAdmin)applyAdmin();
 }
 
-async function doRefresh(){
-  document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';document.getElementById('error').style.display='none';
-  try{await init()}catch(e){document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message}
+function buildSubNav(tasks){
+  const el=document.getElementById('subNavLinks');
+  if(!el)return;
+  const vendors=[...new Set(tasks.filter(t=>!t.isPhase&&t.vendor).map(t=>t.vendor.trim()))].sort();
+  el.innerHTML=vendors.map(v=>`<a href="sub.html?v=${encodeURIComponent(v)}" class="topnav-links" style="padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;white-space:nowrap;transition:all .2s" onmouseover="this.style.color='#fff';this.style.background='var(--hover)'" onmouseout="this.style.color='var(--txt2)';this.style.background=''">${v}</a>`).join('');
 }
+
+async function doRefresh(){document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';await init()}
 async function init(){
   try{
     const{main}=await loadProjectData();
     allTasks=main.scheduleTasks||[];
+    buildSubNav(allTasks);
     const pt=document.getElementById('ganttPhaseTracker');
     if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);
-    renderGanttReadonly(allTasks);
-    document.getElementById('loading').style.display='none';document.getElementById('app').style.display='block'
+    render(allTasks);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('app').style.display='block';
   }catch(e){
-    document.getElementById('loading').style.display='none';document.getElementById('error').style.display='block';document.getElementById('errorDetail').textContent=e.message
+    document.getElementById('loading').innerHTML=`<div style="text-align:center;color:var(--red)"><h3>⚠ Failed to load</h3><p style="font-size:13px;color:var(--dim);margin-top:8px">${e.message}</p><br><button onclick="doRefresh()" style="margin-top:12px;padding:8px 20px;border-radius:8px;background:var(--blue);color:#fff;border:none;cursor:pointer">Retry</button></div>`;
   }
 }
-init()
+init();
 </script>
 </body>
 </html>

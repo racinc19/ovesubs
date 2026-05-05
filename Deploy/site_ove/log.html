@@ -108,13 +108,13 @@ body{padding-top:56px;overflow-x:hidden;font-family:'SF Pro Display',-apple-syst
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:8px}
 .topnav{position:fixed;top:0;left:0;width:100vw;z-index:50;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
-.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px;position:relative}
-.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap}
-.topnav-links{display:flex;gap:4px;align-items:center;overflow-x:auto;position:absolute;left:50%;transform:translateX(-50%)}
-.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:flex-start;height:56px;gap:8px;position:relative;min-width:0}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:16px;white-space:nowrap;flex:0 0 auto;min-width:0}
+.topnav-links{flex:1 1 auto;min-width:0;display:flex;gap:4px;align-items:center;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;overscroll-behavior-x:contain}
+.topnav-links a{padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap;flex-shrink:0}
 .topnav-links a:hover{color:var(--txt);background:var(--hover)}
 .topnav-links a.active{color:white;background:var(--blue)}
-.topnav-refresh{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.topnav-refresh{flex:0 0 auto;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:500;border:1px solid var(--bdr);background:none;color:var(--txt2);cursor:pointer;transition:all .2s;white-space:nowrap}
 .topnav-refresh:hover{border-color:var(--blue);color:var(--txt)}
 html{overflow-y:scroll}body{overflow-x:hidden}
 </style>
@@ -129,7 +129,7 @@ html{overflow-y:scroll}body{overflow-x:hidden}
     
     <a href="selections.html">Selections</a>
     <a href="accounting.html">Accounting</a>
-    <a href="gantt.html">Gantt</a>
+    <a href="index.html">Gantt</a>
     <a href="draws.html">Draws</a>
     <a href="budget.html">Budget & Schedule</a>
     <a href="subs.html">Subs</a>
@@ -221,7 +221,7 @@ html{overflow-y:scroll}body{overflow-x:hidden}
 
 <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg"></div>
 
-<script src="shared.js?v20260424a"></script>
+<script src="shared.js?v20260504_fix"></script>
 <script>
 const LOG_KEY='rodriguez_daily_log';
 const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
