@@ -139,7 +139,6 @@ function getMonthlyPaidMap(){
     var map={};
     rows.forEach(function(r){
       if(!r||!r.ym)return;
-      if(r.ym==='2026-02')return; // keep consistent with Accounting cleanup
       var paid=(r.status==='in_progress')?0:Number(r.paid||0);
       if(!isFinite(paid))paid=0;
       map[r.ym]=paid;
@@ -152,7 +151,7 @@ function loadMonthlyRows(){
   try{
     var a=JSON.parse(localStorage.getItem(KEY));
     if(!Array.isArray(a))return [];
-    return a.filter(function(r){return r&&r.ym&&r.ym!=='2026-02';});
+    return a.filter(function(r){return r&&r.ym;});
   }catch(e){return [];}
 }
 function getHistoryMonthAmountMap(){
@@ -163,10 +162,10 @@ function getHistoryMonthAmountMap(){
   for(var i=0;i<rows.length;i++){
     var r=rows[i];
     if(!r||!r.ym)continue;
-    if(r.status==='in_progress'){map[r.ym]=0;continue;}
+    if(r.status==='in_progress'){map[r.ym]={amount:0,status:'in_progress'};continue;}
     var amt=r.amount!=null&&r.amount!==''?Number(r.amount):0;
     if(!isFinite(amt))amt=0;
-    map[r.ym]=amt;
+    map[r.ym]={amount:amt,status:r.status};
   }
   return map;
 }
@@ -278,20 +277,23 @@ function renderChart(data){
     var ym=d.month.getFullYear()+'-'+String(d.month.getMonth()+1).padStart(2,'0');
     var isThisOrPastMonth=d.month<firstOfNextMonth;
     if(isThisOrPastMonth){
-      var histV=(histAmtMap[ym]!=null&&Number(histAmtMap[ym])>0)?Number(histAmtMap[ym]):null;
-      if(histV!=null){
+      var histData=(histAmtMap[ym]!=null)?histAmtMap[ym]:null;
+      if(histData!=null && histData.amount>0){
         // Invoice history exists: use sent invoice amount
-        d.display=histV;
-        d.paidAmount=histV;
+        d.display=histData.amount;
+        d.paidAmount=histData.amount;
+        d.histStatus=histData.status;
       } else {
         // No invoice history: show outstanding (earned-unpaid) or fall back to scheduled budget
         d.display=(d.outstanding>0?d.outstanding:d.budget)||0;
         d.paidAmount=0;
+        d.histStatus=null;
       }
     }else{
       // Future months: follow schedule.
       d.display=d.budget;
       d.paidAmount=0;
+      d.histStatus=null;
     }
   });
   el.innerHTML='<div class="sbox"><div class="shdr"><h2>💰 Monthly Draw Schedule</h2><div class="meta">Budget + approved COs by completion month</div></div><div style="padding:20px"><canvas id="drawCanvas" height="420"></canvas></div></div>';
@@ -326,12 +328,18 @@ function renderChart(data){
   sorted.forEach(function(d,i){
     var x=pad.l+gap+(barW+gap)*i;
     var bH=(d.display/maxBar)*cH;var y2=pad.t+cH-bH;
-    var grad=ctx.createLinearGradient(x,y2,x,y2+bH);
-    grad.addColorStop(0,'rgba(59,130,246,.85)');grad.addColorStop(1,'rgba(59,130,246,.5)');
-    ctx.fillStyle=grad;ctx.beginPath();
-    if(ctx.roundRect)ctx.roundRect(x,y2,barW,bH,3);else ctx.rect(x,y2,barW,bH);
-    ctx.fill();
-    if(d.paidAmount>0){var pH=Math.min((d.paidAmount/maxBar)*cH,bH);ctx.fillStyle='rgba(34,197,94,.7)';ctx.fillRect(x,pad.t+cH-pH,barW,pH)}
+    if(d.histStatus==='due'){
+      ctx.fillStyle='rgba(239,68,68,.85)';ctx.beginPath();
+      if(ctx.roundRect)ctx.roundRect(x,y2,barW,bH,3);else ctx.rect(x,y2,barW,bH);
+      ctx.fill();
+    }else{
+      var grad=ctx.createLinearGradient(x,y2,x,y2+bH);
+      grad.addColorStop(0,'rgba(59,130,246,.85)');grad.addColorStop(1,'rgba(59,130,246,.5)');
+      ctx.fillStyle=grad;ctx.beginPath();
+      if(ctx.roundRect)ctx.roundRect(x,y2,barW,bH,3);else ctx.rect(x,y2,barW,bH);
+      ctx.fill();
+      if(d.histStatus==='paid'||d.paidAmount>0){var pH=Math.min((d.paidAmount/maxBar)*cH,bH);ctx.fillStyle='rgba(34,197,94,.7)';ctx.fillRect(x,pad.t+cH-pH,barW,pH)}
+    }
     if(bH>25){ctx.fillStyle='white';ctx.font='bold 10px sans-serif';ctx.textAlign='center';ctx.fillText(fmtK(d.display),x+barW/2,y2+14)}
     ctx.fillStyle='rgba(255,255,255,.9)';ctx.font='10px sans-serif';ctx.textAlign='center';
     ctx.fillText(fmtMoShort(d.month),x+barW/2,H-pad.b+14);
