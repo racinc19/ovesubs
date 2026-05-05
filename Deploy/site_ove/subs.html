@@ -186,7 +186,7 @@ async function init(){
     const tasks=data.main.scheduleTasks||[];
     renderTable(tasks);
     document.getElementById('loading').style.display='none';
-    document.getElementById('app').style.display='';
+    document.getElementById('app').style.display='block';
   }catch(e){
     console.error('subs.html init failed:',e);
     document.getElementById('loading').style.cssText='display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:16px;background:var(--bg)';
