@@ -687,6 +687,78 @@ details.cat summary::-webkit-details-marker{display:none}
             <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
             <div class="note">Install as separate assigned Upper and Lower lighting assemblies. UDB Upper uses UDB-A and UDB-B for 120V line-voltage plus DIN 24V transformers and UDB-C for low-voltage-only 24V fuses, Shelly modules, and upper tape-light terminations. LDB Lower uses LDB-A for 120V line-voltage plus DIN 24V transformers and LDB-B for low-voltage-only 24V fuses, Shelly modules, and lower tape-light terminations. BC-1 is the separate blinds/shades control panel. Do not mix exposed 120V line-voltage wiring in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules.</div>
             <div class="panel-drawing">
+              <svg viewBox="0 0 1380 760" role="img" aria-label="Open door installed electrical panel elevation with breaker destinations">
+                <text x="24" y="34" class="title">Open Door Elevation - 120V Breaker Panel Feeding Lighting / Shades</text>
+                <text x="24" y="56" class="small">This is the panel an electrician opens first. Breakers shown here feed the separate UDB, LDB, BC-1, and utility-light cabinets. Final pole space, AFCI/GFCI requirements, conductor size, and panel schedule by electrician.</text>
+
+                <rect x="30" y="88" width="430" height="600" rx="10" class="cab"/>
+                <rect x="48" y="108" width="394" height="560" rx="6" class="door"/>
+                <text x="64" y="136" class="label">120V LIGHTING / CONTROL PANEL - DOOR OPEN</text>
+                <rect x="220" y="158" width="34" height="480" fill="#1f2937" stroke="#64748b" stroke-width="2"/>
+                <text x="198" y="650" class="small">load center / breaker bus</text>
+
+                <rect x="72" y="170" width="130" height="46" rx="3" class="breaker"/><text x="84" y="190" class="tiny">BKR 1</text><text x="84" y="204" class="tiny">20A 120V</text><text x="270" y="190" class="label">UDB-A FEED</text><text x="270" y="207" class="small">Upper transformers PS1-PS4</text>
+                <line x1="202" y1="193" x2="260" y2="193" class="wire120"/>
+
+                <rect x="72" y="232" width="130" height="46" rx="3" class="breaker"/><text x="84" y="252" class="tiny">BKR 2</text><text x="84" y="266" class="tiny">20A 120V</text><text x="270" y="252" class="label">UDB-B FEED</text><text x="270" y="269" class="small">Upper transformers PS5-PS8</text>
+                <line x1="202" y1="255" x2="260" y2="255" class="wire120"/>
+
+                <rect x="72" y="294" width="130" height="46" rx="3" class="breaker"/><text x="84" y="314" class="tiny">BKR 3</text><text x="84" y="328" class="tiny">20A 120V</text><text x="270" y="314" class="label">LDB-A FEED</text><text x="270" y="331" class="small">Lower transformers PS1-PS4</text>
+                <line x1="202" y1="317" x2="260" y2="317" class="wire120"/>
+
+                <rect x="72" y="356" width="130" height="46" rx="3" class="breaker"/><text x="84" y="376" class="tiny">BKR 4</text><text x="84" y="390" class="tiny">15A 120V</text><text x="270" y="376" class="label">BC-1 SHADE FEED</text><text x="270" y="393" class="small">Somfy shade control / 11 motors</text>
+                <line x1="202" y1="379" x2="260" y2="379" class="wire120"/>
+
+                <rect x="72" y="418" width="130" height="46" rx="3" class="breaker"/><text x="84" y="438" class="tiny">BKR 5</text><text x="84" y="452" class="tiny">15/20A</text><text x="270" y="438" class="label">UTILITY / MOTION LIGHTS</text><text x="270" y="455" class="small">mechanical, garage mechanical, pantry/storage, utility lights</text>
+                <line x1="202" y1="441" x2="260" y2="441" class="wire120"/>
+
+                <rect x="72" y="500" width="130" height="34" rx="3" class="term"/><text x="90" y="521" class="tiny">SPARE</text>
+                <rect x="72" y="544" width="130" height="34" rx="3" class="term"/><text x="90" y="565" class="tiny">SPARE</text>
+
+                <rect x="520" y="108" width="250" height="130" rx="8" class="cab"/>
+                <text x="540" y="136" class="label">UDB-A</text><text x="540" y="154" class="small">upper high voltage / transformers</text>
+                <rect x="540" y="174" width="40" height="46" rx="3" class="breaker"/><text x="548" y="201" class="tiny">B1</text>
+                <rect x="600" y="164" width="30" height="58" rx="3" class="psu"/><text x="606" y="197" class="tiny">PS1</text>
+                <rect x="640" y="164" width="30" height="58" rx="3" class="psu"/><text x="646" y="197" class="tiny">PS2</text>
+                <rect x="680" y="164" width="30" height="58" rx="3" class="psu"/><text x="686" y="197" class="tiny">PS3</text>
+                <rect x="720" y="164" width="30" height="58" rx="3" class="psu"/><text x="726" y="197" class="tiny">PS4</text>
+
+                <rect x="820" y="108" width="250" height="130" rx="8" class="cab"/>
+                <text x="840" y="136" class="label">UDB-B</text><text x="840" y="154" class="small">upper high voltage / transformers</text>
+                <rect x="840" y="174" width="40" height="46" rx="3" class="breaker"/><text x="848" y="201" class="tiny">B2</text>
+                <rect x="900" y="164" width="30" height="58" rx="3" class="psu"/><text x="906" y="197" class="tiny">PS5</text>
+                <rect x="940" y="164" width="30" height="58" rx="3" class="psu"/><text x="946" y="197" class="tiny">PS6</text>
+                <rect x="980" y="164" width="30" height="58" rx="3" class="psu"/><text x="986" y="197" class="tiny">PS7</text>
+                <rect x="1020" y="164" width="30" height="58" rx="3" class="psu"/><text x="1026" y="197" class="tiny">PS8</text>
+
+                <rect x="520" y="292" width="250" height="130" rx="8" class="cab"/>
+                <text x="540" y="320" class="label">LDB-A</text><text x="540" y="338" class="small">lower high voltage / transformers</text>
+                <rect x="540" y="358" width="40" height="46" rx="3" class="breaker"/><text x="548" y="385" class="tiny">B3</text>
+                <rect x="600" y="348" width="30" height="58" rx="3" class="psu"/><text x="606" y="381" class="tiny">PS1</text>
+                <rect x="640" y="348" width="30" height="58" rx="3" class="psu"/><text x="646" y="381" class="tiny">PS2</text>
+                <rect x="680" y="348" width="30" height="58" rx="3" class="psu"/><text x="686" y="381" class="tiny">PS3</text>
+                <rect x="720" y="348" width="30" height="58" rx="3" class="psu"/><text x="726" y="381" class="tiny">PS4</text>
+
+                <rect x="820" y="292" width="250" height="130" rx="8" class="cab"/>
+                <text x="840" y="320" class="label">BC-1</text><text x="840" y="338" class="small">blinds / shades control</text>
+                <rect x="840" y="358" width="40" height="46" rx="3" class="breaker"/><text x="848" y="385" class="tiny">B4</text>
+                <rect x="900" y="348" width="70" height="58" rx="3" fill="#2b2543" stroke="#a78bfa" stroke-width="1.4"/><text x="908" y="374" class="tiny">Somfy</text><text x="908" y="388" class="tiny">IP/RS485</text>
+                <rect x="990" y="348" width="60" height="58" rx="3" class="term"/><text x="996" y="381" class="tiny">M1-M11</text>
+
+                <rect x="520" y="476" width="550" height="160" rx="8" class="cab"/>
+                <text x="540" y="504" class="label">LOW-VOLTAGE CONTROL CABINETS</text>
+                <text x="540" y="524" class="small">UDB-C gets 24V from UDB-A/UDB-B and serves U01-U17. LDB-B gets 24V from LDB-A and serves L01-L07.</text>
+                <rect x="540" y="550" width="230" height="58" rx="4" class="fuse"/><text x="555" y="584" class="tiny">UDB-C: F01-F17 / SH01-SH17 / U01-U17</text>
+                <rect x="810" y="550" width="230" height="58" rx="4" class="fuse"/><text x="825" y="584" class="tiny">LDB-B: F01-F07 / SH01-SH07 / L01-L07</text>
+
+                <text x="1120" y="134" class="label">120V BREAKER COUNT</text>
+                <text x="1120" y="160" class="small">Lighting transformers: 3 x 20A 120V</text>
+                <text x="1120" y="182" class="small">Blinds/shades: 1 x 15A 120V</text>
+                <text x="1120" y="204" class="small">Utility/motion lights: 1 x 15A/20A 120V</text>
+                <text x="1120" y="240" class="label">TOTAL SHOWN: 5 SINGLE-POLE 120V BREAKERS</text>
+              </svg>
+            </div>
+            <div class="panel-drawing">
               <svg viewBox="0 0 1380 980" role="img" aria-label="Scaled elevation showing every electrical control panel component">
                 <defs>
                   <marker id="scaledArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#22c55e"/></marker>
