@@ -48,6 +48,24 @@ details.cat summary::-webkit-details-marker{display:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
 .tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+.tabs{margin-top:14px}
+.tabs input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.tab-labels{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);padding-bottom:8px}
+.tab-labels label{cursor:pointer;border:1px solid var(--bdr);background:var(--card);color:var(--txt2);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.tab-labels label:hover{background:var(--hover);color:var(--txt)}
+.tab-panel{display:none;margin-top:14px}
+#tab-main-wall:checked ~ .tab-labels label[for=tab-main-wall],
+#tab-main-ceiling:checked ~ .tab-labels label[for=tab-main-ceiling],
+#tab-upper-wall:checked ~ .tab-labels label[for=tab-upper-wall],
+#tab-upper-ceiling:checked ~ .tab-labels label[for=tab-upper-ceiling],
+#tab-lower:checked ~ .tab-labels label[for=tab-lower],
+#tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
+#tab-main-wall:checked ~ .tab-panels #panel-main-wall,
+#tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
+#tab-upper-wall:checked ~ .tab-panels #panel-upper-wall,
+#tab-upper-ceiling:checked ~ .tab-panels #panel-upper-ceiling,
+#tab-lower:checked ~ .tab-panels #panel-lower,
+#tab-panels:checked ~ .tab-panels #panel-panels{display:block}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
   </style>
@@ -72,6 +90,44 @@ details.cat summary::-webkit-details-marker{display:none}
       <button id="btnSetUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
       <button id="btnClearUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
     </div>
+
+    <div class="tabs">
+      <input type="radio" name="electrical-tabs" id="tab-main-wall" checked>
+      <input type="radio" name="electrical-tabs" id="tab-main-ceiling">
+      <input type="radio" name="electrical-tabs" id="tab-upper-wall">
+      <input type="radio" name="electrical-tabs" id="tab-upper-ceiling">
+      <input type="radio" name="electrical-tabs" id="tab-lower">
+      <input type="radio" name="electrical-tabs" id="tab-panels">
+
+      <div class="tab-labels">
+        <label for="tab-main-wall">Main Wall Loads</label>
+        <label for="tab-main-ceiling">Main Ceiling</label>
+        <label for="tab-upper-wall">Upper Wall Loads</label>
+        <label for="tab-upper-ceiling">Upper Ceiling</label>
+        <label for="tab-lower">Lower Loads / Ceiling</label>
+        <label for="tab-panels">Panels</label>
+      </div>
+
+      <div class="tab-panels">
+        <section class="tab-panel" id="panel-main-wall">
+          <section class="card">
+            <div class="card-h"><h2>Main Wall Loads / 120V Utility</h2></div>
+            <div class="note">Use one shared 120V utility/motion lighting circuit for the miscellaneous non-tape fixtures where code/load allows. Separate Shelly relay channels are only required where the loads need independent app/control switching.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Mechanical / garage mechanical / pantry-storage utility lights</td><td>120V</td><td>Motion sensor or shared relay</td><td>Loop on shared 1-120 utility circuit unless electrician separates for code or layout.</td></tr>
+                  <tr><td>Three utility lights</td><td>120V</td><td>Local motion</td><td>Can share same 120V feed; no separate Shelly needed if only motion-control is desired.</td></tr>
+                  <tr><td>Independently switched 120V loads</td><td>120V</td><td>Shelly relay channel/module</td><td>Same branch circuit is acceptable; independent control requires separate relay output/channel.</td></tr>
+                  <tr><td>Deleted duplicate labels</td><td>120V</td><td>None</td><td>Do not carry separate 4-120 or 5-120. Latest DWFx text shows 1-120 and 3-120 only.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-main-ceiling">
 
     <div class="schedule-grid">
       <div class="metric">
@@ -320,6 +376,79 @@ details.cat summary::-webkit-details-marker{display:none}
         </div>
         <div class="note">Typical path: 120V panel circuit -> shared 24V driver bank -> fused 24V distribution -> Shelly RGBW PM -> tape/channel zone.</div>
       </section>
+    </div>
+
+        </section>
+
+        <section class="tab-panel" id="panel-upper-wall">
+          <section class="card">
+            <div class="card-h"><h2>Upper Wall Loads</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control Basis</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Upper wall receptacle / wall-load circuits</td><td>120V</td><td>Panel schedule / breaker panel</td><td>Keep line-voltage wall loads separate from 24V tape distribution.</td></tr>
+                  <tr><td>Upper motorized shades / blinds where applicable</td><td>120V motor feed</td><td>Shelly Dual Cover or approved shade relay</td><td>One channel per motor/load where independent control is required.</td></tr>
+                  <tr><td>Upper utility or service fixtures</td><td>120V</td><td>Motion/local switch unless independent app control is requested</td><td>May share a 120V lighting branch circuit when load and code allow.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-upper-ceiling">
+          <section class="card">
+            <div class="card-h"><h2>Upper Ceiling / 24V Tape Controls</h2></div>
+            <div class="note">Upper ceiling tape zones use the same architecture as the main ceiling: shared 24V driver bank, fused distribution, Shelly RGBW PM output, then tape/channel zone.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Upper ceiling tape zones</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Carry one control channel/module per visible 24V label unless field grouping is approved.</td></tr>
+                  <tr><td>Upper 24V driver bank</td><td>120V in / 24V out</td><td>Fused 24V distribution</td><td>Accessible driver bank; size against installed tape watts plus headroom.</td></tr>
+                  <tr><td>Cat5e control home runs</td><td>Low voltage signal only</td><td>Keypad/control network</td><td>Do not use Cat5e for LED tape power.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-lower">
+          <section class="card">
+            <div class="card-h"><h2>Lower Wall Loads / Ceiling</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Lower wall loads</td><td>120V</td><td>Panel schedule / relay where needed</td><td>Use separate Shelly relay channels only for loads requiring independent control.</td></tr>
+                  <tr><td>Lower ceiling tape / feature lighting</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Feed from shared 24V bank through fused distribution.</td></tr>
+                  <tr><td>Rear patio tape adder</td><td>24V DC exterior</td><td>Shelly RGBW PM / outdoor-rated tape</td><td>174 LF included in revised exterior tape allowance.</td></tr>
+                  <tr><td>ADU rectangle adder</td><td>24V DC interior/damp</td><td>Shelly RGBW PM</td><td>38 LF included in revised interior/ADU tape allowance.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-panels">
+          <section class="card">
+            <div class="card-h"><h2>Panels / Driver Banks</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Panel Feed</th><th>Purpose</th><th class="num">Shelly Zones</th><th class="num">24V Bank Capacity</th><th>120V Breaker</th></tr></thead>
+                <tbody>
+                  <tr><td>LC-1 / Panel 1</td><td>Panel 1 area 24V driver bank and associated tape zones</td><td class="num">9</td><td class="num">1,500W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>LC-2 / Panel 2</td><td>Panel 2 area 24V driver bank and associated tape zones</td><td class="num">8</td><td class="num">1,500W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>LC-3 / Panel 3</td><td>Panel 3 area 24V driver bank and associated tape zones</td><td class="num">8</td><td class="num">1,200W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>LC-4 / Panel 4</td><td>Panel 4 area 24V driver bank and associated tape zones</td><td class="num">8</td><td class="num">1,200W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>1-120 utility</td><td>Shared 120V utility/motion fixtures</td><td class="num">As needed</td><td class="num">N/A</td><td>Existing 120V lighting circuit where allowed</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Central 24V supply bank remains acceptable if accessible and distributed through fused 24V outputs. The panel-area bank schedule is the easier field layout.</div>
+          </section>
+        </section>
+      </div>
     </div>
 
     <div class="grid" style="display:none">
