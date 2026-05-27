@@ -111,8 +111,33 @@ details.cat summary::-webkit-details-marker{display:none}
       <div class="tab-panels">
         <section class="tab-panel" id="panel-main-wall">
           <section class="card">
-            <div class="card-h"><h2>Main Wall Loads / 120V Utility</h2></div>
-            <div class="note">Use one shared 120V utility/motion lighting circuit for the miscellaneous non-tape fixtures where code/load allows. Separate Shelly relay channels are only required where the loads need independent app/control switching.</div>
+            <div class="card-h"><h2>Main Wall Loads / 120V Devices</h2></div>
+            <div class="note">Main wall loads checked from Main wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and equipment rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Circuit / Rough-In</th><th class="num">Count</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Wall duplex receptacles</td><td>120V branch circuit</td><td class="num">27</td><td>Standard wall duplex outlets shown in the main wall-load DWFx. Circuit grouping by electrician/load schedule.</td></tr>
+                  <tr><td>Floor duplex receptacles</td><td>120V branch circuit</td><td class="num">5</td><td>DWFx family is Outlet Floor-Duplex. Coordinate final box/device type with floor finish and cover requirements.</td></tr>
+                  <tr><td>Waterproof receptacles</td><td>120V weatherproof/GFCI where required</td><td class="num">14</td><td>DWFx family is Outlet-WP / Water Proof. Use in-use covers and GFCI protection where code requires.</td></tr>
+                  <tr><td>Countertop GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">14</td><td>DWFx family is Outlet-GFI / Countertop. Provide kitchen, bath, wet-location, and countertop protection as required.</td></tr>
+                  <tr><td>Island GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">4</td><td>DWFx family is Outlet-GFI / Island. Coordinate final island/peninsula receptacle placement with cabinet shop and code.</td></tr>
+                  <tr><td>Range outlets</td><td>Equipment circuit, verify voltage/amps</td><td class="num">3</td><td>DWFx family is Outlet-Range / Single / Range. Verify each appliance cut sheet before breaker and conductor sizing.</td></tr>
+                  <tr><td>Microwave outlet</td><td>Dedicated or appliance branch circuit</td><td class="num">1</td><td>DWFx family is Outlet-Range / Micro Wave. Verify whether dedicated circuit is required by equipment and code.</td></tr>
+                  <tr><td>Stack washer/dryer outlet</td><td>Laundry equipment circuit</td><td class="num">1</td><td>DWFx family is Outlet-Range / Stack. Verify actual washer/dryer voltage and amp requirements before rough-in.</td></tr>
+                  <tr><td>240V fusible 30A disconnects</td><td>240V equipment disconnect</td><td class="num">4</td><td>DWFx object type is Disconnect Switches / 240V - Fusible 30A. Coordinate final fuse size with served equipment.</td></tr>
+                  <tr><td>240V fusible 40A disconnect</td><td>240V equipment disconnect</td><td class="num">1</td><td>DWFx object type is Disconnect Switches / 240V - Fusible 40A. Verify equipment nameplate before installation.</td></tr>
+                  <tr><td>LAN1 wall controls</td><td>Low-voltage/control rough-in</td><td class="num">6</td><td>DWFx family is Switch-Three Way / LAN1. Treat as control/keypad rough-in unless electrical designer revises.</td></tr>
+                  <tr><td>LAN4 PoE touch screens</td><td>Cat5e/PoE rough-in</td><td class="num">5</td><td>DWFx type mark is 8&quot; Android PoE Touch Screen. Pull Cat5e to the assigned low-voltage/control location.</td></tr>
+                  <tr><td>LAN5 wall controls</td><td>Low-voltage/control rough-in</td><td class="num">3</td><td>DWFx family is Switch-Three Way / LAN 5. Coordinate control function with lighting/control schedule.</td></tr>
+                  <tr><td>CATV + 120V combo outlets</td><td>Low-voltage + 120V combo rough-in</td><td class="num">3</td><td>DWFx family is Outlet-Communications / CATV; model notes Legrand 9&quot; and 120V duplex. Coordinate low-voltage and power separation.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="card">
+            <div class="card-h"><h2>Main 120V Utility / Motion Lights</h2></div>
+            <div class="note">Use one shared 120V utility/motion lighting circuit for miscellaneous non-tape fixtures where code/load allows. Separate Shelly relay channels are only required where the loads need independent app/control switching.</div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
@@ -123,7 +148,6 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Three additional utility lights</td><td>120V</td><td>Local motion</td><td>Include all three utility/motion fixtures on shared 1-120 feed; no separate Shelly needed if only motion-control is desired.</td></tr>
                   <tr><td>ADU 120V utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Include on 1-120 where code/load allows unless a separate controlled feed is intentionally shown.</td></tr>
                   <tr><td>Independently switched 120V loads</td><td>120V</td><td>Shelly relay channel/module</td><td>Same branch circuit is acceptable; independent control requires separate relay output/channel.</td></tr>
-                  <tr><td>Deleted duplicate labels</td><td>120V</td><td>None</td><td>Do not carry separate 4-120 or 5-120. Latest DWFx text shows 1-120 and 3-120 only.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -459,6 +483,9 @@ details.cat summary::-webkit-details-marker{display:none}
                 <tbody>
                   <tr><td>DB-1 / Panel 1</td><td>Left-side/main-house 24V driver bank: 4 x 600W 24V drivers</td><td class="num">13</td><td class="num">2,400W @ 24V</td><td>20A, 120V</td></tr>
                   <tr><td>DB-2 / Panel 2</td><td>Right-side/lower/ADU/exterior 24V driver bank: 6 x 600W 24V drivers</td><td class="num">20</td><td class="num">3,600W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
+                  <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
+                  <tr><td>Main Power Panel 2</td><td>Main wall-load DWFx object: Leviton load center / 100A Service</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is 100A Service. Coordinate with final panel schedule and service/load calculation.</td></tr>
                   <tr><td>1-120 utility</td><td>Shared 120V utility/motion fixtures: mechanical, garage mechanical, pantry/storage, ADU 120V, and three utility lights</td><td class="num">7 fixtures</td><td class="num">N/A</td><td>Use existing/shared 120V lighting circuit where code/load allows; use separate Shelly relay only for independent app/control switching.</td></tr>
                 </tbody>
               </table>
