@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -174,7 +174,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <div class="metric">
         <div class="label">120V Lighting Feeds</div>
         <div class="value">P1 + P2</div>
-        <div class="hint">Two assigned 120V feeds to two 24V driver banks</div>
+        <div class="hint">Two assigned 120V feeds to DB-1 and DB-2 buildable assemblies</div>
       </div>
       <div class="metric">
         <div class="label">Control Hardware</div>
@@ -227,37 +227,49 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>24V LED drivers</td>
-              <td>Mean Well HLG-600H-24A, 600W, 24V constant-voltage LED driver, or listed equal</td>
+              <td><a href="https://www.digikey.com/en/products/detail/mean-well-usa-inc/HLG-600H-24A/7704130" target="_blank" rel="noopener noreferrer">Mean Well HLG-600H-24A</a>, 600W, 24VDC, 25A constant-voltage LED driver</td>
               <td class="num">10 drivers</td>
-              <td>Procure as actual 24V power supplies. Assign to DB-1 and DB-2 exactly as scheduled below; do not move tape zones between banks in the field.</td>
+              <td>Purchasable power supply. Use 4 drivers for DB-1 and 6 drivers for DB-2. Surface-mount adjacent to the control/fuse enclosure with ventilation and service clearance.</td>
             </tr>
             <tr>
-              <td>DB-1 left-side 24V driver bank</td>
-              <td>4 x 600W 24V drivers in accessible listed enclosure with ventilation, disconnect, fused 24V distribution, and labeled outputs</td>
-              <td class="num">1 bank</td>
-              <td>Feeds left-side/main-house tape zones assigned to Panel 1. Label outputs DB-1 / PS-# / F-# / SH-# / Z-#.</td>
+              <td>DB-1 assembly - Panel 1 24V controls</td>
+              <td>4 x Mean Well HLG-600H-24A drivers + <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 control enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td class="num">1 assembly</td>
+              <td>Buildable left-side assembly. Feeds 5 current DWFx 24V zones. Label outputs DB-1 / PS-# / F-# / SH-# / U-#.</td>
             </tr>
             <tr>
-              <td>DB-2 right-side 24V driver bank</td>
-              <td>6 x 600W 24V drivers in accessible listed enclosure with ventilation, disconnect, fused 24V distribution, and labeled outputs</td>
-              <td class="num">1 bank</td>
-              <td>Feeds right-side/lower/ADU/exterior tape zones assigned to Panel 2. Label outputs DB-2 / PS-# / F-# / SH-# / Z-#.</td>
+              <td>DB-2 assembly - Panel 2 24V controls</td>
+              <td>6 x Mean Well HLG-600H-24A drivers + <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 control enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td class="num">1 assembly</td>
+              <td>Buildable right-side/lower/ADU/exterior assembly. Feeds 19 current DWFx 24V zones. Label outputs DB-2 / PS-# / F-# / SH-# / U-# or L-#.</td>
             </tr>
             <tr>
-              <td>24V fused distribution</td>
-              <td>DIN/fuse-block distribution from 24V driver bank to Shelly modules</td>
-              <td class="num">2 panels</td>
-              <td>Provide one fused output per Shelly/module feed or per tape zone as required. Do not land all 24V loads on an unfused common bus.</td>
+              <td>24V fused distribution terminals</td>
+              <td><a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact ST 4-FSI/C-LED 24</a> fuse terminal block, item 3036505, on NS35 DIN rail</td>
+              <td class="num">24 minimum + spares</td>
+              <td>Use one fused 24V positive output per Shelly/tape zone. Size the blade fuse to the actual tape load and wire gauge. Do not land all 24V loads on an unfused common bus.</td>
             </tr>
             <tr>
               <td>Shelly LED controllers</td>
-              <td>Shelly Plus RGBW PM or approved equivalent, white-channel mode</td>
+              <td><a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a>, white-channel mode</td>
               <td class="num">24 max</td>
               <td>Carry one module per visible 24V control label in the current upper/lower ceiling DWFx files. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
             </tr>
             <tr>
+              <td>Control/fuse enclosure</td>
+              <td><a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">nVent Hoffman A24N206LP</a>, Type 1 steel wall-mount enclosure, 24 in x 20 in x 6.62 in</td>
+              <td class="num">2</td>
+              <td>One enclosure at DB-1 and one at DB-2 for DIN rail, Phoenix fuse terminals, terminal blocks, labels, and Shelly modules. Use a larger listed enclosure if final layout/heat spacing requires it.</td>
+            </tr>
+            <tr>
+              <td>DIN rail</td>
+              <td>Phoenix Contact NS 35/7.5 perforated DIN rail, 35 mm x 7.5 mm</td>
+              <td class="num">As required</td>
+              <td>Mount fuse terminals and control terminals inside each Hoffman control/fuse enclosure.</td>
+            </tr>
+            <tr>
               <td>120V branch circuits</td>
-              <td>Dedicated 120V lighting circuits to driver/control cabinets</td>
+              <td>Dedicated 120V lighting circuits to DB-1 and DB-2 assemblies</td>
               <td class="num">2 x 20A</td>
               <td>One 120V feed to DB-1 and one 120V feed to DB-2. Final conductor/breaker by electrician and code.</td>
             </tr>
@@ -307,14 +319,14 @@ details.cat summary::-webkit-details-marker{display:none}
             <tbody>
               <tr>
                 <td>DB-1 / Panel 1</td>
-                <td>Left-side/main-house 24V driver bank and assigned tape zones</td>
+                <td>Build DB-1 from 4 x Mean Well HLG-600H-24A drivers, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">5</td>
                 <td class="num">2,400W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>DB-2 / Panel 2</td>
-                <td>Right-side/lower/ADU/exterior 24V driver bank and assigned tape zones</td>
+                <td>Build DB-2 from 6 x Mean Well HLG-600H-24A drivers, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">19</td>
                 <td class="num">3,600W @ 24V</td>
                 <td>20A, 120V</td>
@@ -322,7 +334,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. Carry 6,000W total installed 24V driver capacity using 10 x 600W drivers. Do not combine or reassign 24V tape zones between DB-1 and DB-2 without updating the load schedule, fuse schedule, and voltage-drop calculation.</div>
+        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. Carry 6,000W total installed 24V driver capacity using 10 x Mean Well HLG-600H-24A drivers. Do not combine or reassign 24V tape zones between DB-1 and DB-2 without updating the load schedule, fuse schedule, and voltage-drop calculation.</div>
       </section>
 
       <section class="card">
@@ -345,7 +357,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td><span class="tag">1-24</span> <span class="tag">2-24</span> <span class="tag">3-24</span></td>
                 <td>Separate 24V tape-light control zones</td>
-                <td>24V driver bank to fused distribution, then Shelly RGBW PM, then tape zone.</td>
+                <td>Mean Well HLG-600H-24A 24V driver to Phoenix Contact 3036505 fused terminal, then Shelly Plus RGBW PM, then tape zone.</td>
               </tr>
               <tr>
                 <td><span class="tag">120V</span></td>
@@ -369,8 +381,8 @@ details.cat summary::-webkit-details-marker{display:none}
               </tr>
               <tr>
                 <td><span class="tag">Shelly</span></td>
-                <td>Smart PWM controller</td>
-                <td>Install downstream of fused 24V distribution and upstream of tape light.</td>
+                <td>Shelly Plus RGBW PM smart PWM controller</td>
+                <td>Install downstream of the Phoenix Contact 3036505 fused 24V output and upstream of tape light.</td>
               </tr>
               <tr>
                 <td><span class="tag">120V Shelly</span></td>
@@ -385,7 +397,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Typical path: 120V panel circuit -> shared 24V driver bank -> fused 24V distribution -> Shelly RGBW PM -> tape/channel zone.</div>
+        <div class="note">Typical path: 120V panel circuit -> Mean Well HLG-600H-24A 24V driver -> Phoenix Contact 3036505 fused terminal -> Shelly Plus RGBW PM -> tape/channel zone.</div>
       </section>
     </div>
 
@@ -425,8 +437,8 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Exterior upper ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Use only where exterior/wet shown</td><td>Keep exterior tape and exterior channel separate from interior material. Do not install indoor tape/channel outside.</td></tr>
                   <tr><td>Upper ceiling load basis</td><td>24V DC tape load</td><td class="num">2,533W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 7,354W and the driver schedule must be redesigned.</td></tr>
                   <tr><td>Upper ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
-                  <tr><td>Upper 24V driver assignment</td><td>Mean Well HLG-600H-24A bank through fused distribution</td><td class="num">DB-2 unless revised</td><td>Assign upper ceiling zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
-                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
+                  <tr><td>Upper 24V driver assignment</td><td>Mean Well HLG-600H-24A driver through Phoenix Contact 3036505 fused terminal output</td><td class="num">DB-2 unless revised</td><td>Assign upper ceiling zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to DB-2 assembly</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the Mean Well HLG-600H-24A drivers only. Tape zones are 24V downstream of drivers, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
                   <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
@@ -468,8 +480,8 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
                   <tr><td>Lower ceiling load basis</td><td>24V DC tape load</td><td class="num">1,104W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 3,206W and the driver schedule must be redesigned.</td></tr>
                   <tr><td>Lower ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
-                  <tr><td>Lower 24V driver assignment</td><td>Mean Well HLG-600H-24A bank through fused distribution</td><td class="num">DB-2 unless revised</td><td>Assign lower/ADU/exterior zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
-                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
+                  <tr><td>Lower 24V driver assignment</td><td>Mean Well HLG-600H-24A driver through Phoenix Contact 3036505 fused terminal output</td><td class="num">DB-2 unless revised</td><td>Assign lower/ADU/exterior zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to DB-2 assembly</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the Mean Well HLG-600H-24A drivers only. Tape zones are 24V downstream of drivers, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
                   <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
@@ -486,30 +498,30 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Circuit</th><th>Transformer / Driver</th><th>Shelly</th><th>Termination</th></tr></thead>
                 <tbody>
-                  <tr><td>Upper ceiling / Panel 1 / U-01 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left-side Panel 1 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 1 / U-02 / 2-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side Panel 1 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 1 / U-03 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-left Panel 1 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 1 / U-04 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 1 / U-05 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-06 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center-left Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-07 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-08 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper central Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-09 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-10 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper Panel 2 exterior/interior run.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-11 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center Panel 2 run.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-12 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-13 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-14 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side Panel 2 area.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-15 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right-side Panel 2 exterior/interior run.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-16 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at far-right Panel 2 run.</td></tr>
-                  <tr><td>Upper ceiling / Panel 2 / U-17 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-right Panel 2 run.</td></tr>
-                  <tr><td>Lower ceiling / L-01 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / L-02 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / L-03 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / L-04 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / L-05 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / L-06 / 3-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / L-07 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-01 / 1-24</td><td>DB-1: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left-side Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-02 / 2-24</td><td>DB-1: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-03 / 1-24</td><td>DB-1: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-left Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-04 / 1-24</td><td>DB-1: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-05 / 1-24</td><td>DB-1: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-06 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center-left Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-07 / 2-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-08 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper central Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-09 / 2-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-10 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper Panel 2 exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-11 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center Panel 2 run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-12 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-13 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-14 / 2-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-15 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right-side Panel 2 exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-16 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at far-right Panel 2 run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-17 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-right Panel 2 run.</td></tr>
+                  <tr><td>Lower ceiling / L-01 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-02 / 2-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-03 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-04 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-05 / 2-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-06 / 3-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-07 / 1-24</td><td>DB-2: Mean Well HLG-600H-24A 24V driver feeding Phoenix Contact 3036505 fused terminal output</td><td>Shelly Plus RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 1-120</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 120-1</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 120-2</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
@@ -528,8 +540,8 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Panel Feed</th><th>Purpose</th><th class="num">Shelly Zones</th><th class="num">24V Bank Capacity</th><th>120V Breaker</th></tr></thead>
                 <tbody>
-                  <tr><td>DB-1 / Panel 1</td><td>Left-side/main-house 24V driver bank: 4 x 600W 24V drivers</td><td class="num">5</td><td class="num">2,400W @ 24V</td><td>20A, 120V</td></tr>
-                  <tr><td>DB-2 / Panel 2</td><td>Right-side/lower/ADU/exterior 24V driver bank: 6 x 600W 24V drivers</td><td class="num">19</td><td class="num">3,600W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>DB-1 / Panel 1</td><td>Build from 4 x Mean Well HLG-600H-24A drivers, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">5</td><td class="num">2,400W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>DB-2 / Panel 2</td><td>Build from 6 x Mean Well HLG-600H-24A drivers, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">19</td><td class="num">3,600W @ 24V</td><td>20A, 120V</td></tr>
                   <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
                   <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
                   <tr><td>Main Power Panel 2</td><td>Main wall-load DWFx object: Leviton load center / 100A Service</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is 100A Service. Coordinate with final panel schedule and service/load calculation.</td></tr>
@@ -537,7 +549,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 </tbody>
               </table>
             </div>
-            <div class="note">Install exactly as two assigned driver banks unless the plan is formally revised. Required label format: DB-# / PS-# / F-# / SH-# / Z-#. No field combining or moving tape zones between banks without revised load, fuse, and voltage-drop schedules.</div>
+            <div class="note">Install exactly as two assigned DB assemblies unless the plan is formally revised. Required label format: DB-# / PS-# / F-# / SH-# / U-# or L-#. No field combining or moving tape zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</div>
           </section>
         </section>
       </div>
