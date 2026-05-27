@@ -91,8 +91,8 @@ details.cat summary::-webkit-details-marker{display:none}
       </div>
       <div class="metric">
         <div class="label">Control Hardware</div>
-        <div class="value">30 zones</div>
-        <div class="hint">30 Shelly RGBW PM modules fed by shared 24V driver bank(s)</div>
+        <div class="value">33 zones</div>
+        <div class="hint">33 visible 24V control labels in latest DWFx</div>
       </div>
     </div>
 
@@ -171,8 +171,8 @@ details.cat summary::-webkit-details-marker{display:none}
             <tr>
               <td>Shelly LED controllers</td>
               <td>Shelly Plus RGBW PM or approved equivalent, white-channel mode</td>
-              <td class="num">30</td>
-              <td>One module per switched tape-light zone. Max 4A/channel and 10A total; outputs switch the 24V tape zones.</td>
+              <td class="num">33 max</td>
+              <td>Carry one module per visible 24V control label. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
             </tr>
             <tr>
               <td>120V branch circuits</td>
@@ -218,8 +218,8 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <th>Circuit</th>
                 <th>Area Served</th>
-                <th class="num">Drivers</th>
-                <th class="num">Est. Driver Capacity</th>
+                <th class="num">Shelly Zones</th>
+                <th class="num">24V Bank Capacity</th>
                 <th>Breaker</th>
               </tr>
             </thead>
@@ -227,35 +227,35 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td>LC-1</td>
                 <td>Panel 1 24V driver bank / associated tape zones</td>
-                <td class="num">8</td>
-                <td class="num">1,200W @ 24V</td>
+                <td class="num">9</td>
+                <td class="num">1,500W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-2</td>
                 <td>Panel 2 24V driver bank / associated tape zones</td>
                 <td class="num">8</td>
-                <td class="num">1,200W @ 24V</td>
+                <td class="num">1,500W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-3</td>
                 <td>Panel 3 24V driver bank / associated tape zones</td>
-                <td class="num">7</td>
-                <td class="num">1,050W @ 24V</td>
+                <td class="num">8</td>
+                <td class="num">1,200W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-4</td>
                 <td>Panel 4 24V driver bank / associated tape zones</td>
-                <td class="num">7</td>
-                <td class="num">1,050W @ 24V</td>
+                <td class="num">8</td>
+                <td class="num">1,200W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. The 24V source may be a central supply bank or panel-area driver banks; each Shelly/tape output still needs fused distribution and voltage-drop sizing.</div>
+        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. Carry approx. 5,400W total 24V driver-bank capacity. The 24V source may be a central supply bank or panel-area driver banks; each Shelly/tape output still needs fused distribution and voltage-drop sizing.</div>
       </section>
 
       <section class="card">
@@ -291,9 +291,14 @@ details.cat summary::-webkit-details-marker{display:none}
                 <td>Use one 120V lighting feed for the miscellaneous utility fixtures; local motion sensors are acceptable.</td>
               </tr>
               <tr>
+                <td><span class="tag">3-120</span></td>
+                <td>Single remaining 120V label in latest DWFx</td>
+                <td>Use only where a separate 120V controlled feed is intentionally required; otherwise coordinate with electrician to combine utility lighting on 1-120.</td>
+              </tr>
+              <tr>
                 <td><span class="tag">4-120</span> <span class="tag">5-120</span></td>
-                <td>Delete / combine</td>
-                <td>Do not carry separate 4-120 and 5-120 circuits for these utility lights; combine into 1-120 unless electrician requires otherwise.</td>
+                <td>Not present in latest DWFx</td>
+                <td>Do not carry these as separate circuits. Latest DWFx text shows 1-120 and 3-120 only.</td>
               </tr>
               <tr>
                 <td><span class="tag">Shelly</span></td>
