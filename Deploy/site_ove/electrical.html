@@ -86,9 +86,9 @@ details.cat summary::-webkit-details-marker{display:none}
 
   <div class="container" id="app">
     <div class="h1">Electrical Summary</div>
-    <div class="sub" id="genSub">Ceiling tape-light procurement and control schedule. Updated from the RCP DXF takeoff.</div>
+    <div class="sub" id="genSub">Ceiling tape-light procurement and control schedule. Updated from the current DWFx takeoffs.</div>
     <div class="note" id="srcNote" style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <span class="muted" id="srcLabel">Source: Rodriquez RCP Main Ceiling Electrical DXF takeoff, 2026-05-27.</span>
+      <span class="muted" id="srcLabel">Source: current DWFx takeoffs from 2026-05-27: upper ceiling, lower ceiling, upper/lower/main wall loads.</span>
       <button id="btnSetUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
       <button id="btnClearUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
     </div>
@@ -178,8 +178,8 @@ details.cat summary::-webkit-details-marker{display:none}
       </div>
       <div class="metric">
         <div class="label">Control Hardware</div>
-        <div class="value">33 zones</div>
-        <div class="hint">33 visible 24V control labels in latest DWFx</div>
+        <div class="value">24 zones</div>
+        <div class="hint">24 visible 24V control labels in current ceiling DWFx files</div>
       </div>
     </div>
 
@@ -252,8 +252,8 @@ details.cat summary::-webkit-details-marker{display:none}
             <tr>
               <td>Shelly LED controllers</td>
               <td>Shelly Plus RGBW PM or approved equivalent, white-channel mode</td>
-              <td class="num">33 max</td>
-              <td>Carry one module per visible 24V control label. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
+              <td class="num">24 max</td>
+              <td>Carry one module per visible 24V control label in the current upper/lower ceiling DWFx files. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
             </tr>
             <tr>
               <td>120V branch circuits</td>
@@ -308,14 +308,14 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td>DB-1 / Panel 1</td>
                 <td>Left-side/main-house 24V driver bank and assigned tape zones</td>
-                <td class="num">13</td>
+                <td class="num">5</td>
                 <td class="num">2,400W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>DB-2 / Panel 2</td>
                 <td>Right-side/lower/ADU/exterior 24V driver bank and assigned tape zones</td>
-                <td class="num">20</td>
+                <td class="num">19</td>
                 <td class="num">3,600W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
@@ -528,8 +528,8 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Panel Feed</th><th>Purpose</th><th class="num">Shelly Zones</th><th class="num">24V Bank Capacity</th><th>120V Breaker</th></tr></thead>
                 <tbody>
-                  <tr><td>DB-1 / Panel 1</td><td>Left-side/main-house 24V driver bank: 4 x 600W 24V drivers</td><td class="num">13</td><td class="num">2,400W @ 24V</td><td>20A, 120V</td></tr>
-                  <tr><td>DB-2 / Panel 2</td><td>Right-side/lower/ADU/exterior 24V driver bank: 6 x 600W 24V drivers</td><td class="num">20</td><td class="num">3,600W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>DB-1 / Panel 1</td><td>Left-side/main-house 24V driver bank: 4 x 600W 24V drivers</td><td class="num">5</td><td class="num">2,400W @ 24V</td><td>20A, 120V</td></tr>
+                  <tr><td>DB-2 / Panel 2</td><td>Right-side/lower/ADU/exterior 24V driver bank: 6 x 600W 24V drivers</td><td class="num">19</td><td class="num">3,600W @ 24V</td><td>20A, 120V</td></tr>
                   <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
                   <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
                   <tr><td>Main Power Panel 2</td><td>Main wall-load DWFx object: Leviton load center / 100A Service</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is 100A Service. Coordinate with final panel schedule and service/load calculation.</td></tr>
