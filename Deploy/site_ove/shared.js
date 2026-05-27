@@ -7,7 +7,7 @@ async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-2
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
-const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
+const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -28,11 +28,11 @@ const PHASE_KEYS=PHASE_NAMES.slice();
 
 // Hosted CO document URLs (relative to site root) — used when CO has no docUrl/docLink
 const CO_DOC_URLS={
-  'CO-001':'co_docs/CO-001.pdf','CO-002':'co_docs/CO-002.docx','CO-003':'co_docs/CO-003.pdf',
-  'CO-004':'co_docs/CO-004.pdf','CO-005':'co_docs/CO-005.pdf','CO-006':'co_docs/CO-006.pdf',
-  'CO-007':'co_docs/CO-007.pdf','CO-008':'co_docs/CO-008.docx','CO-010':'co_docs/CO-010.docx',
-  'CO-011':'co_docs/CO-011.pdf','CO-012':'co_docs/CO-012.pdf',
-  'CO-013':'co_docs/CO-013.pdf','CO-014':'co_docs/CO-014.pdf'
+  'CO-001':'CO-001.pdf','CO-002':'CO-002.pdf','CO-003':'CO-003.pdf',
+  'CO-004':'CO-004.pdf','CO-005':'CO-005.pdf','CO-006':'CO-006.pdf',
+  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-010':'CO-010.pdf',
+  'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
+  'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf','CO-015':'CO-015.docx'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
@@ -239,6 +239,22 @@ function detectScheduleColumnIndices(rows){
   }
   if(!found)dataStart=7;
   return{idx,dataStart};
+}
+function scheduleRowsHaveData(rows){
+  if(!Array.isArray(rows)||!rows.length)return false;
+  const{idx,dataStart}=detectScheduleColumnIndices(rows);
+  let datedRows=0;
+  for(let i=dataStart;i<rows.length;i++){
+    const r=rows[i];if(!r)continue;
+    const trade=String(r[idx.trade]||'').trim();
+    const start=String(r[idx.start]||'').trim();
+    const finish=String(r[idx.finish]||'').trim();
+    if(trade&&(start||finish)){
+      datedRows++;
+      if(datedRows>=3)return true;
+    }
+  }
+  return false;
 }
 function parseDelayDays(s){
   const v=parseInt(String(s==null?'':s).trim(),10);
@@ -723,8 +739,16 @@ async function loadProjectData(){
   const{phases,headerInfo,changeOrders:sheetCOs,totalPaidOverride,buildGrossTotals}=parseBudgetTab(budgetRows);
 
   let scheduleTasks=[];
-  if(scheduleCSV){
-    const scheduleRows=parseCSV(scheduleCSV);
+  let scheduleRows=scheduleCSV?parseCSV(scheduleCSV):[];
+  if(!scheduleRowsHaveData(scheduleRows)){
+    console.warn('Published schedule CSV is blank or unusable; loading local schedule fallback.');
+    const fallbackCSV=await fetch(SCHEDULE_FALLBACK_URL+"?_="+ts,fetchOpts).then(r=>{
+      if(!r.ok)throw new Error('Schedule fallback HTTP '+r.status);
+      return r.text()
+    });
+    scheduleRows=parseCSV(fallbackCSV);
+  }
+  if(scheduleRowsHaveData(scheduleRows)){
     const sched=parseScheduleTab(scheduleRows);
     scheduleTasks=sched.tasks;
   }

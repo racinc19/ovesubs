@@ -39,6 +39,17 @@ details.cat summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:1
 details.cat summary::-webkit-details-marker{display:none}
 .note{padding:12px 16px;font-size:12px;color:var(--txt2)}
 .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;border:1px solid rgba(234,179,8,.35);color:var(--yellow);background:rgba(234,179,8,.07);margin-left:8px}
+.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.metric{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:12px}
+.metric .label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:800}
+.metric .value{font-size:22px;font-weight:900;margin-top:4px;color:#fff}
+.metric .hint{font-size:11px;color:var(--txt2);margin-top:3px}
+.full-card{margin-top:14px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
+.tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}}
+@media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -55,22 +66,220 @@ details.cat summary::-webkit-details-marker{display:none}
 
   <div class="container" id="app">
     <div class="h1">Electrical Summary</div>
-    <div class="sub" id="genSub">Loading…</div>
+    <div class="sub" id="genSub">Ceiling tape-light procurement and control schedule. Updated from the RCP DXF takeoff.</div>
     <div class="note" id="srcNote" style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <span class="muted" id="srcLabel">Source: (loading)</span>
-      <button id="btnSetUrl" style="padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
-      <button id="btnClearUrl" style="padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
+      <span class="muted" id="srcLabel">Source: Rodriquez RCP Main Ceiling Electrical DXF takeoff, 2026-05-27.</span>
+      <button id="btnSetUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
+      <button id="btnClearUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
     </div>
 
-    <div class="grid">
+    <div class="schedule-grid">
+      <div class="metric">
+        <div class="label">CAD Tape Takeoff</div>
+        <div class="value">1,161.5 LF</div>
+        <div class="hint">79 LED-strip fixture segments from RCP DXF</div>
+      </div>
+      <div class="metric">
+        <div class="label">Order Allowance</div>
+        <div class="value">1,337 LF</div>
+        <div class="hint">15% waste/cuts included</div>
+      </div>
+      <div class="metric">
+        <div class="label">120V Lighting Feeds</div>
+        <div class="value">4 x 20A</div>
+        <div class="hint">Dedicated circuits for 24V LED drivers</div>
+      </div>
+      <div class="metric">
+        <div class="label">Control Hardware</div>
+        <div class="value">30 zones</div>
+        <div class="hint">30 drivers + 30 Shelly RGBW PM modules</div>
+      </div>
+    </div>
+
+    <section class="card full-card">
+      <div class="card-h"><h2>Ceiling Tape-Light Package For Electrical Review</h2></div>
+      <div class="note">
+        Basis of design: 24V warm-white tape, Diode LED BLAZE X 200 or equal, 3000K, 95+ CRI, 3.1 W/LF.
+        Do not substitute BLAZE X 300 or higher wattage tape without resizing drivers, Shelly modules, and branch circuits.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Spec / Basis</th>
+              <th class="num">Qty</th>
+              <th>Use / Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Interior LED tape</td>
+              <td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td>
+              <td class="num">10 x 100 ft spools</td>
+              <td>916 LF allowance against approx. 796 LF interior CAD takeoff.</td>
+            </tr>
+            <tr>
+              <td>Exterior LED tape</td>
+              <td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td>
+              <td class="num">5 x 100 ft spools</td>
+              <td>421 LF allowance against approx. 365 LF exterior CAD takeoff.</td>
+            </tr>
+            <tr>
+              <td>Interior aluminum channel</td>
+              <td>8 ft aluminum profile with frosted lens, end caps, clips</td>
+              <td class="num">115 sticks</td>
+              <td>Use at all interior cove/tray/tape locations.</td>
+            </tr>
+            <tr>
+              <td>Exterior aluminum channel</td>
+              <td>8 ft exterior/wet-rated aluminum profile with lens, end caps, clips</td>
+              <td class="num">53 sticks</td>
+              <td>Seal wire exits; mechanically fasten; do not rely on adhesive only.</td>
+            </tr>
+            <tr>
+              <td>24V LED drivers</td>
+              <td>24V constant-voltage, 150W, accessible, listed</td>
+              <td class="num">30</td>
+              <td>One driver per Shelly/controller zone. Load each driver to max 120W design load.</td>
+            </tr>
+            <tr>
+              <td>Shelly LED controllers</td>
+              <td>Shelly Plus RGBW PM or approved equivalent, white-channel mode</td>
+              <td class="num">30</td>
+              <td>One module per driver zone. Max 4A/channel and 10A total; keep this design to 120W/module target.</td>
+            </tr>
+            <tr>
+              <td>120V branch circuits</td>
+              <td>Dedicated 120V lighting circuits to driver/control cabinets</td>
+              <td class="num">4 x 20A</td>
+              <td>Feeds 24V driver banks only. Final conductor/breaker by electrician and code.</td>
+            </tr>
+            <tr>
+              <td>Cat5e control cable</td>
+              <td>CMR/CL2 rated Cat5e, home-run topology</td>
+              <td class="num">2 x 1000 ft boxes</td>
+              <td>For keypad/control/low-voltage signal runs only. Do not use Cat5e for LED tape power.</td>
+            </tr>
+            <tr>
+              <td>LED power cable</td>
+              <td>16/2 stranded low-voltage cable, CL2/CL3 as required</td>
+              <td class="num">2 x 1000 ft boxes</td>
+              <td>Typical 24V tape home runs from controller to tape.</td>
+            </tr>
+            <tr>
+              <td>Long-run LED power cable</td>
+              <td>14/2 stranded low-voltage cable, CL2/CL3 as required</td>
+              <td class="num">1 x 500 ft box</td>
+              <td>Use for longer 24V home runs and power injection where voltage drop requires.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <section class="card">
+        <div class="card-h"><h2>Branch Circuit Schedule</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Circuit</th>
+                <th>Area Served</th>
+                <th class="num">Drivers</th>
+                <th class="num">Est. Driver Capacity</th>
+                <th>Breaker</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LC-1</td>
+                <td>Interior west / bedrooms / baths</td>
+                <td class="num">8</td>
+                <td class="num">1,200W @ 24V</td>
+                <td>20A, 120V</td>
+              </tr>
+              <tr>
+                <td>LC-2</td>
+                <td>Interior main ceiling / kitchen / hall</td>
+                <td class="num">8</td>
+                <td class="num">1,200W @ 24V</td>
+                <td>20A, 120V</td>
+              </tr>
+              <tr>
+                <td>LC-3</td>
+                <td>Exterior upper / west soffit and perimeter</td>
+                <td class="num">7</td>
+                <td class="num">1,050W @ 24V</td>
+                <td>20A, 120V</td>
+              </tr>
+              <tr>
+                <td>LC-4</td>
+                <td>Exterior patio / east / lower perimeter</td>
+                <td class="num">7</td>
+                <td class="num">1,050W @ 24V</td>
+                <td>20A, 120V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">Total installed tape basis: approx. 3,600W at 24V. Driver capacity shown includes headroom for zoning and field layout.</div>
+      </section>
+
+      <section class="card">
+        <div class="card-h"><h2>Plan Legend / Wiring Rule</h2></div>
+        <div class="note">
+          <div class="callout">
+            Each 24V label on the reflected ceiling plan identifies a controlled low-voltage tape-light zone/output, not a 120V branch circuit.
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Plan Label</th>
+                <th>Meaning</th>
+                <th>Required Connection</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag">1-24</span> <span class="tag">2-24</span> <span class="tag">3-24</span></td>
+                <td>Separate 24V tape-light control zones</td>
+                <td>Tape zone to Shelly RGBW PM output channel, then to 24V driver.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">120V</span></td>
+                <td>Line-voltage feed to driver location</td>
+                <td>120V circuit feeds accessible 24V drivers only.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">Shelly</span></td>
+                <td>Smart PWM controller</td>
+                <td>Install downstream of 24V driver and upstream of tape light.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">Cat5e</span></td>
+                <td>Control/keypad cable only</td>
+                <td>Home run from switch/keypad/control points to low-voltage cabinet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">Typical path: 120V breaker -> 24V driver -> Shelly RGBW PM -> 24V tape/channel zone.</div>
+      </section>
+    </div>
+
+    <div class="grid" style="display:none">
       <section class="card" id="panelSummaryCard"></section>
       <section class="card" id="equipIntroCard"></section>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px" id="equipTables"></div>
-    <div style="margin-top:14px" id="panelBlocks"></div>
+    <div style="display:none;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px" id="equipTables"></div>
+    <div style="display:none;margin-top:14px" id="panelBlocks"></div>
 
-    <div class="note" style="margin-top:14px">
+    <div class="note" style="display:none;margin-top:14px">
       <span class="badge">Note</span>
       Values are sourced from the exported load table. If the Google Sheet publish-to-web is delayed/cached, this page remains accurate for the CSV embedded in this page.
     </div>
@@ -239,7 +448,7 @@ Glass East,119,234,100 mm,Somfy Sonesse 100 RS485,≥ 15 Nm,≥ 20 Nm,0.48,57.6,
 TOTAL,,,,11 Motors,,,4.89,586.8,,,,6 × Shelly Pro Dual (2 motors each),LAN/RS485 → Homey,,4.89,586.8,See grouping,6,Total Devices Needed
 </script>
 
-  <script>
+  <script type="text/plain" id="disabled-electrical-csv-renderer">
 (function(){
   const LS_KEY='ovesubs_electrical_csv_url';
 
