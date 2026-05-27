@@ -404,13 +404,14 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-lower">
           <section class="card full-card">
             <div class="card-h"><h2>Lower Ceiling Tape-Light Schedule</h2></div>
-            <div class="note">Lower ceiling schedule follows the same rules as Main and Upper: separate interior from exterior material, feed from assigned driver-bank outputs, fuse every 24V branch, label every driver/fuse/Shelly/zone, and do not move zones between DB-1 and DB-2 without revising the schedules.</div>
+            <div class="note">Lower ceiling takeoff checked from Lower Electrical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 24 L_LED Light strip objects totaling approx. 356.2 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Separate interior from exterior material by plan location before ordering.</div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Item</th><th>Spec / Basis</th><th class="num">Qty / Load</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Interior lower ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">Included in interior package</td><td>Interior lower ceiling and ADU tape locations shown on the plan. Use interior/damp tape and interior aluminum channel.</td></tr>
-                  <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Included in exterior package</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Interior lower ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Interior lower ceiling and ADU tape locations shown on the plan. Use interior/damp tape and interior aluminum channel.</td></tr>
+                  <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Lower ceiling load basis</td><td>24V DC tape load</td><td class="num">1,104W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 3,206W and the driver schedule must be redesigned.</td></tr>
                   <tr><td>Lower ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
                   <tr><td>Lower 24V driver assignment</td><td>Mean Well HLG-600H-24A bank through fused distribution</td><td class="num">DB-2 unless revised</td><td>Assign lower/ADU/exterior zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
                   <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
