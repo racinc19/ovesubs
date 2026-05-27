@@ -133,7 +133,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <div class="metric">
         <div class="label">CAD Tape Takeoff</div>
         <div class="value">1,373.5 LF</div>
-        <div class="hint">RCP DXF plus ADU rectangle and rear patio adders</div>
+        <div class="hint">Total tape/channel footage shown on the ceiling plans</div>
       </div>
       <div class="metric">
         <div class="label">Order Allowance</div>
@@ -156,7 +156,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <div class="card-h"><h2>Ceiling Tape-Light Package For Electrical Review</h2></div>
       <div class="note">
         Basis of design: 24V warm-white tape, Diode LED BLAZE X 200 or equal, 3000K, 95+ CRI, 3.1 W/LF.
-        Revised takeoff includes the previously missed ADU 14 ft x 5 ft rectangle and rear patio 63 ft x 24 ft rectangle.
+        Quantity below is the combined order package for interior, ADU, and exterior ceiling tape locations shown on the plan.
         Do not substitute BLAZE X 300 or higher wattage tape without resizing drivers, Shelly modules, and branch circuits.
       </div>
       <div class="table-wrap">
@@ -174,13 +174,13 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>Interior LED tape</td>
               <td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td>
               <td class="num">10 x 100 ft spools</td>
-              <td>959 LF allowance against approx. 834 LF interior/ADU takeoff.</td>
+              <td>Install at all interior and ADU ceiling tape locations shown on the plan.</td>
             </tr>
             <tr>
               <td>Exterior LED tape</td>
               <td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td>
               <td class="num">7 x 100 ft spools</td>
-              <td>620 LF allowance against approx. 539 LF exterior/rear patio takeoff.</td>
+              <td>Install at all exterior ceiling tape locations shown on the plan.</td>
             </tr>
             <tr>
               <td>Interior aluminum channel</td>
@@ -195,34 +195,16 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>Seal wire exits; mechanically fasten; do not rely on adhesive only.</td>
             </tr>
             <tr>
-              <td>ADU rectangle adder</td>
-              <td>24V tape/channel around 14 ft x 5 ft rectangle</td>
-              <td class="num">38 LF</td>
-              <td>Included in revised interior/ADU tape allowance.</td>
-            </tr>
-            <tr>
-              <td>Rear patio adder</td>
-              <td>24V exterior tape/channel around 63 ft x 24 ft rear patio rectangle</td>
-              <td class="num">174 LF</td>
-              <td>Included in revised exterior tape allowance.</td>
-            </tr>
-            <tr>
               <td>24V LED drivers</td>
               <td>Shared 24V constant-voltage driver bank(s), accessible, listed</td>
               <td class="num">4 banks</td>
-              <td>One driver bank per electrical panel area, or one central 24V supply bank if approved. Feed Shelly modules through fused 24V distribution.</td>
+              <td>One accessible driver bank per electrical panel area. Feed Shelly modules through fused 24V distribution.</td>
             </tr>
             <tr>
               <td>24V fused distribution</td>
               <td>DIN/fuse-block distribution from 24V driver bank to Shelly modules</td>
               <td class="num">4 panels</td>
               <td>Provide one fused output per Shelly/module feed or per tape zone as required. Do not land all 24V loads on an unfused common bus.</td>
-            </tr>
-            <tr>
-              <td>Central driver option</td>
-              <td>Single 24V supply bank sized for full tape load plus headroom</td>
-              <td class="num">1 bank</td>
-              <td>Acceptable alternate if located accessibly and distributed through properly fused 24V outputs to all Shelly modules/zones.</td>
             </tr>
             <tr>
               <td>Shelly LED controllers</td>
@@ -422,8 +404,8 @@ details.cat summary::-webkit-details-marker{display:none}
                 <tbody>
                   <tr><td>Lower wall loads</td><td>120V</td><td>Panel schedule / relay where needed</td><td>Use separate Shelly relay channels only for loads requiring independent control.</td></tr>
                   <tr><td>Lower ceiling tape / feature lighting</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Feed from shared 24V bank through fused distribution.</td></tr>
-                  <tr><td>Rear patio tape adder</td><td>24V DC exterior</td><td>Shelly RGBW PM / outdoor-rated tape</td><td>174 LF included in revised exterior tape allowance.</td></tr>
-                  <tr><td>ADU rectangle adder</td><td>24V DC interior/damp</td><td>Shelly RGBW PM</td><td>38 LF included in revised interior/ADU tape allowance.</td></tr>
+                  <tr><td>Rear patio ceiling tape</td><td>24V DC exterior</td><td>Shelly RGBW PM / outdoor-rated tape</td><td>Exterior tape, wet-rated channel, lens, end caps, clips, fused 24V feed, and low-voltage control.</td></tr>
+                  <tr><td>ADU ceiling tape</td><td>24V DC interior/damp</td><td>Shelly RGBW PM</td><td>Interior/damp tape, aluminum channel, lens, end caps, clips, fused 24V feed, and low-voltage control.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -445,7 +427,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 </tbody>
               </table>
             </div>
-            <div class="note">Central 24V supply bank remains acceptable if accessible and distributed through fused 24V outputs. The panel-area bank schedule is the easier field layout.</div>
+            <div class="note">Use the panel-area driver-bank schedule above unless the electrician submits a listed engineered 24V distribution package with fused outputs, accessible drivers, and voltage-drop calculations.</div>
           </section>
         </section>
       </div>
