@@ -48,6 +48,19 @@ details.cat summary::-webkit-details-marker{display:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
 .tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+.panel-layout{display:grid;grid-template-columns:1fr;gap:16px;padding:16px}
+.layout-bank{border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.02);padding:14px}
+.layout-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:10px}
+.layout-row{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;gap:10px;align-items:stretch}
+.layout-box{border:1px solid rgba(148,163,184,.35);border-radius:8px;background:var(--card2);padding:12px;min-height:142px}
+.layout-box.ac{border-color:rgba(239,68,68,.45)}
+.layout-box.ps{border-color:rgba(234,179,8,.55)}
+.layout-box.lv{border-color:rgba(34,197,94,.45)}
+.layout-box h3{font-size:11px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;color:#fff}
+.layout-box ul{list-style:none;display:grid;gap:5px}
+.layout-box li{font-size:11px;color:var(--txt2)}
+.layout-arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);font-weight:900}
+.layout-note{font-size:11px;color:var(--txt2);margin-top:10px}
 .tabs{margin-top:14px}
 .tabs input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 .tab-labels{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);padding-bottom:8px}
@@ -68,7 +81,7 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-lower:checked ~ .tab-panels #panel-lower,
 #tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
 #tab-panels:checked ~ .tab-panels #panel-panels{display:block}
-@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}}
+@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -233,13 +246,13 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>DB-1 assembly - Panel 1 24V controls</td>
-              <td>4 x Mean Well SDR-480-24 DIN power supplies + <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 control enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>4 x Mean Well SDR-480-24 DIN power supplies + 2 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 enclosures + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable left-side assembly. Feeds 5 current DWFx 24V zones. Label outputs DB-1 / PS-# / F-# / SH-# / U-#.</td>
             </tr>
             <tr>
               <td>DB-2 assembly - Panel 2 24V controls</td>
-              <td>8 x Mean Well SDR-480-24 DIN power supplies + <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 control enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>8 x Mean Well SDR-480-24 DIN power supplies + 3 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 enclosures + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable right-side/lower/ADU/exterior assembly. Feeds 19 current DWFx 24V zones. Label outputs DB-2 / PS-# / F-# / SH-# / U-# or L-#.</td>
             </tr>
@@ -256,10 +269,10 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>Carry one module per visible 24V control label in the current upper/lower ceiling DWFx files. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
             </tr>
             <tr>
-              <td>Control/fuse enclosure</td>
+              <td>Driver-bank enclosures</td>
               <td><a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">nVent Hoffman A24N206LP</a>, Type 1 steel wall-mount enclosure, 24 in x 20 in x 6.62 in</td>
-              <td class="num">2</td>
-              <td>One enclosure at DB-1 and one at DB-2 for DIN rail, Phoenix fuse terminals, terminal blocks, labels, and Shelly modules. Use a larger listed enclosure if final layout/heat spacing requires it.</td>
+              <td class="num">5</td>
+              <td>Recommended split: DB-1A 120V/DIN supplies, DB-1B 24V fuse/Shelly controls, DB-2A 120V/DIN supplies feed A, DB-2B 120V/DIN supplies feed B, DB-2C 24V fuse/Shelly controls. Use a larger listed enclosure if final layout/heat spacing requires it.</td>
             </tr>
             <tr>
               <td>DIN rail</td>
@@ -319,14 +332,14 @@ details.cat summary::-webkit-details-marker{display:none}
             <tbody>
               <tr>
                 <td>DB-1 / Panel 1</td>
-                <td>Build DB-1 from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build DB-1 from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">5</td>
                 <td class="num">1,920W @ 24V</td>
                 <td>1 x 20A, 120V</td>
               </tr>
               <tr>
                 <td>DB-2 / Panel 2</td>
-                <td>Build DB-2 from 8 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build DB-2 from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">19</td>
                 <td class="num">3,840W @ 24V</td>
                 <td>2 x 20A, 120V</td>
@@ -583,14 +596,92 @@ details.cat summary::-webkit-details-marker{display:none}
         </section>
 
         <section class="tab-panel" id="panel-panels">
+          <section class="card full-card">
+            <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
+            <div class="note">Use separate enclosures/compartments so 120V line-voltage wiring is not mixed in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules. Final enclosure listing, spacing, grounding, ventilation, and conductor fill must be checked by the electrician.</div>
+            <div class="panel-layout">
+              <div class="layout-bank">
+                <div class="layout-title">DB-1 / Panel 1 Area - 5 Shelly Zones</div>
+                <div class="layout-row">
+                  <div class="layout-box ac">
+                    <h3>DB-1A: 120V Feed</h3>
+                    <ul>
+                      <li>1 x 20A 120V lighting circuit</li>
+                      <li>Local disconnect/service switch</li>
+                      <li>Line/neutral/ground terminal blocks</li>
+                      <li>Bond enclosure per code</li>
+                    </ul>
+                  </div>
+                  <div class="layout-arrow">-></div>
+                  <div class="layout-box ps">
+                    <h3>DB-1A: DIN Supplies</h3>
+                    <ul>
+                      <li>4 x Mean Well SDR-480-24</li>
+                      <li>24VDC, 20A, 480W each</li>
+                      <li>PS-1 through PS-4</li>
+                      <li>24V output leaves to DB-1B</li>
+                    </ul>
+                  </div>
+                  <div class="layout-arrow">-></div>
+                  <div class="layout-box lv">
+                    <h3>DB-1B: 24V Controls</h3>
+                    <ul>
+                      <li>Phoenix 3036505 fused outputs F-01 through F-05</li>
+                      <li>Shelly Plus RGBW PM SH-01 through SH-05</li>
+                      <li>24V tape terminations U-01 through U-05</li>
+                      <li>Low-voltage wiring only in this cabinet</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="layout-note">Physical build: two Hoffman A24N206LP enclosures minimum, mounted adjacent with labeled interconnects.</div>
+              </div>
+
+              <div class="layout-bank">
+                <div class="layout-title">DB-2 / Panel 2 Area - 19 Shelly Zones</div>
+                <div class="layout-row">
+                  <div class="layout-box ac">
+                    <h3>DB-2A / DB-2B: 120V Feeds</h3>
+                    <ul>
+                      <li>2 x 20A 120V lighting circuits</li>
+                      <li>Feed A serves PS-1 through PS-4</li>
+                      <li>Feed B serves PS-5 through PS-8</li>
+                      <li>Separate service disconnects or listed switching as required</li>
+                    </ul>
+                  </div>
+                  <div class="layout-arrow">-></div>
+                  <div class="layout-box ps">
+                    <h3>DB-2A / DB-2B: DIN Supplies</h3>
+                    <ul>
+                      <li>8 x Mean Well SDR-480-24 total</li>
+                      <li>24VDC, 20A, 480W each</li>
+                      <li>PS-1 through PS-8</li>
+                      <li>24V outputs leave to DB-2C</li>
+                    </ul>
+                  </div>
+                  <div class="layout-arrow">-></div>
+                  <div class="layout-box lv">
+                    <h3>DB-2C: 24V Controls</h3>
+                    <ul>
+                      <li>Phoenix 3036505 fused outputs F-01 through F-19</li>
+                      <li>Shelly Plus RGBW PM SH-01 through SH-19</li>
+                      <li>24V tape terminations U-06 through U-17 and L-01 through L-07</li>
+                      <li>Low-voltage wiring only in this cabinet</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="layout-note">Physical build: three Hoffman A24N206LP enclosures minimum: DB-2A power supply feed A, DB-2B power supply feed B, DB-2C fuse/Shelly controls.</div>
+              </div>
+            </div>
+          </section>
+
           <section class="card">
             <div class="card-h"><h2>Panels / Driver Banks</h2></div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Panel Feed</th><th>Purpose</th><th class="num">Shelly Zones</th><th class="num">24V Bank Capacity</th><th>120V Breaker</th></tr></thead>
                 <tbody>
-                  <tr><td>DB-1 / Panel 1</td><td>Build from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">5</td><td class="num">1,920W @ 24V</td><td>1 x 20A, 120V</td></tr>
-                  <tr><td>DB-2 / Panel 2</td><td>Build from 8 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A24N206LP enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">19</td><td class="num">3,840W @ 24V</td><td>2 x 20A, 120V</td></tr>
+                  <tr><td>DB-1 / Panel 1</td><td>Build from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">5</td><td class="num">1,920W @ 24V</td><td>1 x 20A, 120V</td></tr>
+                  <tr><td>DB-2 / Panel 2</td><td>Build from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">19</td><td class="num">3,840W @ 24V</td><td>2 x 20A, 120V</td></tr>
                   <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
                   <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
                   <tr><td>Main Power Panel 2</td><td>Main wall-load DWFx object: Leviton load center / 100A Service</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is 100A Service. Coordinate with final panel schedule and service/load calculation.</td></tr>
@@ -598,7 +689,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 </tbody>
               </table>
             </div>
-            <div class="note">Install exactly as two assigned DB assemblies unless the plan is formally revised. Required label format: DB-# / PS-# / F-# / SH-# / U-# or L-#. No field combining or moving tape zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</div>
+            <div class="note">Install exactly as two assigned DB assemblies unless the plan is formally revised. Recommended physical split is five enclosures total: DB-1A, DB-1B, DB-2A, DB-2B, DB-2C. Required label format: DB-# / PS-# / F-# / SH-# / U-# or L-#. No field combining or moving tape zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</div>
           </section>
         </section>
       </div>
