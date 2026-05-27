@@ -377,18 +377,21 @@ details.cat summary::-webkit-details-marker{display:none}
         </section>
 
         <section class="tab-panel" id="panel-upper-ceiling">
-          <section class="card">
-            <div class="card-h"><h2>Upper Ceiling / 24V Tape Controls</h2></div>
+          <section class="card full-card">
+            <div class="card-h"><h2>Upper Ceiling Tape-Light Schedule</h2></div>
             <div class="note">Upper ceiling takeoff checked from OVE Upper Electirical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 63 L_LED Light strip objects totaling approx. 817.1 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Current package basis remains 24V 3.1 W/LF tape unless Craig approves RGBW tape.</div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Item</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <thead><tr><th>Item</th><th>Spec / Basis</th><th class="num">Qty / Load</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Upper ceiling tape takeoff</td><td>24V DC</td><td>Shelly RGBW PM</td><td>63 strip objects / approx. 817.1 LF from the upper ceiling DWFx. With 15% waste, carry approx. 940 LF if the upper ceiling is purchased separately.</td></tr>
-                  <tr><td>Upper ceiling load basis</td><td>24V DC</td><td>Driver-bank schedule</td><td>At 3.1 W/LF, upper ceiling is approx. 2,533W before headroom. At Revit's 9 W/LF family value, it would be approx. 7,354W and the driver schedule must be redesigned.</td></tr>
-                  <tr><td>Upper ceiling tape zones</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Carry one control channel/module per visible 24V label unless field grouping is specifically approved and documented.</td></tr>
-                  <tr><td>Upper 24V driver assignment</td><td>120V in / 24V out</td><td>DB-2 fused 24V distribution unless revised</td><td>Assign upper ceiling zones to the scheduled driver bank outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
-                  <tr><td>Cat5e control home runs</td><td>Low voltage signal only</td><td>Keypad/control network</td><td>Do not use Cat5e for LED tape power.</td></tr>
+                  <tr><td>Interior upper ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">817.1 LF takeoff / 940 LF with 15%</td><td>Interior upper ceiling tape shown in the upper ceiling DWFx. Included in total tape package unless ordered separately.</td></tr>
+                  <tr><td>Exterior upper ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Use only where exterior/wet shown</td><td>Keep exterior tape and exterior channel separate from interior material. Do not install indoor tape/channel outside.</td></tr>
+                  <tr><td>Upper ceiling load basis</td><td>24V DC tape load</td><td class="num">2,533W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 7,354W and the driver schedule must be redesigned.</td></tr>
+                  <tr><td>Upper ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Upper 24V driver assignment</td><td>Mean Well HLG-600H-24A bank through fused distribution</td><td class="num">DB-2 unless revised</td><td>Assign upper ceiling zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
+                  <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
+                  <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -396,16 +399,20 @@ details.cat summary::-webkit-details-marker{display:none}
         </section>
 
         <section class="tab-panel" id="panel-lower">
-          <section class="card">
-            <div class="card-h"><h2>Lower Wall Loads / Ceiling</h2></div>
+          <section class="card full-card">
+            <div class="card-h"><h2>Lower Ceiling Tape-Light Schedule</h2></div>
+            <div class="note">Lower ceiling schedule follows the same rules as Main and Upper: separate interior from exterior material, feed from assigned driver-bank outputs, fuse every 24V branch, label every driver/fuse/Shelly/zone, and do not move zones between DB-1 and DB-2 without revising the schedules.</div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <thead><tr><th>Item</th><th>Spec / Basis</th><th class="num">Qty / Load</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Lower wall loads</td><td>120V</td><td>Panel schedule / relay where needed</td><td>Use separate Shelly relay channels only for loads requiring independent control.</td></tr>
-                  <tr><td>Lower ceiling tape / feature lighting</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Feed from shared 24V bank through fused distribution.</td></tr>
-                  <tr><td>Rear patio ceiling tape</td><td>24V DC exterior</td><td>Shelly RGBW PM / outdoor-rated tape</td><td>Exterior tape, wet-rated channel, lens, end caps, clips, fused 24V feed, and low-voltage control.</td></tr>
-                  <tr><td>ADU ceiling tape</td><td>24V DC interior/damp</td><td>Shelly RGBW PM</td><td>Interior/damp tape, aluminum channel, lens, end caps, clips, fused 24V feed, and low-voltage control.</td></tr>
+                  <tr><td>Interior lower ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">Included in interior package</td><td>Interior lower ceiling and ADU tape locations shown on the plan. Use interior/damp tape and interior aluminum channel.</td></tr>
+                  <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Included in exterior package</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Lower ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Lower 24V driver assignment</td><td>Mean Well HLG-600H-24A bank through fused distribution</td><td class="num">DB-2 unless revised</td><td>Assign lower/ADU/exterior zones to scheduled DB-2 outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
+                  <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
+                  <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
               </table>
             </div>
