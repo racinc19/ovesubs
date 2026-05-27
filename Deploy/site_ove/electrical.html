@@ -61,6 +61,25 @@ details.cat summary::-webkit-details-marker{display:none}
 .layout-box li{font-size:11px;color:var(--txt2)}
 .layout-arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);font-weight:900}
 .layout-note{font-size:11px;color:var(--txt2);margin-top:10px}
+.panel-drawing{padding:16px;border-top:1px solid rgba(42,58,85,.35)}
+.panel-drawing svg{width:100%;height:auto;display:block;background:#0f1726;border:1px solid var(--bdr);border-radius:8px}
+.panel-drawing text{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.panel-drawing .cab{fill:#172235;stroke:#6b7f99;stroke-width:2}
+.panel-drawing .door{fill:none;stroke:#3d516d;stroke-width:1.5;stroke-dasharray:6 5}
+.panel-drawing .duct{fill:#24334d;stroke:#50627d;stroke-width:1}
+.panel-drawing .rail{stroke:#cbd5e1;stroke-width:4}
+.panel-drawing .breaker{fill:#3f1f2a;stroke:#ef4444;stroke-width:1.5}
+.panel-drawing .psu{fill:#3d3215;stroke:#eab308;stroke-width:1.5}
+.panel-drawing .fuse{fill:#173421;stroke:#22c55e;stroke-width:1.2}
+.panel-drawing .shelly{fill:#153447;stroke:#06b6d4;stroke-width:1.2}
+.panel-drawing .term{fill:#273244;stroke:#94a3b8;stroke-width:1.1}
+.panel-drawing .wire{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}
+.panel-drawing .wire24{fill:none;stroke:#22c55e;stroke-width:2;marker-end:url(#arrowGreen)}
+.panel-drawing .wire120{fill:none;stroke:#ef4444;stroke-width:2;marker-end:url(#arrowRed)}
+.panel-drawing .title{fill:#fff;font-size:16px;font-weight:900}
+.panel-drawing .label{fill:#cbd5e1;font-size:11px;font-weight:800}
+.panel-drawing .small{fill:#94a3b8;font-size:9px}
+.panel-drawing .tiny{fill:#dbeafe;font-size:8px;font-weight:800}
 .tabs{margin-top:14px}
 .tabs input[type=radio]{position:absolute;opacity:0;pointer-events:none}
 .tab-labels{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);padding-bottom:8px}
@@ -599,6 +618,119 @@ details.cat summary::-webkit-details-marker{display:none}
           <section class="card full-card">
             <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
             <div class="note">Use separate enclosures/compartments so 120V line-voltage wiring is not mixed in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules. Final enclosure listing, spacing, grounding, ventilation, and conductor fill must be checked by the electrician.</div>
+            <div class="panel-drawing">
+              <svg viewBox="0 0 1380 860" role="img" aria-label="Front elevation drawing of DB-1 and DB-2 lighting control panels">
+                <defs>
+                  <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker>
+                  <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ef4444"/></marker>
+                  <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#22c55e"/></marker>
+                </defs>
+
+                <text x="24" y="32" class="title">Lighting Control Panel Elevation - Actual Device Layout Concept</text>
+                <text x="24" y="52" class="small">Hoffman A24N206LP shown as typical 24 in x 20 in x 6.62 in enclosures. Keep 120V feed/DIN supplies separate from 24V fuse/Shelly controls.</text>
+
+                <rect x="30" y="82" width="390" height="250" rx="10" class="cab"/>
+                <rect x="42" y="94" width="366" height="226" rx="6" class="door"/>
+                <text x="48" y="116" class="label">DB-1A - 120V + DIN Power Supplies</text>
+                <rect x="52" y="135" width="336" height="18" class="duct"/>
+                <line x1="70" y1="175" x2="370" y2="175" class="rail"/>
+                <rect x="72" y="190" width="50" height="70" rx="4" class="breaker"/>
+                <text x="78" y="210" class="tiny">20A</text><text x="78" y="223" class="tiny">DISC</text>
+                <rect x="140" y="188" width="52" height="76" rx="4" class="psu"/><text x="148" y="210" class="tiny">PS-1</text><text x="145" y="224" class="tiny">SDR</text><text x="145" y="238" class="tiny">480</text>
+                <rect x="202" y="188" width="52" height="76" rx="4" class="psu"/><text x="210" y="210" class="tiny">PS-2</text><text x="207" y="224" class="tiny">SDR</text><text x="207" y="238" class="tiny">480</text>
+                <rect x="264" y="188" width="52" height="76" rx="4" class="psu"/><text x="272" y="210" class="tiny">PS-3</text><text x="269" y="224" class="tiny">SDR</text><text x="269" y="238" class="tiny">480</text>
+                <rect x="326" y="188" width="52" height="76" rx="4" class="psu"/><text x="334" y="210" class="tiny">PS-4</text><text x="331" y="224" class="tiny">SDR</text><text x="331" y="238" class="tiny">480</text>
+                <rect x="52" y="285" width="336" height="18" class="duct"/>
+                <text x="60" y="317" class="small">120V feed enters here; 24VDC leaves to DB-1B through labeled conduit.</text>
+
+                <rect x="490" y="82" width="390" height="250" rx="10" class="cab"/>
+                <rect x="502" y="94" width="366" height="226" rx="6" class="door"/>
+                <text x="508" y="116" class="label">DB-1B - 24V Fuses + Shelly Controls</text>
+                <rect x="512" y="135" width="336" height="18" class="duct"/>
+                <line x1="530" y1="175" x2="830" y2="175" class="rail"/>
+                <rect x="532" y="190" width="28" height="70" rx="2" class="term"/><text x="537" y="224" class="tiny">24+</text>
+                <rect x="570" y="188" width="26" height="76" rx="2" class="fuse"/><text x="576" y="224" class="tiny">F1</text>
+                <rect x="602" y="188" width="26" height="76" rx="2" class="fuse"/><text x="608" y="224" class="tiny">F2</text>
+                <rect x="634" y="188" width="26" height="76" rx="2" class="fuse"/><text x="640" y="224" class="tiny">F3</text>
+                <rect x="666" y="188" width="26" height="76" rx="2" class="fuse"/><text x="672" y="224" class="tiny">F4</text>
+                <rect x="698" y="188" width="26" height="76" rx="2" class="fuse"/><text x="704" y="224" class="tiny">F5</text>
+                <rect x="745" y="190" width="34" height="70" rx="4" class="shelly"/><text x="751" y="218" class="tiny">SH</text><text x="751" y="231" class="tiny">1-2</text>
+                <rect x="788" y="190" width="34" height="70" rx="4" class="shelly"/><text x="794" y="218" class="tiny">SH</text><text x="794" y="231" class="tiny">3-5</text>
+                <rect x="512" y="285" width="336" height="18" class="duct"/>
+                <text x="520" y="317" class="small">Outputs to U-01 through U-05 tape zones.</text>
+                <path d="M390 226 C430 226 450 226 490 226" class="wire24"/>
+                <text x="421" y="214" class="small">24VDC</text>
+
+                <rect x="30" y="400" width="390" height="250" rx="10" class="cab"/>
+                <rect x="42" y="412" width="366" height="226" rx="6" class="door"/>
+                <text x="48" y="434" class="label">DB-2A - 120V Feed A + PS-1 to PS-4</text>
+                <rect x="52" y="453" width="336" height="18" class="duct"/>
+                <line x1="70" y1="493" x2="370" y2="493" class="rail"/>
+                <rect x="72" y="508" width="50" height="70" rx="4" class="breaker"/><text x="78" y="528" class="tiny">20A</text><text x="78" y="541" class="tiny">DISC</text>
+                <rect x="140" y="506" width="52" height="76" rx="4" class="psu"/><text x="148" y="528" class="tiny">PS-1</text><text x="145" y="542" class="tiny">SDR</text><text x="145" y="556" class="tiny">480</text>
+                <rect x="202" y="506" width="52" height="76" rx="4" class="psu"/><text x="210" y="528" class="tiny">PS-2</text><text x="207" y="542" class="tiny">SDR</text><text x="207" y="556" class="tiny">480</text>
+                <rect x="264" y="506" width="52" height="76" rx="4" class="psu"/><text x="272" y="528" class="tiny">PS-3</text><text x="269" y="542" class="tiny">SDR</text><text x="269" y="556" class="tiny">480</text>
+                <rect x="326" y="506" width="52" height="76" rx="4" class="psu"/><text x="334" y="528" class="tiny">PS-4</text><text x="331" y="542" class="tiny">SDR</text><text x="331" y="556" class="tiny">480</text>
+                <rect x="52" y="603" width="336" height="18" class="duct"/>
+
+                <rect x="490" y="400" width="390" height="250" rx="10" class="cab"/>
+                <rect x="502" y="412" width="366" height="226" rx="6" class="door"/>
+                <text x="508" y="434" class="label">DB-2B - 120V Feed B + PS-5 to PS-8</text>
+                <rect x="512" y="453" width="336" height="18" class="duct"/>
+                <line x1="530" y1="493" x2="830" y2="493" class="rail"/>
+                <rect x="532" y="508" width="50" height="70" rx="4" class="breaker"/><text x="538" y="528" class="tiny">20A</text><text x="538" y="541" class="tiny">DISC</text>
+                <rect x="600" y="506" width="52" height="76" rx="4" class="psu"/><text x="608" y="528" class="tiny">PS-5</text><text x="605" y="542" class="tiny">SDR</text><text x="605" y="556" class="tiny">480</text>
+                <rect x="662" y="506" width="52" height="76" rx="4" class="psu"/><text x="670" y="528" class="tiny">PS-6</text><text x="667" y="542" class="tiny">SDR</text><text x="667" y="556" class="tiny">480</text>
+                <rect x="724" y="506" width="52" height="76" rx="4" class="psu"/><text x="732" y="528" class="tiny">PS-7</text><text x="729" y="542" class="tiny">SDR</text><text x="729" y="556" class="tiny">480</text>
+                <rect x="786" y="506" width="52" height="76" rx="4" class="psu"/><text x="794" y="528" class="tiny">PS-8</text><text x="791" y="542" class="tiny">SDR</text><text x="791" y="556" class="tiny">480</text>
+                <rect x="512" y="603" width="336" height="18" class="duct"/>
+
+                <rect x="950" y="400" width="390" height="390" rx="10" class="cab"/>
+                <rect x="962" y="412" width="366" height="366" rx="6" class="door"/>
+                <text x="968" y="434" class="label">DB-2C - 24V Fuses + Shelly Controls</text>
+                <rect x="972" y="453" width="336" height="18" class="duct"/>
+                <line x1="990" y1="493" x2="1290" y2="493" class="rail"/>
+                <rect x="990" y="508" width="28" height="70" rx="2" class="term"/><text x="995" y="542" class="tiny">24+</text>
+                <rect x="1028" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1033" y="542" class="tiny">F1</text>
+                <rect x="1055" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1060" y="542" class="tiny">F2</text>
+                <rect x="1082" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1087" y="542" class="tiny">F3</text>
+                <rect x="1109" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1114" y="542" class="tiny">F4</text>
+                <rect x="1136" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1141" y="542" class="tiny">F5</text>
+                <rect x="1163" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1168" y="542" class="tiny">F6</text>
+                <rect x="1190" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1195" y="542" class="tiny">F7</text>
+                <rect x="1217" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1222" y="542" class="tiny">F8</text>
+                <rect x="1244" y="506" width="22" height="76" rx="2" class="fuse"/><text x="1249" y="542" class="tiny">F9</text>
+
+                <line x1="990" y1="630" x2="1290" y2="630" class="rail"/>
+                <rect x="990" y="645" width="22" height="76" rx="2" class="fuse"/><text x="993" y="681" class="tiny">F10</text>
+                <rect x="1017" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1020" y="681" class="tiny">F11</text>
+                <rect x="1044" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1047" y="681" class="tiny">F12</text>
+                <rect x="1071" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1074" y="681" class="tiny">F13</text>
+                <rect x="1098" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1101" y="681" class="tiny">F14</text>
+                <rect x="1125" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1128" y="681" class="tiny">F15</text>
+                <rect x="1152" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1155" y="681" class="tiny">F16</text>
+                <rect x="1179" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1182" y="681" class="tiny">F17</text>
+                <rect x="1206" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1209" y="681" class="tiny">F18</text>
+                <rect x="1233" y="645" width="22" height="76" rx="2" class="fuse"/><text x="1236" y="681" class="tiny">F19</text>
+
+                <rect x="1272" y="506" width="34" height="76" rx="4" class="shelly"/><text x="1278" y="535" class="tiny">SH</text><text x="1278" y="548" class="tiny">1-9</text>
+                <rect x="1272" y="645" width="34" height="76" rx="4" class="shelly"/><text x="1278" y="674" class="tiny">SH</text><text x="1276" y="687" class="tiny">10-19</text>
+                <rect x="972" y="744" width="336" height="18" class="duct"/>
+                <text x="980" y="776" class="small">Outputs to U-06 through U-17 and L-01 through L-07 tape zones.</text>
+
+                <path d="M390 544 C510 610 780 610 950 610" class="wire24"/>
+                <path d="M850 544 C895 575 915 600 950 610" class="wire24"/>
+                <text x="520" y="604" class="small">24VDC from DB-2A / DB-2B to DB-2C</text>
+
+                <rect x="30" y="705" width="820" height="90" rx="8" fill="#111a2b" stroke="#2a3a55"/>
+                <rect x="52" y="730" width="22" height="14" class="breaker"/><text x="82" y="742" class="small">120V breaker / local disconnect</text>
+                <rect x="270" y="727" width="28" height="20" class="psu"/><text x="308" y="742" class="small">Mean Well SDR-480-24 DIN power supply</text>
+                <rect x="540" y="727" width="18" height="20" class="fuse"/><text x="568" y="742" class="small">Phoenix 3036505 fused terminal</text>
+                <rect x="52" y="762" width="22" height="18" class="shelly"/><text x="82" y="777" class="small">Shelly Plus RGBW PM</text>
+                <rect x="270" y="762" width="40" height="14" class="duct"/><text x="320" y="777" class="small">wire duct</text>
+                <line x1="540" y1="770" x2="610" y2="770" class="rail"/><text x="620" y="777" class="small">DIN rail</text>
+              </svg>
+            </div>
             <div class="panel-layout">
               <div class="layout-bank">
                 <div class="layout-title">DB-1 / Panel 1 Area - 5 Shelly Zones</div>
