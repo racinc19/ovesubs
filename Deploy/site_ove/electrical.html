@@ -364,15 +364,21 @@ details.cat summary::-webkit-details-marker{display:none}
         </section>
 
         <section class="tab-panel" id="panel-upper-wall">
-          <section class="card">
-            <div class="card-h"><h2>Upper Wall Loads</h2></div>
+          <section class="card full-card">
+            <div class="card-h"><h2>Upper Wall Loads Schedule</h2></div>
+            <div class="note">Upper wall loads checked from Upper Wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and low-voltage rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control Basis</th><th>Notes</th></tr></thead>
+                <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Upper wall receptacle / wall-load circuits</td><td>120V</td><td>Panel schedule / breaker panel</td><td>Keep line-voltage wall loads separate from 24V tape distribution.</td></tr>
-                  <tr><td>Upper motorized shades / blinds where applicable</td><td>120V motor feed</td><td>Shelly Dual Cover or approved shade relay</td><td>One channel per motor/load where independent control is required.</td></tr>
-                  <tr><td>Upper utility or service fixtures</td><td>120V</td><td>Motion/local switch unless independent app control is requested</td><td>May share a 120V lighting branch circuit when load and code allow.</td></tr>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the upper wall-load DWFx. Circuit by electrician/load schedule.</td></tr>
+                  <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>GFI outlets shown in DWFx, including island/counter locations. Provide GFCI protection as required by code.</td></tr>
+                  <tr><td>Weatherproof outlets</td><td>120V exterior/wet-rated branch circuit</td><td class="num">5</td><td>Includes 4 WP outlet objects plus 1 dryer WP outlet object. Use wet-location boxes/covers where required.</td></tr>
+                  <tr><td>Hybrid water heater outlet</td><td>240V equipment circuit</td><td class="num">1</td><td>DWFx object is Outlet-Range / Water Heater Hybrid. Verify circuit size with equipment submittal.</td></tr>
+                  <tr><td>Fusible disconnects</td><td>240V equipment disconnect</td><td class="num">2</td><td>DWFx object type is 240V fusible 30A. Coordinate final disconnect/fuse size with equipment served.</td></tr>
+                  <tr><td>Wall control / switch devices</td><td>Low voltage / control</td><td class="num">9</td><td>Includes 5 LAN1 control points and 4 Axion 8 in Android PoE touch screen objects. Coordinate PoE/data rough-in.</td></tr>
+                  <tr><td>Ceiling receptacle</td><td>120V branch circuit</td><td class="num">1</td><td>DWFx includes one ceiling duplex receptacle object. Verify exact use before rough-in.</td></tr>
+                  <tr><td>Communications / CATV outlet</td><td>Low voltage</td><td class="num">1</td><td>Low-voltage communication outlet. Do not mix with 120V conductors except in listed combo devices/boxes as allowed.</td></tr>
                 </tbody>
               </table>
             </div>
