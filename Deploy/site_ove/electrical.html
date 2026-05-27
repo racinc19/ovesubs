@@ -86,13 +86,13 @@ details.cat summary::-webkit-details-marker{display:none}
       </div>
       <div class="metric">
         <div class="label">120V Lighting Feeds</div>
-        <div class="value">4 x 20A</div>
-        <div class="hint">Dedicated circuits for 24V LED drivers</div>
+        <div class="value">P1-P4</div>
+        <div class="hint">One 120V driver feed from each electrical panel</div>
       </div>
       <div class="metric">
         <div class="label">Control Hardware</div>
         <div class="value">30 zones</div>
-        <div class="hint">30 drivers + 30 Shelly RGBW PM modules</div>
+        <div class="hint">30 Shelly RGBW PM modules fed by shared 24V driver bank(s)</div>
       </div>
     </div>
 
@@ -139,21 +139,33 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>24V LED drivers</td>
-              <td>24V constant-voltage, 150W, accessible, listed</td>
-              <td class="num">30</td>
-              <td>One driver per Shelly/controller zone. Load each driver to max 120W design load.</td>
+              <td>Shared 24V constant-voltage driver bank(s), accessible, listed</td>
+              <td class="num">4 banks</td>
+              <td>One driver bank per electrical panel area, or one central 24V supply bank if approved. Feed Shelly modules through fused 24V distribution.</td>
+            </tr>
+            <tr>
+              <td>24V fused distribution</td>
+              <td>DIN/fuse-block distribution from 24V driver bank to Shelly modules</td>
+              <td class="num">4 panels</td>
+              <td>Provide one fused output per Shelly/module feed or per tape zone as required. Do not land all 24V loads on an unfused common bus.</td>
+            </tr>
+            <tr>
+              <td>Central driver option</td>
+              <td>Single 24V supply bank sized for full tape load plus headroom</td>
+              <td class="num">1 bank</td>
+              <td>Acceptable alternate if located accessibly and distributed through properly fused 24V outputs to all Shelly modules/zones.</td>
             </tr>
             <tr>
               <td>Shelly LED controllers</td>
               <td>Shelly Plus RGBW PM or approved equivalent, white-channel mode</td>
               <td class="num">30</td>
-              <td>One module per driver zone. Max 4A/channel and 10A total; keep this design to 120W/module target.</td>
+              <td>One module per switched tape-light zone. Max 4A/channel and 10A total; outputs switch the 24V tape zones.</td>
             </tr>
             <tr>
               <td>120V branch circuits</td>
               <td>Dedicated 120V lighting circuits to driver/control cabinets</td>
               <td class="num">4 x 20A</td>
-              <td>Feeds 24V driver banks only. Final conductor/breaker by electrician and code.</td>
+              <td>One 120V feed from each panel area to its 24V driver bank. Final conductor/breaker by electrician and code.</td>
             </tr>
             <tr>
               <td>Cat5e control cable</td>
@@ -195,28 +207,28 @@ details.cat summary::-webkit-details-marker{display:none}
             <tbody>
               <tr>
                 <td>LC-1</td>
-                <td>Interior west / bedrooms / baths</td>
+                <td>Panel 1 24V driver bank / associated tape zones</td>
                 <td class="num">8</td>
                 <td class="num">1,200W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-2</td>
-                <td>Interior main ceiling / kitchen / hall</td>
+                <td>Panel 2 24V driver bank / associated tape zones</td>
                 <td class="num">8</td>
                 <td class="num">1,200W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-3</td>
-                <td>Exterior upper / west soffit and perimeter</td>
+                <td>Panel 3 24V driver bank / associated tape zones</td>
                 <td class="num">7</td>
                 <td class="num">1,050W @ 24V</td>
                 <td>20A, 120V</td>
               </tr>
               <tr>
                 <td>LC-4</td>
-                <td>Exterior patio / east / lower perimeter</td>
+                <td>Panel 4 24V driver bank / associated tape zones</td>
                 <td class="num">7</td>
                 <td class="num">1,050W @ 24V</td>
                 <td>20A, 120V</td>
@@ -224,7 +236,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Total installed tape basis: approx. 3,600W at 24V. Driver capacity shown includes headroom for zoning and field layout.</div>
+        <div class="note">Total installed tape basis: approx. 3,600W at 24V. The 24V source may be a central supply bank or panel-area driver banks; each Shelly/tape output still needs fused distribution and voltage-drop sizing.</div>
       </section>
 
       <section class="card">
@@ -247,7 +259,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td><span class="tag">1-24</span> <span class="tag">2-24</span> <span class="tag">3-24</span></td>
                 <td>Separate 24V tape-light control zones</td>
-                <td>Tape zone to Shelly RGBW PM output channel, then to 24V driver.</td>
+                <td>24V driver bank to fused distribution, then Shelly RGBW PM, then tape zone.</td>
               </tr>
               <tr>
                 <td><span class="tag">120V</span></td>
@@ -257,7 +269,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td><span class="tag">Shelly</span></td>
                 <td>Smart PWM controller</td>
-                <td>Install downstream of 24V driver and upstream of tape light.</td>
+                <td>Install downstream of fused 24V distribution and upstream of tape light.</td>
               </tr>
               <tr>
                 <td><span class="tag">Cat5e</span></td>
@@ -267,7 +279,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Typical path: 120V breaker -> 24V driver -> Shelly RGBW PM -> 24V tape/channel zone.</div>
+        <div class="note">Typical path: 120V panel circuit -> shared 24V driver bank -> fused 24V distribution -> Shelly RGBW PM -> tape/channel zone.</div>
       </section>
     </div>
 
