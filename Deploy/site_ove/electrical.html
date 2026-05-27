@@ -403,6 +403,27 @@ details.cat summary::-webkit-details-marker{display:none}
 
         <section class="tab-panel" id="panel-lower">
           <section class="card full-card">
+            <div class="card-h"><h2>Lower Wall Loads Schedule</h2></div>
+            <div class="note">Lower wall loads checked from Lower wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and low-voltage rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the lower wall-load DWFx. Circuit by electrician/load schedule.</td></tr>
+                  <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>Countertop/wet-location GFI outlets shown in DWFx. Provide GFCI protection as required by code.</td></tr>
+                  <tr><td>Communications / CATV outlet</td><td>Low voltage</td><td class="num">1</td><td>Low-voltage communication outlet. Do not mix with 120V conductors except in listed combo devices/boxes as allowed.</td></tr>
+                  <tr><td>Wall control / switch devices</td><td>Low voltage / control</td><td class="num">3</td><td>DWFx object family is Switch-Three Way with Axion 8 in Android PoE touch screen metadata. Coordinate PoE/data rough-in.</td></tr>
+                  <tr><td>Data / media panel</td><td>Low voltage / structured wiring</td><td class="num">1</td><td>Leviton 28 in media center shown in DWFx. Provide power and low-voltage home runs as required.</td></tr>
+                  <tr><td>Echo / Nest hub locations</td><td>Low voltage / 120V adapter as required</td><td class="num">2</td><td>Coordinate mounting, power, and network requirements before rough-in.</td></tr>
+                  <tr><td>Control discs / controllers</td><td>Low voltage / control</td><td class="num">5</td><td>DWFx includes Honeywell-style controllers/meters/gauges. Coordinate exact controls scope before final wiring.</td></tr>
+                  <tr><td>AV wall-load equipment</td><td>120V + low voltage / speaker</td><td class="num">6 devices</td><td>Includes 2 Martin Logan wall speakers, 2 Martin Logan subwoofers, 1 Macintosh receiver, and 1 150 in screen. Coordinate power, speaker cable, conduit, and data.</td></tr>
+                  <tr><td>Smart toilet power</td><td>120V GFCI where required</td><td class="num">1</td><td>Smart toilet object is shown in DWFx. Verify whether it needs a dedicated/receptacle feed and GFCI protection.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card full-card">
             <div class="card-h"><h2>Lower Ceiling Tape-Light Schedule</h2></div>
             <div class="note">Lower ceiling takeoff checked from Lower Electrical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 24 L_LED Light strip objects totaling approx. 356.2 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Separate interior from exterior material by plan location before ordering.</div>
             <div class="table-wrap">
