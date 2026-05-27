@@ -481,12 +481,40 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-circuit-map">
           <section class="card full-card">
             <div class="card-h"><h2>Circuit Map / Driver / Shelly / Termination</h2></div>
-            <div class="note">Field wiring map generated from the embedded load CSV. Use this as the working label schedule: panel/circuit and load label on the left, driver/transformer next, Shelly module next, and the tape or fixture termination on the right. Shade motor rows are intentionally excluded from this lighting-control map.</div>
+            <div class="note">Field wiring map from the current DWFx drawing callouts, not the old embedded load schedule. Source files checked: OVE Upper Electirical Ceiling.dwfx, Lower Electrical Ceiling.dwfx, and Main wall loads.dwfx dated 2026-05-27. Each drawn 24V callout is treated as a controlled tape-light termination unless Craig revises the grouping.</div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Circuit</th><th>Transformer / Driver</th><th>Shelly</th><th>Termination</th></tr></thead>
-                <tbody id="circuitMapBody">
-                  <tr><td colspan="4" class="muted">Loading circuit map...</td></tr>
+                <tbody>
+                  <tr><td>Upper ceiling / Panel 1 / U-01 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left-side Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-02 / 2-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-03 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-left Panel 1 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-04 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 1 / U-05 / 1-24</td><td>DB-1 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-06 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center-left Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-07 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-08 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper central Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-09 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-10 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at upper Panel 2 exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-11 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at center Panel 2 run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-12 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-13 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-14 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side Panel 2 area.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-15 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at right-side Panel 2 exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-16 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at far-right Panel 2 run.</td></tr>
+                  <tr><td>Upper ceiling / Panel 2 / U-17 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current upper ceiling DWFx callout at lower-right Panel 2 run.</td></tr>
+                  <tr><td>Lower ceiling / L-01 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-02 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-03 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / L-04 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-05 / 2-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-06 / 3-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / L-07 / 1-24</td><td>DB-2 24V driver bank / fused 24V output</td><td>Shelly RGBW PM, white-channel mode</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 1-120</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-1</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-2</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI-120-2</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-3</td><td>120V GFCI branch circuit, no 24V driver</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1079,117 +1107,6 @@ TOTAL,,,,11 Motors,,,4.89,586.8,,,,6 × Shelly Pro Dual (2 motors each),LAN/RS48
     document.getElementById('genSub').textContent='Failed to render: '+(e&&e.message?e.message:String(e));
     document.getElementById('app').style.display='block';
     console.error(e);
-  }
-})();
-  </script>
-  <script>
-(function(){
-  function esc(value){
-    return String(value || '').replace(/[&<>"']/g, function(ch){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
-    });
-  }
-
-  function parseCsv(text){
-    const rows=[];
-    let row=[];
-    let cur='';
-    let quoted=false;
-    for(let i=0;i<text.length;i++){
-      const ch=text[i];
-      const next=text[i+1];
-      if(quoted){
-        if(ch === '"' && next === '"'){
-          cur += '"';
-          i++;
-        }else if(ch === '"'){
-          quoted=false;
-        }else{
-          cur += ch;
-        }
-      }else if(ch === '"'){
-        quoted=true;
-      }else if(ch === ','){
-        row.push(cur);
-        cur='';
-      }else if(ch === '\n'){
-        row.push(cur);
-        rows.push(row);
-        row=[];
-        cur='';
-      }else if(ch !== '\r'){
-        cur += ch;
-      }
-    }
-    if(cur || row.length){
-      row.push(cur);
-      rows.push(row);
-    }
-    return rows;
-  }
-
-  function renderCircuitMap(){
-    const target=document.getElementById('circuitMapBody');
-    const source=document.getElementById('csv');
-    if(!target || !source) return;
-
-    const rows=parseCsv(source.textContent || '');
-    let panel='';
-    let category='';
-    let circuit='';
-    const mapped=[];
-
-    rows.forEach(function(row){
-      const first=String(row[0] || '').trim();
-      if(/^\*\*TOTAL PANEL/i.test(first)){
-        const match=first.match(/PANEL\s+(\d+)/i);
-        panel=match ? 'Panel '+match[1] : '';
-        category='';
-        circuit='';
-        return;
-      }
-      if(/^(Lighting Loads|Wall Loads|Shade Loads|Blinds)$/i.test(first)){
-        category=first;
-        circuit='';
-        return;
-      }
-      if(/^Opening$/i.test(first)){
-        category='Shade Loads';
-        circuit='';
-        return;
-      }
-      if(!panel || !category || /^(Shade Loads|Blinds)$/i.test(category)) return;
-      if(/^Circuit\s+/i.test(first)) circuit=first;
-
-      const load=String(row[1] || '').trim();
-      if(!load) return;
-
-      const location=String(row[2] || '').trim();
-      const watts=String(row[3] || '').trim();
-      const amps=String(row[4] || '').trim();
-      const transformer=String(row[5] || '').trim();
-      const breaker=String(row[6] || '').trim();
-      const shelly=String(row[8] || '').trim();
-      const control=String(row[9] || '').trim();
-
-      if(!circuit && !transformer && !shelly) return;
-
-      const circuitLabel=[panel, circuit, load].filter(Boolean).join(' / ');
-      const driver=[transformer, breaker ? 'Breaker/fuse: '+breaker : ''].filter(Boolean).join(' | ');
-      const module=[shelly, control].filter(Boolean).join(' / ');
-      const termination=[location || load, watts ? watts+' W' : '', amps ? amps+' A' : ''].filter(Boolean).join(' | ');
-
-      mapped.push('<tr><td>'+esc(circuitLabel)+'</td><td>'+esc(driver)+'</td><td>'+esc(module)+'</td><td>'+esc(termination)+'</td></tr>');
-    });
-
-    target.innerHTML = mapped.length ? mapped.join('') : '<tr><td colspan="4" class="muted">No lighting/control circuit rows found.</td></tr>';
-  }
-
-  try{ renderCircuitMap(); }
-  catch(err){
-    const target=document.getElementById('circuitMapBody');
-    if(target) target.innerHTML='<tr><td colspan="4" class="muted">Circuit map failed to render.</td></tr>';
-    console.error(err);
   }
 })();
   </script>
