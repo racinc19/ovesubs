@@ -379,13 +379,15 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-upper-ceiling">
           <section class="card">
             <div class="card-h"><h2>Upper Ceiling / 24V Tape Controls</h2></div>
-            <div class="note">Upper ceiling tape zones use the same architecture as the main ceiling: shared 24V driver bank, fused distribution, Shelly RGBW PM output, then tape/channel zone.</div>
+            <div class="note">Upper ceiling takeoff checked from OVE Upper Electirical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 63 L_LED Light strip objects totaling approx. 817.1 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Current package basis remains 24V 3.1 W/LF tape unless Craig approves RGBW tape.</div>
             <div class="table-wrap">
               <table>
                 <thead><tr><th>Item</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Upper ceiling tape zones</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Carry one control channel/module per visible 24V label unless field grouping is approved.</td></tr>
-                  <tr><td>Upper 24V driver bank</td><td>120V in / 24V out</td><td>Fused 24V distribution</td><td>Accessible driver bank; size against installed tape watts plus headroom.</td></tr>
+                  <tr><td>Upper ceiling tape takeoff</td><td>24V DC</td><td>Shelly RGBW PM</td><td>63 strip objects / approx. 817.1 LF from the upper ceiling DWFx. With 15% waste, carry approx. 940 LF if the upper ceiling is purchased separately.</td></tr>
+                  <tr><td>Upper ceiling load basis</td><td>24V DC</td><td>Driver-bank schedule</td><td>At 3.1 W/LF, upper ceiling is approx. 2,533W before headroom. At Revit's 9 W/LF family value, it would be approx. 7,354W and the driver schedule must be redesigned.</td></tr>
+                  <tr><td>Upper ceiling tape zones</td><td>24V DC</td><td>Shelly RGBW PM</td><td>Carry one control channel/module per visible 24V label unless field grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Upper 24V driver assignment</td><td>120V in / 24V out</td><td>DB-2 fused 24V distribution unless revised</td><td>Assign upper ceiling zones to the scheduled driver bank outputs. Do not move zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</td></tr>
                   <tr><td>Cat5e control home runs</td><td>Low voltage signal only</td><td>Keypad/control network</td><td>Do not use Cat5e for LED tape power.</td></tr>
                 </tbody>
               </table>
