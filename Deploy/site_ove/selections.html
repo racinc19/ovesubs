@@ -1099,19 +1099,51 @@ async function supabaseSave(data){
   if(!r.ok&&r.status===403)console.warn('Supabase save 403 — sync disabled');
 }
 
+async function fallbackLoad(){
+  try{
+    const r=await fetch('selections-fallback.json?_='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return null;
+    const d=await r.json();
+    const rooms=Array.isArray(d)?d:(d&&Array.isArray(d.rooms)?d.rooms:(d&&Array.isArray(d.data)?d.data:null));
+    return rooms&&rooms.length?rooms:null;
+  }catch(e){
+    console.warn('Selection fallback load failed:',e.message);
+    return null;
+  }
+}
+
+function hasSelectionStatus(data){
+  return Array.isArray(data)&&data.some(r=>
+    [...(r.finishes||[]),...(r.items||[])].some(x=>x.status&&x.status!=='not_started')
+  );
+}
+
+var _usingSelectionFallback=false;
+
 async function init(){
   _blockSync=true;
   // Load from Supabase — single source of truth
+  let loadedFromCloud=false;
   try{
     const d=await supabaseLoad();
     if(d && Array.isArray(d) && d.length>0){
       DATA=d;
+      loadedFromCloud=true;
     } else {
       loadData();
     }
   }catch(e){
     console.warn('Supabase load failed, using localStorage:',e.message);
     loadData();
+  }
+  if(!loadedFromCloud&&!hasSelectionStatus(DATA)){
+    const fallback=await fallbackLoad();
+    if(fallback&&hasSelectionStatus(fallback)){
+      DATA=fallback;
+      _usingSelectionFallback=true;
+      saveData();
+      console.warn('Loaded selections from local fallback because Supabase was unavailable and current data had no selected statuses.');
+    }
   }
   migrateRoomFields();
   // Load photos
@@ -1166,7 +1198,7 @@ async function saveNow(){
   else showToast('✓ Saved');
 }
 function pushToSheets(){
-  if(_blockSync)return;
+  if(_blockSync||_usingSelectionFallback)return;
   clearTimeout(_saveTimer);
   _saveTimer=setTimeout(()=>{
     const clean=DATA.map(r=>{const {lightingPhoto,...rr}=r;return {...rr,finishes:r.finishes.map(f=>{const {photo,...rest}=f;return rest;}),items:r.items.map(i=>{const {photo,...rest}=i;return rest;})};});
