@@ -76,12 +76,12 @@ details.cat summary::-webkit-details-marker{display:none}
     <div class="schedule-grid">
       <div class="metric">
         <div class="label">CAD Tape Takeoff</div>
-        <div class="value">1,161.5 LF</div>
-        <div class="hint">79 LED-strip fixture segments from RCP DXF</div>
+        <div class="value">1,373.5 LF</div>
+        <div class="hint">RCP DXF plus ADU rectangle and rear patio adders</div>
       </div>
       <div class="metric">
         <div class="label">Order Allowance</div>
-        <div class="value">1,337 LF</div>
+        <div class="value">1,580 LF</div>
         <div class="hint">15% waste/cuts included</div>
       </div>
       <div class="metric">
@@ -100,6 +100,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <div class="card-h"><h2>Ceiling Tape-Light Package For Electrical Review</h2></div>
       <div class="note">
         Basis of design: 24V warm-white tape, Diode LED BLAZE X 200 or equal, 3000K, 95+ CRI, 3.1 W/LF.
+        Revised takeoff includes the previously missed ADU 14 ft x 5 ft rectangle and rear patio 63 ft x 24 ft rectangle.
         Do not substitute BLAZE X 300 or higher wattage tape without resizing drivers, Shelly modules, and branch circuits.
       </div>
       <div class="table-wrap">
@@ -117,25 +118,37 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>Interior LED tape</td>
               <td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td>
               <td class="num">10 x 100 ft spools</td>
-              <td>916 LF allowance against approx. 796 LF interior CAD takeoff.</td>
+              <td>959 LF allowance against approx. 834 LF interior/ADU takeoff.</td>
             </tr>
             <tr>
               <td>Exterior LED tape</td>
               <td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td>
-              <td class="num">5 x 100 ft spools</td>
-              <td>421 LF allowance against approx. 365 LF exterior CAD takeoff.</td>
+              <td class="num">7 x 100 ft spools</td>
+              <td>620 LF allowance against approx. 539 LF exterior/rear patio takeoff.</td>
             </tr>
             <tr>
               <td>Interior aluminum channel</td>
               <td>8 ft aluminum profile with frosted lens, end caps, clips</td>
-              <td class="num">115 sticks</td>
+              <td class="num">120 sticks</td>
               <td>Use at all interior cove/tray/tape locations.</td>
             </tr>
             <tr>
               <td>Exterior aluminum channel</td>
               <td>8 ft exterior/wet-rated aluminum profile with lens, end caps, clips</td>
-              <td class="num">53 sticks</td>
+              <td class="num">78 sticks</td>
               <td>Seal wire exits; mechanically fasten; do not rely on adhesive only.</td>
+            </tr>
+            <tr>
+              <td>ADU rectangle adder</td>
+              <td>24V tape/channel around 14 ft x 5 ft rectangle</td>
+              <td class="num">38 LF</td>
+              <td>Included in revised interior/ADU tape allowance.</td>
+            </tr>
+            <tr>
+              <td>Rear patio adder</td>
+              <td>24V exterior tape/channel around 63 ft x 24 ft rear patio rectangle</td>
+              <td class="num">174 LF</td>
+              <td>Included in revised exterior tape allowance.</td>
             </tr>
             <tr>
               <td>24V LED drivers</td>
@@ -166,6 +179,12 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>Dedicated 120V lighting circuits to driver/control cabinets</td>
               <td class="num">4 x 20A</td>
               <td>One 120V feed from each panel area to its 24V driver bank. Final conductor/breaker by electrician and code.</td>
+            </tr>
+            <tr>
+              <td>120V utility / motion lights</td>
+              <td>Shared 120V lighting circuit for utility fixtures</td>
+              <td class="num">1 circuit</td>
+              <td>Combine mechanical, garage mechanical, pantry/storage, ADU 120V, and three utility/motion fixtures on one existing 120V lighting circuit where code/load allows.</td>
             </tr>
             <tr>
               <td>Cat5e control cable</td>
@@ -236,7 +255,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Total installed tape basis: approx. 3,600W at 24V. The 24V source may be a central supply bank or panel-area driver banks; each Shelly/tape output still needs fused distribution and voltage-drop sizing.</div>
+        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. The 24V source may be a central supply bank or panel-area driver banks; each Shelly/tape output still needs fused distribution and voltage-drop sizing.</div>
       </section>
 
       <section class="card">
@@ -267,9 +286,24 @@ details.cat summary::-webkit-details-marker{display:none}
                 <td>120V circuit feeds accessible 24V drivers only.</td>
               </tr>
               <tr>
+                <td><span class="tag">1-120</span></td>
+                <td>Shared 120V utility/motion lighting circuit</td>
+                <td>Use one 120V lighting feed for the miscellaneous utility fixtures; local motion sensors are acceptable.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">4-120</span> <span class="tag">5-120</span></td>
+                <td>Delete / combine</td>
+                <td>Do not carry separate 4-120 and 5-120 circuits for these utility lights; combine into 1-120 unless electrician requires otherwise.</td>
+              </tr>
+              <tr>
                 <td><span class="tag">Shelly</span></td>
                 <td>Smart PWM controller</td>
                 <td>Install downstream of fused 24V distribution and upstream of tape light.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">120V Shelly</span></td>
+                <td>Only for separately controlled 120V loads</td>
+                <td>Loads may share the same 120V branch circuit, but independent app/control switching requires separate Shelly relay channels/modules.</td>
               </tr>
               <tr>
                 <td><span class="tag">Cat5e</span></td>
