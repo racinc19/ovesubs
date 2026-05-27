@@ -685,7 +685,7 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-panels">
           <section class="card full-card">
             <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
-            <div class="note">Use separate enclosures/compartments so 120V line-voltage wiring is not mixed in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules. Final enclosure listing, spacing, grounding, ventilation, and conductor fill must be checked by the electrician.</div>
+            <div class="note">Install as separate assigned enclosures: A panels are 120V line-voltage plus DIN 24V transformers only; B/C panels are low-voltage-only 24V fused distribution, Shelly modules, and tape-light terminations; BC-1 is the blinds/shades control panel. Do not mix exposed 120V line-voltage wiring in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules. Final enclosure listing, spacing, grounding, ventilation, and conductor fill must be checked by the electrician.</div>
             <div class="panel-drawing">
               <svg viewBox="0 0 1380 980" role="img" aria-label="Scaled elevation showing every electrical control panel component">
                 <defs>
@@ -695,7 +695,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <text x="24" y="52" class="small">Scale basis: each cabinet outline is the same 24 in x 20 in Hoffman A24N206LP proportion. Device block widths are approximate DIN/terminal layout widths for coordination only.</text>
 
                 <rect x="30" y="82" width="270" height="225" rx="8" class="cab"/><rect x="42" y="94" width="246" height="201" rx="5" class="door"/>
-                <text x="48" y="116" class="label">DB-1A: 120V + Power Supplies</text>
+                <text x="48" y="116" class="label">DB-1A: LINE VOLTAGE + TRANSFORMERS</text>
                 <rect x="52" y="132" width="226" height="15" class="duct"/><line x1="60" y1="166" x2="270" y2="166" class="rail"/>
                 <rect x="60" y="178" width="34" height="54" rx="3" class="breaker"/><text x="66" y="201" class="tiny">20A</text><text x="65" y="214" class="tiny">DISC</text>
                 <rect x="105" y="176" width="34" height="60" rx="3" class="term"/><text x="112" y="207" class="tiny">L/N/G</text>
@@ -706,7 +706,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="52" y="260" width="226" height="15" class="duct"/><text x="52" y="292" class="small">1 x 20A feed. 4 x Mean Well SDR-480-24.</text>
 
                 <rect x="330" y="82" width="270" height="225" rx="8" class="cab"/><rect x="342" y="94" width="246" height="201" rx="5" class="door"/>
-                <text x="348" y="116" class="label">DB-1B: Fuses + Shelly</text>
+                <text x="348" y="116" class="label">DB-1B: LOW VOLTAGE ONLY</text>
                 <rect x="352" y="132" width="226" height="15" class="duct"/><line x1="360" y1="166" x2="570" y2="166" class="rail"/>
                 <rect x="360" y="178" width="24" height="54" rx="3" class="term"/><text x="366" y="206" class="tiny">24V</text>
                 <rect x="394" y="176" width="18" height="60" rx="2" class="fuse"/><text x="398" y="207" class="tiny">F1</text>
@@ -723,7 +723,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="525" y="264" width="50" height="42" rx="3" class="term"/><text x="531" y="286" class="tiny">U1-U5</text>
 
                 <rect x="30" y="345" width="270" height="225" rx="8" class="cab"/><rect x="42" y="357" width="246" height="201" rx="5" class="door"/>
-                <text x="48" y="379" class="label">DB-2A: Feed A + PS1-PS4</text>
+                <text x="48" y="379" class="label">DB-2A: LINE VOLTAGE + PS1-PS4</text>
                 <rect x="52" y="395" width="226" height="15" class="duct"/><line x1="60" y1="429" x2="270" y2="429" class="rail"/>
                 <rect x="60" y="441" width="34" height="54" rx="3" class="breaker"/><text x="66" y="464" class="tiny">20A</text><text x="65" y="477" class="tiny">DISC</text>
                 <rect x="105" y="439" width="34" height="60" rx="3" class="term"/><text x="112" y="470" class="tiny">L/N/G</text>
@@ -734,7 +734,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="52" y="523" width="226" height="15" class="duct"/>
 
                 <rect x="330" y="345" width="270" height="225" rx="8" class="cab"/><rect x="342" y="357" width="246" height="201" rx="5" class="door"/>
-                <text x="348" y="379" class="label">DB-2B: Feed B + PS5-PS8</text>
+                <text x="348" y="379" class="label">DB-2B: LINE VOLTAGE + PS5-PS8</text>
                 <rect x="352" y="395" width="226" height="15" class="duct"/><line x1="360" y1="429" x2="570" y2="429" class="rail"/>
                 <rect x="360" y="441" width="34" height="54" rx="3" class="breaker"/><text x="366" y="464" class="tiny">20A</text><text x="365" y="477" class="tiny">DISC</text>
                 <rect x="405" y="439" width="34" height="60" rx="3" class="term"/><text x="412" y="470" class="tiny">L/N/G</text>
@@ -745,7 +745,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="352" y="523" width="226" height="15" class="duct"/>
 
                 <rect x="630" y="345" width="430" height="360" rx="8" class="cab"/><rect x="642" y="357" width="406" height="336" rx="5" class="door"/>
-                <text x="648" y="379" class="label">DB-2C: F1-F19 + SH1-SH19 + Tape Terminals</text>
+                <text x="648" y="379" class="label">DB-2C: LOW VOLTAGE ONLY - FUSES + SHELLY</text>
                 <rect x="652" y="395" width="386" height="15" class="duct"/><line x1="660" y1="429" x2="1030" y2="429" class="rail"/>
                 <rect x="660" y="439" width="24" height="52" rx="3" class="term"/><text x="666" y="468" class="tiny">24V</text>
                 <rect x="692" y="437" width="16" height="56" rx="2" class="fuse"/><text x="695" y="468" class="tiny">F1</text>
@@ -940,7 +940,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <div class="layout-title">DB-1 / Panel 1 Area - 5 Shelly Zones</div>
                 <div class="layout-row">
                   <div class="layout-box ac">
-                    <h3>DB-1A: 120V Feed</h3>
+                    <h3>DB-1A: Line Voltage</h3>
                     <ul>
                       <li>1 x 20A 120V lighting circuit</li>
                       <li>Local disconnect/service switch</li>
@@ -950,33 +950,33 @@ details.cat summary::-webkit-details-marker{display:none}
                   </div>
                   <div class="layout-arrow">-></div>
                   <div class="layout-box ps">
-                    <h3>DB-1A: DIN Supplies</h3>
+                    <h3>DB-1A: Transformers</h3>
                     <ul>
                       <li>4 x Mean Well SDR-480-24</li>
                       <li>24VDC, 20A, 480W each</li>
                       <li>PS-1 through PS-4</li>
-                      <li>24V output leaves to DB-1B</li>
+                      <li>Only fused/limited 24V output leaves to DB-1B</li>
                     </ul>
                   </div>
                   <div class="layout-arrow">-></div>
                   <div class="layout-box lv">
-                    <h3>DB-1B: 24V Controls</h3>
+                    <h3>DB-1B: Low Voltage Only</h3>
                     <ul>
                       <li>Phoenix 3036505 fused outputs F-01 through F-05</li>
                       <li>Shelly Plus RGBW PM SH-01 through SH-05</li>
                       <li>24V tape terminations U-01 through U-05</li>
-                      <li>Low-voltage wiring only in this cabinet</li>
+                      <li>No exposed 120V wiring in this cabinet</li>
                     </ul>
                   </div>
                 </div>
-                <div class="layout-note">Physical build: two Hoffman A24N206LP enclosures minimum, mounted adjacent with labeled interconnects.</div>
+                <div class="layout-note">Physical build: two Hoffman A24N206LP enclosures minimum, mounted adjacent with labeled interconnects. DB-1A gets the branch circuit and power supplies; DB-1B gets only 24V distribution, Shelly modules, and field terminations.</div>
               </div>
 
               <div class="layout-bank">
                 <div class="layout-title">DB-2 / Panel 2 Area - 19 Shelly Zones</div>
                 <div class="layout-row">
                   <div class="layout-box ac">
-                    <h3>DB-2A / DB-2B: 120V Feeds</h3>
+                    <h3>DB-2A / DB-2B: Line Voltage</h3>
                     <ul>
                       <li>2 x 20A 120V lighting circuits</li>
                       <li>Feed A serves PS-1 through PS-4</li>
@@ -986,26 +986,26 @@ details.cat summary::-webkit-details-marker{display:none}
                   </div>
                   <div class="layout-arrow">-></div>
                   <div class="layout-box ps">
-                    <h3>DB-2A / DB-2B: DIN Supplies</h3>
+                    <h3>DB-2A / DB-2B: Transformers</h3>
                     <ul>
                       <li>8 x Mean Well SDR-480-24 total</li>
                       <li>24VDC, 20A, 480W each</li>
                       <li>PS-1 through PS-8</li>
-                      <li>24V outputs leave to DB-2C</li>
+                      <li>Only fused/limited 24V outputs leave to DB-2C</li>
                     </ul>
                   </div>
                   <div class="layout-arrow">-></div>
                   <div class="layout-box lv">
-                    <h3>DB-2C: 24V Controls</h3>
+                    <h3>DB-2C: Low Voltage Only</h3>
                     <ul>
                       <li>Phoenix 3036505 fused outputs F-01 through F-19</li>
                       <li>Shelly Plus RGBW PM SH-01 through SH-19</li>
                       <li>24V tape terminations U-06 through U-17 and L-01 through L-07</li>
-                      <li>Low-voltage wiring only in this cabinet</li>
+                      <li>No exposed 120V wiring in this cabinet</li>
                     </ul>
                   </div>
                 </div>
-                <div class="layout-note">Physical build: three Hoffman A24N206LP enclosures minimum: DB-2A power supply feed A, DB-2B power supply feed B, DB-2C fuse/Shelly controls.</div>
+                <div class="layout-note">Physical build: three Hoffman A24N206LP enclosures minimum: DB-2A line voltage/transformer feed A, DB-2B line voltage/transformer feed B, DB-2C low-voltage fuses, Shelly controls, and tape-light terminations.</div>
               </div>
             </div>
           </section>
