@@ -59,12 +59,14 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-upper-wall:checked ~ .tab-labels label[for=tab-upper-wall],
 #tab-upper-ceiling:checked ~ .tab-labels label[for=tab-upper-ceiling],
 #tab-lower:checked ~ .tab-labels label[for=tab-lower],
+#tab-circuit-map:checked ~ .tab-labels label[for=tab-circuit-map],
 #tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
 #tab-main-wall:checked ~ .tab-panels #panel-main-wall,
 #tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
 #tab-upper-wall:checked ~ .tab-panels #panel-upper-wall,
 #tab-upper-ceiling:checked ~ .tab-panels #panel-upper-ceiling,
 #tab-lower:checked ~ .tab-panels #panel-lower,
+#tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
 #tab-panels:checked ~ .tab-panels #panel-panels{display:block}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
@@ -97,6 +99,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <input type="radio" name="electrical-tabs" id="tab-upper-wall">
       <input type="radio" name="electrical-tabs" id="tab-upper-ceiling">
       <input type="radio" name="electrical-tabs" id="tab-lower">
+      <input type="radio" name="electrical-tabs" id="tab-circuit-map">
       <input type="radio" name="electrical-tabs" id="tab-panels">
 
       <div class="tab-labels">
@@ -105,6 +108,7 @@ details.cat summary::-webkit-details-marker{display:none}
         <label for="tab-upper-wall">Upper Wall Loads</label>
         <label for="tab-upper-ceiling">Upper Ceiling</label>
         <label for="tab-lower">Lower Loads / Ceiling</label>
+        <label for="tab-circuit-map">Circuit Maps</label>
         <label for="tab-panels">Panels</label>
       </div>
 
@@ -468,6 +472,21 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>120V feed</td><td>Dedicated 120V lighting feed to driver bank</td><td class="num">Panel 2 / DB-2</td><td>120V feeds the driver bank only. Tape zones are 24V downstream of drivers, fuses, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
                   <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-circuit-map">
+          <section class="card full-card">
+            <div class="card-h"><h2>Circuit Map / Driver / Shelly / Termination</h2></div>
+            <div class="note">Field wiring map generated from the embedded load CSV. Use this as the working label schedule: panel/circuit and load label on the left, driver/transformer next, Shelly module next, and the tape or fixture termination on the right. Shade motor rows are intentionally excluded from this lighting-control map.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Circuit</th><th>Transformer / Driver</th><th>Shelly</th><th>Termination</th></tr></thead>
+                <tbody id="circuitMapBody">
+                  <tr><td colspan="4" class="muted">Loading circuit map...</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1060,6 +1079,117 @@ TOTAL,,,,11 Motors,,,4.89,586.8,,,,6 × Shelly Pro Dual (2 motors each),LAN/RS48
     document.getElementById('genSub').textContent='Failed to render: '+(e&&e.message?e.message:String(e));
     document.getElementById('app').style.display='block';
     console.error(e);
+  }
+})();
+  </script>
+  <script>
+(function(){
+  function esc(value){
+    return String(value || '').replace(/[&<>"']/g, function(ch){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+    });
+  }
+
+  function parseCsv(text){
+    const rows=[];
+    let row=[];
+    let cur='';
+    let quoted=false;
+    for(let i=0;i<text.length;i++){
+      const ch=text[i];
+      const next=text[i+1];
+      if(quoted){
+        if(ch === '"' && next === '"'){
+          cur += '"';
+          i++;
+        }else if(ch === '"'){
+          quoted=false;
+        }else{
+          cur += ch;
+        }
+      }else if(ch === '"'){
+        quoted=true;
+      }else if(ch === ','){
+        row.push(cur);
+        cur='';
+      }else if(ch === '\n'){
+        row.push(cur);
+        rows.push(row);
+        row=[];
+        cur='';
+      }else if(ch !== '\r'){
+        cur += ch;
+      }
+    }
+    if(cur || row.length){
+      row.push(cur);
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  function renderCircuitMap(){
+    const target=document.getElementById('circuitMapBody');
+    const source=document.getElementById('csv');
+    if(!target || !source) return;
+
+    const rows=parseCsv(source.textContent || '');
+    let panel='';
+    let category='';
+    let circuit='';
+    const mapped=[];
+
+    rows.forEach(function(row){
+      const first=String(row[0] || '').trim();
+      if(/^\*\*TOTAL PANEL/i.test(first)){
+        const match=first.match(/PANEL\s+(\d+)/i);
+        panel=match ? 'Panel '+match[1] : '';
+        category='';
+        circuit='';
+        return;
+      }
+      if(/^(Lighting Loads|Wall Loads|Shade Loads|Blinds)$/i.test(first)){
+        category=first;
+        circuit='';
+        return;
+      }
+      if(/^Opening$/i.test(first)){
+        category='Shade Loads';
+        circuit='';
+        return;
+      }
+      if(!panel || !category || /^(Shade Loads|Blinds)$/i.test(category)) return;
+      if(/^Circuit\s+/i.test(first)) circuit=first;
+
+      const load=String(row[1] || '').trim();
+      if(!load) return;
+
+      const location=String(row[2] || '').trim();
+      const watts=String(row[3] || '').trim();
+      const amps=String(row[4] || '').trim();
+      const transformer=String(row[5] || '').trim();
+      const breaker=String(row[6] || '').trim();
+      const shelly=String(row[8] || '').trim();
+      const control=String(row[9] || '').trim();
+
+      if(!circuit && !transformer && !shelly) return;
+
+      const circuitLabel=[panel, circuit, load].filter(Boolean).join(' / ');
+      const driver=[transformer, breaker ? 'Breaker/fuse: '+breaker : ''].filter(Boolean).join(' | ');
+      const module=[shelly, control].filter(Boolean).join(' / ');
+      const termination=[location || load, watts ? watts+' W' : '', amps ? amps+' A' : ''].filter(Boolean).join(' | ');
+
+      mapped.push('<tr><td>'+esc(circuitLabel)+'</td><td>'+esc(driver)+'</td><td>'+esc(module)+'</td><td>'+esc(termination)+'</td></tr>');
+    });
+
+    target.innerHTML = mapped.length ? mapped.join('') : '<tr><td colspan="4" class="muted">No lighting/control circuit rows found.</td></tr>';
+  }
+
+  try{ renderCircuitMap(); }
+  catch(err){
+    const target=document.getElementById('circuitMapBody');
+    if(target) target.innerHTML='<tr><td colspan="4" class="muted">Circuit map failed to render.</td></tr>';
+    console.error(err);
   }
 })();
   </script>
