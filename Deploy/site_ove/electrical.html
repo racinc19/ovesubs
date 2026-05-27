@@ -687,6 +687,142 @@ details.cat summary::-webkit-details-marker{display:none}
             <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
             <div class="note">Use separate enclosures/compartments so 120V line-voltage wiring is not mixed in the same open low-voltage control space as the Phoenix fused outputs and Shelly modules. Final enclosure listing, spacing, grounding, ventilation, and conductor fill must be checked by the electrician.</div>
             <div class="panel-drawing">
+              <svg viewBox="0 0 1380 980" role="img" aria-label="Scaled elevation showing every electrical control panel component">
+                <defs>
+                  <marker id="scaledArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#22c55e"/></marker>
+                </defs>
+                <text x="24" y="32" class="title">Scaled Component Elevation - Every Panel Component Shown</text>
+                <text x="24" y="52" class="small">Scale basis: each cabinet outline is the same 24 in x 20 in Hoffman A24N206LP proportion. Device block widths are approximate DIN/terminal layout widths for coordination only.</text>
+
+                <rect x="30" y="82" width="270" height="225" rx="8" class="cab"/><rect x="42" y="94" width="246" height="201" rx="5" class="door"/>
+                <text x="48" y="116" class="label">DB-1A: 120V + Power Supplies</text>
+                <rect x="52" y="132" width="226" height="15" class="duct"/><line x1="60" y1="166" x2="270" y2="166" class="rail"/>
+                <rect x="60" y="178" width="34" height="54" rx="3" class="breaker"/><text x="66" y="201" class="tiny">20A</text><text x="65" y="214" class="tiny">DISC</text>
+                <rect x="105" y="176" width="34" height="60" rx="3" class="term"/><text x="112" y="207" class="tiny">L/N/G</text>
+                <rect x="151" y="174" width="26" height="64" rx="3" class="psu"/><text x="156" y="202" class="tiny">PS1</text>
+                <rect x="184" y="174" width="26" height="64" rx="3" class="psu"/><text x="189" y="202" class="tiny">PS2</text>
+                <rect x="217" y="174" width="26" height="64" rx="3" class="psu"/><text x="222" y="202" class="tiny">PS3</text>
+                <rect x="250" y="174" width="26" height="64" rx="3" class="psu"/><text x="255" y="202" class="tiny">PS4</text>
+                <rect x="52" y="260" width="226" height="15" class="duct"/><text x="52" y="292" class="small">1 x 20A feed. 4 x Mean Well SDR-480-24.</text>
+
+                <rect x="330" y="82" width="270" height="225" rx="8" class="cab"/><rect x="342" y="94" width="246" height="201" rx="5" class="door"/>
+                <text x="348" y="116" class="label">DB-1B: Fuses + Shelly</text>
+                <rect x="352" y="132" width="226" height="15" class="duct"/><line x1="360" y1="166" x2="570" y2="166" class="rail"/>
+                <rect x="360" y="178" width="24" height="54" rx="3" class="term"/><text x="366" y="206" class="tiny">24V</text>
+                <rect x="394" y="176" width="18" height="60" rx="2" class="fuse"/><text x="398" y="207" class="tiny">F1</text>
+                <rect x="417" y="176" width="18" height="60" rx="2" class="fuse"/><text x="421" y="207" class="tiny">F2</text>
+                <rect x="440" y="176" width="18" height="60" rx="2" class="fuse"/><text x="444" y="207" class="tiny">F3</text>
+                <rect x="463" y="176" width="18" height="60" rx="2" class="fuse"/><text x="467" y="207" class="tiny">F4</text>
+                <rect x="486" y="176" width="18" height="60" rx="2" class="fuse"/><text x="490" y="207" class="tiny">F5</text>
+                <line x1="360" y1="254" x2="570" y2="254" class="rail"/>
+                <rect x="360" y="264" width="26" height="42" rx="3" class="shelly"/><text x="365" y="289" class="tiny">SH1</text>
+                <rect x="392" y="264" width="26" height="42" rx="3" class="shelly"/><text x="397" y="289" class="tiny">SH2</text>
+                <rect x="424" y="264" width="26" height="42" rx="3" class="shelly"/><text x="429" y="289" class="tiny">SH3</text>
+                <rect x="456" y="264" width="26" height="42" rx="3" class="shelly"/><text x="461" y="289" class="tiny">SH4</text>
+                <rect x="488" y="264" width="26" height="42" rx="3" class="shelly"/><text x="493" y="289" class="tiny">SH5</text>
+                <rect x="525" y="264" width="50" height="42" rx="3" class="term"/><text x="531" y="286" class="tiny">U1-U5</text>
+
+                <rect x="30" y="345" width="270" height="225" rx="8" class="cab"/><rect x="42" y="357" width="246" height="201" rx="5" class="door"/>
+                <text x="48" y="379" class="label">DB-2A: Feed A + PS1-PS4</text>
+                <rect x="52" y="395" width="226" height="15" class="duct"/><line x1="60" y1="429" x2="270" y2="429" class="rail"/>
+                <rect x="60" y="441" width="34" height="54" rx="3" class="breaker"/><text x="66" y="464" class="tiny">20A</text><text x="65" y="477" class="tiny">DISC</text>
+                <rect x="105" y="439" width="34" height="60" rx="3" class="term"/><text x="112" y="470" class="tiny">L/N/G</text>
+                <rect x="151" y="437" width="26" height="64" rx="3" class="psu"/><text x="156" y="465" class="tiny">PS1</text>
+                <rect x="184" y="437" width="26" height="64" rx="3" class="psu"/><text x="189" y="465" class="tiny">PS2</text>
+                <rect x="217" y="437" width="26" height="64" rx="3" class="psu"/><text x="222" y="465" class="tiny">PS3</text>
+                <rect x="250" y="437" width="26" height="64" rx="3" class="psu"/><text x="255" y="465" class="tiny">PS4</text>
+                <rect x="52" y="523" width="226" height="15" class="duct"/>
+
+                <rect x="330" y="345" width="270" height="225" rx="8" class="cab"/><rect x="342" y="357" width="246" height="201" rx="5" class="door"/>
+                <text x="348" y="379" class="label">DB-2B: Feed B + PS5-PS8</text>
+                <rect x="352" y="395" width="226" height="15" class="duct"/><line x1="360" y1="429" x2="570" y2="429" class="rail"/>
+                <rect x="360" y="441" width="34" height="54" rx="3" class="breaker"/><text x="366" y="464" class="tiny">20A</text><text x="365" y="477" class="tiny">DISC</text>
+                <rect x="405" y="439" width="34" height="60" rx="3" class="term"/><text x="412" y="470" class="tiny">L/N/G</text>
+                <rect x="451" y="437" width="26" height="64" rx="3" class="psu"/><text x="456" y="465" class="tiny">PS5</text>
+                <rect x="484" y="437" width="26" height="64" rx="3" class="psu"/><text x="489" y="465" class="tiny">PS6</text>
+                <rect x="517" y="437" width="26" height="64" rx="3" class="psu"/><text x="522" y="465" class="tiny">PS7</text>
+                <rect x="550" y="437" width="26" height="64" rx="3" class="psu"/><text x="555" y="465" class="tiny">PS8</text>
+                <rect x="352" y="523" width="226" height="15" class="duct"/>
+
+                <rect x="630" y="345" width="430" height="360" rx="8" class="cab"/><rect x="642" y="357" width="406" height="336" rx="5" class="door"/>
+                <text x="648" y="379" class="label">DB-2C: F1-F19 + SH1-SH19 + Tape Terminals</text>
+                <rect x="652" y="395" width="386" height="15" class="duct"/><line x1="660" y1="429" x2="1030" y2="429" class="rail"/>
+                <rect x="660" y="439" width="24" height="52" rx="3" class="term"/><text x="666" y="468" class="tiny">24V</text>
+                <rect x="692" y="437" width="16" height="56" rx="2" class="fuse"/><text x="695" y="468" class="tiny">F1</text>
+                <rect x="713" y="437" width="16" height="56" rx="2" class="fuse"/><text x="716" y="468" class="tiny">F2</text>
+                <rect x="734" y="437" width="16" height="56" rx="2" class="fuse"/><text x="737" y="468" class="tiny">F3</text>
+                <rect x="755" y="437" width="16" height="56" rx="2" class="fuse"/><text x="758" y="468" class="tiny">F4</text>
+                <rect x="776" y="437" width="16" height="56" rx="2" class="fuse"/><text x="779" y="468" class="tiny">F5</text>
+                <rect x="797" y="437" width="16" height="56" rx="2" class="fuse"/><text x="800" y="468" class="tiny">F6</text>
+                <rect x="818" y="437" width="16" height="56" rx="2" class="fuse"/><text x="821" y="468" class="tiny">F7</text>
+                <rect x="839" y="437" width="16" height="56" rx="2" class="fuse"/><text x="842" y="468" class="tiny">F8</text>
+                <rect x="860" y="437" width="16" height="56" rx="2" class="fuse"/><text x="863" y="468" class="tiny">F9</text>
+                <rect x="881" y="437" width="16" height="56" rx="2" class="fuse"/><text x="882" y="468" class="tiny">F10</text>
+                <rect x="902" y="437" width="16" height="56" rx="2" class="fuse"/><text x="903" y="468" class="tiny">F11</text>
+                <rect x="923" y="437" width="16" height="56" rx="2" class="fuse"/><text x="924" y="468" class="tiny">F12</text>
+                <rect x="944" y="437" width="16" height="56" rx="2" class="fuse"/><text x="945" y="468" class="tiny">F13</text>
+                <rect x="965" y="437" width="16" height="56" rx="2" class="fuse"/><text x="966" y="468" class="tiny">F14</text>
+                <rect x="986" y="437" width="16" height="56" rx="2" class="fuse"/><text x="987" y="468" class="tiny">F15</text>
+                <rect x="1007" y="437" width="16" height="56" rx="2" class="fuse"/><text x="1008" y="468" class="tiny">F16</text>
+                <rect x="692" y="502" width="16" height="56" rx="2" class="fuse"/><text x="693" y="533" class="tiny">F17</text>
+                <rect x="713" y="502" width="16" height="56" rx="2" class="fuse"/><text x="714" y="533" class="tiny">F18</text>
+                <rect x="734" y="502" width="16" height="56" rx="2" class="fuse"/><text x="735" y="533" class="tiny">F19</text>
+                <line x1="660" y1="581" x2="1030" y2="581" class="rail"/>
+                <rect x="660" y="592" width="20" height="38" rx="3" class="shelly"/><text x="664" y="616" class="tiny">SH1</text>
+                <rect x="683" y="592" width="20" height="38" rx="3" class="shelly"/><text x="687" y="616" class="tiny">SH2</text>
+                <rect x="706" y="592" width="20" height="38" rx="3" class="shelly"/><text x="710" y="616" class="tiny">SH3</text>
+                <rect x="729" y="592" width="20" height="38" rx="3" class="shelly"/><text x="733" y="616" class="tiny">SH4</text>
+                <rect x="752" y="592" width="20" height="38" rx="3" class="shelly"/><text x="756" y="616" class="tiny">SH5</text>
+                <rect x="775" y="592" width="20" height="38" rx="3" class="shelly"/><text x="779" y="616" class="tiny">SH6</text>
+                <rect x="798" y="592" width="20" height="38" rx="3" class="shelly"/><text x="802" y="616" class="tiny">SH7</text>
+                <rect x="821" y="592" width="20" height="38" rx="3" class="shelly"/><text x="825" y="616" class="tiny">SH8</text>
+                <rect x="844" y="592" width="20" height="38" rx="3" class="shelly"/><text x="848" y="616" class="tiny">SH9</text>
+                <rect x="867" y="592" width="20" height="38" rx="3" class="shelly"/><text x="868" y="616" class="tiny">SH10</text>
+                <rect x="890" y="592" width="20" height="38" rx="3" class="shelly"/><text x="891" y="616" class="tiny">SH11</text>
+                <rect x="913" y="592" width="20" height="38" rx="3" class="shelly"/><text x="914" y="616" class="tiny">SH12</text>
+                <rect x="936" y="592" width="20" height="38" rx="3" class="shelly"/><text x="937" y="616" class="tiny">SH13</text>
+                <rect x="959" y="592" width="20" height="38" rx="3" class="shelly"/><text x="960" y="616" class="tiny">SH14</text>
+                <rect x="982" y="592" width="20" height="38" rx="3" class="shelly"/><text x="983" y="616" class="tiny">SH15</text>
+                <rect x="1005" y="592" width="20" height="38" rx="3" class="shelly"/><text x="1006" y="616" class="tiny">SH16</text>
+                <rect x="660" y="645" width="20" height="38" rx="3" class="shelly"/><text x="661" y="669" class="tiny">SH17</text>
+                <rect x="683" y="645" width="20" height="38" rx="3" class="shelly"/><text x="684" y="669" class="tiny">SH18</text>
+                <rect x="706" y="645" width="20" height="38" rx="3" class="shelly"/><text x="707" y="669" class="tiny">SH19</text>
+                <rect x="760" y="645" width="270" height="32" rx="3" class="term"/><text x="770" y="665" class="tiny">Tape terminals U06-U17 / L01-L07</text>
+
+                <rect x="1090" y="82" width="270" height="225" rx="8" class="cab"/><rect x="1102" y="94" width="246" height="201" rx="5" class="door"/>
+                <text x="1108" y="116" class="label">BC-1: Blinds/Shades Control</text>
+                <rect x="1112" y="132" width="226" height="15" class="duct"/><line x1="1120" y1="166" x2="1330" y2="166" class="rail"/>
+                <rect x="1120" y="178" width="34" height="54" rx="3" class="breaker"/><text x="1126" y="201" class="tiny">15A</text><text x="1125" y="214" class="tiny">DISC</text>
+                <rect x="1164" y="176" width="54" height="60" rx="3" class="term"/><text x="1170" y="202" class="tiny">L/N/G</text><text x="1170" y="215" class="tiny">SHADE</text>
+                <rect x="1230" y="176" width="64" height="60" rx="3" fill="#2b2543" stroke="#a78bfa" stroke-width="1.4"/><text x="1236" y="202" class="tiny">Somfy</text><text x="1236" y="215" class="tiny">IP/RS485</text>
+                <line x1="1120" y1="255" x2="1330" y2="255" class="rail"/>
+                <rect x="1120" y="265" width="18" height="32" rx="2" class="term"/><text x="1124" y="285" class="tiny">M1</text>
+                <rect x="1141" y="265" width="18" height="32" rx="2" class="term"/><text x="1145" y="285" class="tiny">M2</text>
+                <rect x="1162" y="265" width="18" height="32" rx="2" class="term"/><text x="1166" y="285" class="tiny">M3</text>
+                <rect x="1183" y="265" width="18" height="32" rx="2" class="term"/><text x="1187" y="285" class="tiny">M4</text>
+                <rect x="1204" y="265" width="18" height="32" rx="2" class="term"/><text x="1208" y="285" class="tiny">M5</text>
+                <rect x="1225" y="265" width="18" height="32" rx="2" class="term"/><text x="1229" y="285" class="tiny">M6</text>
+                <rect x="1246" y="265" width="18" height="32" rx="2" class="term"/><text x="1250" y="285" class="tiny">M7</text>
+                <rect x="1267" y="265" width="18" height="32" rx="2" class="term"/><text x="1271" y="285" class="tiny">M8</text>
+                <rect x="1288" y="265" width="18" height="32" rx="2" class="term"/><text x="1292" y="285" class="tiny">M9</text>
+                <rect x="1309" y="265" width="18" height="32" rx="2" class="term"/><text x="1310" y="285" class="tiny">M10</text>
+                <rect x="1330" y="265" width="18" height="32" rx="2" class="term"/><text x="1331" y="285" class="tiny">M11</text>
+                <text x="1112" y="322" class="small">1 x 15A feed. 11 shade motor terminations plus RS485/LAN interface.</text>
+
+                <path d="M276 206 C300 206 305 206 330 206" class="wire24" marker-end="url(#scaledArrow)"/>
+                <path d="M276 468 C430 520 520 520 630 520" class="wire24" marker-end="url(#scaledArrow)"/>
+                <path d="M576 468 C605 500 615 515 630 520" class="wire24" marker-end="url(#scaledArrow)"/>
+
+                <rect x="30" y="735" width="1330" height="92" rx="8" fill="#111a2b" stroke="#2a3a55"/>
+                <rect x="52" y="760" width="22" height="14" class="breaker"/><text x="84" y="772" class="small">20A/15A breaker or local disconnect</text>
+                <rect x="280" y="755" width="22" height="28" class="psu"/><text x="312" y="772" class="small">Mean Well SDR-480-24 DIN supply, 12 total</text>
+                <rect x="560" y="755" width="16" height="28" class="fuse"/><text x="586" y="772" class="small">Phoenix 3036505 fused terminal, 24 total plus spares</text>
+                <rect x="870" y="755" width="22" height="28" class="shelly"/><text x="902" y="772" class="small">Shelly Plus RGBW PM, 24 total max</text>
+                <rect x="52" y="795" width="36" height="16" class="term"/><text x="98" y="808" class="small">terminal blocks / motor drops</text>
+                <rect x="280" y="795" width="48" height="14" class="duct"/><text x="338" y="808" class="small">wire duct</text>
+                <line x1="560" y1="802" x2="630" y2="802" class="rail"/><text x="640" y="808" class="small">DIN rail</text>
+              </svg>
+
               <svg viewBox="0 0 1380 860" role="img" aria-label="Front elevation drawing of DB-1 and DB-2 lighting control panels">
                 <defs>
                   <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/></marker>
