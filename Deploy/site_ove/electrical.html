@@ -92,6 +92,7 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-upper-ceiling:checked ~ .tab-labels label[for=tab-upper-ceiling],
 #tab-lower:checked ~ .tab-labels label[for=tab-lower],
 #tab-circuit-map:checked ~ .tab-labels label[for=tab-circuit-map],
+#tab-blinds:checked ~ .tab-labels label[for=tab-blinds],
 #tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
 #tab-main-wall:checked ~ .tab-panels #panel-main-wall,
 #tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
@@ -99,6 +100,7 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-upper-ceiling:checked ~ .tab-panels #panel-upper-ceiling,
 #tab-lower:checked ~ .tab-panels #panel-lower,
 #tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
+#tab-blinds:checked ~ .tab-panels #panel-blinds,
 #tab-panels:checked ~ .tab-panels #panel-panels{display:block}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
@@ -132,6 +134,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <input type="radio" name="electrical-tabs" id="tab-upper-ceiling">
       <input type="radio" name="electrical-tabs" id="tab-lower">
       <input type="radio" name="electrical-tabs" id="tab-circuit-map">
+      <input type="radio" name="electrical-tabs" id="tab-blinds">
       <input type="radio" name="electrical-tabs" id="tab-panels">
 
       <div class="tab-labels">
@@ -141,6 +144,7 @@ details.cat summary::-webkit-details-marker{display:none}
         <label for="tab-upper-ceiling">Upper Ceiling</label>
         <label for="tab-lower">Lower Loads / Ceiling</label>
         <label for="tab-circuit-map">Circuit Maps</label>
+        <label for="tab-blinds">Blinds / Shades</label>
         <label for="tab-panels">Panels</label>
       </div>
 
@@ -614,6 +618,70 @@ details.cat summary::-webkit-details-marker{display:none}
           </section>
         </section>
 
+        <section class="tab-panel" id="panel-blinds">
+          <section class="card full-card">
+            <div class="card-h"><h2>Blinds / Shades Electrical Schedule</h2></div>
+            <div class="note">Add this as a separate shade-control scope. The current takeoff basis is 11 motorized shade openings at 120 VAC with Somfy RS485 control. Keep this separate from 24V tape lighting; the blind motors are line-voltage shade loads, not 24V LED loads.</div>
+            <div class="schedule-grid">
+              <div class="metric">
+                <div class="label">Shade Motors</div>
+                <div class="value">11</div>
+                <div class="hint">Somfy Sonesse RS485 motors from the blind takeoff</div>
+              </div>
+              <div class="metric">
+                <div class="label">Connected Load</div>
+                <div class="value">586.8W</div>
+                <div class="hint">4.89A total at 120VAC basis</div>
+              </div>
+              <div class="metric">
+                <div class="label">Breaker</div>
+                <div class="value">1 x 15A</div>
+                <div class="hint">Dedicated 120V shade circuit, final by electrician</div>
+              </div>
+              <div class="metric">
+                <div class="label">Control</div>
+                <div class="value">RS485</div>
+                <div class="hint">Somfy SDN / animeo IP RS485 control path</div>
+              </div>
+            </div>
+            <div class="table-wrap" style="margin-top:14px">
+              <table>
+                <thead><tr><th>Item</th><th>Exact Product / Basis</th><th class="num">Qty</th><th>Electrical / Control Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Shade motors</td><td>Somfy Sonesse RS485 family, 120VAC. Use Sonesse 506S2 RS485 / Sonesse 60 RS485 / Hi-Torque RS485 as sized per opening by shade vendor.</td><td class="num">11 motors</td><td>Each motor gets 120VAC power plus RS485/data control as required by Somfy SDN. Final motor model must match tube size, shade size, and torque.</td></tr>
+                  <tr><td>RS485 network controller</td><td><a href="https://www.somfysystems.com/commercial/smart-building/building-controls/animeo-ip-rs485" target="_blank" rel="noopener noreferrer">Somfy animeo IP/RS485 control system</a> or approved Somfy SDN IP/RS485 interface</td><td class="num">1 system</td><td>Network control path for Somfy RS485 motors. Coordinate Homey/LAN integration here, not through the 24V lighting driver bank.</td></tr>
+                  <tr><td>Shade power circuit</td><td>Dedicated 120VAC shade motor branch circuit</td><td class="num">1 x 15A</td><td>Takeoff load is 4.89A / 586.8W total. Final breaker/conductor by electrician and code.</td></tr>
+                  <tr><td>Data/control cable</td><td>RS485/SDN bus cable per Somfy requirements; keep polarity and termination per Somfy wiring guide</td><td class="num">As required</td><td>Home run or bus topology by Somfy requirements. Label every motor drop by opening name.</td></tr>
+                  <tr><td>Shelly note</td><td><a href="https://us.shelly.com/products/shelly-pro-dual-cover-shutter-pm" target="_blank" rel="noopener noreferrer">Shelly Pro Dual Cover/Shutter PM</a> is only for non-RS485 bidirectional AC cover motors</td><td class="num">Do not use with RS485 basis unless system is revised</td><td>If the shade vendor changes to standard AC up/down motors instead of Somfy RS485 motors, then use 6 x Shelly Pro Dual Cover/Shutter PM for 11 motors. Do not mix that assumption into the current RS485 Somfy basis.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card full-card">
+            <div class="card-h"><h2>Shade Opening / Motor Schedule</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Opening</th><th>Size</th><th>Motor Basis</th><th class="num">Amps</th><th class="num">Watts</th><th>Pocket</th><th>Control</th></tr></thead>
+                <tbody>
+                  <tr><td>Entry</td><td>159 in x 268.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Entry 2</td><td>96 in x 268.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 1</td><td>268 in x 314.5 in</td><td>Somfy Sonesse 100 RS485 Hi-Torque, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>10 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Lower 1</td><td>120 in x 207 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Lower 2</td><td>120 in x 209.75 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Upper 1</td><td>144 in x 236.75 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Upper 2</td><td>120 in x 110.5 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, single roller OK</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 2-1</td><td>120 in x 161.5 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, dual roller recommended</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 2-2</td><td>120 in x 228.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Glass South</td><td>91 in x 113.25 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, single roller OK</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Glass East</td><td>119 in x 234 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Total shade motor load: 4.89A / 586.8W. Carry as one dedicated 15A 120V shade circuit unless the shade vendor/electrician splits circuits for routing or code.</div>
+          </section>
+        </section>
+
         <section class="tab-panel" id="panel-panels">
           <section class="card full-card">
             <div class="card-h"><h2>Recommended Driver-Bank Panel Layout</h2></div>
@@ -814,6 +882,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <tbody>
                   <tr><td>DB-1 / Panel 1</td><td>Build from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">5</td><td class="num">1,920W @ 24V</td><td>1 x 20A, 120V</td></tr>
                   <tr><td>DB-2 / Panel 2</td><td>Build from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">19</td><td class="num">3,840W @ 24V</td><td>2 x 20A, 120V</td></tr>
+                  <tr><td>BC-1 / Blinds-Shades</td><td>Dedicated shade control panel/circuit for 11 Somfy Sonesse RS485 shade motors and Somfy SDN/animeo IP RS485 control interface</td><td class="num">11 motors</td><td class="num">586.8W @ 120V</td><td>1 x 15A, 120V</td></tr>
                   <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
                   <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
                   <tr><td>Main Power Panel 2</td><td>Main wall-load DWFx object: Leviton load center / 100A Service</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is 100A Service. Coordinate with final panel schedule and service/load calculation.</td></tr>
@@ -821,7 +890,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 </tbody>
               </table>
             </div>
-            <div class="note">Install exactly as two assigned DB assemblies unless the plan is formally revised. Recommended physical split is five enclosures total: DB-1A, DB-1B, DB-2A, DB-2B, DB-2C. Required label format: DB-# / PS-# / F-# / SH-# / U-# or L-#. No field combining or moving tape zones between DB-1 and DB-2 without revised load, fuse, and voltage-drop schedules.</div>
+            <div class="note">Install exactly as two assigned lighting DB assemblies plus one blinds/shades control scope unless the plan is formally revised. Recommended physical lighting split is five enclosures total: DB-1A, DB-1B, DB-2A, DB-2B, DB-2C. Keep BC-1 blinds/shades separate from the 24V tape-light driver banks. Required lighting label format: DB-# / PS-# / F-# / SH-# / U-# or L-#.</div>
           </section>
         </section>
       </div>
