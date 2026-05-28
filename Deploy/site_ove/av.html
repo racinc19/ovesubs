@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>OVE subs - AV / Security</title>
+  <style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--cyan:#06b6d4;--purple:#8b5cf6;--orange:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-y:scroll}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.4}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:100;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;gap:8px;min-height:56px;flex-wrap:wrap;padding:8px 0}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;white-space:nowrap;margin-right:8px}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+.topnav-links{display:flex;gap:4px;align-items:center;flex-wrap:wrap;flex:1}
+.topnav-links a{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--blue)}
+.container{max-width:1450px;margin:0 auto;padding:18px 20px 44px}
+.h1{font-size:22px;font-weight:900;margin-top:6px}
+.sub{color:var(--txt2);font-size:13px;margin-top:6px;max-width:1100px}
+.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.metric{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:12px}
+.metric .label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:800}
+.metric .value{font-size:22px;font-weight:900;margin-top:4px;color:#fff}
+.metric .hint{font-size:11px;color:var(--txt2);margin-top:3px}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;margin-top:14px}
+.card-h{padding:14px 16px;border-bottom:1px solid rgba(42,58,85,.45);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))}
+.card h2{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.8px;color:#fff}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 11px;border-top:1px solid rgba(42,58,85,.35);font-size:12px;vertical-align:top}
+th{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.8px;background:rgba(0,0,0,.18);border-top:none;text-align:left}
+.num{text-align:right;white-space:nowrap}
+.muted{color:var(--txt2)}
+.note{padding:12px 16px;font-size:12px;color:var(--txt2)}
+.callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px;margin-top:14px}
+.tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+a{color:#93c5fd}
+.total-row td{font-weight:900;color:#fff;background:rgba(34,197,94,.08)}
+@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.schedule-grid{grid-template-columns:1fr}.container{padding-left:12px;padding-right:12px}th,td{font-size:11px;padding:9px 8px}}
+  </style>
+</head>
+<body>
+  <nav class="topnav"><div class="topnav-inner">
+    <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
+    <div class="topnav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="subs.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--orange);text-decoration:none;border:1px solid rgba(245,158,11,.3)">Subs List</a>
+      <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer">Plans &amp; Permits</a>
+      <a href="selections.html">Selections</a>
+      <a href="electrical.html">Electrical</a>
+      <a class="active" href="av.html">AV</a>
+    </div>
+  </div></nav>
+
+  <main class="container">
+    <div class="h1">AV / Security Scope</div>
+    <div class="sub">Material scope for the AV wall-load equipment, projection system, AV rack interfaces, and camera/NVR package. Camera equipment is included here, not in Electrical.</div>
+
+    <div class="schedule-grid">
+      <div class="metric"><div class="label">AV takeoff</div><div class="value">6</div><div class="hint">DWFx wall-load devices currently identified</div></div>
+      <div class="metric"><div class="label">Camera allowance</div><div class="value">16</div><div class="hint">12 standard exterior/interior cameras + 4 AI locations</div></div>
+      <div class="metric"><div class="label">Rack / head-end</div><div class="value">1</div><div class="hint">AV receiver, NVR, network uplink, power, shelves</div></div>
+      <div class="metric"><div class="label">Budgetary material</div><div class="value">$31,101.96</div><div class="hint">Material only, before tax/shipping/labor</div></div>
+    </div>
+
+    <div class="callout">
+      Source basis: current wall-load takeoff shows 2 MartinLogan wall speakers, 2 MartinLogan subwoofers, 1 "Macintosh MHT 300" receiver, and 1 150 in screen. The product basis below corrects the brand spelling to McIntosh MHT300 and adds the projector/support items required for the 150 in screen.
+    </div>
+
+    <section class="card">
+      <div class="card-h"><h2>Plan Takeoff / Current Basis</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Area</th><th>Plan item</th><th class="num">Qty</th><th>Basis / direction</th></tr></thead>
+          <tbody>
+            <tr><td>Theater / lower wall-load AV</td><td>MartinLogan Motion XT CI XTW6 in-wall speakers</td><td class="num">2</td><td>Use current DWFx wall-load equipment count. Coordinate speaker back boxes, blocking, speaker wire, and final aiming with AV installer.</td></tr>
+            <tr><td>Theater / lower wall-load AV</td><td>MartinLogan Dynamo Foundation 12 subwoofers</td><td class="num">2</td><td>Provide 120V receptacle and sub signal path at each sub location. Final exact placement to be confirmed in room layout.</td></tr>
+            <tr><td>Theater / lower wall-load AV</td><td>McIntosh MHT300 receiver</td><td class="num">1</td><td>DWFx label reads "Macintosh MHT 300"; purchasable product basis is McIntosh MHT300 home theater receiver.</td></tr>
+            <tr><td>Theater / lower wall-load AV</td><td>150 in projection screen</td><td class="num">1</td><td>Carry 150 in screen plus projector path. Confirm finished opening, screen case/recess, power, control, and throw before ordering.</td></tr>
+            <tr><td>Security / exterior and interior camera plan</td><td>Camera/NVR equipment</td><td class="num">16 cameras</td><td>Moved into AV/security package so Electrical carries only power, conduit, and low-voltage pathways called out separately.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><h2>AV Material Scope</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Purchasable basis</th><th class="num">Qty</th><th>Install note</th></tr></thead>
+          <tbody>
+            <tr><td>Home theater receiver</td><td><a href="https://www.mcintoshlabs.com/products/home-theater-processors/mht300" target="_blank" rel="noopener noreferrer">McIntosh MHT300 Home Theater Receiver</a></td><td class="num">1</td><td>Rack/head-end. 3U rack-mountable AVR; provide cooling, UPS/surge protection, HDMI path, speaker terminations, and network/control connection.</td></tr>
+            <tr><td>In-wall speakers</td><td><a href="https://www.martinlogan.com/en/product/motion-xtw6" target="_blank" rel="noopener noreferrer">MartinLogan Motion XT CI XTW6</a></td><td class="num">2</td><td>Coordinate stud bay, back-box depth, grill finish, speaker wire, and blocking before drywall.</td></tr>
+            <tr><td>Subwoofers</td><td><a href="https://www.martinlogan.com/en/product/dynamo-foundation-12" target="_blank" rel="noopener noreferrer">MartinLogan Dynamo Foundation 12</a></td><td class="num">2</td><td>Each needs 120V power and shielded sub/LFE cable or approved signal path.</td></tr>
+            <tr><td>Projection screen</td><td>Screen Innovations Zero Edge 150 in, or approved equal</td><td class="num">1</td><td>Confirm exact aspect ratio, ambient-light screen material, mounting height, recess/blocking, and control/power before order.</td></tr>
+            <tr><td>Projector</td><td><a href="https://epson.com/For-Home/Projectors/Pro-Cinema/Pro-Cinema-LS12000-4K-PRO-UHD-Laser-Projector/p/V11HA47020MB" target="_blank" rel="noopener noreferrer">Epson Pro Cinema LS12000</a>, or approved equal</td><td class="num">1</td><td>Allowance added because the plan includes a 150 in screen. Confirm throw distance, lens position, HDMI/fiber route, ventilation, and mount structure.</td></tr>
+            <tr><td>Projector mount</td><td>Chief / Peerless projector mount allowance</td><td class="num">1</td><td>Model selected after final projector and framing location are locked.</td></tr>
+            <tr><td>AV rack package</td><td>Middle Atlantic / Sanus rack, shelves, blank panels, power distribution allowance</td><td class="num">1</td><td>Rack location needs dedicated 120V, ventilation, service clearance, network uplink, and labeled speaker/camera/data terminations.</td></tr>
+            <tr><td>AV rough-in materials</td><td>Speaker wire, sub cable, HDMI/fiber, wall plates, keystones, labels allowance</td><td class="num">1 lot</td><td>Carry as allowance until final wire paths and rack location are frozen.</td></tr>
+            <tr><td>Blocking / boxes / conduit</td><td>Back boxes, low-voltage rings, conduit sleeves, screen/projector blocking allowance</td><td class="num">1 lot</td><td>Install before insulation/drywall. Coordinate with framing and electrical.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><h2>Camera / Security Material Scope</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Purchasable basis</th><th class="num">Qty</th><th>Install note</th></tr></thead>
+          <tbody>
+            <tr><td>NVR</td><td><a href="https://store.ui.com/us/en/products/unvr" target="_blank" rel="noopener noreferrer">Ubiquiti UniFi UNVR</a></td><td class="num">1</td><td>Rack-mounted Protect recorder. Land on AV/security rack or network rack with UPS-backed power and switch uplink.</td></tr>
+            <tr><td>NVR storage</td><td>Surveillance-rated hard drive allowance</td><td class="num">4</td><td>Confirm recording duration and camera bitrate before final HDD size is purchased.</td></tr>
+            <tr><td>Standard PoE cameras</td><td><a href="https://store.ui.com/us/en/products/uvc-g5-turret-ultra" target="_blank" rel="noopener noreferrer">Ubiquiti G5 Turret Ultra</a></td><td class="num">12</td><td>General exterior/interior camera basis. Each needs home-run Cat6 and weather-rated mounting where exposed.</td></tr>
+            <tr><td>AI camera locations</td><td><a href="https://store.ui.com/us/en/products/uvc-ai-pro" target="_blank" rel="noopener noreferrer">Ubiquiti AI Pro</a></td><td class="num">4</td><td>Use at higher-value recognition/entry/drive locations after final camera plan review.</td></tr>
+            <tr><td>Camera mounting and protection</td><td>Junction boxes, mounts, surge protection, patching allowance</td><td class="num">16</td><td>Final mount type depends on soffit/wall material and exposure.</td></tr>
+            <tr><td>Camera Cat6 drops</td><td>Cat6 home-run allowance</td><td class="num">16</td><td>Coordinate with low-voltage rough-in. Label both ends by camera number and location.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><h2>Network / Control Interfaces</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Interface</th><th>Requirement</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>AV rack to network rack</td><td>Minimum 2 Cat6 uplinks or one fiber/conduit path plus spare</td><td>AV/security gear should not rely on Wi-Fi. Use labeled wired uplinks between racks and switches.</td></tr>
+            <tr><td>Homey / Shelly control</td><td>LAN integration where supported</td><td>Homey may trigger AV scenes, lighting scenes, and status dashboards, but camera recording must remain native to UniFi Protect/NVR.</td></tr>
+            <tr><td>PoE switch capacity</td><td>Camera ports may require a second PoE switch</td><td>The electrical page carries the control-network switch basis. If all cameras land in the same rack, add camera PoE switch capacity during final network count.</td></tr>
+            <tr><td>Touch screens</td><td>No duplicate cost here</td><td>PoE touch screens are already carried in Electrical/Homey network scope. AV can use them for dashboard/control views but they are not counted again here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-h"><h2>Budgetary Material Cost Summary</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Line</th><th>Product / allowance</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Extended</th></tr></thead>
+          <tbody>
+            <tr><td>AV-01</td><td>McIntosh MHT300 AVR</td><td class="num">1</td><td class="num">$8,000.00</td><td class="num">$8,000.00</td></tr>
+            <tr><td>AV-02</td><td>MartinLogan Motion XT CI XTW6 in-wall speakers</td><td class="num">2</td><td class="num">$899.99</td><td class="num">$1,799.98</td></tr>
+            <tr><td>AV-03</td><td>MartinLogan Dynamo Foundation 12 subwoofers</td><td class="num">2</td><td class="num">$799.99</td><td class="num">$1,599.98</td></tr>
+            <tr><td>AV-04</td><td>Screen Innovations Zero Edge 150 in screen allowance</td><td class="num">1</td><td class="num">$2,250.00</td><td class="num">$2,250.00</td></tr>
+            <tr><td>AV-05</td><td>Epson Pro Cinema LS12000 projector allowance</td><td class="num">1</td><td class="num">$5,999.00</td><td class="num">$5,999.00</td></tr>
+            <tr><td>AV-06</td><td>Projector mount allowance</td><td class="num">1</td><td class="num">$350.00</td><td class="num">$350.00</td></tr>
+            <tr><td>AV-07</td><td>AV rack, shelves, panels, power allowance</td><td class="num">1</td><td class="num">$1,800.00</td><td class="num">$1,800.00</td></tr>
+            <tr><td>AV-08</td><td>Speaker wire, sub cable, HDMI/fiber, plates allowance</td><td class="num">1</td><td class="num">$1,500.00</td><td class="num">$1,500.00</td></tr>
+            <tr><td>AV-09</td><td>Conduit, back boxes, blocking allowance</td><td class="num">1</td><td class="num">$1,000.00</td><td class="num">$1,000.00</td></tr>
+            <tr><td>SEC-01</td><td>UniFi UNVR</td><td class="num">1</td><td class="num">$299.00</td><td class="num">$299.00</td></tr>
+            <tr><td>SEC-02</td><td>UNVR hard drive allowance</td><td class="num">4</td><td class="num">$180.00</td><td class="num">$720.00</td></tr>
+            <tr><td>SEC-03</td><td>UniFi G5 Turret Ultra cameras</td><td class="num">12</td><td class="num">$129.00</td><td class="num">$1,548.00</td></tr>
+            <tr><td>SEC-04</td><td>UniFi AI Pro cameras</td><td class="num">4</td><td class="num">$499.00</td><td class="num">$1,996.00</td></tr>
+            <tr><td>SEC-05</td><td>Camera mounts, surge protection, patching allowance</td><td class="num">16</td><td class="num">$65.00</td><td class="num">$1,040.00</td></tr>
+            <tr><td>SEC-06</td><td>Camera Cat6 drops allowance</td><td class="num">16</td><td class="num">$75.00</td><td class="num">$1,200.00</td></tr>
+            <tr class="total-row"><td colspan="4">Budgetary material total</td><td class="num">$31,101.96</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Excludes labor, tax, shipping, programming, licenses/subscriptions, final projector calibration, internet service, cabinetry/furniture, final HDMI/fiber route changes, and any electrical/conduit beyond the allowances shown.</div>
+    </section>
+  </main>
+</body>
+</html>
