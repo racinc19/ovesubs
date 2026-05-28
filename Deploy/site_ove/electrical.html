@@ -158,7 +158,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Load Group</th><th>Circuit / Rough-In</th><th class="num">Count</th><th>Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Wall duplex receptacles</td><td>120V branch circuit</td><td class="num">27</td><td>Standard wall duplex outlets shown in the main wall-load DWFx. Circuit grouping by electrician/load schedule.</td></tr>
+                  <tr><td>Wall duplex receptacles</td><td>120V branch circuit</td><td class="num">27</td><td>Standard wall duplex outlets shown in the main wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
                   <tr><td>Floor duplex receptacles</td><td>120V branch circuit</td><td class="num">5</td><td>DWFx family is Outlet Floor-Duplex. Coordinate final box/device type with floor finish and cover requirements.</td></tr>
                   <tr><td>Waterproof receptacles</td><td>120V weatherproof/GFCI where required</td><td class="num">14</td><td>DWFx family is Outlet-WP / Water Proof. Use in-use covers and GFCI protection where code requires.</td></tr>
                   <tr><td>Countertop GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">14</td><td>DWFx family is Outlet-GFI / Countertop. Provide kitchen, bath, wet-location, and countertop protection as required.</td></tr>
@@ -183,9 +183,9 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on shared 1-120 utility circuit unless electrician separates for code or layout.</td></tr>
-                  <tr><td>Garage mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on shared 1-120 utility circuit unless electrician separates for code or layout.</td></tr>
-                  <tr><td>Pantry/storage utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on shared 1-120 utility circuit unless electrician separates for code or layout.</td></tr>
+                  <tr><td>Mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
+                  <tr><td>Garage mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
+                  <tr><td>Pantry/storage utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
                   <tr><td>Three additional utility lights</td><td>120V</td><td>Local motion</td><td>Include all three utility/motion fixtures on shared 1-120 feed; no separate Shelly needed if only motion-control is desired.</td></tr>
                   <tr><td>ADU 120V utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Include on 1-120 where code/load allows unless a separate controlled feed is intentionally shown.</td></tr>
                   <tr><td>Independently switched 120V loads</td><td>120V</td><td>Shelly relay channel/module</td><td>Same branch circuit is acceptable; independent control requires separate relay output/channel.</td></tr>
@@ -270,13 +270,13 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>UDB assembly - Upper lighting 24V controls</td>
-              <td>8 x Mean Well SDR-480-24 DIN power supplies + 2 x nVent Hoffman A42N3013 driver enclosures + 1 x nVent Hoffman A42N3613 low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>8 x Mean Well SDR-480-24 DIN power supplies + 2 x nVent Hoffman A42N3013 driver enclosures + 1 x nVent Hoffman A42N3613 low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable upper-ceiling assembly. Feeds 17 current upper DWFx 24V zones. Label outputs UDB / PS-# / F-# / SH-# / U-#.</td>
             </tr>
             <tr>
               <td>LDB assembly - Lower lighting 24V controls</td>
-              <td>4 x Mean Well SDR-480-24 DIN power supplies + 1 x nVent Hoffman A42N3013 driver enclosure + 1 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>4 x Mean Well SDR-480-24 DIN power supplies + 1 x nVent Hoffman A42N3013 driver enclosure + 1 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable lower-ceiling assembly. Feeds 7 current lower DWFx 24V zones. Label outputs LDB / PS-# / F-# / SH-# / L-#.</td>
             </tr>
@@ -288,7 +288,7 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>Shelly LED controllers</td>
-              <td><a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a>, white-channel mode</td>
+              <td><a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a>, white-channel mode</td>
               <td class="num">24 max</td>
               <td>Carry one module per visible 24V control label in the current upper/lower ceiling DWFx files. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
             </tr>
@@ -308,7 +308,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <td>120V branch circuits</td>
               <td>Dedicated 120V lighting circuits to UDB and LDB assemblies</td>
               <td class="num">6 x 20A</td>
-              <td>Use two SDR-480-24 supplies per 20A feed: four feeds to UDB-A/UDB-B and two feeds to LDB-A. Final conductor/breaker by electrician and code.</td>
+              <td>Use two SDR-480-24 supplies per 20A feed: four feeds to UDB-A/UDB-B and two feeds to LDB-A. Run each feed as a dedicated 20A lighting/control branch with #12 copper conductors and equipment ground in raceway/cable method accepted for the installation.</td>
             </tr>
             <tr>
               <td>120V utility / motion lights</td>
@@ -356,14 +356,14 @@ details.cat summary::-webkit-details-marker{display:none}
             <tbody>
               <tr>
                 <td>UDB / Upper lighting</td>
-                <td>Build UDB from 8 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A42N3013 driver enclosures, 1 x Hoffman A42N3613 low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build UDB from 8 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A42N3013 driver enclosures, 1 x Hoffman A42N3613 low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules.</td>
                 <td class="num">17</td>
                 <td class="num">3,840W @ 24V</td>
                 <td>4 x 20A, 120V</td>
               </tr>
               <tr>
                 <td>LDB / Lower lighting</td>
-                <td>Build LDB from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A42N3013 driver enclosure, 1 x Hoffman A24N206LP low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build LDB from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A42N3013 driver enclosure, 1 x Hoffman A24N206LP low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules.</td>
                 <td class="num">7</td>
                 <td class="num">1,920W @ 24V</td>
                 <td>2 x 20A, 120V</td>
@@ -394,7 +394,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td><span class="tag">1-24</span> <span class="tag">2-24</span> <span class="tag">3-24</span></td>
                 <td>Separate 24V tape-light control zones</td>
-                <td>Mean Well SDR-480-24 DIN 24V power supply to Phoenix Contact 3036505 fused terminal, then Shelly Plus RGBW PM, then tape zone.</td>
+                <td>Mean Well SDR-480-24 DIN 24V power supply to Phoenix Contact 3036505 fused terminal, then Shelly Pro RGBWW PM, then tape zone.</td>
               </tr>
               <tr>
                 <td><span class="tag">120V</span></td>
@@ -409,7 +409,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <tr>
                 <td><span class="tag">3-120</span></td>
                 <td>Single remaining 120V label in latest DWFx</td>
-                <td>Use only where a separate 120V controlled feed is intentionally required; otherwise coordinate with electrician to combine utility lighting on 1-120.</td>
+                <td>Use only where a separate 120V controlled feed is intentionally required; otherwise use the Panel 3 utility 20A lighting circuit.</td>
               </tr>
               <tr>
                 <td><span class="tag">4-120</span> <span class="tag">5-120</span></td>
@@ -418,7 +418,7 @@ details.cat summary::-webkit-details-marker{display:none}
               </tr>
               <tr>
                 <td><span class="tag">Shelly</span></td>
-                <td>Shelly Plus RGBW PM smart PWM controller</td>
+                <td>Shelly Pro RGBWW PM smart PWM controller</td>
                 <td>Install downstream of the Phoenix Contact 3036505 fused 24V output and upstream of tape light.</td>
               </tr>
               <tr>
@@ -434,13 +434,13 @@ details.cat summary::-webkit-details-marker{display:none}
             </tbody>
           </table>
         </div>
-        <div class="note">Typical path: 120V panel circuit -> Mean Well SDR-480-24 DIN 24V power supply -> Phoenix Contact 3036505 fused terminal -> Shelly Plus RGBW PM -> tape/channel zone.</div>
+        <div class="note">Typical path: 120V panel circuit -> Mean Well SDR-480-24 DIN 24V power supply -> Phoenix Contact 3036505 fused terminal -> Shelly Pro RGBWW PM -> tape/channel zone.</div>
       </section>
     </div>
 
     <section class="card full-card">
       <div class="card-h"><h2>Exact 24V Driver / Fuse / Shelly Output Schedule</h2></div>
-      <div class="note">Each row is one actual output path in order. The Mean Well SDR-480-24 is the shared DIN-rail 24V transformer/power supply. The Phoenix Contact 3036505 terminal is the fused 24V output. The Shelly Plus RGBW PM module is downstream of that fuse and controls the tape zone. This is not one Mean Well DIN supply per Shelly.</div>
+      <div class="note">Each row is one actual output path in order. The Mean Well SDR-480-24 is the shared DIN-rail 24V transformer/power supply. The Phoenix Contact 3036505 terminal is the fused 24V output. The Shelly Pro RGBWW PM module is downstream of that fuse and controls the tape zone. This is not one Mean Well DIN supply per Shelly.</div>
       <div class="table-wrap">
         <table>
           <thead>
@@ -457,34 +457,34 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
           </thead>
           <tbody>
-            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Plus RGBW PM</td><td>U-01 / 1-24</td><td>Upper ceiling left-side area</td></tr>
-            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Plus RGBW PM</td><td>U-02 / 2-24</td><td>Upper ceiling left-side area</td></tr>
-            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Plus RGBW PM</td><td>U-03 / 1-24</td><td>Upper ceiling lower-left area</td></tr>
-            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Plus RGBW PM</td><td>U-04 / 1-24</td><td>Upper ceiling left wing area</td></tr>
-            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Plus RGBW PM</td><td>U-05 / 1-24</td><td>Upper ceiling left wing area</td></tr>
-            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Plus RGBW PM</td><td>U-06 / 1-24</td><td>Upper ceiling center-left area</td></tr>
-            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Plus RGBW PM</td><td>U-07 / 2-24</td><td>Upper ceiling center-left area</td></tr>
-            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08</td><td>Shelly Plus RGBW PM</td><td>U-08 / 1-24</td><td>Upper ceiling upper central area</td></tr>
-            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09</td><td>Shelly Plus RGBW PM</td><td>U-09 / 2-24</td><td>Upper ceiling upper central area</td></tr>
-            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10</td><td>Shelly Plus RGBW PM</td><td>U-10 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
-            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11</td><td>Shelly Plus RGBW PM</td><td>U-11 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
-            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12</td><td>Shelly Plus RGBW PM</td><td>U-12 / 1-24</td><td>Upper ceiling right-side exterior/patio area</td></tr>
-            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13</td><td>Shelly Plus RGBW PM</td><td>U-13 / 1-24</td><td>Upper ceiling main room rectangle</td></tr>
-            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14</td><td>Shelly Plus RGBW PM</td><td>U-14 / 2-24</td><td>Upper ceiling main room rectangle</td></tr>
-            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15</td><td>Shelly Plus RGBW PM</td><td>U-15 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
-            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16</td><td>Shelly Plus RGBW PM</td><td>U-16 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
-            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17</td><td>Shelly Plus RGBW PM</td><td>U-17 / 1-24</td><td>Upper ceiling bath/service area</td></tr>
-            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Plus RGBW PM</td><td>L-01 / 1-24</td><td>Lower ceiling living/mechanical utility light area</td></tr>
-            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Plus RGBW PM</td><td>L-02 / 2-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
-            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Plus RGBW PM</td><td>L-03 / 1-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
-            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Plus RGBW PM</td><td>L-04 / 1-24</td><td>Lower ceiling rear patio / exterior area</td></tr>
-            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Plus RGBW PM</td><td>L-05 / 2-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
-            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Plus RGBW PM</td><td>L-06 / 3-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
-            <tr><td>LDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Plus RGBW PM</td><td>L-07 / 1-24</td><td>Lower ceiling right-side service/bath area</td></tr>
+            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Pro RGBWW PM</td><td>U-01 / 1-24</td><td>Upper ceiling left-side area</td></tr>
+            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Pro RGBWW PM</td><td>U-02 / 2-24</td><td>Upper ceiling left-side area</td></tr>
+            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Pro RGBWW PM</td><td>U-03 / 1-24</td><td>Upper ceiling lower-left area</td></tr>
+            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Pro RGBWW PM</td><td>U-04 / 1-24</td><td>Upper ceiling left wing area</td></tr>
+            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Pro RGBWW PM</td><td>U-05 / 1-24</td><td>Upper ceiling left wing area</td></tr>
+            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Pro RGBWW PM</td><td>U-06 / 1-24</td><td>Upper ceiling center-left area</td></tr>
+            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Pro RGBWW PM</td><td>U-07 / 2-24</td><td>Upper ceiling center-left area</td></tr>
+            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08</td><td>Shelly Pro RGBWW PM</td><td>U-08 / 1-24</td><td>Upper ceiling upper central area</td></tr>
+            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09</td><td>Shelly Pro RGBWW PM</td><td>U-09 / 2-24</td><td>Upper ceiling upper central area</td></tr>
+            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10</td><td>Shelly Pro RGBWW PM</td><td>U-10 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
+            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11</td><td>Shelly Pro RGBWW PM</td><td>U-11 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
+            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12</td><td>Shelly Pro RGBWW PM</td><td>U-12 / 1-24</td><td>Upper ceiling right-side exterior/patio area</td></tr>
+            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13</td><td>Shelly Pro RGBWW PM</td><td>U-13 / 1-24</td><td>Upper ceiling main room rectangle</td></tr>
+            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14</td><td>Shelly Pro RGBWW PM</td><td>U-14 / 2-24</td><td>Upper ceiling main room rectangle</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15</td><td>Shelly Pro RGBWW PM</td><td>U-15 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16</td><td>Shelly Pro RGBWW PM</td><td>U-16 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17</td><td>Shelly Pro RGBWW PM</td><td>U-17 / 1-24</td><td>Upper ceiling bath/service area</td></tr>
+            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Pro RGBWW PM</td><td>L-01 / 1-24</td><td>Lower ceiling living/mechanical utility light area</td></tr>
+            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Pro RGBWW PM</td><td>L-02 / 2-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
+            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Pro RGBWW PM</td><td>L-03 / 1-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
+            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Pro RGBWW PM</td><td>L-04 / 1-24</td><td>Lower ceiling rear patio / exterior area</td></tr>
+            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Pro RGBWW PM</td><td>L-05 / 2-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
+            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Pro RGBWW PM</td><td>L-06 / 3-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
+            <tr><td>LDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Pro RGBWW PM</td><td>L-07 / 1-24</td><td>Lower ceiling right-side service/bath area</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="note">Purchase count from this schedule: 12 x Mean Well SDR-480-24 DIN power supplies total; 24 x Phoenix Contact 3036505 fused outputs minimum plus spares; 24 x Shelly Plus RGBW PM maximum unless zones are intentionally grouped. Label every conductor as DB-# / PS-# / F-# / SH-# / U-# or L-#.</div>
+      <div class="note">Purchase count from this schedule: 12 x Mean Well SDR-480-24 DIN power supplies total; 24 x Phoenix Contact 3036505 fused outputs plus spare terminals; 24 x Shelly Pro RGBWW PM DIN-rail controllers, one controller per scheduled tape zone. Label every conductor as DB-# / PS-# / F-# / SH-# / U-# or L-#.</div>
     </section>
 
         </section>
@@ -497,7 +497,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the upper wall-load DWFx. Circuit by electrician/load schedule.</td></tr>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the upper wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
                   <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>GFI outlets shown in DWFx, including island/counter locations. Provide GFCI protection as required by code.</td></tr>
                   <tr><td>Weatherproof outlets</td><td>120V exterior/wet-rated branch circuit</td><td class="num">5</td><td>Includes 4 WP outlet objects plus 1 dryer WP outlet object. Use wet-location boxes/covers where required.</td></tr>
                   <tr><td>Hybrid water heater outlet</td><td>240V equipment circuit</td><td class="num">1</td><td>DWFx object is Outlet-Range / Water Heater Hybrid. Verify circuit size with equipment submittal.</td></tr>
@@ -522,7 +522,7 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Interior upper ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">817.1 LF takeoff / 940 LF with 15%</td><td>Interior upper ceiling tape shown in the upper ceiling DWFx. Included in total tape package unless ordered separately.</td></tr>
                   <tr><td>Exterior upper ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Use only where exterior/wet shown</td><td>Keep exterior tape and exterior channel separate from interior material. Do not install indoor tape/channel outside.</td></tr>
                   <tr><td>Upper ceiling load basis</td><td>24V DC tape load</td><td class="num">2,533W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 7,354W and the driver schedule must be redesigned.</td></tr>
-                  <tr><td>Upper ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Upper ceiling Shelly controls</td><td>Shelly Pro RGBWW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
                   <tr><td>Upper 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">UDB</td><td>Assign upper ceiling zones U-01 through U-17 to scheduled UDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
                   <tr><td>120V feed</td><td>Four dedicated 20A 120V lighting/control feeds to UDB assembly</td><td class="num">UDB-A / UDB-B</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
@@ -541,7 +541,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
                 <tbody>
-                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the lower wall-load DWFx. Circuit by electrician/load schedule.</td></tr>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the lower wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
                   <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>Countertop/wet-location GFI outlets shown in DWFx. Provide GFCI protection as required by code.</td></tr>
                   <tr><td>Communications / CATV outlet</td><td>Low voltage</td><td class="num">1</td><td>Low-voltage communication outlet. Do not mix with 120V conductors except in listed combo devices/boxes as allowed.</td></tr>
                   <tr><td>Wall control / switch devices</td><td>Low voltage / control</td><td class="num">3</td><td>DWFx object family is Switch-Three Way with Axion 8 in Android PoE touch screen metadata. Coordinate PoE/data rough-in.</td></tr>
@@ -565,7 +565,7 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Interior lower ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Interior lower ceiling and ADU tape locations shown on the plan. Use interior/damp tape and interior aluminum channel.</td></tr>
                   <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
                   <tr><td>Lower ceiling load basis</td><td>24V DC tape load</td><td class="num">1,104W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 3,206W and the driver schedule must be redesigned.</td></tr>
-                  <tr><td>Lower ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Lower ceiling Shelly controls</td><td>Shelly Pro RGBWW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
                   <tr><td>Lower 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">LDB</td><td>Assign lower/ADU/exterior zones L-01 through L-07 to scheduled LDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
                   <tr><td>120V feed</td><td>Two dedicated 20A 120V lighting/control feeds to LDB assembly</td><td class="num">LDB-A</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
@@ -584,30 +584,30 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Circuit</th><th>Mean Well Driver</th><th>Fused Output</th><th>Shelly Module</th><th>Termination</th></tr></thead>
                 <tbody>
-                  <tr><td>Upper ceiling / UDB / U-01 / 1-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at left-side upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-02 / 2-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-03 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at lower-left upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-04 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-05 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-06 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at center-left upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-07 / 2-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-08 / 1-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at upper central upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-09 / 2-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-10 / 1-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at upper upper exterior/interior run.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-11 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at center upper run.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-12 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-13 / 1-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-14 / 2-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side upper area.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-15 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at right-side upper exterior/interior run.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-16 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at far-right upper run.</td></tr>
-                  <tr><td>Upper ceiling / UDB / U-17 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17 - Shelly Plus RGBW PM</td><td>Current upper ceiling DWFx callout at lower-right upper run.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-01 / 1-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-02 / 2-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-03 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-04 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-05 / 2-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-06 / 3-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
-                  <tr><td>Lower ceiling / LDB / L-07 / 1-24</td><td>LDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Plus RGBW PM</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-01 / 1-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-02 / 2-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-03 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at lower-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-04 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-05 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-06 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at center-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-07 / 2-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-08 / 1-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at upper central upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-09 / 2-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-10 / 1-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at upper upper exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-11 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at center upper run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-12 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-13 / 1-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-14 / 2-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-15 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right-side upper exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-16 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at far-right upper run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-17 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at lower-right upper run.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-01 / 1-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-02 / 2-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-03 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-04 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-05 / 2-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-06 / 3-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-07 / 1-24</td><td>LDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 1-120</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 120-1</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
                   <tr><td>Main wall loads / 120V / GFCI 120-2</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
@@ -637,7 +637,7 @@ details.cat summary::-webkit-details-marker{display:none}
               <div class="metric">
                 <div class="label">Breaker</div>
                 <div class="value">1 x 15A</div>
-                <div class="hint">Dedicated 120V shade circuit, final by electrician</div>
+                <div class="hint">Dedicated 15A 120V shade circuit to BC-1</div>
               </div>
               <div class="metric">
                 <div class="label">Control</div>
@@ -651,7 +651,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <tbody>
                   <tr><td>Shade motors</td><td>Somfy Sonesse RS485 family, 120VAC. Use Sonesse 506S2 RS485 / Sonesse 60 RS485 / Hi-Torque RS485 as sized per opening by shade vendor.</td><td class="num">11 motors</td><td>Each motor gets 120VAC power plus RS485/data control as required by Somfy SDN. Final motor model must match tube size, shade size, and torque.</td></tr>
                   <tr><td>RS485 network controller</td><td><a href="https://www.somfysystems.com/commercial/smart-building/building-controls/animeo-ip-rs485" target="_blank" rel="noopener noreferrer">Somfy animeo IP/RS485 control system</a> or approved Somfy SDN IP/RS485 interface</td><td class="num">1 system</td><td>Network control path for Somfy RS485 motors. Coordinate Homey/LAN integration here, not through the 24V lighting driver bank.</td></tr>
-                  <tr><td>Shade power circuit</td><td>Dedicated 120VAC shade motor branch circuit</td><td class="num">1 x 15A</td><td>Takeoff load is 4.89A / 586.8W total. Final breaker/conductor by electrician and code.</td></tr>
+                  <tr><td>Shade power circuit</td><td>Dedicated 120VAC shade motor branch circuit</td><td class="num">1 x 15A</td><td>Takeoff load is 4.89A / 586.8W total. Run as a dedicated 15A branch to BC-1 with #14 copper minimum or #12 copper where project wiring standard uses #12 for lighting/control.</td></tr>
                   <tr><td>Data/control cable</td><td>RS485/SDN bus cable per Somfy requirements; keep polarity and termination per Somfy wiring guide</td><td class="num">As required</td><td>Home run or bus topology by Somfy requirements. Label every motor drop by opening name.</td></tr>
                   <tr><td>Shelly note</td><td><a href="https://us.shelly.com/products/shelly-pro-dual-cover-shutter-pm" target="_blank" rel="noopener noreferrer">Shelly Pro Dual Cover/Shutter PM</a> is only for non-RS485 bidirectional AC cover motors</td><td class="num">Do not use with RS485 basis unless system is revised</td><td>If the shade vendor changes to standard AC up/down motors instead of Somfy RS485 motors, then use 6 x Shelly Pro Dual Cover/Shutter PM for 11 motors. Do not mix that assumption into the current RS485 Somfy basis.</td></tr>
                 </tbody>
@@ -679,28 +679,41 @@ details.cat summary::-webkit-details-marker{display:none}
                 </tbody>
               </table>
             </div>
-            <div class="note">Total shade motor load: 4.89A / 586.8W. Carry as one dedicated 15A 120V shade circuit unless the shade vendor/electrician splits circuits for routing or code.</div>
+            <div class="note">Total shade motor load: 4.89A / 586.8W. Carry as one dedicated 15A 120V shade circuit to BC-1 with RS485/data terminations in the same shade-control cabinet.</div>
           </section>
         </section>
 
         <section class="tab-panel" id="panel-panels">
           <section class="card full-card">
             <div class="card-h"><h2>Installed Electrical Panel Elevation</h2></div>
-            <div class="note">Install basis: four house breaker/load panels plus a side control-panel bank. The 24V tape supplies are split at two Mean Well SDR-480-24 supplies per 20A 120V breaker, so the 12 supplies require six 20A lighting/control breakers before they feed the fused 24V outputs and Shelly modules. Final manufacturer layout, exact breaker positions, AFCI/GFCI type, conductor size, and code compliance stay with the electrician.</div>
+            <div class="note">Install basis: four designed Square D / Schneider NQ breaker panelboards plus a side control-panel bank. The 24V tape supplies are split at two Mean Well SDR-480-24 supplies per 20A 120V breaker, so the 12 supplies require six 20A lighting/control breakers before they feed the fused 24V outputs and Shelly modules. This schedule defines the equipment and cabinet build; the installer is to install this basis of design, label it, and submit any required code substitutions before rough-in.</div>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>Panel / Enclosure</th><th>Purchasable Cabinet / Size</th><th>120V Feed</th><th>Installed Contents</th><th>Field Output</th></tr></thead>
+                <thead><tr><th>Panel / Enclosure</th><th>Purchasable Cabinet / Size</th><th>Feed / Breakers</th><th>Installed Contents</th><th>Field Output</th></tr></thead>
                 <tbody>
-                  <tr><td>Panel 1</td><td>300A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 1 breaker schedule from drawings, including lighting/control branches shown in Panel 1 area</td><td>Branch circuits to assigned upper-left/main areas</td></tr>
-                  <tr><td>Panel 2</td><td>300A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 2 breaker schedule from drawings, including lighting/control branches shown in Panel 2 area</td><td>Branch circuits to assigned upper/right areas</td></tr>
-                  <tr><td>Panel 3</td><td>225A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 3 breaker schedule from drawings, including lower/main lighting branches</td><td>Branch circuits to assigned lower/main areas</td></tr>
-                  <tr><td>Panel 4</td><td>House load center; carry 225A minimum until electrician finalizes load calc</td><td>Service/subfeed per load calc</td><td>Panel 4 breaker schedule from drawings, including lower/ADU/service branches</td><td>Branch circuits to assigned lower/ADU areas</td></tr>
+                  <tr><td>Panel 1</td><td>Square D / Schneider NQ 400A, 42-space, 1-phase panelboard basis: NQ42L4C copper-bus interior, MH50WP box, NC50S surface cover, 300A main breaker kit/factory main</td><td>300A feeder/main, 120/240V 1-phase, branch breakers per Panel 1 schedule</td><td>Panel 1 breaker schedule from drawings, including lighting/control branches shown in Panel 1 area</td><td>Branch circuits to assigned upper-left/main areas</td></tr>
+                  <tr><td>Panel 2</td><td>Square D / Schneider NQ 400A, 42-space, 1-phase panelboard basis: NQ42L4C copper-bus interior, MH50WP box, NC50S surface cover, 300A main breaker kit/factory main</td><td>300A feeder/main, 120/240V 1-phase, branch breakers per Panel 2 schedule</td><td>Panel 2 breaker schedule from drawings, including lighting/control branches shown in Panel 2 area</td><td>Branch circuits to assigned upper/right areas</td></tr>
+                  <tr><td>Panel 3</td><td>Square D / Schneider NQ 225A, 42-space, 1-phase panelboard basis: NQ42L2C14 copper-bus interior, 14 in x 38 in NQ box, NQC38S surface cover, 225A main breaker kit/factory main</td><td>225A feeder/main, 120/240V 1-phase, branch breakers per Panel 3 schedule</td><td>Panel 3 breaker schedule from drawings, including lower/main lighting branches</td><td>Branch circuits to assigned lower/main areas</td></tr>
+                  <tr><td>Panel 4</td><td>Square D / Schneider NQ 225A, 42-space, 1-phase panelboard basis: NQ42L2C14 copper-bus interior, 14 in x 38 in NQ box, NQC38S surface cover, 225A main breaker kit/factory main</td><td>225A feeder/main, 120/240V 1-phase, branch breakers per Panel 4 schedule</td><td>Panel 4 breaker schedule from drawings, including lower/ADU/service branches</td><td>Branch circuits to assigned lower/ADU areas</td></tr>
                   <tr><td>UDB-A</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Upper driver cabinet A: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to UDB-C fused outputs</td></tr>
                   <tr><td>UDB-B</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Upper driver cabinet B: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to UDB-C fused outputs</td></tr>
-                  <tr><td>UDB-C</td><td>nVent Hoffman A42N3613 Type 1, 42 in H x 36 in W x 13.25 in D, with A42P36 back panel</td><td>24V only from UDB-A/B</td><td>17 x Phoenix 3036505 fused terminals, 17 x Shelly Plus RGBW PM, 24V distribution terminals, tape terminals</td><td>U-01 through U-17 upper tape zones</td></tr>
+                  <tr><td>UDB-C</td><td>nVent Hoffman A42N3613 Type 1, 42 in H x 36 in W x 13.25 in D, with A42P36 back panel</td><td>24V only from UDB-A/B</td><td>17 x Phoenix 3036505 fused terminals, 17 x Shelly Pro RGBWW PM, 24V distribution terminals, tape terminals</td><td>U-01 through U-17 upper tape zones</td></tr>
                   <tr><td>LDB-A</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Lower driver cabinet: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to LDB-B fused outputs</td></tr>
-                  <tr><td>LDB-B</td><td>nVent Hoffman A24N206LP Type 1, 24 in H x 20 in W x 6.62 in D, with A24N20MP back panel</td><td>24V only from LDB-A</td><td>7 x Phoenix 3036505 fused terminals, 7 x Shelly Plus RGBW PM, 24V distribution terminals, tape terminals</td><td>L-01 through L-07 lower tape zones</td></tr>
+                  <tr><td>LDB-B</td><td>nVent Hoffman A24N206LP Type 1, 24 in H x 20 in W x 6.62 in D, with A24N20MP back panel</td><td>24V only from LDB-A</td><td>7 x Phoenix 3036505 fused terminals, 7 x Shelly Pro RGBWW PM, 24V distribution terminals, tape terminals</td><td>L-01 through L-07 lower tape zones</td></tr>
                   <tr><td>BC-1</td><td>nVent Hoffman A24N206LP Type 1, 24 in H x 20 in W x 6.62 in D, with A24N20MP back panel</td><td>1 x 15A 120V shade circuit</td><td>Somfy RS485/IP shade controller, RS485 terminal blocks, shade power/control terminations</td><td>11 shade/blind motors</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Control Cabinet</th><th>DIN Rail / Mounting Layout</th><th>Space Basis</th><th>Required Interior Build</th></tr></thead>
+                <tbody>
+                  <tr><td>UDB-A</td><td>Two horizontal NS35 DIN rails on A42P30 back panel. Row 1: 120V line/load terminals, two SDR-480-24 supplies, branch labels. Row 2: two SDR-480-24 supplies, 24V distribution terminals, grounding/bond bar. Wire duct on left, right, and between rows.</td><td>Four SDR-480 supplies use approx. 13.5 in of DIN width; 30 in cabinet width leaves landing/duct space on both sides.</td><td>2 x 20A feeds enter UDB-A. Each breaker feeds exactly two SDR-480-24 supplies. No Shelly modules in UDB-A.</td></tr>
+                  <tr><td>UDB-B</td><td>Same physical layout as UDB-A on A42P30 back panel. Row 1: 120V terminals and two supplies. Row 2: two supplies and 24V distribution terminals. Wire duct on all sides plus center duct between rows.</td><td>Four SDR-480 supplies use approx. 13.5 in of DIN width; cabinet is intentionally oversized for heat and conductor landing room.</td><td>2 x 20A feeds enter UDB-B. Each breaker feeds exactly two SDR-480-24 supplies. No Shelly modules in UDB-B.</td></tr>
+                  <tr><td>UDB-C</td><td>Three horizontal NS35 DIN rails on A42P36 back panel. Row 1: 24V incoming distribution and F-01 through F-09 fuse terminals. Row 2: F-10 through F-17 fuse terminals and SH-01 through SH-09 DIN-mounted Shelly Pro RGBWW PM controllers. Row 3: SH-10 through SH-17 DIN-mounted Shelly Pro RGBWW PM controllers, U-01 through U-17 output terminals, spare terminals. Wire duct on both sides and between all rows.</td><td>17 Phoenix fuse terminals use approx. 5.5 in of DIN width; 17 Shelly Pro modules use approx. 12.75 in side-by-side. 36 in cabinet width gives room for modules, terminal blocks, duct, and labels.</td><td>24V only. No 120V branch wiring in UDB-C. Outputs land as U-01 through U-17 and match the Circuit Maps tab.</td></tr>
+                  <tr><td>LDB-A</td><td>Two horizontal NS35 DIN rails on A42P30 back panel. Row 1: 120V line/load terminals, two SDR-480-24 supplies, branch labels. Row 2: two SDR-480-24 supplies, 24V distribution terminals, grounding/bond bar. Wire duct on left, right, and between rows.</td><td>Four SDR-480 supplies use approx. 13.5 in of DIN width; 30 in cabinet width leaves landing/duct space on both sides.</td><td>2 x 20A feeds enter LDB-A. Each breaker feeds exactly two SDR-480-24 supplies. No Shelly modules in LDB-A.</td></tr>
+                  <tr><td>LDB-B</td><td>Two horizontal NS35 DIN rails on A24N20MP back panel. Row 1: 24V incoming distribution and F-01 through F-07 fuse terminals. Row 2: SH-01 through SH-07 DIN-mounted Shelly Pro RGBWW PM controllers, L-01 through L-07 output terminals, spare terminals. Wire duct on both sides and between rows.</td><td>7 fuse terminals use approx. 2.3 in of DIN width; 7 Shelly Pro modules use approx. 5.25 in side-by-side. 20 in cabinet width is enough with compact duct and terminal layout.</td><td>24V only. No 120V branch wiring in LDB-B. Outputs land as L-01 through L-07 and match the Circuit Maps tab.</td></tr>
+                  <tr><td>BC-1</td><td>One or two NS35 DIN rails on A24N20MP back panel. Row 1: 120V shade circuit terminals and shade power/control module. Row 2: RS485 terminal blocks and motor terminals M-01 through M-11.</td><td>24 x 20 cabinet is sized for the shade controller, RS485 terminals, motor labels, and service slack.</td><td>1 x 15A feed. Keep shade controls separate from tape-light 24V distribution.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -713,8 +726,8 @@ details.cat summary::-webkit-details-marker{display:none}
                 <text x="24" y="56" class="small">What it should look like when installed and opened: full breaker panels on the left/center, separate driver/Shelly/shade cabinets on the right. Tape-light driver feeds are six 20A 120V breakers total.</text>
 
                 <rect x="30" y="90" width="290" height="470" rx="8" class="cab"/><rect x="44" y="110" width="262" height="430" rx="5" class="door"/>
-                <text x="60" y="136" class="label">PANEL 1 - 300A LOAD CENTER</text>
-                <text x="60" y="154" class="small">Lighting C1-C11, Wall C12-C16, blinds branch</text>
+                <text x="60" y="136" class="label">PANEL 1 - SQD NQ 300A</text>
+                <text x="60" y="154" class="small">NQ42L4C / 42 spaces / 300A main</text>
                 <rect x="166" y="176" width="18" height="330" fill="#1f2937" stroke="#64748b"/>
                 <rect x="62" y="176" width="86" height="22" rx="2" class="breaker"/><text x="68" y="191" class="tiny">C1 P1-EXT-1</text>
                 <rect x="62" y="204" width="86" height="22" rx="2" class="breaker"/><text x="68" y="219" class="tiny">C2 P1-EXT-2</text>
@@ -737,8 +750,8 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="196" y="372" width="86" height="22" rx="2" class="term"/><text x="202" y="387" class="tiny">SPARE</text>
 
                 <rect x="350" y="90" width="290" height="470" rx="8" class="cab"/><rect x="364" y="110" width="262" height="430" rx="5" class="door"/>
-                <text x="380" y="136" class="label">PANEL 2 - 300A LOAD CENTER</text>
-                <text x="380" y="154" class="small">Lighting C1-C8, Wall C8-C12, blinds branch</text>
+                <text x="380" y="136" class="label">PANEL 2 - SQD NQ 300A</text>
+                <text x="380" y="154" class="small">NQ42L4C / 42 spaces / 300A main</text>
                 <rect x="486" y="176" width="18" height="330" fill="#1f2937" stroke="#64748b"/>
                 <rect x="382" y="176" width="86" height="22" rx="2" class="breaker"/><text x="388" y="191" class="tiny">C1 P2-EXT1</text>
                 <rect x="382" y="204" width="86" height="22" rx="2" class="breaker"/><text x="388" y="219" class="tiny">C2 P2-EXT3</text>
@@ -758,8 +771,8 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="516" y="372" width="86" height="22" rx="2" class="term"/><text x="522" y="387" class="tiny">SPARE</text>
 
                 <rect x="30" y="610" width="290" height="470" rx="8" class="cab"/><rect x="44" y="630" width="262" height="430" rx="5" class="door"/>
-                <text x="60" y="656" class="label">PANEL 3 - 225A LOAD CENTER</text>
-                <text x="60" y="674" class="small">Lighting C1-C11, Wall C12, blinds branch</text>
+                <text x="60" y="656" class="label">PANEL 3 - SQD NQ 225A</text>
+                <text x="60" y="674" class="small">NQ42L2C14 / 42 spaces / 225A main</text>
                 <rect x="166" y="696" width="18" height="330" fill="#1f2937" stroke="#64748b"/>
                 <rect x="62" y="696" width="86" height="22" rx="2" class="breaker"/><text x="68" y="711" class="tiny">C1 P3-EXT1</text>
                 <rect x="62" y="724" width="86" height="22" rx="2" class="breaker"/><text x="68" y="739" class="tiny">C2 P3-EXT2</text>
@@ -774,11 +787,11 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="196" y="696" width="86" height="22" rx="2" class="psu"/><text x="202" y="711" class="tiny">C11 ENTRY</text>
                 <rect x="196" y="724" width="86" height="22" rx="2" class="term"/><text x="202" y="739" class="tiny">C12 WALL</text>
                 <rect x="196" y="752" width="86" height="22" rx="2" fill="#2b2543" stroke="#a78bfa"/><text x="202" y="767" class="tiny">BLINDS P3</text>
-                <rect x="196" y="780" width="86" height="22" rx="2" class="term"/><text x="202" y="795" class="tiny">SPARE</text>
+                <rect x="196" y="780" width="86" height="22" rx="2" class="psu"/><text x="202" y="795" class="tiny">UTILITY 20A</text>
 
                 <rect x="350" y="610" width="290" height="470" rx="8" class="cab"/><rect x="364" y="630" width="262" height="430" rx="5" class="door"/>
-                <text x="380" y="656" class="label">PANEL 4 - LOAD CENTER</text>
-                <text x="380" y="674" class="small">Lighting C1-C5, Wall C6-C10</text>
+                <text x="380" y="656" class="label">PANEL 4 - SQD NQ 225A</text>
+                <text x="380" y="674" class="small">NQ42L2C14 / 42 spaces / 225A main</text>
                 <rect x="486" y="696" width="18" height="330" fill="#1f2937" stroke="#64748b"/>
                 <rect x="382" y="696" width="86" height="22" rx="2" class="breaker"/><text x="388" y="711" class="tiny">C1 P4-LVS1</text>
                 <rect x="382" y="724" width="86" height="22" rx="2" class="breaker"/><text x="388" y="739" class="tiny">C2 P4-LVS2</text>
@@ -809,10 +822,10 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="730" y="738" width="24" height="16" class="term"/><text x="765" y="751" class="small">general wall / 120V / 220V loads from schedule</text>
                 <rect x="730" y="772" width="24" height="16" fill="#2b2543" stroke="#a78bfa"/><text x="765" y="785" class="small">blinds / shades controls</text>
                 <text x="1010" y="682" class="label">BREAKER / CABINET BASIS</text>
-                <text x="1010" y="707" class="small">House panels: P1 300A, P2 300A, P3 225A, P4 load center</text>
+                <text x="1010" y="707" class="small">House panels: Square D NQ panelboards, P1/P2 300A, P3/P4 225A</text>
                 <text x="1010" y="729" class="small">Tape drivers: 6 x 20A 120V breakers for 12 SDR-480 supplies</text>
                 <text x="1010" y="751" class="small">Blinds/shades: 1 x 15A 120V breaker to BC-1</text>
-                <text x="1010" y="773" class="small">Utility/motion lights: 1 x 15A/20A breaker where assigned</text>
+                <text x="1010" y="773" class="small">Utility/motion lights: 1 x 20A breaker, Panel 3 spare position</text>
               </svg>
             </div>
             <div class="panel-drawing old-panel-detail">
@@ -1018,7 +1031,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="52" y="760" width="22" height="14" class="breaker"/><text x="84" y="772" class="small">20A/15A breaker or local disconnect</text>
                 <rect x="280" y="755" width="22" height="28" class="psu"/><text x="312" y="772" class="small">Mean Well SDR-480-24 DIN supply, 12 total</text>
                 <rect x="560" y="755" width="16" height="28" class="fuse"/><text x="586" y="772" class="small">Phoenix 3036505 fused terminal, 24 total plus spares</text>
-                <rect x="870" y="755" width="22" height="28" class="shelly"/><text x="902" y="772" class="small">Shelly Plus RGBW PM, 24 total max</text>
+                <rect x="870" y="755" width="22" height="28" class="shelly"/><text x="902" y="772" class="small">Shelly Pro RGBWW PM, 24 total max</text>
                 <rect x="52" y="795" width="36" height="16" class="term"/><text x="98" y="808" class="small">terminal blocks / motor drops</text>
                 <rect x="280" y="795" width="48" height="14" class="duct"/><text x="338" y="808" class="small">wire duct</text>
                 <line x1="560" y1="802" x2="630" y2="802" class="rail"/><text x="640" y="808" class="small">DIN rail</text>
@@ -1131,7 +1144,7 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="52" y="730" width="22" height="14" class="breaker"/><text x="82" y="742" class="small">120V breaker / local disconnect</text>
                 <rect x="270" y="727" width="28" height="20" class="psu"/><text x="308" y="742" class="small">Mean Well SDR-480-24 DIN power supply</text>
                 <rect x="540" y="727" width="18" height="20" class="fuse"/><text x="568" y="742" class="small">Phoenix 3036505 fused terminal</text>
-                <rect x="52" y="762" width="22" height="18" class="shelly"/><text x="82" y="777" class="small">Shelly Plus RGBW PM</text>
+                <rect x="52" y="762" width="22" height="18" class="shelly"/><text x="82" y="777" class="small">Shelly Pro RGBWW PM</text>
                 <rect x="270" y="762" width="40" height="14" class="duct"/><text x="320" y="777" class="small">wire duct</text>
                 <line x1="540" y1="770" x2="610" y2="770" class="rail"/><text x="620" y="777" class="small">DIN rail</text>
               </svg>
@@ -1164,7 +1177,7 @@ details.cat summary::-webkit-details-marker{display:none}
                     <h3>LDB-B: Low Voltage Only</h3>
                     <ul>
                       <li>Phoenix 3036505 fused outputs F-01 through F-07</li>
-                      <li>Shelly Plus RGBW PM SH-01 through SH-07</li>
+                      <li>Shelly Pro RGBWW PM SH-01 through SH-07</li>
                       <li>24V tape terminations L-01 through L-07</li>
                       <li>No exposed 120V wiring in this cabinet</li>
                     </ul>
@@ -1200,7 +1213,7 @@ details.cat summary::-webkit-details-marker{display:none}
                     <h3>UDB-C: Low Voltage Only</h3>
                     <ul>
                       <li>Phoenix 3036505 fused outputs F-01 through F-17</li>
-                      <li>Shelly Plus RGBW PM SH-01 through SH-17</li>
+                      <li>Shelly Pro RGBWW PM SH-01 through SH-17</li>
                       <li>24V tape terminations U-01 through U-17</li>
                       <li>No exposed 120V wiring in this cabinet</li>
                     </ul>
@@ -1217,8 +1230,8 @@ details.cat summary::-webkit-details-marker{display:none}
               <table>
                 <thead><tr><th>Panel Feed</th><th>Purpose</th><th class="num">Shelly Zones</th><th class="num">24V Bank Capacity</th><th>120V Breaker</th></tr></thead>
                 <tbody>
-                  <tr><td>UDB / Upper lighting</td><td>Build from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">17</td><td class="num">3,840W @ 24V</td><td>2 x 20A, 120V</td></tr>
-                  <tr><td>LDB / Lower lighting</td><td>Build from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules</td><td class="num">7</td><td class="num">1,920W @ 24V</td><td>1 x 20A, 120V</td></tr>
+                  <tr><td>UDB / Upper lighting</td><td>Build from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules</td><td class="num">17</td><td class="num">3,840W @ 24V</td><td>2 x 20A, 120V</td></tr>
+                  <tr><td>LDB / Lower lighting</td><td>Build from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules</td><td class="num">7</td><td class="num">1,920W @ 24V</td><td>1 x 20A, 120V</td></tr>
                   <tr><td>BC-1 / Blinds-Shades</td><td>Dedicated shade control panel/circuit for 11 Somfy Sonesse RS485 shade motors and Somfy SDN/animeo IP RS485 control interface</td><td class="num">11 motors</td><td class="num">586.8W @ 120V</td><td>1 x 15A, 120V</td></tr>
                   <tr><td>Main meter</td><td>Main wall-load DWFx object: Main_Electrical_Panel_with_Meter_20855 / City Meter</td><td class="num">1</td><td class="num">N/A</td><td>Service equipment by electrician/utility service design.</td></tr>
                   <tr><td>Main Power Panel</td><td>Main wall-load DWFx object: Leviton load center / EcoFlow Ocean Pro Smart Panel</td><td class="num">1</td><td class="num">N/A</td><td>DWFx type mark is EcoFlow Ocean Pro Smart Panel. Verify final equipment package and listing.</td></tr>
