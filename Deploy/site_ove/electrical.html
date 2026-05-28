@@ -741,6 +741,13 @@ details.cat summary::-webkit-details-marker{display:none}
                     <td>Ethernet LAN to Shelly Pro modules SH-01 through SH-24, 12 PoE touch-screen drops, 9 Wi-Fi AP drops including panic room AP, Somfy/BC-1 interface, Homey server, router/uplink, and spares</td>
                     <td>Control intent is LAN-local. Do not rely on cloud service for normal Shelly lighting control.</td>
                   </tr>
+                  <tr>
+                    <td>Smart smoke / CO</td>
+                    <td>Standard 120V interconnected smoke/CO circuit by code; smart alarm units report location/status wirelessly</td>
+                    <td>First Alert SC5 hardwired smart smoke/CO alarms or approved listed smart hardwired smoke/CO equal</td>
+                    <td>12-location allowance for plan review and costing; final count by code smoke/CO layout</td>
+                    <td>Life-safety function remains in the listed alarm devices. Homey/app notification is monitoring only, not the life-safety controller.</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -989,6 +996,7 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Panel 4 + LVP-4</td><td>Panel 4: Square D QO120L125G 125A / 20-space main-lug load center. Feeds lower/right and ADU-side branch circuits and the LVP-4 lighting-control feed group.</td><td>LVP-4: 2 x Mean Well SDR-480-24 supplies PS-11 to PS-12; Phoenix fused outputs F-22 to F-24; Shelly Pro RGBWW PM modules SH-22 to SH-24; terminals L-05 through L-07.</td><td>24V driver capacity: 960W. Approx. full-load input basis: 8A at 120V, or 4A service-equivalent at 240V.</td><td>Keep lower/right and ADU-side tape zones L-05 through L-07 in LVP-4. Do not combine these outputs with LVP-3 unless the LVP schedule is revised.</td></tr>
                   <tr><td>BC-1 Blinds / Shades</td><td>Dedicated 1 x 15A 120V shade circuit from the assigned breaker panel. Keep shade power/control separate from the 24V tape-light driver banks.</td><td>BC-1: nVent Hoffman A24N206LP cabinet with A24N20MP back panel, Somfy RS485/IP shade controller, RS485 terminals, shade power/control terminals, and motor terminations M-01 through M-11.</td><td>11 shade motors: 4.89A / 586.8W at 120V. Approx. service-equivalent basis: 2.45A at 240V.</td><td>BC-1 is the blinds/shades control cabinet only. Do not place tape-light 24V supplies, Shelly RGBWW modules, or tape-light fuses in BC-1.</td></tr>
                   <tr><td>LAN / Homey Server</td><td>Provide one UPS-backed 120V receptacle in the low-voltage rack for the server/network equipment. Keep rack power on the control/network circuit, not on a random general receptacle circuit.</td><td>Homey self-hosted server runs in Docker on the rack server. Shelly Pro RGBWW PM modules use wired Ethernet where practical; the Somfy/BC-1 interface, PoE touch screens, and Wi-Fi APs land on the same control LAN.</td><td>LAN device basis: 24 x Shelly modules, 12 x PoE touch screens, 9 x Wi-Fi AP drops, 1 x Homey server, 1 x Somfy/BC-1 interface, 1 x router/uplink, plus spares. Use a 48-port switch, not a 24-port switch.</td><td>Do not daisy-chain Ethernet between Shelly modules unless an Ethernet switch is installed at that cabinet. Preferred install is labeled Cat6 from patch panel/switch to each LAN device or to a local LVP DIN Ethernet switch if conduit count is limited. Cameras/NVR are excluded from this scope and will be handled in the AV/security package.</td></tr>
+                  <tr><td>Smart Smoke / CO</td><td>Use normal 120V interconnected smoke/CO rough-in circuit wiring required by code. Smart reporting is wireless and does not need Cat6 to each alarm.</td><td>First Alert SC5 hardwired smart smoke/CO alarm basis, with room/location labels configured in the app. Homey may monitor notifications/integration where supported.</td><td>12 x smart smoke/CO alarm allowance at 120V with battery backup. Final quantity and locations by code smoke/CO plan.</td><td>Do not power from Mean Well LED drivers. Do not control through Shelly. Homey/app status is supplemental monitoring only; listed alarms remain the life-safety system.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1012,9 +1020,39 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Exterior Wi-Fi APs</td><td><a href="https://store.ui.com/us/en/products/u7-outdoor" target="_blank" rel="noopener noreferrer">Ubiquiti UniFi U7 Outdoor</a> or U7 Pro Outdoor Wi-Fi 7 PoE access point</td><td class="num">2</td><td>Exterior AP basis for patio/yard/garage-side coverage. Cameras/NVR are not included here.</td></tr>
                   <tr><td>Network UPS</td><td>Rack UPS sized for server, switch, router, and controls</td><td class="num">1</td><td>Keeps Homey, switch, router/uplink, and LAN-local lighting controls online during short power interruptions. Final VA/runtime by network rack load.</td></tr>
                   <tr><td>Homey Bridge / radio gateway</td><td><a href="https://homey.app/en-us/homey-bridge/" target="_blank" rel="noopener noreferrer">Homey Bridge</a> only if Zigbee, Z-Wave, Bluetooth, 433 MHz, or IR devices are required</td><td class="num">As required</td><td>The Shelly lighting control basis is wired LAN. Add bridge/radio hardware only for non-LAN devices that need those radios.</td></tr>
+                  <tr><td>Smart smoke/CO alarms</td><td><a href="https://www.firstalertstore.com/store/products/hardwire-smart-smoke-and-carbon-monoxide-alarm-sc5.htm" target="_blank" rel="noopener noreferrer">First Alert SC5 Hardwire Smart Smoke and Carbon Monoxide Alarm</a>, FSMCO600NVACCL1, or approved listed smart hardwired smoke/CO equal</td><td class="num">12 allowance</td><td>Smart/app location monitoring for smoke/CO. Unit is hardwired with battery backup and wireless smart connection; no Cat6 required at each alarm. Final count by smoke/CO code layout.</td></tr>
                 </tbody>
               </table>
             </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Budgetary Material Cost Summary</th><th class="num">Qty</th><th class="num">Unit Allowance</th><th class="num">Extended</th><th>Included Scope</th></tr></thead>
+                <tbody>
+                  <tr><td>Interior LED tape</td><td class="num">10</td><td class="num">$1,966.95</td><td class="num">$19,669.50</td><td>100 ft spools, interior tape allowance</td></tr>
+                  <tr><td>Exterior LED tape</td><td class="num">7</td><td class="num">$1,966.95</td><td class="num">$13,768.65</td><td>100 ft spools, exterior/wet-location tape allowance</td></tr>
+                  <tr><td>Interior aluminum channel</td><td class="num">120</td><td class="num">$52.00</td><td class="num">$6,240.00</td><td>8 ft interior channel sticks</td></tr>
+                  <tr><td>Exterior aluminum channel</td><td class="num">78</td><td class="num">$27.00</td><td class="num">$2,106.00</td><td>8 ft exterior channel sticks</td></tr>
+                  <tr><td>Mean Well SDR-480-24 DIN supplies</td><td class="num">12</td><td class="num">$145.00</td><td class="num">$1,740.00</td><td>24V driver supplies</td></tr>
+                  <tr><td>Shelly Pro RGBWW PM modules</td><td class="num">24</td><td class="num">$84.99</td><td class="num">$2,039.76</td><td>DIN lighting controllers, SH-01 through SH-24</td></tr>
+                  <tr><td>Phoenix fused terminals</td><td class="num">30</td><td class="num">$18.00</td><td class="num">$540.00</td><td>24 scheduled outputs plus spare fused outputs</td></tr>
+                  <tr><td>DIN rail, terminals, wire duct allowance</td><td class="num">1</td><td class="num">$1,500.00</td><td class="num">$1,500.00</td><td>Miscellaneous cabinet interior build material</td></tr>
+                  <tr><td>LVP / BC cabinet enclosure allowance</td><td class="num">1</td><td class="num">$6,425.00</td><td class="num">$6,425.00</td><td>LVP-1 through LVP-4 plus BC-1 enclosure/back-panel allowance</td></tr>
+                  <tr><td>Homey server</td><td class="num">1</td><td class="num">$650.00</td><td class="num">$650.00</td><td>Protectli/Linux/Docker server allowance</td></tr>
+                  <tr><td>48-port PoE switch</td><td class="num">1</td><td class="num">$699.00</td><td class="num">$699.00</td><td>Minimum rack PoE switch</td></tr>
+                  <tr><td>24-port expansion switch allowance</td><td class="num">1</td><td class="num">$399.00</td><td class="num">$399.00</td><td>Additional network ports after control LAN build-out</td></tr>
+                  <tr><td>48-port Cat6 patch panel</td><td class="num">1</td><td class="num">$250.00</td><td class="num">$250.00</td><td>Rack patch panel</td></tr>
+                  <tr><td>Cat6 patch cords</td><td class="num">48</td><td class="num">$6.00</td><td class="num">$288.00</td><td>Rack patching allowance</td></tr>
+                  <tr><td>Axion PoE touch screens</td><td class="num">12</td><td class="num">$450.00</td><td class="num">$5,400.00</td><td>Wall dashboard/control screen allowance</td></tr>
+                  <tr><td>Interior Wi-Fi APs</td><td class="num">7</td><td class="num">$189.00</td><td class="num">$1,323.00</td><td>Six general interior APs plus panic room AP</td></tr>
+                  <tr><td>Exterior Wi-Fi APs</td><td class="num">2</td><td class="num">$199.00</td><td class="num">$398.00</td><td>Exterior/patio Wi-Fi coverage</td></tr>
+                  <tr><td>Rack UPS allowance</td><td class="num">1</td><td class="num">$600.00</td><td class="num">$600.00</td><td>Network/control rack UPS</td></tr>
+                  <tr><td>Homey Bridge allowance</td><td class="num">1</td><td class="num">$69.00</td><td class="num">$69.00</td><td>Only if radio gateway is required</td></tr>
+                  <tr><td>Smart hardwired smoke/CO alarms</td><td class="num">12</td><td class="num">$129.95</td><td class="num">$1,559.40</td><td>First Alert SC5 hardwired smart smoke/CO allowance</td></tr>
+                  <tr><td><strong>Current scoped material total</strong></td><td class="num"></td><td class="num"></td><td class="num"><strong>$65,664.31</strong></td><td>Budgetary material only</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Budget note: this material total is for the currently scoped lighting tape/channel, LVP controls, Homey/network, AP/screen drops, and smart smoke/CO alarm allowance. It excludes labor, tax, shipping, panelboards/breakers, branch-circuit wire, bulk Cat6 already in the ceiling scope, conduit, boxes, permit fees, programming, cameras/NVR, and AV/security equipment.</div>
             <div class="note">LAN wiring rule: the existing ceiling Cat6 stays in the normal network scope. The added electrical-control LAN scope is the rack server, switch, patching, and the cabinet/device LAN drops needed to put Homey, Shelly, and Somfy/BC-1 on the same local network.</div>
             <div class="table-wrap">
               <table>
