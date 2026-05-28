@@ -686,6 +686,57 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-panels">
           <section class="card full-card">
             <div class="card-h"><h2>Installed Electrical Panel Elevation</h2></div>
+            <div class="note">Read this top to bottom: breaker panel group first, then the matching 24V power-supply group, then the low-voltage fuse/Shelly/output cabinet. This keeps the 120V breaker, Mean Well supply, Phoenix fuse, Shelly module, and field tape termination together by area.</div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Area Group</th>
+                    <th>120V Source Panel / Circuit Group</th>
+                    <th>Power Supply Cabinet / Supplies</th>
+                    <th>Low-Voltage Cabinet Devices</th>
+                    <th>Field Terminations / Areas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Upper left / Panel 1 area</td>
+                    <td>Panel 1 upper lighting/control circuits serving the left-side upper ceiling zones</td>
+                    <td>UDB-A: Mean Well SDR-480-24 supplies PS-1, PS-2, and PS-3</td>
+                    <td>UDB-C: Phoenix fused outputs F-01 through F-05; Shelly Pro RGBWW PM modules SH-01 through SH-05</td>
+                    <td>U-01 through U-05: upper left-side, lower-left, and left-wing tape-light areas</td>
+                  </tr>
+                  <tr>
+                    <td>Upper center / right / Panel 2 area</td>
+                    <td>Panel 2 upper lighting/control circuits serving the center and right-side upper ceiling zones</td>
+                    <td>UDB-A/UDB-B: Mean Well SDR-480-24 supplies PS-3 through PS-8. PS-3 also serves the last left-wing output, so keep F/SH/U labels exactly as shown.</td>
+                    <td>UDB-C: Phoenix fused outputs F-06 through F-17; Shelly Pro RGBWW PM modules SH-06 through SH-17</td>
+                    <td>U-06 through U-17: center-left, upper central, kitchen/service bar, right-side exterior/patio, main room rectangle, bedroom/right-side, and bath/service areas</td>
+                  </tr>
+                  <tr>
+                    <td>Lower/main / Panel 3 area</td>
+                    <td>Panel 3 lower/main lighting/control circuits, including the shared utility/motion light branch where shown</td>
+                    <td>LDB-A: Mean Well SDR-480-24 supplies PS-1 and PS-2</td>
+                    <td>LDB-B: Phoenix fused outputs F-01 through F-04; Shelly Pro RGBWW PM modules SH-01 through SH-04</td>
+                    <td>L-01 through L-04: lower living/mechanical utility, main/ADU rectangle, and rear patio/exterior tape-light areas</td>
+                  </tr>
+                  <tr>
+                    <td>Lower/right / ADU / Panel 4 area</td>
+                    <td>Panel 4 lower/right and ADU-side lighting/control circuits</td>
+                    <td>LDB-A: Mean Well SDR-480-24 supplies PS-3 and PS-4</td>
+                    <td>LDB-B: Phoenix fused outputs F-05 through F-07; Shelly Pro RGBWW PM modules SH-05 through SH-07</td>
+                    <td>L-05 through L-07: lower bedroom/right-side and right-side service/bath tape-light areas</td>
+                  </tr>
+                  <tr>
+                    <td>Blinds / shades</td>
+                    <td>Dedicated shade/blind 120V control circuit from the assigned breaker panel</td>
+                    <td>BC-1: shade controller power only; not part of tape-light 24V supply bank</td>
+                    <td>BC-1: Somfy RS485/IP controller and RS485/motor terminal blocks</td>
+                    <td>M-01 through M-11 shade/blind motor terminations</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div class="panel-drawing">
               <svg viewBox="0 0 1600 1760" role="img" aria-label="Actual open door panel elevations with breaker spaces and DIN rail control cabinets">
                 <text x="24" y="34" class="title">Actual Open-Door Elevation - Breaker Panels + DIN Rail Control Cabinets</text>
