@@ -210,8 +210,8 @@ details.cat summary::-webkit-details-marker{display:none}
       </div>
       <div class="metric">
         <div class="label">120V Lighting Feeds</div>
-        <div class="value">3 feeds</div>
-        <div class="hint">Three assigned 120V feeds: two to Upper lighting and one to Lower lighting</div>
+        <div class="value">6 feeds</div>
+        <div class="hint">Six 20A feeds: four to Upper driver cabinets and two to Lower driver cabinet</div>
       </div>
       <div class="metric">
         <div class="label">Control Hardware</div>
@@ -270,13 +270,13 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>UDB assembly - Upper lighting 24V controls</td>
-              <td>8 x Mean Well SDR-480-24 DIN power supplies + 3 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 enclosures + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>8 x Mean Well SDR-480-24 DIN power supplies + 2 x nVent Hoffman A42N3013 driver enclosures + 1 x nVent Hoffman A42N3613 low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable upper-ceiling assembly. Feeds 17 current upper DWFx 24V zones. Label outputs UDB / PS-# / F-# / SH-# / U-#.</td>
             </tr>
             <tr>
               <td>LDB assembly - Lower lighting 24V controls</td>
-              <td>4 x Mean Well SDR-480-24 DIN power supplies + 2 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> NEMA 1 enclosures + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
+              <td>4 x Mean Well SDR-480-24 DIN power supplies + 1 x nVent Hoffman A42N3013 driver enclosure + 1 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-plus-rgbw-pm" target="_blank" rel="noopener noreferrer">Shelly Plus RGBW PM</a> modules</td>
               <td class="num">1 assembly</td>
               <td>Buildable lower-ceiling assembly. Feeds 7 current lower DWFx 24V zones. Label outputs LDB / PS-# / F-# / SH-# / L-#.</td>
             </tr>
@@ -294,9 +294,9 @@ details.cat summary::-webkit-details-marker{display:none}
             </tr>
             <tr>
               <td>Driver-bank enclosures</td>
-              <td><a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">nVent Hoffman A24N206LP</a>, Type 1 steel wall-mount enclosure, 24 in x 20 in x 6.62 in</td>
-              <td class="num">5</td>
-              <td>Recommended split: UDB-A 120V/DIN supplies feed A, UDB-B 120V/DIN supplies feed B, UDB-C upper 24V fuse/Shelly controls; LDB-A 120V/DIN supplies, LDB-B lower 24V fuse/Shelly controls. Use a larger listed enclosure if final layout/heat spacing requires it.</td>
+              <td>nVent Hoffman Type 1 steel wall-mount enclosures: A42N3013 for driver cabinets, A42N3613 for upper 24V controls, A24N206LP for lower 24V controls and shades</td>
+              <td class="num">6 total</td>
+              <td>Use UDB-A, UDB-B, UDB-C, LDB-A, LDB-B, and BC-1. Keep 120V driver cabinets separate from 24V fused/Shelly control cabinets.</td>
             </tr>
             <tr>
               <td>DIN rail</td>
@@ -307,8 +307,8 @@ details.cat summary::-webkit-details-marker{display:none}
             <tr>
               <td>120V branch circuits</td>
               <td>Dedicated 120V lighting circuits to UDB and LDB assemblies</td>
-              <td class="num">3 x 20A</td>
-              <td>Two 20A 120V feeds to UDB, split across four SDR-480-24 supplies per feed. One 20A 120V feed to LDB for four SDR-480-24 supplies. Final conductor/breaker by electrician and code.</td>
+              <td class="num">6 x 20A</td>
+              <td>Use two SDR-480-24 supplies per 20A feed: four feeds to UDB-A/UDB-B and two feeds to LDB-A. Final conductor/breaker by electrician and code.</td>
             </tr>
             <tr>
               <td>120V utility / motion lights</td>
@@ -356,17 +356,17 @@ details.cat summary::-webkit-details-marker{display:none}
             <tbody>
               <tr>
                 <td>UDB / Upper lighting</td>
-                <td>Build UDB from 8 x Mean Well SDR-480-24 DIN power supplies, 3 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build UDB from 8 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A42N3013 driver enclosures, 1 x Hoffman A42N3613 low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">17</td>
                 <td class="num">3,840W @ 24V</td>
-                <td>1 x 20A, 120V</td>
+                <td>4 x 20A, 120V</td>
               </tr>
               <tr>
                 <td>LDB / Lower lighting</td>
-                <td>Build LDB from 4 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A24N206LP enclosures, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
+                <td>Build LDB from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A42N3013 driver enclosure, 1 x Hoffman A24N206LP low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Plus RGBW PM modules.</td>
                 <td class="num">7</td>
                 <td class="num">1,920W @ 24V</td>
-                <td>1 x 20A, 120V</td>
+                <td>2 x 20A, 120V</td>
               </tr>
             </tbody>
           </table>
@@ -524,7 +524,7 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Upper ceiling load basis</td><td>24V DC tape load</td><td class="num">2,533W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 7,354W and the driver schedule must be redesigned.</td></tr>
                   <tr><td>Upper ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
                   <tr><td>Upper 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">UDB</td><td>Assign upper ceiling zones U-01 through U-17 to scheduled UDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
-                  <tr><td>120V feed</td><td>Two dedicated 20A 120V lighting feeds to UDB assembly</td><td class="num">UDB-A / UDB-B</td><td>Split the eight Mean Well SDR-480-24 DIN power supplies across two 20A feeds. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
+                  <tr><td>120V feed</td><td>Four dedicated 20A 120V lighting/control feeds to UDB assembly</td><td class="num">UDB-A / UDB-B</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
                   <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
@@ -567,7 +567,7 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Lower ceiling load basis</td><td>24V DC tape load</td><td class="num">1,104W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 3,206W and the driver schedule must be redesigned.</td></tr>
                   <tr><td>Lower ceiling Shelly controls</td><td>Shelly Plus RGBW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
                   <tr><td>Lower 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">LDB</td><td>Assign lower/ADU/exterior zones L-01 through L-07 to scheduled LDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
-                  <tr><td>120V feed</td><td>One dedicated 20A 120V lighting feed to LDB assembly</td><td class="num">LDB-A</td><td>Feed four Mean Well SDR-480-24 DIN power supplies. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
+                  <tr><td>120V feed</td><td>Two dedicated 20A 120V lighting/control feeds to LDB assembly</td><td class="num">LDB-A</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
                   <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
                   <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
                 </tbody>
@@ -686,14 +686,31 @@ details.cat summary::-webkit-details-marker{display:none}
         <section class="tab-panel" id="panel-panels">
           <section class="card full-card">
             <div class="card-h"><h2>Installed Electrical Panel Elevation</h2></div>
-            <div class="note">Open-door field view: four breaker/load panels plus the adjacent low-voltage driver/control cabinets. This is a visual install target from the current embedded panel schedule; final manufacturer layout, exact breaker positions, AFCI/GFCI type, and code compliance stay with the electrician.</div>
+            <div class="note">Install basis: four house breaker/load panels plus a side control-panel bank. The 24V tape supplies are split at two Mean Well SDR-480-24 supplies per 20A 120V breaker, so the 12 supplies require six 20A lighting/control breakers before they feed the fused 24V outputs and Shelly modules. Final manufacturer layout, exact breaker positions, AFCI/GFCI type, conductor size, and code compliance stay with the electrician.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Panel / Enclosure</th><th>Purchasable Cabinet / Size</th><th>120V Feed</th><th>Installed Contents</th><th>Field Output</th></tr></thead>
+                <tbody>
+                  <tr><td>Panel 1</td><td>300A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 1 breaker schedule from drawings, including lighting/control branches shown in Panel 1 area</td><td>Branch circuits to assigned upper-left/main areas</td></tr>
+                  <tr><td>Panel 2</td><td>300A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 2 breaker schedule from drawings, including lighting/control branches shown in Panel 2 area</td><td>Branch circuits to assigned upper/right areas</td></tr>
+                  <tr><td>Panel 3</td><td>225A house load center, final brand/model by electrician</td><td>Service/subfeed per load calc</td><td>Panel 3 breaker schedule from drawings, including lower/main lighting branches</td><td>Branch circuits to assigned lower/main areas</td></tr>
+                  <tr><td>Panel 4</td><td>House load center; carry 225A minimum until electrician finalizes load calc</td><td>Service/subfeed per load calc</td><td>Panel 4 breaker schedule from drawings, including lower/ADU/service branches</td><td>Branch circuits to assigned lower/ADU areas</td></tr>
+                  <tr><td>UDB-A</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Upper driver cabinet A: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to UDB-C fused outputs</td></tr>
+                  <tr><td>UDB-B</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Upper driver cabinet B: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to UDB-C fused outputs</td></tr>
+                  <tr><td>UDB-C</td><td>nVent Hoffman A42N3613 Type 1, 42 in H x 36 in W x 13.25 in D, with A42P36 back panel</td><td>24V only from UDB-A/B</td><td>17 x Phoenix 3036505 fused terminals, 17 x Shelly Plus RGBW PM, 24V distribution terminals, tape terminals</td><td>U-01 through U-17 upper tape zones</td></tr>
+                  <tr><td>LDB-A</td><td>nVent Hoffman A42N3013 Type 1, 42 in H x 30 in W x 13.25 in D, with A42P30 back panel</td><td>2 x 20A 120V</td><td>Lower driver cabinet: 4 x Mean Well SDR-480-24 DIN supplies, line terminals, DIN rail, wire duct</td><td>24VDC feed to LDB-B fused outputs</td></tr>
+                  <tr><td>LDB-B</td><td>nVent Hoffman A24N206LP Type 1, 24 in H x 20 in W x 6.62 in D, with A24N20MP back panel</td><td>24V only from LDB-A</td><td>7 x Phoenix 3036505 fused terminals, 7 x Shelly Plus RGBW PM, 24V distribution terminals, tape terminals</td><td>L-01 through L-07 lower tape zones</td></tr>
+                  <tr><td>BC-1</td><td>nVent Hoffman A24N206LP Type 1, 24 in H x 20 in W x 6.62 in D, with A24N20MP back panel</td><td>1 x 15A 120V shade circuit</td><td>Somfy RS485/IP shade controller, RS485 terminal blocks, shade power/control terminations</td><td>11 shade/blind motors</td></tr>
+                </tbody>
+              </table>
+            </div>
             <div class="panel-drawing">
               <svg viewBox="0 0 1380 1160" role="img" aria-label="Installed open door elevation showing four breaker panels and low voltage side cabinet">
                 <defs>
                   <marker id="panelArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ef4444"/></marker>
                 </defs>
                 <text x="24" y="34" class="title">Installed Open-Door Elevation - Four Breaker Panels + Low-Voltage Driver Cabinet</text>
-                <text x="24" y="56" class="small">What it should look like when installed and opened: full breaker panels on the left/center, low-voltage driver and Shelly cabinets on the right. Lighting/control breakers are highlighted; other house loads remain shown as normal breaker space.</text>
+                <text x="24" y="56" class="small">What it should look like when installed and opened: full breaker panels on the left/center, separate driver/Shelly/shade cabinets on the right. Tape-light driver feeds are six 20A 120V breakers total.</text>
 
                 <rect x="30" y="90" width="290" height="470" rx="8" class="cab"/><rect x="44" y="110" width="262" height="430" rx="5" class="door"/>
                 <text x="60" y="136" class="label">PANEL 1 - 300A LOAD CENTER</text>
@@ -776,14 +793,14 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="516" y="836" width="86" height="22" rx="2" class="term"/><text x="522" y="851" class="tiny">SPARE</text>
 
                 <rect x="700" y="90" width="630" height="470" rx="8" class="cab"/><rect x="718" y="110" width="594" height="430" rx="5" class="door"/>
-                <text x="738" y="136" class="label">LOW-VOLTAGE / DRIVER SIDE CABINET BANK</text>
-                <text x="738" y="154" class="small">Keep separate from breaker panels: 24V power supplies, fused outputs, Shelly RGBW modules, tape terminations, and shade controller.</text>
-                <rect x="740" y="184" width="122" height="86" rx="5" class="psu"/><text x="755" y="215" class="tiny">UDB-A</text><text x="755" y="232" class="tiny">4 x SDR-480-24</text><text x="755" y="249" class="tiny">from Panel 1/2/3/4 as assigned</text>
-                <rect x="882" y="184" width="122" height="86" rx="5" class="psu"/><text x="897" y="215" class="tiny">UDB-B</text><text x="897" y="232" class="tiny">4 x SDR-480-24</text>
-                <rect x="1024" y="184" width="122" height="86" rx="5" class="psu"/><text x="1039" y="215" class="tiny">LDB-A</text><text x="1039" y="232" class="tiny">4 x SDR-480-24</text>
-                <rect x="1166" y="184" width="122" height="86" rx="5" fill="#2b2543" stroke="#a78bfa"/><text x="1181" y="215" class="tiny">BC-1</text><text x="1181" y="232" class="tiny">Somfy RS485</text><text x="1181" y="249" class="tiny">11 motors</text>
-                <rect x="740" y="322" width="265" height="120" rx="5" class="fuse"/><text x="760" y="352" class="label">UDB-C</text><text x="760" y="374" class="tiny">F01-F17 fused outputs</text><text x="760" y="394" class="tiny">SH01-SH17 Shelly RGBW PM</text><text x="760" y="414" class="tiny">U01-U17 upper tape terminals</text>
-                <rect x="1024" y="322" width="265" height="120" rx="5" class="fuse"/><text x="1044" y="352" class="label">LDB-B</text><text x="1044" y="374" class="tiny">F01-F07 fused outputs</text><text x="1044" y="394" class="tiny">SH01-SH07 Shelly RGBW PM</text><text x="1044" y="414" class="tiny">L01-L07 lower tape terminals</text>
+                <text x="738" y="136" class="label">SIDE CONTROL-PANEL BANK - SIZED ENCLOSURES</text>
+                <text x="738" y="154" class="small">Keep these beside the breaker panels: 120V driver cabinets first, then 24V fused/Shelly cabinets, then shade controls.</text>
+                <rect x="740" y="184" width="122" height="86" rx="5" class="psu"/><text x="755" y="207" class="tiny">UDB-A</text><text x="755" y="224" class="tiny">A42N3013</text><text x="755" y="241" class="tiny">4 x SDR-480-24</text><text x="755" y="258" class="tiny">2 x 20A feed</text>
+                <rect x="882" y="184" width="122" height="86" rx="5" class="psu"/><text x="897" y="207" class="tiny">UDB-B</text><text x="897" y="224" class="tiny">A42N3013</text><text x="897" y="241" class="tiny">4 x SDR-480-24</text><text x="897" y="258" class="tiny">2 x 20A feed</text>
+                <rect x="1024" y="184" width="122" height="86" rx="5" class="psu"/><text x="1039" y="207" class="tiny">LDB-A</text><text x="1039" y="224" class="tiny">A42N3013</text><text x="1039" y="241" class="tiny">4 x SDR-480-24</text><text x="1039" y="258" class="tiny">2 x 20A feed</text>
+                <rect x="1166" y="184" width="122" height="86" rx="5" fill="#2b2543" stroke="#a78bfa"/><text x="1181" y="207" class="tiny">BC-1</text><text x="1181" y="224" class="tiny">A24N206LP</text><text x="1181" y="241" class="tiny">Somfy RS485</text><text x="1181" y="258" class="tiny">1 x 15A feed</text>
+                <rect x="740" y="322" width="265" height="120" rx="5" class="fuse"/><text x="760" y="344" class="label">UDB-C - A42N3613</text><text x="760" y="368" class="tiny">F01-F17 Phoenix fused outputs</text><text x="760" y="388" class="tiny">SH01-SH17 Shelly RGBW PM</text><text x="760" y="408" class="tiny">U01-U17 upper tape terminals</text><text x="760" y="428" class="tiny">24V only from UDB-A/B</text>
+                <rect x="1024" y="322" width="265" height="120" rx="5" class="fuse"/><text x="1044" y="344" class="label">LDB-B - A24N206LP</text><text x="1044" y="368" class="tiny">F01-F07 Phoenix fused outputs</text><text x="1044" y="388" class="tiny">SH01-SH07 Shelly RGBW PM</text><text x="1044" y="408" class="tiny">L01-L07 lower tape terminals</text><text x="1044" y="428" class="tiny">24V only from LDB-A</text>
 
                 <rect x="700" y="610" width="630" height="270" rx="8" fill="#111a2b" stroke="#2a3a55"/>
                 <text x="730" y="642" class="label">LEGEND / INTENT</text>
@@ -791,11 +808,11 @@ details.cat summary::-webkit-details-marker{display:none}
                 <rect x="730" y="704" width="24" height="16" class="psu"/><text x="765" y="717" class="small">24V driver-related loads</text>
                 <rect x="730" y="738" width="24" height="16" class="term"/><text x="765" y="751" class="small">general wall / 120V / 220V loads from schedule</text>
                 <rect x="730" y="772" width="24" height="16" fill="#2b2543" stroke="#a78bfa"/><text x="765" y="785" class="small">blinds / shades controls</text>
-                <text x="1010" y="682" class="label">FOUR BREAKER PANELS SHOWN</text>
-                <text x="1010" y="707" class="small">Panel 1: 300A calculated schedule</text>
-                <text x="1010" y="729" class="small">Panel 2: 300A calculated schedule</text>
-                <text x="1010" y="751" class="small">Panel 3: 225A calculated schedule</text>
-                <text x="1010" y="773" class="small">Panel 4: load center from embedded schedule</text>
+                <text x="1010" y="682" class="label">BREAKER / CABINET BASIS</text>
+                <text x="1010" y="707" class="small">House panels: P1 300A, P2 300A, P3 225A, P4 load center</text>
+                <text x="1010" y="729" class="small">Tape drivers: 6 x 20A 120V breakers for 12 SDR-480 supplies</text>
+                <text x="1010" y="751" class="small">Blinds/shades: 1 x 15A 120V breaker to BC-1</text>
+                <text x="1010" y="773" class="small">Utility/motion lights: 1 x 15A/20A breaker where assigned</text>
               </svg>
             </div>
             <div class="panel-drawing old-panel-detail">
