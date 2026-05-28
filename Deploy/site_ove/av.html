@@ -6,7 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>OVE subs - AV / Security</title>
+  <title>OVE subs - AV / Automation</title>
   <style>
 :root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--cyan:#06b6d4;--purple:#8b5cf6;--orange:#f59e0b}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -20,10 +20,10 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
 .topnav-links a{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
 .topnav-links a:hover{color:var(--txt);background:var(--hover)}
 .topnav-links a.active{color:white;background:var(--blue)}
-.container{max-width:1450px;margin:0 auto;padding:18px 20px 44px}
+.container{max-width:1500px;margin:0 auto;padding:18px 20px 44px}
 .h1{font-size:22px;font-weight:900;margin-top:6px}
-.sub{color:var(--txt2);font-size:13px;margin-top:6px;max-width:1100px}
-.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.sub{color:var(--txt2);font-size:13px;margin-top:6px;max-width:1160px}
+.schedule-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
 .metric{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:12px}
 .metric .label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:800}
 .metric .value{font-size:22px;font-weight:900;margin-top:4px;color:#fff}
@@ -39,10 +39,11 @@ th{color:var(--dim);font-size:10px;text-transform:uppercase;letter-spacing:.8px;
 .muted{color:var(--txt2)}
 .note{padding:12px 16px;font-size:12px;color:var(--txt2)}
 .callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px;margin-top:14px}
-.tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+.warn{border-left-color:var(--yellow);background:rgba(234,179,8,.08)}
+.pill{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
 a{color:#93c5fd}
 .total-row td{font-weight:900;color:#fff;background:rgba(34,197,94,.08)}
-@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1180px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}.container{padding-left:12px;padding-right:12px}th,td{font-size:11px;padding:9px 8px}}
   </style>
 </head>
@@ -60,83 +61,61 @@ a{color:#93c5fd}
   </div></nav>
 
   <main class="container">
-    <div class="h1">AV / Security Scope</div>
-    <div class="sub">Material scope for the AV wall-load equipment, projection system, AV rack interfaces, and camera/NVR package. Camera equipment is included here, not in Electrical.</div>
+    <div class="h1">AV / Automation Scope</div>
+    <div class="sub">Plan-backed AV, automation, camera, shade-control, rack, and wiring scope from A111 Main/Lower AV and A112 Upper AV, cross-checked against Rodriguez_Appliance_AV_Takeoff.xlsx.</div>
 
     <div class="schedule-grid">
-      <div class="metric"><div class="label">AV takeoff</div><div class="value">6</div><div class="hint">DWFx wall-load devices currently identified</div></div>
-      <div class="metric"><div class="label">Camera allowance</div><div class="value">16</div><div class="hint">12 standard exterior/interior cameras + 4 AI locations</div></div>
-      <div class="metric"><div class="label">Rack / head-end</div><div class="value">1</div><div class="hint">AV receiver, NVR, network uplink, power, shelves</div></div>
-      <div class="metric"><div class="label">Budgetary material</div><div class="value">$31,101.96</div><div class="hint">Material only, before tax/shipping/labor</div></div>
+      <div class="metric"><div class="label">Plan sheets</div><div class="value">A111 / A112</div><div class="hint">Main/Lower AV + Upper AV</div></div>
+      <div class="metric"><div class="label">Display count</div><div class="value">5 TVs</div><div class="hint">1 x 85 in + 4 x 75 in Sony Bravia</div></div>
+      <div class="metric"><div class="label">Soundbars</div><div class="value">5</div><div class="hint">Sonos Arc plan schedule</div></div>
+      <div class="metric"><div class="label">Security</div><div class="value">13 devices</div><div class="hint">11 PoE cameras + 2 doorbells</div></div>
+      <div class="metric"><div class="label">Budgetary material</div><div class="value">$76,715.00</div><div class="hint">Material only, before tax/shipping/labor</div></div>
     </div>
 
     <div class="callout">
-      Source basis: current wall-load takeoff shows 2 MartinLogan wall speakers, 2 MartinLogan subwoofers, 1 "Macintosh MHT 300" receiver, and 1 150 in screen. The product basis below corrects the brand spelling to McIntosh MHT300 and adds the projector/support items required for the 150 in screen.
+      Correction from the first AV page: the plan schedule includes Sony Bravia TVs, Sonos Arc soundbars, eufy doorbells/cameras/NVR, Homey hubs, Level Bolts, Somfy shade motors, and additional MartinLogan surround speakers. Those are now included below. The plan OCR reads "eufy 410 POE"; purchasable basis is carried as eufy PoE Cam E40 / eufy PoE NVR family pending final camera submittal.
     </div>
 
     <section class="card">
-      <div class="card-h"><h2>Plan Takeoff / Current Basis</h2></div>
+      <div class="card-h"><h2>A111 / A112 Plan Equipment Schedule</h2></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Area</th><th>Plan item</th><th class="num">Qty</th><th>Basis / direction</th></tr></thead>
+          <thead><tr><th>Plan item</th><th>Manufacturer</th><th>Model / purchasable basis</th><th class="num">Qty</th><th>Plan note</th></tr></thead>
           <tbody>
-            <tr><td>Theater / lower wall-load AV</td><td>MartinLogan Motion XT CI XTW6 in-wall speakers</td><td class="num">2</td><td>Use current DWFx wall-load equipment count. Coordinate speaker back boxes, blocking, speaker wire, and final aiming with AV installer.</td></tr>
-            <tr><td>Theater / lower wall-load AV</td><td>MartinLogan Dynamo Foundation 12 subwoofers</td><td class="num">2</td><td>Provide 120V receptacle and sub signal path at each sub location. Final exact placement to be confirmed in room layout.</td></tr>
-            <tr><td>Theater / lower wall-load AV</td><td>McIntosh MHT300 receiver</td><td class="num">1</td><td>DWFx label reads "Macintosh MHT 300"; purchasable product basis is McIntosh MHT300 home theater receiver.</td></tr>
-            <tr><td>Theater / lower wall-load AV</td><td>150 in projection screen</td><td class="num">1</td><td>Carry 150 in screen plus projector path. Confirm finished opening, screen case/recess, power, control, and throw before ordering.</td></tr>
-            <tr><td>Security / exterior and interior camera plan</td><td>Camera/NVR equipment</td><td class="num">16 cameras</td><td>Moved into AV/security package so Electrical carries only power, conduit, and low-voltage pathways called out separately.</td></tr>
+            <tr><td>Sony Bravia 85 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr85x90l" target="_blank" rel="noopener noreferrer">XR-85X90L</a></td><td class="num">1</td><td>A111 main/theater/living callout.</td></tr>
+            <tr><td>Sony Bravia 75 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr75x90l" target="_blank" rel="noopener noreferrer">XR-75X90L</a></td><td class="num">4</td><td>A111/A112 schedule count.</td></tr>
+            <tr><td>Sonos soundbar</td><td>Sonos</td><td><a href="https://www.sonos.com/en-us/shop/arc" target="_blank" rel="noopener noreferrer">Sonos Arc</a></td><td class="num">5</td><td>Plan OCR says "Sono Arco / Arcos"; product basis is Sonos Arc.</td></tr>
+            <tr><td>150 in acoustically transparent screen</td><td>Screen Innovations</td><td>Zero Edge / Maestro 2, 150 in woven AT screen</td><td class="num">1</td><td>A111 home theater screen. Confirm exact aspect ratio and frame before order.</td></tr>
+            <tr><td>Projector for 150 in screen</td><td>TBD</td><td>Epson LS12000 or AV-approved equivalent allowance</td><td class="num">1</td><td>Required by screen even though projector was not listed as a schedule row.</td></tr>
+            <tr><td>Surround receiver</td><td>McIntosh</td><td><a href="https://www.mcintoshlabs.com/products/home-theater-processors/mht300" target="_blank" rel="noopener noreferrer">MHT300</a></td><td class="num">1</td><td>Plan calls "Macintosh HT-300"; product basis corrected to McIntosh MHT300.</td></tr>
+            <tr><td>LR speakers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/motion-xtw6" target="_blank" rel="noopener noreferrer">Motion XT CI XTW6</a></td><td class="num">2</td><td>A111 theater left/right speaker callout.</td></tr>
+            <tr><td>Surround speakers</td><td>MartinLogan</td><td>Motion XT CI XTC8-HT</td><td class="num">4</td><td>Additional theater surround speakers that were missing from prior page.</td></tr>
+            <tr><td>12 in subwoofers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/dynamo-foundation-12" target="_blank" rel="noopener noreferrer">Dynamo 12 / current Dynamo Foundation 12 basis</a></td><td class="num">2</td><td>A111 theater subwoofer callout.</td></tr>
+            <tr><td>Video doorbell</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8214111" target="_blank" rel="noopener noreferrer">Video Doorbell E340</a></td><td class="num">2</td><td>Front/rear entry locations shown on A111.</td></tr>
+            <tr><td>PoE cameras</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8p00121" target="_blank" rel="noopener noreferrer">PoE Cam E40</a></td><td class="num">11</td><td>Plan OCR says eufy 410 PoE security cameras; use current eufy PoE camera basis unless submittal says otherwise.</td></tr>
+            <tr><td>NVR / PoE recorder</td><td>eufy</td><td><a href="https://www.eufy.com/products/e8e00121" target="_blank" rel="noopener noreferrer">PoE NVR Security System S4 Max family, 2TB</a></td><td class="num">1</td><td>Plan says 2TB video server / PoE network switch.</td></tr>
+            <tr><td>Smart displays</td><td>Google</td><td>Nest Hub 10 in plan basis; replaced by Axion on electrical/Homey scope if CO-005 remains active</td><td class="num">10</td><td>Plan schedule count is 10; CO-005 says remove Nest and replace with Axion panels.</td></tr>
+            <tr><td>Homey Pro</td><td>Homey</td><td>Homey Pro 2023</td><td class="num">5</td><td>Distributed Homey hubs per A111 schedule.</td></tr>
+            <tr><td>Homey Bridge</td><td>Homey</td><td>Homey Bridge</td><td class="num">3</td><td>Distributed bridge count per A111 schedule.</td></tr>
+            <tr><td>Smart locks</td><td>Level</td><td>Level Bolt</td><td class="num">8</td><td>Entry door lock automation count per A111.</td></tr>
+            <tr><td>Shade motors</td><td>Somfy</td><td>Sonesse 60 RS485, Sonesse 100 RS485, Sonesse 100 HT RS485</td><td class="num">11</td><td>4 x 60 series, 6 x 100 series, 1 x 100 high-torque; blind pockets carried separately.</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
     <section class="card">
-      <div class="card-h"><h2>AV Material Scope</h2></div>
+      <div class="card-h"><h2>Rack / Network / Wiring Scope</h2></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Item</th><th>Purchasable basis</th><th class="num">Qty</th><th>Install note</th></tr></thead>
+          <thead><tr><th>System</th><th>Material basis</th><th class="num">Qty</th><th>Install direction</th></tr></thead>
           <tbody>
-            <tr><td>Home theater receiver</td><td><a href="https://www.mcintoshlabs.com/products/home-theater-processors/mht300" target="_blank" rel="noopener noreferrer">McIntosh MHT300 Home Theater Receiver</a></td><td class="num">1</td><td>Rack/head-end. 3U rack-mountable AVR; provide cooling, UPS/surge protection, HDMI path, speaker terminations, and network/control connection.</td></tr>
-            <tr><td>In-wall speakers</td><td><a href="https://www.martinlogan.com/en/product/motion-xtw6" target="_blank" rel="noopener noreferrer">MartinLogan Motion XT CI XTW6</a></td><td class="num">2</td><td>Coordinate stud bay, back-box depth, grill finish, speaker wire, and blocking before drywall.</td></tr>
-            <tr><td>Subwoofers</td><td><a href="https://www.martinlogan.com/en/product/dynamo-foundation-12" target="_blank" rel="noopener noreferrer">MartinLogan Dynamo Foundation 12</a></td><td class="num">2</td><td>Each needs 120V power and shielded sub/LFE cable or approved signal path.</td></tr>
-            <tr><td>Projection screen</td><td>Screen Innovations Zero Edge 150 in, or approved equal</td><td class="num">1</td><td>Confirm exact aspect ratio, ambient-light screen material, mounting height, recess/blocking, and control/power before order.</td></tr>
-            <tr><td>Projector</td><td><a href="https://epson.com/For-Home/Projectors/Pro-Cinema/Pro-Cinema-LS12000-4K-PRO-UHD-Laser-Projector/p/V11HA47020MB" target="_blank" rel="noopener noreferrer">Epson Pro Cinema LS12000</a>, or approved equal</td><td class="num">1</td><td>Allowance added because the plan includes a 150 in screen. Confirm throw distance, lens position, HDMI/fiber route, ventilation, and mount structure.</td></tr>
-            <tr><td>Projector mount</td><td>Chief / Peerless projector mount allowance</td><td class="num">1</td><td>Model selected after final projector and framing location are locked.</td></tr>
-            <tr><td>AV rack package</td><td>Middle Atlantic / Sanus rack, shelves, blank panels, power distribution allowance</td><td class="num">1</td><td>Rack location needs dedicated 120V, ventilation, service clearance, network uplink, and labeled speaker/camera/data terminations.</td></tr>
-            <tr><td>AV rough-in materials</td><td>Speaker wire, sub cable, HDMI/fiber, wall plates, keystones, labels allowance</td><td class="num">1 lot</td><td>Carry as allowance until final wire paths and rack location are frozen.</td></tr>
-            <tr><td>Blocking / boxes / conduit</td><td>Back boxes, low-voltage rings, conduit sleeves, screen/projector blocking allowance</td><td class="num">1 lot</td><td>Install before insulation/drywall. Coordinate with framing and electrical.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-h"><h2>Camera / Security Material Scope</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Item</th><th>Purchasable basis</th><th class="num">Qty</th><th>Install note</th></tr></thead>
-          <tbody>
-            <tr><td>NVR</td><td><a href="https://store.ui.com/us/en/products/unvr" target="_blank" rel="noopener noreferrer">Ubiquiti UniFi UNVR</a></td><td class="num">1</td><td>Rack-mounted Protect recorder. Land on AV/security rack or network rack with UPS-backed power and switch uplink.</td></tr>
-            <tr><td>NVR storage</td><td>Surveillance-rated hard drive allowance</td><td class="num">4</td><td>Confirm recording duration and camera bitrate before final HDD size is purchased.</td></tr>
-            <tr><td>Standard PoE cameras</td><td><a href="https://store.ui.com/us/en/products/uvc-g5-turret-ultra" target="_blank" rel="noopener noreferrer">Ubiquiti G5 Turret Ultra</a></td><td class="num">12</td><td>General exterior/interior camera basis. Each needs home-run Cat6 and weather-rated mounting where exposed.</td></tr>
-            <tr><td>AI camera locations</td><td><a href="https://store.ui.com/us/en/products/uvc-ai-pro" target="_blank" rel="noopener noreferrer">Ubiquiti AI Pro</a></td><td class="num">4</td><td>Use at higher-value recognition/entry/drive locations after final camera plan review.</td></tr>
-            <tr><td>Camera mounting and protection</td><td>Junction boxes, mounts, surge protection, patching allowance</td><td class="num">16</td><td>Final mount type depends on soffit/wall material and exposure.</td></tr>
-            <tr><td>Camera Cat6 drops</td><td>Cat6 home-run allowance</td><td class="num">16</td><td>Coordinate with low-voltage rough-in. Label both ends by camera number and location.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-h"><h2>Network / Control Interfaces</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Interface</th><th>Requirement</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td>AV rack to network rack</td><td>Minimum 2 Cat6 uplinks or one fiber/conduit path plus spare</td><td>AV/security gear should not rely on Wi-Fi. Use labeled wired uplinks between racks and switches.</td></tr>
-            <tr><td>Homey / Shelly control</td><td>LAN integration where supported</td><td>Homey may trigger AV scenes, lighting scenes, and status dashboards, but camera recording must remain native to UniFi Protect/NVR.</td></tr>
-            <tr><td>PoE switch capacity</td><td>Camera ports may require a second PoE switch</td><td>The electrical page carries the control-network switch basis. If all cameras land in the same rack, add camera PoE switch capacity during final network count.</td></tr>
-            <tr><td>Touch screens</td><td>No duplicate cost here</td><td>PoE touch screens are already carried in Electrical/Homey network scope. AV can use them for dashboard/control views but they are not counted again here.</td></tr>
+            <tr><td>AV/network rack</td><td>24U wall-mount rack, vent panels, 1U PDU, rack UPS, lacer bars, labels</td><td class="num">1 lot</td><td>Locate at mech/comms area. Provide service clearance, ventilation, UPS-backed power, and labeled terminations.</td></tr>
+            <tr><td>Gateway / PoE switching</td><td>Ubiquiti UDM-SE + USW-Pro-24-PoE, or current UniFi equivalent</td><td class="num">1 each</td><td>AV/CCTV/WAP feeds. Final port count must reconcile cameras, WAPs, Homey, touch screens, and AV endpoints.</td></tr>
+            <tr><td>Wireless access</td><td>6 x U6-Enterprise interior APs + 1 x U6-Mesh outdoor AP</td><td class="num">7</td><td>Coordinate with the electrical/network AP plan. Panic room coverage still needs dedicated AP path and final placement.</td></tr>
+            <tr><td>Patch and cable</td><td>2 x 24-port Cat6A patch panels, Cat6A plenum cable, patch cables</td><td class="num">1 lot</td><td>Home-run and label all TV, camera, WAP, rack, screen, projector, and automation drops.</td></tr>
+            <tr><td>Audio wire</td><td>14/4 and 16/2 in-wall speaker wire, HDMI/fiber, speaker/AV plates</td><td class="num">1 lot</td><td>Speaker and projector routes must be installed before insulation/drywall.</td></tr>
+            <tr><td>Distributed audio</td><td>Sonos Amp, Sonos Port, Sonance in-ceiling/outdoor speaker pairs</td><td class="num">1 lot</td><td>Workbook adds distributed zones beyond the A111/A112 fixture symbols. Confirm room-by-room zone list before purchase.</td></tr>
           </tbody>
         </table>
       </div>
@@ -148,27 +127,40 @@ a{color:#93c5fd}
         <table>
           <thead><tr><th>Line</th><th>Product / allowance</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Extended</th></tr></thead>
           <tbody>
-            <tr><td>AV-01</td><td>McIntosh MHT300 AVR</td><td class="num">1</td><td class="num">$8,000.00</td><td class="num">$8,000.00</td></tr>
-            <tr><td>AV-02</td><td>MartinLogan Motion XT CI XTW6 in-wall speakers</td><td class="num">2</td><td class="num">$899.99</td><td class="num">$1,799.98</td></tr>
-            <tr><td>AV-03</td><td>MartinLogan Dynamo Foundation 12 subwoofers</td><td class="num">2</td><td class="num">$799.99</td><td class="num">$1,599.98</td></tr>
-            <tr><td>AV-04</td><td>Screen Innovations Zero Edge 150 in screen allowance</td><td class="num">1</td><td class="num">$2,250.00</td><td class="num">$2,250.00</td></tr>
-            <tr><td>AV-05</td><td>Epson Pro Cinema LS12000 projector allowance</td><td class="num">1</td><td class="num">$5,999.00</td><td class="num">$5,999.00</td></tr>
-            <tr><td>AV-06</td><td>Projector mount allowance</td><td class="num">1</td><td class="num">$350.00</td><td class="num">$350.00</td></tr>
-            <tr><td>AV-07</td><td>AV rack, shelves, panels, power allowance</td><td class="num">1</td><td class="num">$1,800.00</td><td class="num">$1,800.00</td></tr>
-            <tr><td>AV-08</td><td>Speaker wire, sub cable, HDMI/fiber, plates allowance</td><td class="num">1</td><td class="num">$1,500.00</td><td class="num">$1,500.00</td></tr>
-            <tr><td>AV-09</td><td>Conduit, back boxes, blocking allowance</td><td class="num">1</td><td class="num">$1,000.00</td><td class="num">$1,000.00</td></tr>
-            <tr><td>SEC-01</td><td>UniFi UNVR</td><td class="num">1</td><td class="num">$299.00</td><td class="num">$299.00</td></tr>
-            <tr><td>SEC-02</td><td>UNVR hard drive allowance</td><td class="num">4</td><td class="num">$180.00</td><td class="num">$720.00</td></tr>
-            <tr><td>SEC-03</td><td>UniFi G5 Turret Ultra cameras</td><td class="num">12</td><td class="num">$129.00</td><td class="num">$1,548.00</td></tr>
-            <tr><td>SEC-04</td><td>UniFi AI Pro cameras</td><td class="num">4</td><td class="num">$499.00</td><td class="num">$1,996.00</td></tr>
-            <tr><td>SEC-05</td><td>Camera mounts, surge protection, patching allowance</td><td class="num">16</td><td class="num">$65.00</td><td class="num">$1,040.00</td></tr>
-            <tr><td>SEC-06</td><td>Camera Cat6 drops allowance</td><td class="num">16</td><td class="num">$75.00</td><td class="num">$1,200.00</td></tr>
-            <tr class="total-row"><td colspan="4">Budgetary material total</td><td class="num">$31,101.96</td></tr>
+            <tr><td>AV-01</td><td>Sony Bravia XR-85X90L 85 in TV</td><td class="num">1</td><td class="num">$2,800.00</td><td class="num">$2,800.00</td></tr>
+            <tr><td>AV-02</td><td>Sony Bravia XR-75X90L 75 in TV</td><td class="num">4</td><td class="num">$1,800.00</td><td class="num">$7,200.00</td></tr>
+            <tr><td>AV-03</td><td>Screen Innovations Zero Edge Maestro 2 150 in AT screen</td><td class="num">1</td><td class="num">$8,500.00</td><td class="num">$8,500.00</td></tr>
+            <tr><td>AV-04</td><td>Projector allowance for 150 in screen</td><td class="num">1</td><td class="num">$4,500.00</td><td class="num">$4,500.00</td></tr>
+            <tr><td>AV-05</td><td>McIntosh MHT300 surround receiver</td><td class="num">1</td><td class="num">$9,500.00</td><td class="num">$9,500.00</td></tr>
+            <tr><td>AV-06</td><td>MartinLogan Motion XT CI XTW6 LR speakers</td><td class="num">2</td><td class="num">$650.00</td><td class="num">$1,300.00</td></tr>
+            <tr><td>AV-07</td><td>MartinLogan Motion XT CI XTC8-HT surround speakers</td><td class="num">4</td><td class="num">$750.00</td><td class="num">$3,000.00</td></tr>
+            <tr><td>AV-08</td><td>MartinLogan Dynamo 12 subwoofers</td><td class="num">2</td><td class="num">$1,200.00</td><td class="num">$2,400.00</td></tr>
+            <tr><td>AV-09</td><td>Sonos Arc soundbars</td><td class="num">5</td><td class="num">$900.00</td><td class="num">$4,500.00</td></tr>
+            <tr><td>AUTO-01</td><td>Homey Pro 2023</td><td class="num">5</td><td class="num">$300.00</td><td class="num">$1,500.00</td></tr>
+            <tr><td>AUTO-02</td><td>Homey Bridge</td><td class="num">3</td><td class="num">$100.00</td><td class="num">$300.00</td></tr>
+            <tr><td>AUTO-03</td><td>Level Bolt smart locks</td><td class="num">8</td><td class="num">$250.00</td><td class="num">$2,000.00</td></tr>
+            <tr><td>AUTO-04</td><td>Google Nest Hub 10 in plan allowance / Axion replacement cross-check</td><td class="num">10</td><td class="num">$230.00</td><td class="num">$2,300.00</td></tr>
+            <tr><td>SEC-01</td><td>eufy E340 video doorbells</td><td class="num">2</td><td class="num">$250.00</td><td class="num">$500.00</td></tr>
+            <tr><td>SEC-02</td><td>eufy PoE Cam E40 cameras</td><td class="num">11</td><td class="num">$120.00</td><td class="num">$1,320.00</td></tr>
+            <tr><td>SEC-03</td><td>eufy 2TB NVR / PoE recorder allowance</td><td class="num">1</td><td class="num">$350.00</td><td class="num">$350.00</td></tr>
+            <tr><td>SHADE-01</td><td>Somfy Sonesse 60 RS485 shade motors</td><td class="num">4</td><td class="num">$380.00</td><td class="num">$1,520.00</td></tr>
+            <tr><td>SHADE-02</td><td>Somfy Sonesse 100 RS485 shade motors</td><td class="num">6</td><td class="num">$520.00</td><td class="num">$3,120.00</td></tr>
+            <tr><td>SHADE-03</td><td>Somfy Sonesse 100 HT RS485 motor</td><td class="num">1</td><td class="num">$680.00</td><td class="num">$680.00</td></tr>
+            <tr><td>SHADE-04</td><td>Shade / blind pocket rough-in allowance</td><td class="num">10</td><td class="num">$85.00</td><td class="num">$850.00</td></tr>
+            <tr><td>RACK-01</td><td>Network rack, PDU, UPS, gateway, PoE switch, APs, patch panels, labels, rack parts</td><td class="num">1 lot</td><td class="num">$5,255.00</td><td class="num">$5,255.00</td></tr>
+            <tr><td>WIRE-01</td><td>Cat6A cable/patching, speaker wire, HDMI/fiber cabling</td><td class="num">1 lot</td><td class="num">$1,410.00</td><td class="num">$1,410.00</td></tr>
+            <tr><td>AUDIO-01</td><td>Sonos Amps, Sonos Port, Sonance in-ceiling/outdoor speakers, in-wall reinforcement subs</td><td class="num">1 lot</td><td class="num">$10,750.00</td><td class="num">$10,750.00</td></tr>
+            <tr><td>VIDEO-01</td><td>4K HDMI matrix, HDBaseT receivers, IR/RS-232 control modules</td><td class="num">1 lot</td><td class="num">$1,260.00</td><td class="num">$1,260.00</td></tr>
+            <tr class="total-row"><td colspan="4">Budgetary material total from A111/A112 workbook scope</td><td class="num">$76,715.00</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="note">Excludes labor, tax, shipping, programming, licenses/subscriptions, final projector calibration, internet service, cabinetry/furniture, final HDMI/fiber route changes, and any electrical/conduit beyond the allowances shown.</div>
+      <div class="note">Excludes labor, tax, shipping, programming, licenses/subscriptions, final projector calibration, cabinet/furniture, final bracket/back-box selections, final camera aiming, and field-verified cable lengths beyond the budgetary allowances above.</div>
     </section>
+
+    <div class="callout warn">
+      Coordination item: Electrical/Homey scope already carries Axion PoE touch screens and some network equipment. Before purchasing, reconcile duplicate smart-display/network lines between the electrical controls page and this AV page so the final buyout does not double-order screens, Homey devices, switches, or APs.
+    </div>
   </main>
 </body>
 </html>
