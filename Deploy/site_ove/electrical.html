@@ -47,6 +47,11 @@ details.cat summary::-webkit-details-marker{display:none}
 .full-card{margin-top:14px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
+.callout.warn{border-left-color:var(--yellow);background:rgba(234,179,8,.07)}
+.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
+.total-row td{font-weight:900;color:#fff;background:rgba(34,197,94,.08)}
+@media(max-width:1180px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.metrics{grid-template-columns:1fr}}
 .tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
 .panel-layout{display:grid;grid-template-columns:1fr;gap:16px;padding:16px}
 .layout-bank{border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.02);padding:14px}
@@ -94,6 +99,8 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-lower:checked ~ .tab-labels label[for=tab-lower],
 #tab-circuit-map:checked ~ .tab-labels label[for=tab-circuit-map],
 #tab-blinds:checked ~ .tab-labels label[for=tab-blinds],
+#tab-av:checked ~ .tab-labels label[for=tab-av],
+#tab-install:checked ~ .tab-labels label[for=tab-install],
 #tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
 #tab-main-wall:checked ~ .tab-panels #panel-main-wall,
 #tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
@@ -102,6 +109,8 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-lower:checked ~ .tab-panels #panel-lower,
 #tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
 #tab-blinds:checked ~ .tab-panels #panel-blinds,
+#tab-av:checked ~ .tab-panels #panel-av,
+#tab-install:checked ~ .tab-panels #panel-install,
 #tab-panels:checked ~ .tab-panels #panel-panels{display:block}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
@@ -116,8 +125,6 @@ details.cat summary::-webkit-details-marker{display:none}
       <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer">Plans &amp; Permits</a>
       <a href="selections.html">Selections</a>
       <a class="active" href="electrical.html">Electrical</a>
-      <a href="av.html">AV</a>
-      <a href="install-list.html">Install List</a>
     </div>
   </div></nav>
 
@@ -138,6 +145,8 @@ details.cat summary::-webkit-details-marker{display:none}
       <input type="radio" name="electrical-tabs" id="tab-lower">
       <input type="radio" name="electrical-tabs" id="tab-circuit-map">
       <input type="radio" name="electrical-tabs" id="tab-blinds">
+      <input type="radio" name="electrical-tabs" id="tab-av">
+      <input type="radio" name="electrical-tabs" id="tab-install">
       <input type="radio" name="electrical-tabs" id="tab-panels">
 
       <div class="tab-labels">
@@ -148,6 +157,8 @@ details.cat summary::-webkit-details-marker{display:none}
         <label for="tab-lower">Lower Loads / Ceiling</label>
         <label for="tab-circuit-map">Circuit Maps</label>
         <label for="tab-blinds">Blinds / Shades</label>
+        <label for="tab-av">AV</label>
+        <label for="tab-install">Install List</label>
         <label for="tab-panels">Panels</label>
       </div>
 
@@ -1608,6 +1619,243 @@ details.cat summary::-webkit-details-marker{display:none}
               </table>
             </div>
             <div class="note">Install exactly as separate Upper and Lower lighting driver-bank assemblies plus one blinds/shades control scope unless the plan is formally revised. Recommended physical lighting split is five lighting enclosures total: UDB-A, UDB-B, UDB-C, LDB-A, LDB-B. Keep BC-1 blinds/shades separate from the 24V tape-light driver banks. Required lighting label format: UDB or LDB / PS-# / F-# / SH-# / U-# or L-#.</div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-av">
+          <div class="h1" style="font-size:16px">AV / Automation Scope</div>
+          <div class="sub">Plan-backed AV, automation, camera, shade-control, rack, and wiring scope from A111 Main/Lower AV and A112 Upper AV. Whole-house audio zones are excluded unless they are added to the plan scope.</div>
+
+          <div class="metrics">
+            <div class="metric"><div class="label">Plan sheets</div><div class="value">A111 / A112</div><div class="hint">Main/Lower AV + Upper AV</div></div>
+            <div class="metric"><div class="label">Display count</div><div class="value">5 TVs</div><div class="hint">1 x 85 in + 4 x 75 in Sony Bravia</div></div>
+            <div class="metric"><div class="label">Soundbars</div><div class="value">5</div><div class="hint">Sonos Arc plan schedule</div></div>
+            <div class="metric"><div class="label">Security</div><div class="value">13 devices</div><div class="hint">11 PoE cameras + 2 doorbells</div></div>
+            <div class="metric"><div class="label">Budgetary material</div><div class="value">$65,965.00</div><div class="hint">Material only, before tax/shipping/labor</div></div>
+          </div>
+
+          <div class="callout" style="margin-top:14px">
+            Correction from the first AV page: the plan schedule includes Sony Bravia TVs, Sonos Arc soundbars, eufy doorbells/cameras/NVR, Homey hubs, Level Bolts, Somfy shade motors, and additional MartinLogan surround speakers. Those are now included below. The plan OCR reads "eufy 410 POE"; purchasable basis is carried as eufy PoE Cam E40 / eufy PoE NVR family pending final camera submittal.
+          </div>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>A111 / A112 Plan Equipment Schedule</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Plan item</th><th>Manufacturer</th><th>Model / purchasable basis</th><th class="num">Qty</th><th>Plan note</th></tr></thead>
+                <tbody>
+                  <tr><td>Sony Bravia 85 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr85x90l" target="_blank" rel="noopener noreferrer">XR-85X90L</a></td><td class="num">1</td><td>A111 main/theater/living callout.</td></tr>
+                  <tr><td>Sony Bravia 75 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr75x90l" target="_blank" rel="noopener noreferrer">XR-75X90L</a></td><td class="num">4</td><td>A111/A112 schedule count.</td></tr>
+                  <tr><td>Sonos soundbar</td><td>Sonos</td><td><a href="https://www.sonos.com/en-us/shop/arc" target="_blank" rel="noopener noreferrer">Sonos Arc</a></td><td class="num">5</td><td>Plan OCR says "Sono Arco / Arcos"; product basis is Sonos Arc.</td></tr>
+                  <tr><td>150 in acoustically transparent screen</td><td>Screen Innovations</td><td>Zero Edge / Maestro 2, 150 in woven AT screen</td><td class="num">1</td><td>A111 home theater screen. Confirm exact aspect ratio and frame before order.</td></tr>
+                  <tr><td>Projector for 150 in screen</td><td>TBD</td><td>Epson LS12000 or AV-approved equivalent allowance</td><td class="num">1</td><td>Required by screen even though projector was not listed as a schedule row.</td></tr>
+                  <tr><td>Surround receiver</td><td>McIntosh</td><td><a href="https://www.mcintoshlabs.com/products/home-theater-processors/mht300" target="_blank" rel="noopener noreferrer">MHT300</a></td><td class="num">1</td><td>Plan calls "Macintosh HT-300"; product basis corrected to McIntosh MHT300.</td></tr>
+                  <tr><td>LR speakers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/motion-xtw6" target="_blank" rel="noopener noreferrer">Motion XT CI XTW6</a></td><td class="num">2</td><td>A111 theater left/right speaker callout.</td></tr>
+                  <tr><td>Surround speakers</td><td>MartinLogan</td><td>Motion XT CI XTC8-HT</td><td class="num">4</td><td>Additional theater surround speakers that were missing from prior page.</td></tr>
+                  <tr><td>12 in subwoofers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/dynamo-foundation-12" target="_blank" rel="noopener noreferrer">Dynamo 12 / current Dynamo Foundation 12 basis</a></td><td class="num">2</td><td>A111 theater subwoofer callout.</td></tr>
+                  <tr><td>Video doorbell</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8214111" target="_blank" rel="noopener noreferrer">Video Doorbell E340</a></td><td class="num">2</td><td>Front/rear entry locations shown on A111.</td></tr>
+                  <tr><td>PoE cameras</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8p00121" target="_blank" rel="noopener noreferrer">PoE Cam E40</a></td><td class="num">11</td><td>Plan OCR says eufy 410 PoE security cameras; use current eufy PoE camera basis unless submittal says otherwise.</td></tr>
+                  <tr><td>NVR / PoE recorder</td><td>eufy</td><td><a href="https://www.eufy.com/products/e8e00121" target="_blank" rel="noopener noreferrer">PoE NVR Security System S4 Max family, 2TB</a></td><td class="num">1</td><td>Plan says 2TB video server / PoE network switch.</td></tr>
+                  <tr><td>Smart displays</td><td>Google</td><td>Nest Hub 10 in plan basis; replaced by Axion on electrical/Homey scope if CO-005 remains active</td><td class="num">10</td><td>Plan schedule count is 10; CO-005 says remove Nest and replace with Axion panels.</td></tr>
+                  <tr><td>Homey Pro</td><td>Homey</td><td>Homey Pro 2023</td><td class="num">5</td><td>Distributed Homey hubs per A111 schedule.</td></tr>
+                  <tr><td>Homey Bridge</td><td>Homey</td><td>Homey Bridge</td><td class="num">3</td><td>Distributed bridge count per A111 schedule.</td></tr>
+                  <tr><td>Smart locks</td><td>Level</td><td>Level Bolt</td><td class="num">8</td><td>Entry door lock automation count per A111.</td></tr>
+                  <tr><td>Shade motors</td><td>Somfy</td><td>Sonesse 60 RS485, Sonesse 100 RS485, Sonesse 100 HT RS485</td><td class="num">11</td><td>4 x 60 series, 6 x 100 series, 1 x 100 high-torque; blind pockets carried separately.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Rack / Network / Wiring Scope</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>System</th><th>Material basis</th><th class="num">Qty</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>AV/network rack</td><td>24U wall-mount rack, vent panels, 1U PDU, rack UPS, lacer bars, labels</td><td class="num">1 lot</td><td>Locate at mech/comms area. Provide service clearance, ventilation, UPS-backed power, and labeled terminations.</td></tr>
+                  <tr><td>Gateway / PoE switching</td><td>Ubiquiti UDM-SE + USW-Pro-24-PoE, or current UniFi equivalent</td><td class="num">1 each</td><td>AV/CCTV/WAP feeds. Final port count must reconcile cameras, WAPs, Homey, touch screens, and AV endpoints.</td></tr>
+                  <tr><td>Wireless access</td><td>6 x U6-Enterprise interior APs + 1 x U6-Mesh outdoor AP</td><td class="num">7</td><td>Coordinate with the electrical/network AP plan. Panic room coverage still needs dedicated AP path and final placement.</td></tr>
+                  <tr><td>Patch and cable</td><td>2 x 24-port Cat6A patch panels, Cat6A plenum cable, patch cables</td><td class="num">1 lot</td><td>Home-run and label all TV, camera, WAP, rack, screen, projector, and automation drops.</td></tr>
+                  <tr><td>Audio wire</td><td>14/4 and 16/2 in-wall speaker wire, HDMI/fiber, speaker/AV plates</td><td class="num">1 lot</td><td>Speaker and projector routes must be installed before insulation/drywall.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Budgetary Material Cost Summary</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Line</th><th>Product / allowance</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Extended</th></tr></thead>
+                <tbody>
+                  <tr><td>AV-01</td><td>Sony Bravia XR-85X90L 85 in TV</td><td class="num">1</td><td class="num">$2,800.00</td><td class="num">$2,800.00</td></tr>
+                  <tr><td>AV-02</td><td>Sony Bravia XR-75X90L 75 in TV</td><td class="num">4</td><td class="num">$1,800.00</td><td class="num">$7,200.00</td></tr>
+                  <tr><td>AV-03</td><td>Screen Innovations Zero Edge Maestro 2 150 in AT screen</td><td class="num">1</td><td class="num">$8,500.00</td><td class="num">$8,500.00</td></tr>
+                  <tr><td>AV-04</td><td>Projector allowance for 150 in screen</td><td class="num">1</td><td class="num">$4,500.00</td><td class="num">$4,500.00</td></tr>
+                  <tr><td>AV-05</td><td>McIntosh MHT300 surround receiver</td><td class="num">1</td><td class="num">$9,500.00</td><td class="num">$9,500.00</td></tr>
+                  <tr><td>AV-06</td><td>MartinLogan Motion XT CI XTW6 LR speakers</td><td class="num">2</td><td class="num">$650.00</td><td class="num">$1,300.00</td></tr>
+                  <tr><td>AV-07</td><td>MartinLogan Motion XT CI XTC8-HT surround speakers</td><td class="num">4</td><td class="num">$750.00</td><td class="num">$3,000.00</td></tr>
+                  <tr><td>AV-08</td><td>MartinLogan Dynamo 12 subwoofers</td><td class="num">2</td><td class="num">$1,200.00</td><td class="num">$2,400.00</td></tr>
+                  <tr><td>AV-09</td><td>Sonos Arc soundbars</td><td class="num">5</td><td class="num">$900.00</td><td class="num">$4,500.00</td></tr>
+                  <tr><td>AUTO-01</td><td>Homey Pro 2023</td><td class="num">5</td><td class="num">$300.00</td><td class="num">$1,500.00</td></tr>
+                  <tr><td>AUTO-02</td><td>Homey Bridge</td><td class="num">3</td><td class="num">$100.00</td><td class="num">$300.00</td></tr>
+                  <tr><td>AUTO-03</td><td>Level Bolt smart locks</td><td class="num">8</td><td class="num">$250.00</td><td class="num">$2,000.00</td></tr>
+                  <tr><td>AUTO-04</td><td>Google Nest Hub 10 in plan allowance / Axion replacement cross-check</td><td class="num">10</td><td class="num">$230.00</td><td class="num">$2,300.00</td></tr>
+                  <tr><td>SEC-01</td><td>eufy E340 video doorbells</td><td class="num">2</td><td class="num">$250.00</td><td class="num">$500.00</td></tr>
+                  <tr><td>SEC-02</td><td>eufy PoE Cam E40 cameras</td><td class="num">11</td><td class="num">$120.00</td><td class="num">$1,320.00</td></tr>
+                  <tr><td>SEC-03</td><td>eufy 2TB NVR / PoE recorder allowance</td><td class="num">1</td><td class="num">$350.00</td><td class="num">$350.00</td></tr>
+                  <tr><td>SHADE-01</td><td>Somfy Sonesse 60 RS485 shade motors</td><td class="num">4</td><td class="num">$380.00</td><td class="num">$1,520.00</td></tr>
+                  <tr><td>SHADE-02</td><td>Somfy Sonesse 100 RS485 shade motors</td><td class="num">6</td><td class="num">$520.00</td><td class="num">$3,120.00</td></tr>
+                  <tr><td>SHADE-03</td><td>Somfy Sonesse 100 HT RS485 motor</td><td class="num">1</td><td class="num">$680.00</td><td class="num">$680.00</td></tr>
+                  <tr><td>SHADE-04</td><td>Shade / blind pocket rough-in allowance</td><td class="num">10</td><td class="num">$85.00</td><td class="num">$850.00</td></tr>
+                  <tr><td>RACK-01</td><td>Network rack, PDU, UPS, gateway, PoE switch, APs, patch panels, labels, rack parts</td><td class="num">1 lot</td><td class="num">$5,255.00</td><td class="num">$5,255.00</td></tr>
+                  <tr><td>WIRE-01</td><td>Cat6A cable/patching, speaker wire, HDMI/fiber cabling</td><td class="num">1 lot</td><td class="num">$1,410.00</td><td class="num">$1,410.00</td></tr>
+                  <tr><td>VIDEO-01</td><td>4K HDMI matrix, HDBaseT receivers, IR/RS-232 control modules</td><td class="num">1 lot</td><td class="num">$1,260.00</td><td class="num">$1,260.00</td></tr>
+                  <tr class="total-row"><td colspan="4">Budgetary material total from A111/A112 plan scope</td><td class="num">$65,965.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Excludes labor, tax, shipping, programming, licenses/subscriptions, final projector calibration, cabinet/furniture, final bracket/back-box selections, final camera aiming, and field-verified cable lengths beyond the budgetary allowances above.</div>
+          </section>
+
+          <div class="callout warn" style="margin-top:14px">
+            Coordination item: Electrical/Homey scope already carries Axion PoE touch screens and some network equipment. Before purchasing, reconcile duplicate smart-display/network lines between the electrical controls page and this AV page so the final buyout does not double-order screens, Homey devices, switches, or APs.
+          </div>
+        </section>
+
+        <section class="tab-panel" id="panel-install">
+          <div class="h1" style="font-size:16px">Comprehensive Electrical / Low-Voltage / AV Install List</div>
+          <div class="sub">Quantity-first install scope from the current electrical wall-load schedules, reflected ceiling tape-light schedules, A111/A112 AV schedules, and the Rodriguez appliance/AV takeoff workbook. Quantities are for rough-in/material coordination; code-required circuiting, AFCI/GFCI type, box fill, conductor size, and final breaker schedule still need permit-level electrical review.</div>
+
+          <div class="metrics">
+            <div class="metric"><div class="label">120V / 240V device rough-ins</div><div class="value">108</div><div class="hint">Receptacle/equipment-device lines below, excluding HVAC disconnects</div></div>
+            <div class="metric"><div class="label">GFCI / wet-device rows</div><div class="value">44</div><div class="hint">24 GFCI + 19 WP + 1 smart toilet GFCI</div></div>
+            <div class="metric"><div class="label">24V tape</div><div class="value">1,350 LF</div><div class="hint">1,173.3 LF takeoff + 15% order allowance</div></div>
+            <div class="metric"><div class="label">Controlled tape outputs</div><div class="value">24</div><div class="hint">17 upper + 7 lower Shelly/fused outputs</div></div>
+            <div class="metric"><div class="label">Network / LV drops</div><div class="value">101+</div><div class="hint">Calculated home-runs before spare conduits</div></div>
+          </div>
+
+          <div class="callout warn" style="margin-top:14px">
+            Count conflict to resolve before final buyout: the plan fixture schedule shows 17 Axion 8 in PoE touch screens, while the current Electrical network/material scope carries 12 PoE touch screens and A111/A112 still show 10 Google Nest locations that CO-005 replaces with Axion. Rough-in Cat6 to every shown control/display location; do not order final screens until Craig locks the replacement count.
+          </div>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>120V / 240V Device Rough-In List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Where counted</th><th>What the electrician installs</th></tr></thead>
+                <tbody>
+                  <tr><td>Standard wall duplex receptacles</td><td class="num">49</td><td>Main 27 + Upper 11 + Lower 11</td><td>Standard 120V duplex receptacle boxes/devices. Circuit grouping follows final panel schedule.</td></tr>
+                  <tr><td>Floor duplex receptacles</td><td class="num">5</td><td>Main wall loads</td><td>Floor-rated boxes, covers, and 120V duplex devices coordinated with flooring finish.</td></tr>
+                  <tr><td>Garage door ceiling receptacles</td><td class="num">4</td><td>Garage door opener locations</td><td>120V ceiling receptacles for the four garage door openers. Coordinate exact placement with opener rail/motor locations before rough-in.</td></tr>
+                  <tr><td>Waterproof / weatherproof receptacles</td><td class="num">19</td><td>Main 14 + Upper 5</td><td>Weather-rated box, WR receptacle where required, in-use cover, and GFCI protection where code requires.</td></tr>
+                  <tr><td>Countertop / island GFCI receptacles</td><td class="num">24</td><td>Main 18 + Upper 3 + Lower 3</td><td>GFCI-protected 120V receptacles for countertop, island, wet, bath, and similar locations.</td></tr>
+                  <tr><td>Range / appliance outlets</td><td class="num">3</td><td>Main wall loads</td><td>Equipment receptacles. Verify 120V/240V, amp rating, plug type, and conductor size from appliance cut sheets.</td></tr>
+                  <tr><td>Microwave outlet</td><td class="num">1</td><td>Main wall loads</td><td>Dedicated or appliance branch receptacle as required by equipment and code.</td></tr>
+                  <tr><td>Stack washer/dryer outlet</td><td class="num">1</td><td>Main wall loads</td><td>Laundry equipment receptacle. Verify actual stacked unit voltage/amp requirements.</td></tr>
+                  <tr><td>Hybrid water heater outlet</td><td class="num">1</td><td>Upper wall loads</td><td>240V equipment circuit/receptacle or disconnect per water heater submittal.</td></tr>
+                  <tr><td>Smart toilet power</td><td class="num">1</td><td>Lower wall loads</td><td>GFCI-protected 120V receptacle at smart toilet location per fixture requirements.</td></tr>
+                  <tr><td>CATV + 120V combo locations</td><td class="num">3</td><td>Main wall loads</td><td>Listed combo low-voltage + 120V box/plate or separate adjacent boxes with required separation.</td></tr>
+                  <tr><td>HVAC / equipment disconnects</td><td class="num">13</td><td>Electrical fixture takeoff</td><td>Disconnects at HVAC/equipment locations. Verify fusible/non-fusible, voltage, fuse size, and working clearance.</td></tr>
+                  <tr><td>Upper fusible 240V disconnects</td><td class="num">2</td><td>Upper wall-load DWFx</td><td>Included in the disconnect coordination above unless final panel schedule identifies them separately.</td></tr>
+                  <tr><td>Smoke / CO detector locations</td><td class="num">9</td><td>Electrical fixture takeoff</td><td>Interconnected smoke/CO rough-in or smart detector installation per code and selected product.</td></tr>
+                  <tr><td>120V utility / motion lights</td><td class="num">7</td><td>Electrical page utility note</td><td>Mechanical, garage mechanical, pantry/storage, ADU utility, plus three utility/motion fixtures on shared lighting circuit where allowed.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Lighting / Tape-Light Install List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Basis</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>Upper ceiling tape-light objects</td><td class="num">63 objects / 817.1 LF</td><td>OVE Upper Electrical Ceiling DWFx</td><td>Order approximately 940 LF with 15% allowance. Separate interior and exterior/wet tape/channel before purchase.</td></tr>
+                  <tr><td>Lower ceiling tape-light objects</td><td class="num">24 objects / 356.2 LF</td><td>Lower Electrical Ceiling DWFx</td><td>Order approximately 410 LF with 15% allowance. Includes lower/ADU/rear patio runs.</td></tr>
+                  <tr><td>Total tape and channel order basis</td><td class="num">1,350 LF</td><td>1,173.3 LF takeoff + 15%</td><td>24V 3000K 95+ CRI tape basis. Exterior runs require wet-rated tape, wet-rated channel/lens/end caps, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Upper controlled 24V tape outputs</td><td class="num">17</td><td>U-01 through U-17</td><td>Each output: Mean Well 24V supply -&gt; Phoenix fused terminal -&gt; Shelly Pro RGBWW PM -&gt; tape zone.</td></tr>
+                  <tr><td>Lower controlled 24V tape outputs</td><td class="num">7</td><td>L-01 through L-07</td><td>Each output: Mean Well 24V supply -&gt; Phoenix fused terminal -&gt; Shelly Pro RGBWW PM -&gt; tape zone.</td></tr>
+                  <tr><td>Shelly Pro RGBWW PM tape controllers</td><td class="num">24</td><td>One per scheduled tape output</td><td>DIN rail mounted in LVP-1 through LVP-4. Label SH-01 through SH-24 by cabinet and termination.</td></tr>
+                  <tr><td>Phoenix fused 24V output terminals</td><td class="num">24 + spares</td><td>One fused output per tape zone</td><td>Use Phoenix Contact ST 4-FSI/C-LED 24 or approved equal. Fuse each 24V positive output to actual tape load/wire size.</td></tr>
+                  <tr><td>Mean Well SDR-480-24 power supplies</td><td class="num">12</td><td>8 upper + 4 lower</td><td>DIN rail power supplies in the LVP cabinets. Shared supplies feed multiple fused outputs; not one supply per Shelly.</td></tr>
+                  <tr><td>120V breaker feeds for tape supplies</td><td class="num">3 x 20A</td><td>Current panel/cabinet elevation basis</td><td>2 x 20A feeds for UDB/LVP upper supplies, 1 x 20A feed for LDB/LVP lower supplies. Reconcile older notes before permit set.</td></tr>
+                  <tr><td>Shade/control feed</td><td class="num">1 x 15A</td><td>BC-1 shade cabinet</td><td>Feeds Somfy RS485/IP shade controls and 11 shade motor terminations.</td></tr>
+                  <tr><td>Fixture schedule downlights/pendants</td><td class="num">66 clean / 172 incl. verify rows</td><td>Electrical fixture CSV</td><td>Clean rows: main and named upper/lower fixtures. OCR family totals show additional mixed Focal Point/XAL counts requiring plan verification before purchase.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Panels / Cabinets / DIN Controls</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Location / grouping</th><th>What gets mounted</th></tr></thead>
+                <tbody>
+                  <tr><td>Main breaker/load panels</td><td class="num">4</td><td>Panel 1, Panel 2, Panel 3, Panel 4 areas</td><td>120V/240V breaker panels/load centers by area. Final pole count and service/load calculation by electrical permit set.</td></tr>
+                  <tr><td>Leviton smart load centers</td><td class="num">2</td><td>Electrical fixture schedule</td><td>Coordinate with the 4-area panel design; do not buy until panelboard manufacturer/size is locked.</td></tr>
+                  <tr><td>Leviton 28 in media center</td><td class="num">1</td><td>Lower wall-load schedule</td><td>Structured wiring/media enclosure with power and low-voltage terminations.</td></tr>
+                  <tr><td>LVP-1 upper control cabinet</td><td class="num">1</td><td>Panel 1 area</td><td>3 x SDR-480 supplies, 5 fuses, 5 Shelly modules, U-01 through U-05 terminals.</td></tr>
+                  <tr><td>LVP-2 upper control cabinet</td><td class="num">1</td><td>Panel 2 area</td><td>5 x SDR-480 supplies, 12 fuses, 12 Shelly modules, U-06 through U-17 terminals.</td></tr>
+                  <tr><td>LVP-3 lower control cabinet</td><td class="num">1</td><td>Panel 3 area</td><td>2 x SDR-480 supplies, 4 fuses, 4 Shelly modules, L-01 through L-04 terminals.</td></tr>
+                  <tr><td>LVP-4 lower control cabinet</td><td class="num">1</td><td>Panel 4 area</td><td>2 x SDR-480 supplies, 3 fuses, 3 Shelly modules, L-05 through L-07 terminals.</td></tr>
+                  <tr><td>BC-1 shade control cabinet</td><td class="num">1</td><td>Shade/blind controls</td><td>Somfy RS485/IP interface, RS485 terminals, 120V feed terminals, and M-01 through M-11 motor terminations.</td></tr>
+                  <tr><td>AV/network rack</td><td class="num">1</td><td>Mechanical/comms area</td><td>24U wall rack, UPS, PDU, gateway/firewall, PoE switch, patch panels, NVR, AV/network terminations.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Low-Voltage / Cable Run List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Run type</th><th class="num">Qty</th><th>Calculated from</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>Axion / PoE touch-screen rough-ins</td><td class="num">17 plan / 12 costed</td><td>Fixture schedule vs current electrical material page</td><td>Pull home-run Cat6/Cat6A to every displayed control location; final screen order count must be reconciled.</td></tr>
+                  <tr><td>LAN1 data/control drops</td><td class="num">19</td><td>Main 14 + Level 12 5 in fixture schedule</td><td>Home-run Cat6/Cat6A to rack or approved local switch. Label by room/device.</td></tr>
+                  <tr><td>Legrand communication + 120 combo locations</td><td class="num">9</td><td>Main 7 + Basement 1 + Level 12 1</td><td>Provide low-voltage pathway and listed separation from 120V conductors.</td></tr>
+                  <tr><td>Wi-Fi access point drops</td><td class="num">9</td><td>Electrical network scope</td><td>Use 9 as rough-in basis, including panic room and exterior coverage, even though AV workbook carries 7 AP devices.</td></tr>
+                  <tr><td>PoE camera drops</td><td class="num">11</td><td>A111/A112 AV schedule</td><td>Home-run Cat6/Cat6A from each camera to AV/security rack or camera PoE switch. Label both ends by camera number/location.</td></tr>
+                  <tr><td>Video doorbell rough-ins</td><td class="num">2</td><td>A111 AV schedule</td><td>Provide doorbell power/wiring path and network coverage. eufy E340 can be battery or wired; wire it now.</td></tr>
+                  <tr><td>TV locations</td><td class="num">5</td><td>1 Sony 85 + 4 Sony 75</td><td>Each gets 120V receptacle, Cat6/Cat6A, and conduit/path for HDMI/AV wiring as required.</td></tr>
+                  <tr><td>Soundbar interfaces</td><td class="num">5</td><td>Sonos Arc schedule</td><td>Coordinate 120V, TV eARC HDMI path, blocking, bracket height, and service access.</td></tr>
+                  <tr><td>Projector run</td><td class="num">1</td><td>150 in screen system</td><td>120V receptacle, Cat6/Cat6A, active optical HDMI/fiber/conduit path, mount blocking, and service loop.</td></tr>
+                  <tr><td>Projection screen control/power</td><td class="num">1</td><td>Screen Innovations 150 in screen</td><td>Power and control path at screen/recess. Confirm low-voltage trigger, RS232/IP, or dry-contact control before rough-in.</td></tr>
+                  <tr><td>Theater speaker wire runs</td><td class="num">8</td><td>2 LR + 4 surround + 2 sub/signal paths</td><td>Home-run to AV rack/receiver. Use in-wall-rated speaker cable/sub cable and label speaker position.</td></tr>
+                  <tr><td>Shade motor runs</td><td class="num">11</td><td>Somfy schedule</td><td>120VAC to each motor plus RS485/control bus/path back to BC-1. Label M-01 through M-11.</td></tr>
+                  <tr><td>Smart lock hardware locations</td><td class="num">8</td><td>A111 Level Bolt schedule</td><td>Hardware install/count only; battery lock, no line-voltage rough-in unless door hardware submittal changes.</td></tr>
+                  <tr><td>Homey hub / bridge locations</td><td class="num">8</td><td>5 Homey Pro + 3 Homey Bridge</td><td>Coordinate whether these remain distributed devices or are replaced by the self-hosted rack server strategy.</td></tr>
+                  <tr><td>Minimum calculated LV home-runs</td><td class="num">101+</td><td>Rows above, excluding duplicate/optional spares</td><td>Provide spare conduits/pull strings at rack, theater, panels, exterior cameras, projector, and screen. Do not daisy-chain unless a local switch is installed and labeled.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>AV / Automation Device Install List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Device / system</th><th class="num">Qty</th><th>Install note</th></tr></thead>
+                <tbody>
+                  <tr><td>Sony Bravia XR-85X90L 85 in TV</td><td class="num">1</td><td>TV bracket/blocking, 120V, Cat6/Cat6A, HDMI/conduit path, and soundbar interface if paired.</td></tr>
+                  <tr><td>Sony Bravia XR-75X90L 75 in TV</td><td class="num">4</td><td>Same rough-in package at each 75 in TV location.</td></tr>
+                  <tr><td>Sonos Arc soundbar</td><td class="num">5</td><td>Mounting/blocking, 120V, and HDMI eARC route to paired TV.</td></tr>
+                  <tr><td>McIntosh MHT300 receiver</td><td class="num">1</td><td>Rack-mounted AVR with ventilation, speaker terminations, HDMI/projector path, and network/control connection.</td></tr>
+                  <tr><td>MartinLogan XTW6 LR speakers</td><td class="num">2</td><td>Back boxes/blocking and in-wall speaker wire to rack.</td></tr>
+                  <tr><td>MartinLogan XTC8-HT surround speakers</td><td class="num">4</td><td>Ceiling/wall speaker rough-in, back boxes where required, and labeled speaker wire.</td></tr>
+                  <tr><td>MartinLogan Dynamo 12 subwoofers</td><td class="num">2</td><td>120V receptacle and sub/LFE signal path at each sub location.</td></tr>
+                  <tr><td>Screen Innovations 150 in AT screen</td><td class="num">1</td><td>Blocking/recess/power/control. Confirm exact model and aspect ratio before order.</td></tr>
+                  <tr><td>Projector</td><td class="num">1</td><td>Mount blocking, 120V, Cat6/Cat6A, HDMI/fiber/conduit path, ventilation, and service loop.</td></tr>
+                  <tr><td>eufy E340 video doorbell</td><td class="num">2</td><td>Wire now even if final device can run battery. Confirm chime/power strategy.</td></tr>
+                  <tr><td>eufy PoE cameras</td><td class="num">11</td><td>Home-run Cat6/Cat6A and exterior-rated mounting details at each camera.</td></tr>
+                  <tr><td>eufy 2TB NVR / PoE recorder</td><td class="num">1</td><td>Rack location with UPS-backed power, network uplink, and camera switch connectivity.</td></tr>
+                  <tr><td>Somfy Sonesse shade motors</td><td class="num">11</td><td>4 x Sonesse 60 RS485, 6 x Sonesse 100 RS485, 1 x Sonesse 100 HT RS485. Label motor terminations M-01 through M-11.</td></tr>
+                  <tr><td>Level Bolt smart locks</td><td class="num">8</td><td>Door hardware install coordination. Verify bore/latch compatibility with selected doors.</td></tr>
+                </tbody>
+              </table>
+            </div>
           </section>
         </section>
       </div>
