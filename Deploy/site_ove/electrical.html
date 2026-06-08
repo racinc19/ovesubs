@@ -101,7 +101,8 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-blinds:checked ~ .tab-labels label[for=tab-blinds],
 #tab-av:checked ~ .tab-labels label[for=tab-av],
 #tab-install:checked ~ .tab-labels label[for=tab-install],
-#tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
+#tab-panels:checked ~ .tab-labels label[for=tab-panels],
+#tab-plansheets:checked ~ .tab-labels label[for=tab-plansheets]{background:var(--blue);border-color:var(--blue);color:#fff}
 #tab-main-wall:checked ~ .tab-panels #panel-main-wall,
 #tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
 #tab-upper-wall:checked ~ .tab-panels #panel-upper-wall,
@@ -111,7 +112,16 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-blinds:checked ~ .tab-panels #panel-blinds,
 #tab-av:checked ~ .tab-panels #panel-av,
 #tab-install:checked ~ .tab-panels #panel-install,
-#tab-panels:checked ~ .tab-panels #panel-panels{display:block}
+#tab-panels:checked ~ .tab-panels #panel-panels,
+#tab-plansheets:checked ~ .tab-panels #panel-plansheets{display:block}
+.plan-sheets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.plan-sheet{display:flex;flex-direction:column;padding:14px 16px}
+.plan-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.plan-sheet-h h3{font-size:14px;font-weight:800;color:var(--txt)}
+.plan-open{padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);text-decoration:none;white-space:nowrap}
+.plan-open:hover{border-color:var(--blue);color:var(--txt)}
+.plan-frame{width:100%;height:520px;border:1px solid var(--bdr);border-radius:8px;background:#0f1726}
+@media(max-width:1100px){.plan-sheets{grid-template-columns:1fr}}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
   </style>
@@ -149,6 +159,7 @@ details.cat summary::-webkit-details-marker{display:none}
       <input type="radio" name="electrical-tabs" id="tab-av">
       <input type="radio" name="electrical-tabs" id="tab-install">
       <input type="radio" name="electrical-tabs" id="tab-panels">
+      <input type="radio" name="electrical-tabs" id="tab-plansheets">
 
       <div class="tab-labels">
         <label for="tab-main-wall">Main Wall Loads</label>
@@ -161,6 +172,7 @@ details.cat summary::-webkit-details-marker{display:none}
         <label for="tab-av">AV</label>
         <label for="tab-install">Install List</label>
         <label for="tab-panels">Panels</label>
+        <label for="tab-plansheets">Plan Sheets</label>
       </div>
 
       <div class="tab-panels">
@@ -1856,6 +1868,39 @@ details.cat summary::-webkit-details-marker{display:none}
                   <tr><td>Level Bolt smart locks</td><td class="num">8</td><td>Door hardware install coordination. Verify bore/latch compatibility with selected doors.</td></tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-plansheets">
+          <section class="card full-card">
+            <div class="card-h"><h2>Electrical Plan Sheets</h2></div>
+            <div class="note">Rodriguez residence electrical drawing set (E100&ndash;E105). Each sheet renders below; use <b>Open full sheet</b> to view or download the PDF in a new tab.</div>
+            <div class="plan-sheets">
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E100 &mdash; Main Electrical</h3><a class="plan-open" href="plans/electrical/E100-Main-Electrical.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E100-Main-Electrical.pdf" title="E100 - Main Electrical" loading="lazy"></iframe>
+              </section>
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E101 &mdash; Upper / Lower Electrical</h3><a class="plan-open" href="plans/electrical/E101-Upper-Lower-Electrical.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E101-Upper-Lower-Electrical.pdf" title="E101 - Upper-Lower Electrical" loading="lazy"></iframe>
+              </section>
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E102 &mdash; Main Ceiling Electrical</h3><a class="plan-open" href="plans/electrical/E102-Main-Ceiling-Electrical.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E102-Main-Ceiling-Electrical.pdf" title="E102 - Main Ceiling Electrical" loading="lazy"></iframe>
+              </section>
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E103 &mdash; Upper / Lower Electrical Ceiling</h3><a class="plan-open" href="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf" title="E103 - Upper-Lower Electrical Ceiling" loading="lazy"></iframe>
+              </section>
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E104 &mdash; Panels</h3><a class="plan-open" href="plans/electrical/E104-Panels.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E104-Panels.pdf" title="E104 - Panels" loading="lazy"></iframe>
+              </section>
+              <section class="card plan-sheet">
+                <div class="plan-sheet-h"><h3>E105 &mdash; Panel Schedule</h3><a class="plan-open" href="plans/electrical/E105-Panel-Schedule.pdf" target="_blank" rel="noopener noreferrer">Open full sheet &#8599;</a></div>
+                <iframe class="plan-frame" src="plans/electrical/E105-Panel-Schedule.pdf" title="E105 - Panel Schedule" loading="lazy"></iframe>
+              </section>
             </div>
           </section>
         </section>
