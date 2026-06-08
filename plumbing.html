@@ -114,6 +114,21 @@ details.cat summary::-webkit-details-marker{display:none}
 #tab-panels:checked ~ .tab-panels #panel-panels{display:block}
 @media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
 @media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
+.plan-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.plan-sheet-h h3{font-size:14px;font-weight:800;color:var(--txt)}
+.plan-frame{width:100%;height:520px;border:1px solid var(--bdr);border-radius:8px;background:#0f1726}
+.plan-embed{margin-top:14px}
+.plan-embed .plan-sheet-h{padding:14px 16px 10px;margin-bottom:0}
+.plan-embed .plan-frame{height:560px;margin:0 16px 16px;width:calc(100% - 32px)}
+.plan-expand{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:800;border:1px solid var(--bdr);background:rgba(59,130,246,.10);color:#bfdbfe;cursor:pointer;white-space:nowrap}
+.plan-expand:hover{border-color:var(--blue);color:#fff;background:rgba(59,130,246,.22)}
+.plan-lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(8,12,20,.97);flex-direction:column}
+.plan-lightbox.open{display:flex}
+.plan-lightbox-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--bdr)}
+.plan-lightbox-bar span{font-weight:800;color:#fff;font-size:13px}
+.plan-lightbox-close{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:800;border:1px solid var(--bdr);background:transparent;color:var(--txt);cursor:pointer}
+.plan-lightbox-close:hover{border-color:var(--red);color:#fff}
+.plan-lightbox iframe{flex:1;width:100%;border:0;background:#0f1726}
   </style>
 </head>
 <body>
@@ -131,6 +146,10 @@ details.cat summary::-webkit-details-marker{display:none}
 <div class="container">
   <div class="h1">Plumbing Summary</div>
   <div class="sub">Fixture schedule by room — from the priced plumbing list. Plan sheet: <b>P100 — Plumbing</b>.</div>
+  <section class="card plan-embed">
+    <div class="plan-sheet-h"><h3>P100 &mdash; Plumbing</h3><button class="plan-expand" type="button" data-pdf="plans/plumbing/P100-Plumbing.pdf" data-title="P100 — Plumbing">Expand full screen &#10530;</button></div>
+    <iframe class="plan-frame" src="plans/plumbing/P100-Plumbing.pdf#view=FitH" title="P100 - Plumbing" loading="lazy"></iframe>
+  </section>
   <div class="note" style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
     <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer"
        style="padding:8px 12px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);text-decoration:none">Open Plumbing Plan (P100) ↗</a>
@@ -149,4 +168,42 @@ details.cat summary::-webkit-details-marker{display:none}
   <div class="note" style="margin-top:14px"><span class="badge">Note</span>
     Built from the project's priced plumbing list. Update that list and rebuild to refresh.</div>
 </div>
+
+  <div class="plan-lightbox" id="planLightbox" aria-hidden="true">
+    <div class="plan-lightbox-bar">
+      <span id="planLightboxTitle"></span>
+      <button class="plan-lightbox-close" id="planLightboxClose" type="button">Close &#10005;</button>
+    </div>
+    <iframe id="planLightboxFrame" title="Plan sheet full screen"></iframe>
+  </div>
+
+  <script>
+(function(){
+  var lb=document.getElementById('planLightbox');
+  var lf=document.getElementById('planLightboxFrame');
+  var lt=document.getElementById('planLightboxTitle');
+  if(!lb||!lf||!lt) return;
+  function openPlan(pdf,title){
+    lf.src=pdf+'#view=FitH';
+    lt.textContent=title||'';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closePlan(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    lf.src='about:blank';
+    document.body.style.overflow='';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.plan-expand'),function(btn){
+    btn.addEventListener('click',function(){
+      openPlan(btn.getAttribute('data-pdf'),btn.getAttribute('data-title'));
+    });
+  });
+  document.getElementById('planLightboxClose').addEventListener('click',closePlan);
+  lb.addEventListener('click',function(e){ if(e.target===lb) closePlan(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closePlan(); });
+})();
+  </script>
 </body></html>
