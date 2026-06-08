@@ -39,6 +39,100 @@ details.cat summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:1
 details.cat summary::-webkit-details-marker{display:none}
 .note{padding:12px 16px;font-size:12px;color:var(--txt2)}
 .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;border:1px solid rgba(234,179,8,.35);color:var(--yellow);background:rgba(234,179,8,.07);margin-left:8px}
+.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.metric{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:12px}
+.metric .label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:800}
+.metric .value{font-size:22px;font-weight:900;margin-top:4px;color:#fff}
+.metric .hint{font-size:11px;color:var(--txt2);margin-top:3px}
+.full-card{margin-top:14px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
+.callout.warn{border-left-color:var(--yellow);background:rgba(234,179,8,.07)}
+.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
+.total-row td{font-weight:900;color:#fff;background:rgba(34,197,94,.08)}
+@media(max-width:1180px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.metrics{grid-template-columns:1fr}}
+.tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
+.panel-layout{display:grid;grid-template-columns:1fr;gap:16px;padding:16px}
+.layout-bank{border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.02);padding:14px}
+.layout-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:10px}
+.layout-row{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;gap:10px;align-items:stretch}
+.layout-box{border:1px solid rgba(148,163,184,.35);border-radius:8px;background:var(--card2);padding:12px;min-height:142px}
+.layout-box.ac{border-color:rgba(239,68,68,.45)}
+.layout-box.ps{border-color:rgba(234,179,8,.55)}
+.layout-box.lv{border-color:rgba(34,197,94,.45)}
+.layout-box h3{font-size:11px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;color:#fff}
+.layout-box ul{list-style:none;display:grid;gap:5px}
+.layout-box li{font-size:11px;color:var(--txt2)}
+.layout-arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);font-weight:900}
+.layout-note{font-size:11px;color:var(--txt2);margin-top:10px}
+.panel-drawing{padding:16px;border-top:1px solid rgba(42,58,85,.35)}
+.panel-drawing svg{width:100%;height:auto;display:block;background:#0f1726;border:1px solid var(--bdr);border-radius:8px}
+.panel-drawing text{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.panel-drawing .cab{fill:#172235;stroke:#6b7f99;stroke-width:2}
+.panel-drawing .door{fill:none;stroke:#3d516d;stroke-width:1.5;stroke-dasharray:6 5}
+.panel-drawing .duct{fill:#24334d;stroke:#50627d;stroke-width:1}
+.panel-drawing .rail{stroke:#cbd5e1;stroke-width:4}
+.panel-drawing .breaker{fill:#3f1f2a;stroke:#ef4444;stroke-width:1.5}
+.panel-drawing .psu{fill:#3d3215;stroke:#eab308;stroke-width:1.5}
+.panel-drawing .fuse{fill:#173421;stroke:#22c55e;stroke-width:1.2}
+.panel-drawing .shelly{fill:#153447;stroke:#06b6d4;stroke-width:1.2}
+.panel-drawing .term{fill:#273244;stroke:#94a3b8;stroke-width:1.1}
+.panel-drawing .wire{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}
+.panel-drawing .wire24{fill:none;stroke:#22c55e;stroke-width:2;marker-end:url(#arrowGreen)}
+.panel-drawing .wire120{fill:none;stroke:#ef4444;stroke-width:2;marker-end:url(#arrowRed)}
+.panel-drawing .title{fill:#fff;font-size:16px;font-weight:900}
+.panel-drawing .label{fill:#cbd5e1;font-size:11px;font-weight:800}
+.panel-drawing .small{fill:#94a3b8;font-size:9px}
+.panel-drawing .tiny{fill:#dbeafe;font-size:8px;font-weight:800}
+.tabs{margin-top:14px}
+.tabs input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.tab-labels{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);padding-bottom:8px}
+.tab-labels label{cursor:pointer;border:1px solid var(--bdr);background:var(--card);color:var(--txt2);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;white-space:nowrap}
+.tab-labels label:hover{background:var(--hover);color:var(--txt)}
+.tab-panel{display:none;margin-top:14px}
+#tab-main-wall:checked ~ .tab-labels label[for=tab-main-wall],
+#tab-main-ceiling:checked ~ .tab-labels label[for=tab-main-ceiling],
+#tab-upper-wall:checked ~ .tab-labels label[for=tab-upper-wall],
+#tab-upper-ceiling:checked ~ .tab-labels label[for=tab-upper-ceiling],
+#tab-lower-wall:checked ~ .tab-labels label[for=tab-lower-wall],
+#tab-lower-ceiling:checked ~ .tab-labels label[for=tab-lower-ceiling],
+#tab-circuit-map:checked ~ .tab-labels label[for=tab-circuit-map],
+#tab-blinds:checked ~ .tab-labels label[for=tab-blinds],
+#tab-av:checked ~ .tab-labels label[for=tab-av],
+#tab-install:checked ~ .tab-labels label[for=tab-install]{background:var(--blue);border-color:var(--blue);color:#fff}
+#tab-main-wall:checked ~ .tab-panels #panel-main-wall,
+#tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
+#tab-upper-wall:checked ~ .tab-panels #panel-upper-wall,
+#tab-upper-ceiling:checked ~ .tab-panels #panel-upper-ceiling,
+#tab-lower-wall:checked ~ .tab-panels #panel-lower-wall,
+#tab-lower-ceiling:checked ~ .tab-panels #panel-lower-ceiling,
+#tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
+#tab-blinds:checked ~ .tab-panels #panel-blinds,
+#tab-av:checked ~ .tab-panels #panel-av,
+#tab-install:checked ~ .tab-panels #panel-install{display:block}
+.plan-sheets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.plan-sheet{display:flex;flex-direction:column;padding:14px 16px}
+.plan-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.plan-sheet-h h3{font-size:14px;font-weight:800;color:var(--txt)}
+.plan-open{padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);text-decoration:none;white-space:nowrap}
+.plan-open:hover{border-color:var(--blue);color:var(--txt)}
+.plan-frame{width:100%;height:520px;border:1px solid var(--bdr);border-radius:8px;background:#0f1726}
+@media(max-width:1100px){.plan-sheets{grid-template-columns:1fr}}
+@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
+@media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
+.plan-embed{margin-top:14px}
+.plan-embed .plan-sheet-h{padding:14px 16px 10px;margin-bottom:0}
+.plan-embed .plan-frame{height:560px;margin:0 16px 16px;width:calc(100% - 32px)}
+.plan-expand{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:800;border:1px solid var(--bdr);background:rgba(59,130,246,.10);color:#bfdbfe;cursor:pointer;white-space:nowrap}
+.plan-expand:hover{border-color:var(--blue);color:#fff;background:rgba(59,130,246,.22)}
+.plan-lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(8,12,20,.97);flex-direction:column}
+.plan-lightbox.open{display:flex}
+.plan-lightbox-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--bdr)}
+.plan-lightbox-bar span{font-weight:800;color:#fff;font-size:13px}
+.plan-lightbox-close{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:800;border:1px solid var(--bdr);background:transparent;color:var(--txt);cursor:pointer}
+.plan-lightbox-close:hover{border-color:var(--red);color:#fff}
+.plan-lightbox iframe{flex:1;width:100%;border:0;background:#0f1726}
   </style>
 </head>
 <body>
@@ -46,6 +140,7 @@ details.cat summary::-webkit-details-marker{display:none}
     <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
     <div class="topnav-links">
       <a href="index.html">Dashboard</a>
+    <a href="subs.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--orange);text-decoration:none;border:1px solid rgba(245,158,11,.3)">👷 Subs List</a>
       <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer">Plans &amp; Permits</a>
       <a href="selections.html">Selections</a>
       <a class="active" href="electrical.html">Electrical</a>
@@ -55,22 +150,847 @@ details.cat summary::-webkit-details-marker{display:none}
 
   <div class="container" id="app">
     <div class="h1">Electrical Summary</div>
-    <div class="sub" id="genSub">Loading…</div>
+    <div class="sub" id="genSub">Ceiling tape-light procurement and control schedule. Updated from the current DWFx takeoffs.</div>
     <div class="note" id="srcNote" style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-      <span class="muted" id="srcLabel">Source: (loading)</span>
-      <button id="btnSetUrl" style="padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
-      <button id="btnClearUrl" style="padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
+      <span class="muted" id="srcLabel">Source: current DWFx takeoffs from 2026-05-27: upper ceiling, lower ceiling, upper/lower/main wall loads.</span>
+      <button id="btnSetUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Set Sheet URL</button>
+      <button id="btnClearUrl" style="display:none;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer">Clear</button>
     </div>
 
-    <div class="grid">
+    <div class="tabs">
+      <input type="radio" name="electrical-tabs" id="tab-main-wall" checked>
+      <input type="radio" name="electrical-tabs" id="tab-lower-wall">
+      <input type="radio" name="electrical-tabs" id="tab-upper-wall">
+      <input type="radio" name="electrical-tabs" id="tab-main-ceiling">
+      <input type="radio" name="electrical-tabs" id="tab-lower-ceiling">
+      <input type="radio" name="electrical-tabs" id="tab-upper-ceiling">
+      <input type="radio" name="electrical-tabs" id="tab-circuit-map">
+      <input type="radio" name="electrical-tabs" id="tab-blinds">
+      <input type="radio" name="electrical-tabs" id="tab-av">
+      <input type="radio" name="electrical-tabs" id="tab-install">
+
+      <div class="tab-labels">
+        <label for="tab-main-wall">Main Walls</label>
+        <label for="tab-lower-wall">Lower Walls</label>
+        <label for="tab-upper-wall">Upper Walls</label>
+        <label for="tab-main-ceiling">Main Ceiling</label>
+        <label for="tab-lower-ceiling">Lower Ceiling</label>
+        <label for="tab-upper-ceiling">Upper Ceiling</label>
+        <label for="tab-circuit-map">Circuit Maps</label>
+        <label for="tab-blinds">Blinds / Shades</label>
+        <label for="tab-av">AV</label>
+        <label for="tab-install">Install List</label>
+      </div>
+
+      <div class="tab-panels">
+        <section class="tab-panel" id="panel-main-wall">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E100 &mdash; Main Electrical (Main Wall Plan)</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E100-Main-Electrical.pdf" data-title="E100 — Main Electrical">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E100-Main-Electrical.pdf#view=FitH" title="E100 - Main Electrical" loading="lazy"></iframe>
+          </section>
+          <section class="card">
+            <div class="card-h"><h2>Main Wall Loads / 120V Devices</h2></div>
+            <div class="note">Main wall loads checked from Main wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and equipment rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Circuit / Rough-In</th><th class="num">Count</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Wall duplex receptacles</td><td>120V branch circuit</td><td class="num">27</td><td>Standard wall duplex outlets shown in the main wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
+                  <tr><td>Floor duplex receptacles</td><td>120V branch circuit</td><td class="num">5</td><td>DWFx family is Outlet Floor-Duplex. Coordinate final box/device type with floor finish and cover requirements.</td></tr>
+                  <tr><td>Waterproof receptacles</td><td>120V weatherproof/GFCI where required</td><td class="num">14</td><td>DWFx family is Outlet-WP / Water Proof. Use in-use covers and GFCI protection where code requires.</td></tr>
+                  <tr><td>Countertop GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">14</td><td>DWFx family is Outlet-GFI / Countertop. Provide kitchen, bath, wet-location, and countertop protection as required.</td></tr>
+                  <tr><td>Island GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">4</td><td>DWFx family is Outlet-GFI / Island. Coordinate final island/peninsula receptacle placement with cabinet shop and code.</td></tr>
+                  <tr><td>Range outlets</td><td>Equipment circuit, verify voltage/amps</td><td class="num">3</td><td>DWFx family is Outlet-Range / Single / Range. Verify each appliance cut sheet before breaker and conductor sizing.</td></tr>
+                  <tr><td>Microwave outlet</td><td>Dedicated or appliance branch circuit</td><td class="num">1</td><td>DWFx family is Outlet-Range / Micro Wave. Verify whether dedicated circuit is required by equipment and code.</td></tr>
+                  <tr><td>Stack washer/dryer outlet</td><td>Laundry equipment circuit</td><td class="num">1</td><td>DWFx family is Outlet-Range / Stack. Verify actual washer/dryer voltage and amp requirements before rough-in.</td></tr>
+                  <tr><td>240V fusible 30A disconnects</td><td>240V equipment disconnect</td><td class="num">4</td><td>DWFx object type is Disconnect Switches / 240V - Fusible 30A. Coordinate final fuse size with served equipment.</td></tr>
+                  <tr><td>240V fusible 40A disconnect</td><td>240V equipment disconnect</td><td class="num">1</td><td>DWFx object type is Disconnect Switches / 240V - Fusible 40A. Verify equipment nameplate before installation.</td></tr>
+                  <tr><td>LAN1 wall controls</td><td>Low-voltage/control rough-in</td><td class="num">6</td><td>DWFx family is Switch-Three Way / LAN1. Treat as control/keypad rough-in unless electrical designer revises.</td></tr>
+                  <tr><td>LAN4 PoE touch screens</td><td>Cat5e/PoE rough-in</td><td class="num">5</td><td>DWFx type mark is 8&quot; Android PoE Touch Screen. Pull Cat5e to the assigned low-voltage/control location.</td></tr>
+                  <tr><td>LAN5 wall controls</td><td>Low-voltage/control rough-in</td><td class="num">3</td><td>DWFx family is Switch-Three Way / LAN 5. Coordinate control function with lighting/control schedule.</td></tr>
+                  <tr><td>CATV + 120V combo outlets</td><td>Low-voltage + 120V combo rough-in</td><td class="num">3</td><td>DWFx family is Outlet-Communications / CATV; model notes Legrand 9&quot; and 120V duplex. Coordinate low-voltage and power separation.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="card">
+            <div class="card-h"><h2>Main 120V Utility / Motion Lights</h2></div>
+            <div class="note">Use one shared 120V utility/motion lighting circuit for miscellaneous non-tape fixtures where code/load allows. Separate Shelly relay channels are only required where the loads need independent app/control switching.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Load Group</th><th>Voltage</th><th>Control</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
+                  <tr><td>Garage mechanical utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
+                  <tr><td>Pantry/storage utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Loop on the Panel 3 utility 20A lighting circuit.</td></tr>
+                  <tr><td>Three additional utility lights</td><td>120V</td><td>Local motion</td><td>Include all three utility/motion fixtures on shared 1-120 feed; no separate Shelly needed if only motion-control is desired.</td></tr>
+                  <tr><td>ADU 120V utility light</td><td>120V</td><td>Local motion or shared relay</td><td>Include on 1-120 where code/load allows unless a separate controlled feed is intentionally shown.</td></tr>
+                  <tr><td>Independently switched 120V loads</td><td>120V</td><td>Shelly relay channel/module</td><td>Same branch circuit is acceptable; independent control requires separate relay output/channel.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-main-ceiling">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E102 &mdash; Main Ceiling Electrical</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E102-Main-Ceiling-Electrical.pdf" data-title="E102 — Main Ceiling Electrical">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E102-Main-Ceiling-Electrical.pdf#view=FitH" title="E102 - Main Ceiling Electrical" loading="lazy"></iframe>
+          </section>
+
+    <div class="schedule-grid">
+      <div class="metric">
+        <div class="label">CAD Tape Takeoff</div>
+        <div class="value">1,373.5 LF</div>
+        <div class="hint">Total tape/channel footage shown on the ceiling plans</div>
+      </div>
+      <div class="metric">
+        <div class="label">Order Allowance</div>
+        <div class="value">1,580 LF</div>
+        <div class="hint">15% waste/cuts included</div>
+      </div>
+      <div class="metric">
+        <div class="label">120V Lighting Feeds</div>
+        <div class="value">6 feeds</div>
+        <div class="hint">Six 20A feeds: four to Upper driver cabinets and two to Lower driver cabinet</div>
+      </div>
+      <div class="metric">
+        <div class="label">Control Hardware</div>
+        <div class="value">24 zones</div>
+        <div class="hint">24 visible 24V control labels in current ceiling DWFx files</div>
+      </div>
+    </div>
+
+    <section class="card full-card">
+      <div class="card-h"><h2>Ceiling Tape-Light Package For Electrical Review</h2></div>
+      <div class="note">
+        Basis of design: 24V warm-white tape, Diode LED BLAZE X 200 or equal, 3000K, 95+ CRI, 3.1 W/LF.
+        Quantity below is the combined order package for interior, ADU, and exterior ceiling tape locations shown on the plan.
+        Do not substitute BLAZE X 300 or higher wattage tape without resizing drivers, Shelly modules, and branch circuits.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Spec / Basis</th>
+              <th class="num">Qty</th>
+              <th>Use / Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Interior LED tape</td>
+              <td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td>
+              <td class="num">10 x 100 ft spools</td>
+              <td>Install at all interior and ADU ceiling tape locations shown on the plan.</td>
+            </tr>
+            <tr>
+              <td>Exterior LED tape</td>
+              <td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td>
+              <td class="num">7 x 100 ft spools</td>
+              <td>Install at all exterior ceiling tape locations shown on the plan.</td>
+            </tr>
+            <tr>
+              <td>Interior aluminum channel</td>
+              <td>8 ft aluminum profile with frosted lens, end caps, clips</td>
+              <td class="num">120 sticks</td>
+              <td>Use at all interior cove/tray/tape locations.</td>
+            </tr>
+            <tr>
+              <td>Exterior aluminum channel</td>
+              <td>8 ft exterior/wet-rated aluminum profile with lens, end caps, clips</td>
+              <td class="num">78 sticks</td>
+              <td>Seal wire exits; mechanically fasten; do not rely on adhesive only.</td>
+            </tr>
+            <tr>
+              <td>24V LED drivers</td>
+              <td><a href="https://www.digikey.com/en/products/detail/mean-well-usa-inc/SDR-480-24/7706566" target="_blank" rel="noopener noreferrer">Mean Well SDR-480-24</a>, DIN rail, 480W, 24VDC, 20A power supply</td>
+              <td class="num">12 DIN supplies</td>
+              <td>Purchasable power supply. This is not one driver per Shelly. Use 8 DIN supplies for UDB Upper lighting and 4 DIN supplies for LDB Lower lighting; each supply feeds multiple individually fused Shelly/tape outputs as scheduled below.</td>
+            </tr>
+            <tr>
+              <td>UDB assembly - Upper lighting 24V controls</td>
+              <td>8 x Mean Well SDR-480-24 DIN power supplies + 2 x nVent Hoffman A42N3013 driver enclosures + 1 x nVent Hoffman A42N3613 low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a> modules</td>
+              <td class="num">1 assembly</td>
+              <td>Buildable upper-ceiling assembly. Feeds 17 current upper DWFx 24V zones. Label outputs UDB / PS-# / F-# / SH-# / U-#.</td>
+            </tr>
+            <tr>
+              <td>LDB assembly - Lower lighting 24V controls</td>
+              <td>4 x Mean Well SDR-480-24 DIN power supplies + 1 x nVent Hoffman A42N3013 driver enclosure + 1 x <a href="https://www.nvent.com/hoffman/products/enca24n206lp" target="_blank" rel="noopener noreferrer">Hoffman A24N206LP</a> low-voltage enclosure + <a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact 3036505</a> fused DIN terminals + <a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a> modules</td>
+              <td class="num">1 assembly</td>
+              <td>Buildable lower-ceiling assembly. Feeds 7 current lower DWFx 24V zones. Label outputs LDB / PS-# / F-# / SH-# / L-#.</td>
+            </tr>
+            <tr>
+              <td>24V fused distribution terminals</td>
+              <td><a href="https://www.phoenixcontact.com/en-pc/products/fuse-modular-terminal-block-st-4-fsic-led-24-3036505" target="_blank" rel="noopener noreferrer">Phoenix Contact ST 4-FSI/C-LED 24</a> fuse terminal block, item 3036505, on NS35 DIN rail</td>
+              <td class="num">24 minimum + spares</td>
+              <td>Use one fused 24V positive output per Shelly/tape zone. Size the blade fuse to the actual tape load and wire gauge. Do not land all 24V loads on an unfused common bus.</td>
+            </tr>
+            <tr>
+              <td>Shelly LED controllers</td>
+              <td><a href="https://us.shelly.com/products/shelly-pro-rgbww-pm" target="_blank" rel="noopener noreferrer">Shelly Pro RGBWW PM</a>, white-channel mode</td>
+              <td class="num">24 max</td>
+              <td>Carry one module per visible 24V control label in the current upper/lower ceiling DWFx files. Module count may be reduced only if multiple white channels are grouped on one Shelly and channel/module load ratings remain compliant.</td>
+            </tr>
+            <tr>
+              <td>Driver-bank enclosures</td>
+              <td>nVent Hoffman Type 1 steel wall-mount enclosures: A42N3013 for driver cabinets, A42N3613 for upper 24V controls, A24N206LP for lower 24V controls and shades</td>
+              <td class="num">6 total</td>
+              <td>Use UDB-A, UDB-B, UDB-C, LDB-A, LDB-B, and BC-1. Keep 120V driver cabinets separate from 24V fused/Shelly control cabinets.</td>
+            </tr>
+            <tr>
+              <td>DIN rail</td>
+              <td>Phoenix Contact NS 35/7.5 perforated DIN rail, 35 mm x 7.5 mm</td>
+              <td class="num">As required</td>
+              <td>Mount fuse terminals and control terminals inside each Hoffman control/fuse enclosure.</td>
+            </tr>
+            <tr>
+              <td>120V branch circuits</td>
+              <td>Dedicated 120V lighting circuits to UDB and LDB assemblies</td>
+              <td class="num">6 x 20A</td>
+              <td>Use two SDR-480-24 supplies per 20A feed: four feeds to UDB-A/UDB-B and two feeds to LDB-A. Run each feed as a dedicated 20A lighting/control branch with #12 copper conductors and equipment ground in raceway/cable method accepted for the installation.</td>
+            </tr>
+            <tr>
+              <td>120V utility / motion lights</td>
+              <td>Shared 120V lighting circuit for utility fixtures</td>
+              <td class="num">1 circuit</td>
+              <td>Combine mechanical, garage mechanical, pantry/storage, ADU 120V, and three utility/motion fixtures on one existing 120V lighting circuit where code/load allows.</td>
+            </tr>
+            <tr>
+              <td>Cat5e control cable</td>
+              <td>CMR/CL2 rated Cat5e, home-run topology</td>
+              <td class="num">2 x 1000 ft boxes</td>
+              <td>For keypad/control/low-voltage signal runs only. Do not use Cat5e for LED tape power.</td>
+            </tr>
+            <tr>
+              <td>LED power cable</td>
+              <td>16/2 stranded low-voltage cable, CL2/CL3 as required</td>
+              <td class="num">2 x 1000 ft boxes</td>
+              <td>Typical 24V tape home runs from controller to tape.</td>
+            </tr>
+            <tr>
+              <td>Long-run LED power cable</td>
+              <td>14/2 stranded low-voltage cable, CL2/CL3 as required</td>
+              <td class="num">1 x 500 ft box</td>
+              <td>Use for longer 24V home runs and power injection where voltage drop requires.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <section class="card">
+        <div class="card-h"><h2>Branch Circuit Schedule</h2></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Circuit</th>
+                <th>Area Served</th>
+                <th class="num">Shelly Zones</th>
+                <th class="num">24V Bank Capacity</th>
+                <th>Breaker</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>UDB / Upper lighting</td>
+                <td>Build UDB from 8 x Mean Well SDR-480-24 DIN power supplies, 2 x Hoffman A42N3013 driver enclosures, 1 x Hoffman A42N3613 low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules.</td>
+                <td class="num">17</td>
+                <td class="num">3,840W @ 24V</td>
+                <td>4 x 20A, 120V</td>
+              </tr>
+              <tr>
+                <td>LDB / Lower lighting</td>
+                <td>Build LDB from 4 x Mean Well SDR-480-24 DIN power supplies, 1 x Hoffman A42N3013 driver enclosure, 1 x Hoffman A24N206LP low-voltage enclosure, Phoenix Contact 3036505 fused terminals, and Shelly Pro RGBWW PM modules.</td>
+                <td class="num">7</td>
+                <td class="num">1,920W @ 24V</td>
+                <td>2 x 20A, 120V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">Total revised tape basis: approx. 4,258W at 24V before driver headroom. Carry 5,760W total installed 24V DIN supply capacity using 12 x Mean Well SDR-480-24 power supplies. Do not combine or reassign 24V tape zones between UDB Upper and LDB Lower without updating the load schedule, fuse schedule, and voltage-drop calculation.</div>
+      </section>
+
+      <section class="card">
+        <div class="card-h"><h2>Plan Legend / Wiring Rule</h2></div>
+        <div class="note">
+          <div class="callout">
+            Each 24V label on the reflected ceiling plan identifies a controlled low-voltage tape-light zone/output, not a 120V branch circuit.
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Plan Label</th>
+                <th>Meaning</th>
+                <th>Required Connection</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag">1-24</span> <span class="tag">2-24</span> <span class="tag">3-24</span></td>
+                <td>Separate 24V tape-light control zones</td>
+                <td>Mean Well SDR-480-24 DIN 24V power supply to Phoenix Contact 3036505 fused terminal, then Shelly Pro RGBWW PM, then tape zone.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">120V</span></td>
+                <td>Line-voltage feed to driver location</td>
+                <td>120V circuit feeds accessible 24V DIN power supplies only.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">1-120</span></td>
+                <td>Shared 120V utility/motion lighting circuit</td>
+                <td>Use one 120V lighting feed for the miscellaneous utility fixtures; local motion sensors are acceptable.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">3-120</span></td>
+                <td>Single remaining 120V label in latest DWFx</td>
+                <td>Use only where a separate 120V controlled feed is intentionally required; otherwise use the Panel 3 utility 20A lighting circuit.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">4-120</span> <span class="tag">5-120</span></td>
+                <td>Not present in latest DWFx</td>
+                <td>Do not carry these as separate circuits. Latest DWFx text shows 1-120 and 3-120 only.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">Shelly</span></td>
+                <td>Shelly Pro RGBWW PM smart PWM controller</td>
+                <td>Install downstream of the Phoenix Contact 3036505 fused 24V output and upstream of tape light.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">120V Shelly</span></td>
+                <td>Only for separately controlled 120V loads</td>
+                <td>Loads may share the same 120V branch circuit, but independent app/control switching requires separate Shelly relay channels/modules.</td>
+              </tr>
+              <tr>
+                <td><span class="tag">Cat5e</span></td>
+                <td>Control/keypad cable only</td>
+                <td>Home run from switch/keypad/control points to low-voltage cabinet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">Typical path: 120V panel circuit -> Mean Well SDR-480-24 DIN 24V power supply -> Phoenix Contact 3036505 fused terminal -> Shelly Pro RGBWW PM -> tape/channel zone.</div>
+      </section>
+    </div>
+
+    <section class="card full-card">
+      <div class="card-h"><h2>Exact 24V Driver / Fuse / Shelly Output Schedule</h2></div>
+      <div class="note">Each row is one actual output path in order. The Mean Well SDR-480-24 is the shared DIN-rail 24V transformer/power supply. The Phoenix Contact 3036505 terminal is the fused 24V output. The Shelly Pro RGBWW PM module is downstream of that fuse and controls the tape zone. This is not one Mean Well DIN supply per Shelly.</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Assembly</th>
+              <th>Driver No.</th>
+              <th>Driver Product</th>
+              <th>Fused Output</th>
+              <th>Fuse Product</th>
+              <th>Shelly No.</th>
+              <th>Shelly Product</th>
+              <th>Tape Termination</th>
+              <th>Area / Plan Callout</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Pro RGBWW PM</td><td>U-01 / 1-24</td><td>Upper ceiling left-side area</td></tr>
+            <tr><td>UDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Pro RGBWW PM</td><td>U-02 / 2-24</td><td>Upper ceiling left-side area</td></tr>
+            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Pro RGBWW PM</td><td>U-03 / 1-24</td><td>Upper ceiling lower-left area</td></tr>
+            <tr><td>UDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Pro RGBWW PM</td><td>U-04 / 1-24</td><td>Upper ceiling left wing area</td></tr>
+            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Pro RGBWW PM</td><td>U-05 / 1-24</td><td>Upper ceiling left wing area</td></tr>
+            <tr><td>UDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Pro RGBWW PM</td><td>U-06 / 1-24</td><td>Upper ceiling center-left area</td></tr>
+            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Pro RGBWW PM</td><td>U-07 / 2-24</td><td>Upper ceiling center-left area</td></tr>
+            <tr><td>UDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08</td><td>Shelly Pro RGBWW PM</td><td>U-08 / 1-24</td><td>Upper ceiling upper central area</td></tr>
+            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09</td><td>Shelly Pro RGBWW PM</td><td>U-09 / 2-24</td><td>Upper ceiling upper central area</td></tr>
+            <tr><td>UDB</td><td>PS-5</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10</td><td>Shelly Pro RGBWW PM</td><td>U-10 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
+            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11</td><td>Shelly Pro RGBWW PM</td><td>U-11 / 1-24</td><td>Upper ceiling kitchen/service bar area</td></tr>
+            <tr><td>UDB</td><td>PS-6</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12</td><td>Shelly Pro RGBWW PM</td><td>U-12 / 1-24</td><td>Upper ceiling right-side exterior/patio area</td></tr>
+            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13</td><td>Shelly Pro RGBWW PM</td><td>U-13 / 1-24</td><td>Upper ceiling main room rectangle</td></tr>
+            <tr><td>UDB</td><td>PS-7</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14</td><td>Shelly Pro RGBWW PM</td><td>U-14 / 2-24</td><td>Upper ceiling main room rectangle</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15</td><td>Shelly Pro RGBWW PM</td><td>U-15 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16</td><td>Shelly Pro RGBWW PM</td><td>U-16 / 1-24</td><td>Upper ceiling bedroom/right-side area</td></tr>
+            <tr><td>UDB</td><td>PS-8</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17</td><td>Shelly Pro RGBWW PM</td><td>U-17 / 1-24</td><td>Upper ceiling bath/service area</td></tr>
+            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01</td><td>Shelly Pro RGBWW PM</td><td>L-01 / 1-24</td><td>Lower ceiling living/mechanical utility light area</td></tr>
+            <tr><td>LDB</td><td>PS-1</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02</td><td>Shelly Pro RGBWW PM</td><td>L-02 / 2-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
+            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03</td><td>Shelly Pro RGBWW PM</td><td>L-03 / 1-24</td><td>Lower ceiling main/ADU rectangle area</td></tr>
+            <tr><td>LDB</td><td>PS-2</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04</td><td>Shelly Pro RGBWW PM</td><td>L-04 / 1-24</td><td>Lower ceiling rear patio / exterior area</td></tr>
+            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05</td><td>Shelly Pro RGBWW PM</td><td>L-05 / 2-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
+            <tr><td>LDB</td><td>PS-3</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06</td><td>Shelly Pro RGBWW PM</td><td>L-06 / 3-24</td><td>Lower ceiling bedroom/right-side area</td></tr>
+            <tr><td>LDB</td><td>PS-4</td><td>Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07</td><td>Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07</td><td>Shelly Pro RGBWW PM</td><td>L-07 / 1-24</td><td>Lower ceiling right-side service/bath area</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Purchase count from this schedule: 12 x Mean Well SDR-480-24 DIN power supplies total; 24 x Phoenix Contact 3036505 fused outputs plus spare terminals; 24 x Shelly Pro RGBWW PM DIN-rail controllers, one controller per scheduled tape zone. Label every conductor as DB-# / PS-# / F-# / SH-# / U-# or L-#.</div>
+    </section>
+
+        </section>
+
+        <section class="tab-panel" id="panel-upper-wall">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E101 &mdash; Upper Electrical (Upper Wall Plan)</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E101-Upper-Lower-Electrical.pdf" data-title="E101 — Upper / Lower Electrical">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E101-Upper-Lower-Electrical.pdf#view=FitH" title="E101 - Upper / Lower Electrical" loading="lazy"></iframe>
+          </section>
+          <section class="card full-card">
+            <div class="card-h"><h2>Upper Wall Loads Schedule</h2></div>
+            <div class="note">Upper wall loads checked from Upper Wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and low-voltage rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the upper wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
+                  <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>GFI outlets shown in DWFx, including island/counter locations. Provide GFCI protection as required by code.</td></tr>
+                  <tr><td>Weatherproof outlets</td><td>120V exterior/wet-rated branch circuit</td><td class="num">5</td><td>Includes 4 WP outlet objects plus 1 dryer WP outlet object. Use wet-location boxes/covers where required.</td></tr>
+                  <tr><td>Hybrid water heater outlet</td><td>240V equipment circuit</td><td class="num">1</td><td>DWFx object is Outlet-Range / Water Heater Hybrid. Verify circuit size with equipment submittal.</td></tr>
+                  <tr><td>Fusible disconnects</td><td>240V equipment disconnect</td><td class="num">2</td><td>DWFx object type is 240V fusible 30A. Coordinate final disconnect/fuse size with equipment served.</td></tr>
+                  <tr><td>Wall control / switch devices</td><td>Low voltage / control</td><td class="num">9</td><td>Includes 5 LAN1 control points and 4 Axion 8 in Android PoE touch screen objects. Coordinate PoE/data rough-in.</td></tr>
+                  <tr><td>Garage door ceiling receptacles</td><td>120V branch circuit</td><td class="num">4</td><td>Provide one ceiling receptacle at each garage door opener location. Coordinate exact placement with opener rail/motor locations before rough-in.</td></tr>
+                  <tr><td>Communications / CATV outlet</td><td>Low voltage</td><td class="num">1</td><td>Low-voltage communication outlet. Do not mix with 120V conductors except in listed combo devices/boxes as allowed.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-upper-ceiling">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E103 &mdash; Upper Ceiling Electrical</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf" data-title="E103 — Upper / Lower Electrical Ceiling">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf#view=FitH" title="E103 - Upper / Lower Electrical Ceiling" loading="lazy"></iframe>
+          </section>
+          <section class="card full-card">
+            <div class="card-h"><h2>Upper Ceiling Tape-Light Schedule</h2></div>
+            <div class="note">Upper ceiling takeoff checked from OVE Upper Electirical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 63 L_LED Light strip objects totaling approx. 817.1 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Current package basis remains 24V 3.1 W/LF tape unless Craig approves RGBW tape.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>Spec / Basis</th><th class="num">Qty / Load</th><th>Use / Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Interior upper ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">817.1 LF takeoff / 940 LF with 15%</td><td>Interior upper ceiling tape shown in the upper ceiling DWFx. Included in total tape package unless ordered separately.</td></tr>
+                  <tr><td>Exterior upper ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Use only where exterior/wet shown</td><td>Keep exterior tape and exterior channel separate from interior material. Do not install indoor tape/channel outside.</td></tr>
+                  <tr><td>Upper ceiling load basis</td><td>24V DC tape load</td><td class="num">2,533W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 7,354W and the driver schedule must be redesigned.</td></tr>
+                  <tr><td>Upper ceiling Shelly controls</td><td>Shelly Pro RGBWW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Upper 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">UDB</td><td>Assign upper ceiling zones U-01 through U-17 to scheduled UDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Four dedicated 20A 120V lighting/control feeds to UDB assembly</td><td class="num">UDB-A / UDB-B</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
+                  <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
+                  <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-lower-wall">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E101 &mdash; Lower Electrical (Lower Wall Plan)</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E101-Upper-Lower-Electrical.pdf" data-title="E101 — Upper / Lower Electrical">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E101-Upper-Lower-Electrical.pdf#view=FitH" title="E101 - Upper / Lower Electrical" loading="lazy"></iframe>
+          </section>
+          <section class="card full-card">
+            <div class="card-h"><h2>Lower Wall Loads Schedule</h2></div>
+            <div class="note">Lower wall loads checked from Lower wall loads.dwfx dated 2026-05-27. DWFx object data shows the device counts below. These are wall/device loads and low-voltage rough-ins; keep them separate from 24V ceiling tape driver-bank wiring.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>System</th><th class="num">Qty</th><th>Use / Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Duplex receptacles</td><td>120V branch circuit</td><td class="num">11</td><td>Standard wall duplex outlets shown in the lower wall-load DWFx. Circuit grouping follows the panel schedules.</td></tr>
+                  <tr><td>GFI receptacles</td><td>120V GFCI branch circuit</td><td class="num">3</td><td>Countertop/wet-location GFI outlets shown in DWFx. Provide GFCI protection as required by code.</td></tr>
+                  <tr><td>Communications / CATV outlet</td><td>Low voltage</td><td class="num">1</td><td>Low-voltage communication outlet. Do not mix with 120V conductors except in listed combo devices/boxes as allowed.</td></tr>
+                  <tr><td>Wall control / switch devices</td><td>Low voltage / control</td><td class="num">3</td><td>DWFx object family is Switch-Three Way with Axion 8 in Android PoE touch screen metadata. Coordinate PoE/data rough-in.</td></tr>
+                  <tr><td>Data / media panel</td><td>Low voltage / structured wiring</td><td class="num">1</td><td>Leviton 28 in media center shown in DWFx. Provide power and low-voltage home runs as required.</td></tr>
+                  <tr><td>Echo / Nest hub locations</td><td>Low voltage / 120V adapter as required</td><td class="num">2</td><td>Coordinate mounting, power, and network requirements before rough-in.</td></tr>
+                  <tr><td>Control discs / controllers</td><td>Low voltage / control</td><td class="num">5</td><td>DWFx includes Honeywell-style controllers/meters/gauges. Coordinate exact controls scope before final wiring.</td></tr>
+                  <tr><td>AV wall-load equipment</td><td>120V + low voltage / speaker</td><td class="num">6 devices</td><td>Includes 2 Martin Logan wall speakers, 2 Martin Logan subwoofers, 1 Macintosh receiver, and 1 150 in screen. Coordinate power, speaker cable, conduit, and data.</td></tr>
+                  <tr><td>Smart toilet power</td><td>120V GFCI where required</td><td class="num">1</td><td>Smart toilet object is shown in DWFx. Verify whether it needs a dedicated/receptacle feed and GFCI protection.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-lower-ceiling">
+          <section class="card plan-embed">
+            <div class="plan-sheet-h"><h3>E103 &mdash; Lower Ceiling Electrical</h3><button class="plan-expand" type="button" data-pdf="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf" data-title="E103 — Upper / Lower Electrical Ceiling">Expand full screen &#10530;</button></div>
+            <iframe class="plan-frame" src="plans/electrical/E103-Upper-Lower-Electrical-Ceiling.pdf#view=FitH" title="E103 - Upper / Lower Electrical Ceiling" loading="lazy"></iframe>
+          </section>
+          <section class="card full-card">
+            <div class="card-h"><h2>Lower Ceiling Tape-Light Schedule</h2></div>
+            <div class="note">Lower ceiling takeoff checked from Lower Electrical Ceiling.dwfx dated 2026-05-27. DWFx object data shows 24 L_LED Light strip objects totaling approx. 356.2 LF. Revit family metadata says IP65 RGBW Strip / 9w per foot; do not buy 9 W/LF RGBW tape unless the driver schedule is resized. Separate interior from exterior material by plan location before ordering.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Item</th><th>Spec / Basis</th><th class="num">Qty / Load</th><th>Use / Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Interior lower ceiling tape</td><td>24V, 3000K, 95+ CRI, 3.1 W/LF, indoor/damp</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Interior lower ceiling and ADU tape locations shown on the plan. Use interior/damp tape and interior aluminum channel.</td></tr>
+                  <tr><td>Exterior lower ceiling tape</td><td>24V, 3000K, wet-location/IP-rated, 3.1 W/LF basis</td><td class="num">Part of 356.2 LF takeoff / 410 LF with 15%</td><td>Exterior lower/rear patio tape locations shown on the plan. Use wet-rated tape, wet-rated channel, lens, caps, clips, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Lower ceiling load basis</td><td>24V DC tape load</td><td class="num">1,104W at 3.1 W/LF</td><td>If the Revit 9 W/LF RGBW family is used, load becomes approx. 3,206W and the driver schedule must be redesigned.</td></tr>
+                  <tr><td>Lower ceiling Shelly controls</td><td>Shelly Pro RGBWW PM or approved equivalent</td><td class="num">Per visible 24V label</td><td>One module/channel per control label unless grouping is specifically approved and documented.</td></tr>
+                  <tr><td>Lower 24V driver assignment</td><td>Mean Well SDR-480-24 DIN power supply through Phoenix Contact 3036505 fused terminal output</td><td class="num">LDB</td><td>Assign lower/ADU/exterior zones L-01 through L-07 to scheduled LDB outputs. Do not move zones between UDB and LDB without revised load, fuse, and voltage-drop schedules.</td></tr>
+                  <tr><td>120V feed</td><td>Two dedicated 20A 120V lighting/control feeds to LDB assembly</td><td class="num">LDB-A</td><td>Use two Mean Well SDR-480-24 DIN power supplies per 20A feed. Tape zones are 24V downstream of the supplies, Phoenix Contact fuse terminals, and Shelly modules.</td></tr>
+                  <tr><td>Cat5e control cable</td><td>CMR/CL2 rated Cat5e, home-run topology</td><td class="num">As required</td><td>For keypad/control/low-voltage signal only. Do not use Cat5e for LED tape power.</td></tr>
+                  <tr><td>LED power cable</td><td>16/2 stranded CL2/CL3, 14/2 where voltage drop requires</td><td class="num">As required</td><td>Home-run 24V tape power from the assigned Shelly/controller output to the tape zone.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-circuit-map">
+          <section class="card full-card">
+            <div class="card-h"><h2>Circuit Map / Driver / Shelly / Termination</h2></div>
+            <div class="note">Field wiring map from the current DWFx drawing callouts, not the old embedded load schedule. Source files checked: OVE Upper Electirical Ceiling.dwfx, Lower Electrical Ceiling.dwfx, and Main wall loads.dwfx dated 2026-05-27. Each drawn 24V callout is treated as a controlled tape-light termination unless Craig revises the grouping.</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Circuit</th><th>Mean Well Driver</th><th>Fused Output</th><th>Shelly Module</th><th>Termination</th></tr></thead>
+                <tbody>
+                  <tr><td>Upper ceiling / UDB / U-01 / 1-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-02 / 2-24</td><td>UDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-01 at left-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-03 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at lower-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-04 / 1-24</td><td>UDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-05 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at left wing / interior tape area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-06 / 1-24</td><td>UDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at center-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-07 / 2-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-06 at center-left upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-08 / 1-24</td><td>UDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-08 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-08 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at upper central upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-09 / 2-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-09 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-09 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-08 at upper central upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-10 / 1-24</td><td>UDB / PS-5 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-10 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-10 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at upper upper exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-11 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-11 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-11 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at center upper run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-12 / 1-24</td><td>UDB / PS-6 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-12 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-12 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-13 / 1-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-13 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-13 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-14 / 2-24</td><td>UDB / PS-7 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-14 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-14 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout paired with U-13 at right/ADU-side upper area.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-15 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-15 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-15 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at right-side upper exterior/interior run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-16 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-16 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-16 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at far-right upper run.</td></tr>
+                  <tr><td>Upper ceiling / UDB / U-17 / 1-24</td><td>UDB / PS-8 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-17 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-17 - Shelly Pro RGBWW PM</td><td>Current upper ceiling DWFx callout at lower-right upper run.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-01 / 1-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-01 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-01 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-02 / 2-24</td><td>LDB / PS-1 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-02 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-02 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout paired with L-01 at upper-left lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-03 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-03 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-03 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at central lower-ceiling area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-04 / 1-24</td><td>LDB / PS-2 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-04 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-04 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-05 / 2-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-05 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-05 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout paired with L-04 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-06 / 3-24</td><td>LDB / PS-3 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-06 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-06 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout grouped with L-04 and L-05 at lower-left ADU/lower area.</td></tr>
+                  <tr><td>Lower ceiling / LDB / L-07 / 1-24</td><td>LDB / PS-4 - Mean Well SDR-480-24, DIN rail, 480W, 24VDC, 20A</td><td>F-07 - Phoenix Contact 3036505 ST 4-FSI/C-LED 24 fused terminal</td><td>SH-07 - Shelly Pro RGBWW PM</td><td>Current lower ceiling DWFx callout at right-side lower-ceiling area.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 1-120</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-1</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-2</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI-120-2</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                  <tr><td>Main wall loads / 120V / GFCI 120-3</td><td>120V GFCI branch circuit, no Mean Well driver</td><td>No 24V fused output</td><td>No Shelly unless independent control is required</td><td>Current main wall-load DWFx GFCI label.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-blinds">
+          <section class="card full-card">
+            <div class="card-h"><h2>Blinds / Shades Electrical Schedule</h2></div>
+            <div class="note">Add this as a separate shade-control scope. The current takeoff basis is 11 motorized shade openings at 120 VAC with Somfy RS485 control. Keep this separate from 24V tape lighting; the blind motors are line-voltage shade loads, not 24V LED loads.</div>
+            <div class="schedule-grid">
+              <div class="metric">
+                <div class="label">Shade Motors</div>
+                <div class="value">11</div>
+                <div class="hint">Somfy Sonesse RS485 motors from the blind takeoff</div>
+              </div>
+              <div class="metric">
+                <div class="label">Connected Load</div>
+                <div class="value">586.8W</div>
+                <div class="hint">4.89A total at 120VAC basis</div>
+              </div>
+              <div class="metric">
+                <div class="label">Breaker</div>
+                <div class="value">1 x 15A</div>
+                <div class="hint">Dedicated 15A 120V shade circuit to BC-1</div>
+              </div>
+              <div class="metric">
+                <div class="label">Control</div>
+                <div class="value">RS485</div>
+                <div class="hint">Somfy SDN / animeo IP RS485 control path</div>
+              </div>
+            </div>
+            <div class="table-wrap" style="margin-top:14px">
+              <table>
+                <thead><tr><th>Item</th><th>Exact Product / Basis</th><th class="num">Qty</th><th>Electrical / Control Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Shade motors</td><td>Somfy Sonesse RS485 family, 120VAC. Use Sonesse 506S2 RS485 / Sonesse 60 RS485 / Hi-Torque RS485 as sized per opening by shade vendor.</td><td class="num">11 motors</td><td>Each motor gets 120VAC power plus RS485/data control as required by Somfy SDN. Final motor model must match tube size, shade size, and torque.</td></tr>
+                  <tr><td>RS485 network controller</td><td><a href="https://www.somfysystems.com/commercial/smart-building/building-controls/animeo-ip-rs485" target="_blank" rel="noopener noreferrer">Somfy animeo IP/RS485 control system</a> or approved Somfy SDN IP/RS485 interface</td><td class="num">1 system</td><td>Network control path for Somfy RS485 motors. Coordinate Homey/LAN integration here, not through the 24V lighting driver bank.</td></tr>
+                  <tr><td>Shade power circuit</td><td>Dedicated 120VAC shade motor branch circuit</td><td class="num">1 x 15A</td><td>Takeoff load is 4.89A / 586.8W total. Run as a dedicated 15A branch to BC-1 with #14 copper minimum or #12 copper where project wiring standard uses #12 for lighting/control.</td></tr>
+                  <tr><td>Data/control cable</td><td>RS485/SDN bus cable per Somfy requirements; keep polarity and termination per Somfy wiring guide</td><td class="num">As required</td><td>Home run or bus topology by Somfy requirements. Label every motor drop by opening name.</td></tr>
+                  <tr><td>Shelly note</td><td><a href="https://us.shelly.com/products/shelly-pro-dual-cover-shutter-pm" target="_blank" rel="noopener noreferrer">Shelly Pro Dual Cover/Shutter PM</a> is only for non-RS485 bidirectional AC cover motors</td><td class="num">Do not use with RS485 basis unless system is revised</td><td>If the shade vendor changes to standard AC up/down motors instead of Somfy RS485 motors, then use 6 x Shelly Pro Dual Cover/Shutter PM for 11 motors. Do not mix that assumption into the current RS485 Somfy basis.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card full-card">
+            <div class="card-h"><h2>Shade Opening / Motor Schedule</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Opening</th><th>Size</th><th>Motor Basis</th><th class="num">Amps</th><th class="num">Watts</th><th>Pocket</th><th>Control</th></tr></thead>
+                <tbody>
+                  <tr><td>Entry</td><td>159 in x 268.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Entry 2</td><td>96 in x 268.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 1</td><td>268 in x 314.5 in</td><td>Somfy Sonesse 100 RS485 Hi-Torque, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>10 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Lower 1</td><td>120 in x 207 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Lower 2</td><td>120 in x 209.75 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Upper 1</td><td>144 in x 236.75 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass Upper 2</td><td>120 in x 110.5 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, single roller OK</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 2-1</td><td>120 in x 161.5 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, dual roller recommended</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>West Glass 2-2</td><td>120 in x 228.5 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Glass South</td><td>91 in x 113.25 in</td><td>Somfy Sonesse 60 RS485, 60 mm tube, single roller OK</td><td class="num">0.35</td><td class="num">42.0</td><td>6 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                  <tr><td>Glass East</td><td>119 in x 234 in</td><td>Somfy Sonesse 100 RS485, 100 mm tube, dual roller recommended</td><td class="num">0.48</td><td class="num">57.6</td><td>8 in</td><td>Somfy RS485 bus to LAN/Homey</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Total shade motor load: 4.89A / 586.8W. Carry as one dedicated 15A 120V shade circuit to BC-1 with RS485/data terminations in the same shade-control cabinet.</div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="panel-av">
+          <div class="h1" style="font-size:16px">AV / Automation Scope</div>
+          <div class="sub">Plan-backed AV, automation, camera, shade-control, rack, and wiring scope from A111 Main/Lower AV and A112 Upper AV. Whole-house audio zones are excluded unless they are added to the plan scope.</div>
+
+          <div class="metrics">
+            <div class="metric"><div class="label">Plan sheets</div><div class="value">A111 / A112</div><div class="hint">Main/Lower AV + Upper AV</div></div>
+            <div class="metric"><div class="label">Display count</div><div class="value">5 TVs</div><div class="hint">1 x 85 in + 4 x 75 in Sony Bravia</div></div>
+            <div class="metric"><div class="label">Soundbars</div><div class="value">5</div><div class="hint">Sonos Arc plan schedule</div></div>
+            <div class="metric"><div class="label">Security</div><div class="value">13 devices</div><div class="hint">11 PoE cameras + 2 doorbells</div></div>
+            <div class="metric"><div class="label">Budgetary material</div><div class="value">$65,965.00</div><div class="hint">Material only, before tax/shipping/labor</div></div>
+          </div>
+
+          <div class="callout" style="margin-top:14px">
+            Correction from the first AV page: the plan schedule includes Sony Bravia TVs, Sonos Arc soundbars, eufy doorbells/cameras/NVR, Homey hubs, Level Bolts, Somfy shade motors, and additional MartinLogan surround speakers. Those are now included below. The plan OCR reads "eufy 410 POE"; purchasable basis is carried as eufy PoE Cam E40 / eufy PoE NVR family pending final camera submittal.
+          </div>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>A111 / A112 Plan Equipment Schedule</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Plan item</th><th>Manufacturer</th><th>Model / purchasable basis</th><th class="num">Qty</th><th>Plan note</th></tr></thead>
+                <tbody>
+                  <tr><td>Sony Bravia 85 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr85x90l" target="_blank" rel="noopener noreferrer">XR-85X90L</a></td><td class="num">1</td><td>A111 main/theater/living callout.</td></tr>
+                  <tr><td>Sony Bravia 75 in TV</td><td>Sony</td><td><a href="https://electronics.sony.com/tv-video/televisions/all-tvs/p/xr75x90l" target="_blank" rel="noopener noreferrer">XR-75X90L</a></td><td class="num">4</td><td>A111/A112 schedule count.</td></tr>
+                  <tr><td>Sonos soundbar</td><td>Sonos</td><td><a href="https://www.sonos.com/en-us/shop/arc" target="_blank" rel="noopener noreferrer">Sonos Arc</a></td><td class="num">5</td><td>Plan OCR says "Sono Arco / Arcos"; product basis is Sonos Arc.</td></tr>
+                  <tr><td>150 in acoustically transparent screen</td><td>Screen Innovations</td><td>Zero Edge / Maestro 2, 150 in woven AT screen</td><td class="num">1</td><td>A111 home theater screen. Confirm exact aspect ratio and frame before order.</td></tr>
+                  <tr><td>Projector for 150 in screen</td><td>TBD</td><td>Epson LS12000 or AV-approved equivalent allowance</td><td class="num">1</td><td>Required by screen even though projector was not listed as a schedule row.</td></tr>
+                  <tr><td>Surround receiver</td><td>McIntosh</td><td><a href="https://www.mcintoshlabs.com/products/home-theater-processors/mht300" target="_blank" rel="noopener noreferrer">MHT300</a></td><td class="num">1</td><td>Plan calls "Macintosh HT-300"; product basis corrected to McIntosh MHT300.</td></tr>
+                  <tr><td>LR speakers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/motion-xtw6" target="_blank" rel="noopener noreferrer">Motion XT CI XTW6</a></td><td class="num">2</td><td>A111 theater left/right speaker callout.</td></tr>
+                  <tr><td>Surround speakers</td><td>MartinLogan</td><td>Motion XT CI XTC8-HT</td><td class="num">4</td><td>Additional theater surround speakers that were missing from prior page.</td></tr>
+                  <tr><td>12 in subwoofers</td><td>MartinLogan</td><td><a href="https://www.martinlogan.com/en/product/dynamo-foundation-12" target="_blank" rel="noopener noreferrer">Dynamo 12 / current Dynamo Foundation 12 basis</a></td><td class="num">2</td><td>A111 theater subwoofer callout.</td></tr>
+                  <tr><td>Video doorbell</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8214111" target="_blank" rel="noopener noreferrer">Video Doorbell E340</a></td><td class="num">2</td><td>Front/rear entry locations shown on A111.</td></tr>
+                  <tr><td>PoE cameras</td><td>eufy</td><td><a href="https://www.eufy.com/products/t8p00121" target="_blank" rel="noopener noreferrer">PoE Cam E40</a></td><td class="num">11</td><td>Plan OCR says eufy 410 PoE security cameras; use current eufy PoE camera basis unless submittal says otherwise.</td></tr>
+                  <tr><td>NVR / PoE recorder</td><td>eufy</td><td><a href="https://www.eufy.com/products/e8e00121" target="_blank" rel="noopener noreferrer">PoE NVR Security System S4 Max family, 2TB</a></td><td class="num">1</td><td>Plan says 2TB video server / PoE network switch.</td></tr>
+                  <tr><td>Smart displays</td><td>Google</td><td>Nest Hub 10 in plan basis; replaced by Axion on electrical/Homey scope if CO-005 remains active</td><td class="num">10</td><td>Plan schedule count is 10; CO-005 says remove Nest and replace with Axion panels.</td></tr>
+                  <tr><td>Homey Pro</td><td>Homey</td><td>Homey Pro 2023</td><td class="num">5</td><td>Distributed Homey hubs per A111 schedule.</td></tr>
+                  <tr><td>Homey Bridge</td><td>Homey</td><td>Homey Bridge</td><td class="num">3</td><td>Distributed bridge count per A111 schedule.</td></tr>
+                  <tr><td>Smart locks</td><td>Level</td><td>Level Bolt</td><td class="num">8</td><td>Entry door lock automation count per A111.</td></tr>
+                  <tr><td>Shade motors</td><td>Somfy</td><td>Sonesse 60 RS485, Sonesse 100 RS485, Sonesse 100 HT RS485</td><td class="num">11</td><td>4 x 60 series, 6 x 100 series, 1 x 100 high-torque; blind pockets carried separately.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Rack / Network / Wiring Scope</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>System</th><th>Material basis</th><th class="num">Qty</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>AV/network rack</td><td>24U wall-mount rack, vent panels, 1U PDU, rack UPS, lacer bars, labels</td><td class="num">1 lot</td><td>Locate at mech/comms area. Provide service clearance, ventilation, UPS-backed power, and labeled terminations.</td></tr>
+                  <tr><td>Gateway / PoE switching</td><td>Ubiquiti UDM-SE + USW-Pro-24-PoE, or current UniFi equivalent</td><td class="num">1 each</td><td>AV/CCTV/WAP feeds. Final port count must reconcile cameras, WAPs, Homey, touch screens, and AV endpoints.</td></tr>
+                  <tr><td>Wireless access</td><td>6 x U6-Enterprise interior APs + 1 x U6-Mesh outdoor AP</td><td class="num">7</td><td>Coordinate with the electrical/network AP plan. Panic room coverage still needs dedicated AP path and final placement.</td></tr>
+                  <tr><td>Patch and cable</td><td>2 x 24-port Cat6A patch panels, Cat6A plenum cable, patch cables</td><td class="num">1 lot</td><td>Home-run and label all TV, camera, WAP, rack, screen, projector, and automation drops.</td></tr>
+                  <tr><td>Audio wire</td><td>14/4 and 16/2 in-wall speaker wire, HDMI/fiber, speaker/AV plates</td><td class="num">1 lot</td><td>Speaker and projector routes must be installed before insulation/drywall.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Budgetary Material Cost Summary</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Line</th><th>Product / allowance</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Extended</th></tr></thead>
+                <tbody>
+                  <tr><td>AV-01</td><td>Sony Bravia XR-85X90L 85 in TV</td><td class="num">1</td><td class="num">$2,800.00</td><td class="num">$2,800.00</td></tr>
+                  <tr><td>AV-02</td><td>Sony Bravia XR-75X90L 75 in TV</td><td class="num">4</td><td class="num">$1,800.00</td><td class="num">$7,200.00</td></tr>
+                  <tr><td>AV-03</td><td>Screen Innovations Zero Edge Maestro 2 150 in AT screen</td><td class="num">1</td><td class="num">$8,500.00</td><td class="num">$8,500.00</td></tr>
+                  <tr><td>AV-04</td><td>Projector allowance for 150 in screen</td><td class="num">1</td><td class="num">$4,500.00</td><td class="num">$4,500.00</td></tr>
+                  <tr><td>AV-05</td><td>McIntosh MHT300 surround receiver</td><td class="num">1</td><td class="num">$9,500.00</td><td class="num">$9,500.00</td></tr>
+                  <tr><td>AV-06</td><td>MartinLogan Motion XT CI XTW6 LR speakers</td><td class="num">2</td><td class="num">$650.00</td><td class="num">$1,300.00</td></tr>
+                  <tr><td>AV-07</td><td>MartinLogan Motion XT CI XTC8-HT surround speakers</td><td class="num">4</td><td class="num">$750.00</td><td class="num">$3,000.00</td></tr>
+                  <tr><td>AV-08</td><td>MartinLogan Dynamo 12 subwoofers</td><td class="num">2</td><td class="num">$1,200.00</td><td class="num">$2,400.00</td></tr>
+                  <tr><td>AV-09</td><td>Sonos Arc soundbars</td><td class="num">5</td><td class="num">$900.00</td><td class="num">$4,500.00</td></tr>
+                  <tr><td>AUTO-01</td><td>Homey Pro 2023</td><td class="num">5</td><td class="num">$300.00</td><td class="num">$1,500.00</td></tr>
+                  <tr><td>AUTO-02</td><td>Homey Bridge</td><td class="num">3</td><td class="num">$100.00</td><td class="num">$300.00</td></tr>
+                  <tr><td>AUTO-03</td><td>Level Bolt smart locks</td><td class="num">8</td><td class="num">$250.00</td><td class="num">$2,000.00</td></tr>
+                  <tr><td>AUTO-04</td><td>Google Nest Hub 10 in plan allowance / Axion replacement cross-check</td><td class="num">10</td><td class="num">$230.00</td><td class="num">$2,300.00</td></tr>
+                  <tr><td>SEC-01</td><td>eufy E340 video doorbells</td><td class="num">2</td><td class="num">$250.00</td><td class="num">$500.00</td></tr>
+                  <tr><td>SEC-02</td><td>eufy PoE Cam E40 cameras</td><td class="num">11</td><td class="num">$120.00</td><td class="num">$1,320.00</td></tr>
+                  <tr><td>SEC-03</td><td>eufy 2TB NVR / PoE recorder allowance</td><td class="num">1</td><td class="num">$350.00</td><td class="num">$350.00</td></tr>
+                  <tr><td>SHADE-01</td><td>Somfy Sonesse 60 RS485 shade motors</td><td class="num">4</td><td class="num">$380.00</td><td class="num">$1,520.00</td></tr>
+                  <tr><td>SHADE-02</td><td>Somfy Sonesse 100 RS485 shade motors</td><td class="num">6</td><td class="num">$520.00</td><td class="num">$3,120.00</td></tr>
+                  <tr><td>SHADE-03</td><td>Somfy Sonesse 100 HT RS485 motor</td><td class="num">1</td><td class="num">$680.00</td><td class="num">$680.00</td></tr>
+                  <tr><td>SHADE-04</td><td>Shade / blind pocket rough-in allowance</td><td class="num">10</td><td class="num">$85.00</td><td class="num">$850.00</td></tr>
+                  <tr><td>RACK-01</td><td>Network rack, PDU, UPS, gateway, PoE switch, APs, patch panels, labels, rack parts</td><td class="num">1 lot</td><td class="num">$5,255.00</td><td class="num">$5,255.00</td></tr>
+                  <tr><td>WIRE-01</td><td>Cat6A cable/patching, speaker wire, HDMI/fiber cabling</td><td class="num">1 lot</td><td class="num">$1,410.00</td><td class="num">$1,410.00</td></tr>
+                  <tr><td>VIDEO-01</td><td>4K HDMI matrix, HDBaseT receivers, IR/RS-232 control modules</td><td class="num">1 lot</td><td class="num">$1,260.00</td><td class="num">$1,260.00</td></tr>
+                  <tr class="total-row"><td colspan="4">Budgetary material total from A111/A112 plan scope</td><td class="num">$65,965.00</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note">Excludes labor, tax, shipping, programming, licenses/subscriptions, final projector calibration, cabinet/furniture, final bracket/back-box selections, final camera aiming, and field-verified cable lengths beyond the budgetary allowances above.</div>
+          </section>
+
+          <div class="callout warn" style="margin-top:14px">
+            Coordination item: Electrical/Homey scope already carries Axion PoE touch screens and some network equipment. Before purchasing, reconcile duplicate smart-display/network lines between the electrical controls page and this AV page so the final buyout does not double-order screens, Homey devices, switches, or APs.
+          </div>
+        </section>
+
+        <section class="tab-panel" id="panel-install">
+          <div class="h1" style="font-size:16px">Comprehensive Electrical / Low-Voltage / AV Install List</div>
+          <div class="sub">Quantity-first install scope from the current electrical wall-load schedules, reflected ceiling tape-light schedules, A111/A112 AV schedules, and the Rodriguez appliance/AV takeoff workbook. Quantities are for rough-in/material coordination; code-required circuiting, AFCI/GFCI type, box fill, conductor size, and final breaker schedule still need permit-level electrical review.</div>
+
+          <div class="metrics">
+            <div class="metric"><div class="label">120V / 240V device rough-ins</div><div class="value">108</div><div class="hint">Receptacle/equipment-device lines below, excluding HVAC disconnects</div></div>
+            <div class="metric"><div class="label">GFCI / wet-device rows</div><div class="value">44</div><div class="hint">24 GFCI + 19 WP + 1 smart toilet GFCI</div></div>
+            <div class="metric"><div class="label">24V tape</div><div class="value">1,350 LF</div><div class="hint">1,173.3 LF takeoff + 15% order allowance</div></div>
+            <div class="metric"><div class="label">Controlled tape outputs</div><div class="value">24</div><div class="hint">17 upper + 7 lower Shelly/fused outputs</div></div>
+            <div class="metric"><div class="label">Network / LV drops</div><div class="value">101+</div><div class="hint">Calculated home-runs before spare conduits</div></div>
+          </div>
+
+          <div class="callout warn" style="margin-top:14px">
+            Count conflict to resolve before final buyout: the plan fixture schedule shows 17 Axion 8 in PoE touch screens, while the current Electrical network/material scope carries 12 PoE touch screens and A111/A112 still show 10 Google Nest locations that CO-005 replaces with Axion. Rough-in Cat6 to every shown control/display location; do not order final screens until Craig locks the replacement count.
+          </div>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>120V / 240V Device Rough-In List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Where counted</th><th>What the electrician installs</th></tr></thead>
+                <tbody>
+                  <tr><td>Standard wall duplex receptacles</td><td class="num">49</td><td>Main 27 + Upper 11 + Lower 11</td><td>Standard 120V duplex receptacle boxes/devices. Circuit grouping follows final panel schedule.</td></tr>
+                  <tr><td>Floor duplex receptacles</td><td class="num">5</td><td>Main wall loads</td><td>Floor-rated boxes, covers, and 120V duplex devices coordinated with flooring finish.</td></tr>
+                  <tr><td>Garage door ceiling receptacles</td><td class="num">4</td><td>Garage door opener locations</td><td>120V ceiling receptacles for the four garage door openers. Coordinate exact placement with opener rail/motor locations before rough-in.</td></tr>
+                  <tr><td>Waterproof / weatherproof receptacles</td><td class="num">19</td><td>Main 14 + Upper 5</td><td>Weather-rated box, WR receptacle where required, in-use cover, and GFCI protection where code requires.</td></tr>
+                  <tr><td>Countertop / island GFCI receptacles</td><td class="num">24</td><td>Main 18 + Upper 3 + Lower 3</td><td>GFCI-protected 120V receptacles for countertop, island, wet, bath, and similar locations.</td></tr>
+                  <tr><td>Range / appliance outlets</td><td class="num">3</td><td>Main wall loads</td><td>Equipment receptacles. Verify 120V/240V, amp rating, plug type, and conductor size from appliance cut sheets.</td></tr>
+                  <tr><td>Microwave outlet</td><td class="num">1</td><td>Main wall loads</td><td>Dedicated or appliance branch receptacle as required by equipment and code.</td></tr>
+                  <tr><td>Stack washer/dryer outlet</td><td class="num">1</td><td>Main wall loads</td><td>Laundry equipment receptacle. Verify actual stacked unit voltage/amp requirements.</td></tr>
+                  <tr><td>Hybrid water heater outlet</td><td class="num">1</td><td>Upper wall loads</td><td>240V equipment circuit/receptacle or disconnect per water heater submittal.</td></tr>
+                  <tr><td>Smart toilet power</td><td class="num">1</td><td>Lower wall loads</td><td>GFCI-protected 120V receptacle at smart toilet location per fixture requirements.</td></tr>
+                  <tr><td>CATV + 120V combo locations</td><td class="num">3</td><td>Main wall loads</td><td>Listed combo low-voltage + 120V box/plate or separate adjacent boxes with required separation.</td></tr>
+                  <tr><td>HVAC / equipment disconnects</td><td class="num">13</td><td>Electrical fixture takeoff</td><td>Disconnects at HVAC/equipment locations. Verify fusible/non-fusible, voltage, fuse size, and working clearance.</td></tr>
+                  <tr><td>Upper fusible 240V disconnects</td><td class="num">2</td><td>Upper wall-load DWFx</td><td>Included in the disconnect coordination above unless final panel schedule identifies them separately.</td></tr>
+                  <tr><td>Smoke / CO detector locations</td><td class="num">9</td><td>Electrical fixture takeoff</td><td>Interconnected smoke/CO rough-in or smart detector installation per code and selected product.</td></tr>
+                  <tr><td>120V utility / motion lights</td><td class="num">7</td><td>Electrical page utility note</td><td>Mechanical, garage mechanical, pantry/storage, ADU utility, plus three utility/motion fixtures on shared lighting circuit where allowed.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Lighting / Tape-Light Install List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Basis</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>Upper ceiling tape-light objects</td><td class="num">63 objects / 817.1 LF</td><td>OVE Upper Electrical Ceiling DWFx</td><td>Order approximately 940 LF with 15% allowance. Separate interior and exterior/wet tape/channel before purchase.</td></tr>
+                  <tr><td>Lower ceiling tape-light objects</td><td class="num">24 objects / 356.2 LF</td><td>Lower Electrical Ceiling DWFx</td><td>Order approximately 410 LF with 15% allowance. Includes lower/ADU/rear patio runs.</td></tr>
+                  <tr><td>Total tape and channel order basis</td><td class="num">1,350 LF</td><td>1,173.3 LF takeoff + 15%</td><td>24V 3000K 95+ CRI tape basis. Exterior runs require wet-rated tape, wet-rated channel/lens/end caps, sealed exits, and mechanical fastening.</td></tr>
+                  <tr><td>Upper controlled 24V tape outputs</td><td class="num">17</td><td>U-01 through U-17</td><td>Each output: Mean Well 24V supply -&gt; Phoenix fused terminal -&gt; Shelly Pro RGBWW PM -&gt; tape zone.</td></tr>
+                  <tr><td>Lower controlled 24V tape outputs</td><td class="num">7</td><td>L-01 through L-07</td><td>Each output: Mean Well 24V supply -&gt; Phoenix fused terminal -&gt; Shelly Pro RGBWW PM -&gt; tape zone.</td></tr>
+                  <tr><td>Shelly Pro RGBWW PM tape controllers</td><td class="num">24</td><td>One per scheduled tape output</td><td>DIN rail mounted in LVP-1 through LVP-4. Label SH-01 through SH-24 by cabinet and termination.</td></tr>
+                  <tr><td>Phoenix fused 24V output terminals</td><td class="num">24 + spares</td><td>One fused output per tape zone</td><td>Use Phoenix Contact ST 4-FSI/C-LED 24 or approved equal. Fuse each 24V positive output to actual tape load/wire size.</td></tr>
+                  <tr><td>Mean Well SDR-480-24 power supplies</td><td class="num">12</td><td>8 upper + 4 lower</td><td>DIN rail power supplies in the LVP cabinets. Shared supplies feed multiple fused outputs; not one supply per Shelly.</td></tr>
+                  <tr><td>120V breaker feeds for tape supplies</td><td class="num">3 x 20A</td><td>Current panel/cabinet elevation basis</td><td>2 x 20A feeds for UDB/LVP upper supplies, 1 x 20A feed for LDB/LVP lower supplies. Reconcile older notes before permit set.</td></tr>
+                  <tr><td>Shade/control feed</td><td class="num">1 x 15A</td><td>BC-1 shade cabinet</td><td>Feeds Somfy RS485/IP shade controls and 11 shade motor terminations.</td></tr>
+                  <tr><td>Fixture schedule downlights/pendants</td><td class="num">66 clean / 172 incl. verify rows</td><td>Electrical fixture CSV</td><td>Clean rows: main and named upper/lower fixtures. OCR family totals show additional mixed Focal Point/XAL counts requiring plan verification before purchase.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Panels / Cabinets / DIN Controls</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Install item</th><th class="num">Qty</th><th>Location / grouping</th><th>What gets mounted</th></tr></thead>
+                <tbody>
+                  <tr><td>Main breaker/load panels</td><td class="num">4</td><td>Panel 1, Panel 2, Panel 3, Panel 4 areas</td><td>120V/240V breaker panels/load centers by area. Final pole count and service/load calculation by electrical permit set.</td></tr>
+                  <tr><td>Leviton smart load centers</td><td class="num">2</td><td>Electrical fixture schedule</td><td>Coordinate with the 4-area panel design; do not buy until panelboard manufacturer/size is locked.</td></tr>
+                  <tr><td>Leviton 28 in media center</td><td class="num">1</td><td>Lower wall-load schedule</td><td>Structured wiring/media enclosure with power and low-voltage terminations.</td></tr>
+                  <tr><td>LVP-1 upper control cabinet</td><td class="num">1</td><td>Panel 1 area</td><td>3 x SDR-480 supplies, 5 fuses, 5 Shelly modules, U-01 through U-05 terminals.</td></tr>
+                  <tr><td>LVP-2 upper control cabinet</td><td class="num">1</td><td>Panel 2 area</td><td>5 x SDR-480 supplies, 12 fuses, 12 Shelly modules, U-06 through U-17 terminals.</td></tr>
+                  <tr><td>LVP-3 lower control cabinet</td><td class="num">1</td><td>Panel 3 area</td><td>2 x SDR-480 supplies, 4 fuses, 4 Shelly modules, L-01 through L-04 terminals.</td></tr>
+                  <tr><td>LVP-4 lower control cabinet</td><td class="num">1</td><td>Panel 4 area</td><td>2 x SDR-480 supplies, 3 fuses, 3 Shelly modules, L-05 through L-07 terminals.</td></tr>
+                  <tr><td>BC-1 shade control cabinet</td><td class="num">1</td><td>Shade/blind controls</td><td>Somfy RS485/IP interface, RS485 terminals, 120V feed terminals, and M-01 through M-11 motor terminations.</td></tr>
+                  <tr><td>AV/network rack</td><td class="num">1</td><td>Mechanical/comms area</td><td>24U wall rack, UPS, PDU, gateway/firewall, PoE switch, patch panels, NVR, AV/network terminations.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>Low-Voltage / Cable Run List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Run type</th><th class="num">Qty</th><th>Calculated from</th><th>Install direction</th></tr></thead>
+                <tbody>
+                  <tr><td>Axion / PoE touch-screen rough-ins</td><td class="num">17 plan / 12 costed</td><td>Fixture schedule vs current electrical material page</td><td>Pull home-run Cat6/Cat6A to every displayed control location; final screen order count must be reconciled.</td></tr>
+                  <tr><td>LAN1 data/control drops</td><td class="num">19</td><td>Main 14 + Level 12 5 in fixture schedule</td><td>Home-run Cat6/Cat6A to rack or approved local switch. Label by room/device.</td></tr>
+                  <tr><td>Legrand communication + 120 combo locations</td><td class="num">9</td><td>Main 7 + Basement 1 + Level 12 1</td><td>Provide low-voltage pathway and listed separation from 120V conductors.</td></tr>
+                  <tr><td>Wi-Fi access point drops</td><td class="num">9</td><td>Electrical network scope</td><td>Use 9 as rough-in basis, including panic room and exterior coverage, even though AV workbook carries 7 AP devices.</td></tr>
+                  <tr><td>PoE camera drops</td><td class="num">11</td><td>A111/A112 AV schedule</td><td>Home-run Cat6/Cat6A from each camera to AV/security rack or camera PoE switch. Label both ends by camera number/location.</td></tr>
+                  <tr><td>Video doorbell rough-ins</td><td class="num">2</td><td>A111 AV schedule</td><td>Provide doorbell power/wiring path and network coverage. eufy E340 can be battery or wired; wire it now.</td></tr>
+                  <tr><td>TV locations</td><td class="num">5</td><td>1 Sony 85 + 4 Sony 75</td><td>Each gets 120V receptacle, Cat6/Cat6A, and conduit/path for HDMI/AV wiring as required.</td></tr>
+                  <tr><td>Soundbar interfaces</td><td class="num">5</td><td>Sonos Arc schedule</td><td>Coordinate 120V, TV eARC HDMI path, blocking, bracket height, and service access.</td></tr>
+                  <tr><td>Projector run</td><td class="num">1</td><td>150 in screen system</td><td>120V receptacle, Cat6/Cat6A, active optical HDMI/fiber/conduit path, mount blocking, and service loop.</td></tr>
+                  <tr><td>Projection screen control/power</td><td class="num">1</td><td>Screen Innovations 150 in screen</td><td>Power and control path at screen/recess. Confirm low-voltage trigger, RS232/IP, or dry-contact control before rough-in.</td></tr>
+                  <tr><td>Theater speaker wire runs</td><td class="num">8</td><td>2 LR + 4 surround + 2 sub/signal paths</td><td>Home-run to AV rack/receiver. Use in-wall-rated speaker cable/sub cable and label speaker position.</td></tr>
+                  <tr><td>Shade motor runs</td><td class="num">11</td><td>Somfy schedule</td><td>120VAC to each motor plus RS485/control bus/path back to BC-1. Label M-01 through M-11.</td></tr>
+                  <tr><td>Smart lock hardware locations</td><td class="num">8</td><td>A111 Level Bolt schedule</td><td>Hardware install/count only; battery lock, no line-voltage rough-in unless door hardware submittal changes.</td></tr>
+                  <tr><td>Homey hub / bridge locations</td><td class="num">8</td><td>5 Homey Pro + 3 Homey Bridge</td><td>Coordinate whether these remain distributed devices or are replaced by the self-hosted rack server strategy.</td></tr>
+                  <tr><td>Minimum calculated LV home-runs</td><td class="num">101+</td><td>Rows above, excluding duplicate/optional spares</td><td>Provide spare conduits/pull strings at rack, theater, panels, exterior cameras, projector, and screen. Do not daisy-chain unless a local switch is installed and labeled.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top:14px">
+            <div class="card-h"><h2>AV / Automation Device Install List</h2></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Device / system</th><th class="num">Qty</th><th>Install note</th></tr></thead>
+                <tbody>
+                  <tr><td>Sony Bravia XR-85X90L 85 in TV</td><td class="num">1</td><td>TV bracket/blocking, 120V, Cat6/Cat6A, HDMI/conduit path, and soundbar interface if paired.</td></tr>
+                  <tr><td>Sony Bravia XR-75X90L 75 in TV</td><td class="num">4</td><td>Same rough-in package at each 75 in TV location.</td></tr>
+                  <tr><td>Sonos Arc soundbar</td><td class="num">5</td><td>Mounting/blocking, 120V, and HDMI eARC route to paired TV.</td></tr>
+                  <tr><td>McIntosh MHT300 receiver</td><td class="num">1</td><td>Rack-mounted AVR with ventilation, speaker terminations, HDMI/projector path, and network/control connection.</td></tr>
+                  <tr><td>MartinLogan XTW6 LR speakers</td><td class="num">2</td><td>Back boxes/blocking and in-wall speaker wire to rack.</td></tr>
+                  <tr><td>MartinLogan XTC8-HT surround speakers</td><td class="num">4</td><td>Ceiling/wall speaker rough-in, back boxes where required, and labeled speaker wire.</td></tr>
+                  <tr><td>MartinLogan Dynamo 12 subwoofers</td><td class="num">2</td><td>120V receptacle and sub/LFE signal path at each sub location.</td></tr>
+                  <tr><td>Screen Innovations 150 in AT screen</td><td class="num">1</td><td>Blocking/recess/power/control. Confirm exact model and aspect ratio before order.</td></tr>
+                  <tr><td>Projector</td><td class="num">1</td><td>Mount blocking, 120V, Cat6/Cat6A, HDMI/fiber/conduit path, ventilation, and service loop.</td></tr>
+                  <tr><td>eufy E340 video doorbell</td><td class="num">2</td><td>Wire now even if final device can run battery. Confirm chime/power strategy.</td></tr>
+                  <tr><td>eufy PoE cameras</td><td class="num">11</td><td>Home-run Cat6/Cat6A and exterior-rated mounting details at each camera.</td></tr>
+                  <tr><td>eufy 2TB NVR / PoE recorder</td><td class="num">1</td><td>Rack location with UPS-backed power, network uplink, and camera switch connectivity.</td></tr>
+                  <tr><td>Somfy Sonesse shade motors</td><td class="num">11</td><td>4 x Sonesse 60 RS485, 6 x Sonesse 100 RS485, 1 x Sonesse 100 HT RS485. Label motor terminations M-01 through M-11.</td></tr>
+                  <tr><td>Level Bolt smart locks</td><td class="num">8</td><td>Door hardware install coordination. Verify bore/latch compatibility with selected doors.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="grid" style="display:none">
       <section class="card" id="panelSummaryCard"></section>
       <section class="card" id="equipIntroCard"></section>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px" id="equipTables"></div>
-    <div style="margin-top:14px" id="panelBlocks"></div>
+    <div style="display:none;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px" id="equipTables"></div>
+    <div style="display:none;margin-top:14px" id="panelBlocks"></div>
 
-    <div class="note" style="margin-top:14px">
+    <div class="note" style="display:none;margin-top:14px">
       <span class="badge">Note</span>
       Values are sourced from the exported load table. If the Google Sheet publish-to-web is delayed/cached, this page remains accurate for the CSV embedded in this page.
     </div>
@@ -239,7 +1159,7 @@ Glass East,119,234,100 mm,Somfy Sonesse 100 RS485,≥ 15 Nm,≥ 20 Nm,0.48,57.6,
 TOTAL,,,,11 Motors,,,4.89,586.8,,,,6 × Shelly Pro Dual (2 motors each),LAN/RS485 → Homey,,4.89,586.8,See grouping,6,Total Devices Needed
 </script>
 
-  <script>
+  <script type="text/plain" id="disabled-electrical-csv-renderer">
 (function(){
   const LS_KEY='ovesubs_electrical_csv_url';
 
@@ -627,6 +1547,44 @@ TOTAL,,,,11 Motors,,,4.89,586.8,,,,6 × Shelly Pro Dual (2 motors each),LAN/RS48
     document.getElementById('app').style.display='block';
     console.error(e);
   }
+})();
+  </script>
+
+  <div class="plan-lightbox" id="planLightbox" aria-hidden="true">
+    <div class="plan-lightbox-bar">
+      <span id="planLightboxTitle"></span>
+      <button class="plan-lightbox-close" id="planLightboxClose" type="button">Close &#10005;</button>
+    </div>
+    <iframe id="planLightboxFrame" title="Plan sheet full screen"></iframe>
+  </div>
+
+  <script>
+(function(){
+  var lb=document.getElementById('planLightbox');
+  var lf=document.getElementById('planLightboxFrame');
+  var lt=document.getElementById('planLightboxTitle');
+  if(!lb||!lf||!lt) return;
+  function openPlan(pdf,title){
+    lf.src=pdf+'#view=FitH';
+    lt.textContent=title||'';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closePlan(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    lf.src='about:blank';
+    document.body.style.overflow='';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.plan-expand'),function(btn){
+    btn.addEventListener('click',function(){
+      openPlan(btn.getAttribute('data-pdf'),btn.getAttribute('data-title'));
+    });
+  });
+  document.getElementById('planLightboxClose').addEventListener('click',closePlan);
+  lb.addEventListener('click',function(e){ if(e.target===lb) closePlan(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closePlan(); });
 })();
   </script>
 </body>
