@@ -264,6 +264,16 @@ tr:last-child td{border-bottom:none}
 const SUPA='https://mcvkkohtvywwvtndpuvw.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdmtrb2h0dnl3d3Z0bmRwdXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3ODU1ODMsImV4cCI6MjA4NzM2MTU4M30.q-_tb3az_HbCpaZXS-wLUq1wcoZQ5x7hBFlw1zeIuJ8';
 const BUCKET='sub-docs';
+// Locally-served sub docs (Supabase store mcvkkohtvywwvtndpuvw was retired/deleted).
+// Files live under /subdocs/<Vendor>/<docId>.pdf in this deploy; checked before Supabase.
+const STATIC_DOCS={
+  'cherotech':{license:'subdocs/Cherotech/license.pdf',liability:'subdocs/Cherotech/liability.pdf'}
+};
+function staticDoc(vendor,id){
+  const k=(vendor||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  const m=STATIC_DOCS[k];
+  return m&&m[id]?m[id]:null;
+}
 const DOCS=[
   {id:'license',label:"Contractor's License",req:true},
   {id:'liability',label:'Liability Insurance',req:true},
@@ -401,9 +411,10 @@ function showPortal(row,pd){
 }
 
 function spath(vendor,id){return encodeURIComponent(vendor)+'/'+id+'.pdf'}
-function pubUrl(vendor,id){return SUPA+'/storage/v1/object/public/'+BUCKET+'/'+spath(vendor,id)}
+function pubUrl(vendor,id){const s=staticDoc(vendor,id);if(s)return s;return SUPA+'/storage/v1/object/public/'+BUCKET+'/'+spath(vendor,id)}
 
 async function fileExists(vendor,id){
+  if(staticDoc(vendor,id))return true;
   try{const r=await fetch(SUPA+'/storage/v1/object/info/public/'+BUCKET+'/'+spath(vendor,id),{headers:{'apikey':KEY}});return r.ok}
   catch(e){return false}
 }
