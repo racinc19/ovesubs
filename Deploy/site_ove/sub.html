@@ -267,7 +267,11 @@ const BUCKET='sub-docs';
 // Locally-served sub docs (Supabase store mcvkkohtvywwvtndpuvw was retired/deleted).
 // Files live under /subdocs/<Vendor>/<docId>.pdf in this deploy; checked before Supabase.
 const STATIC_DOCS={
-  'cherotech':{license:'subdocs/Cherotech/license.pdf',liability:'subdocs/Cherotech/liability.pdf'}
+  'cherotech':{license:'subdocs/Cherotech/license.pdf',liability:'subdocs/Cherotech/liability.pdf',workmans_comp:'subdocs/Cherotech/workmans_comp.pdf',contract:'subdocs/Cherotech/contract.pdf',invoice:'subdocs/Cherotech/invoice.pdf'}
+};
+// Locally-served Company Information prefill (loadInfo falls back to this when localStorage is empty).
+const STATIC_INFO={
+  'cherotech':{company:'T Builds LLC',license:'14190465-5501',address:'2480 S 1200 E',city:'Hurricane',state:'UT',zip:'84737',contact:'Greg Bateman',website:'',phones:['435-862-4012'],emails:['Batemangregray@gmail.com']}
 };
 function staticDoc(vendor,id){
   const k=(vendor||'').toLowerCase().replace(/[^a-z0-9]/g,'');
@@ -594,17 +598,23 @@ function renderEmails(){
   if(!siEmails.length)el.innerHTML='<div style="font-size:12px;color:var(--dim);margin-bottom:6px">No email addresses added yet.</div>';
 }
 
+function applyInfo(d){
+  ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
+    const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
+  });
+  siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
+  siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
+  renderPhones();renderEmails();
+}
 function loadInfo(vendor){
   try{
     const raw=localStorage.getItem('sub_info_'+vendor);
-    if(!raw)return initInfo();
-    const d=JSON.parse(raw);
-    ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
-      const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
-    });
-    siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
-    siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
-    renderPhones();renderEmails();
+    if(!raw){
+      const k=(vendor||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+      if(STATIC_INFO[k])return applyInfo(STATIC_INFO[k]);
+      return initInfo();
+    }
+    applyInfo(JSON.parse(raw));
   }catch(e){initInfo();}
 }
 function initInfo(){siPhones=[];siEmails=[];addPhone();addEmail();renderPhones();renderEmails();}
