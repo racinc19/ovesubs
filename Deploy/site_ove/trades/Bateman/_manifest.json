@@ -1,0 +1,41 @@
+{
+  "trade": "Bateman",
+  "portal_vendor_id": "cherotech",
+  "name_drift_note": "Schedule tab lists this sub as 'Bateman'; Subs/budget tab + portal id is 'Cherotech'. Same sub (framing labor).",
+  "sub": {
+    "company": "Bateman Bros LLC",
+    "contact": "Greg Bateman",
+    "email": "batemangregray@gmail.com",
+    "trade_scope": "Wood Framing Labor"
+  },
+  "source": "Gmail attachments from batemangregray@gmail.com (collected 2026-06-17)",
+  "documents": [
+    {
+      "file": "DOPLContractorLICENSE2.pdf",
+      "type": "Contractor's License",
+      "portal_doc_id": "license",
+      "mirrored_to": "sub-docs/cherotech/license.pdf"
+    },
+    {
+      "file": "ACORD Form 20250804-084222.pdf",
+      "type": "Liability Insurance (ACORD certificate)",
+      "portal_doc_id": "liability",
+      "mirrored_to": "sub-docs/cherotech/liability.pdf"
+    },
+    {
+      "file": "Issued.pdf",
+      "type": "Issued document (unclassified - review; likely insurance/permit)",
+      "portal_doc_id": null,
+      "mirrored_to": null
+    },
+    {
+      "file": "DIRECT DEPOSIT.pdf",
+      "type": "Direct deposit / banking authorization (no portal slot)",
+      "portal_doc_id": null,
+      "mirrored_to": null
+    }
+  ],
+  "not_staged_to_bucket_slots": [
+    "Issued.pdf and DIRECT DEPOSIT.pdf do not map to a fixed portal DOCS id (license/liability/workmans_comp/contract/addendum/invoice). Left in trades/Bateman only. Worker's Comp slot is unfilled - Greg did not send a separate comp waiver in these emails."
+  ]
+}

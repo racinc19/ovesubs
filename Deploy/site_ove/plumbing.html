@@ -1,13 +1,9 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>OVE subs — Plumbing</title>
-  <style>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>OVE subs — Plumbing</title>
+<style>
 :root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--txt:#e8edf5;--txt2:#8899b0;--dim:#5a6d85;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--cyan:#06b6d4}
 *{margin:0;padding:0;box-sizing:border-box}
 html{overflow-y:scroll}
@@ -39,240 +35,37 @@ details.cat summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:1
 details.cat summary::-webkit-details-marker{display:none}
 .note{padding:12px 16px;font-size:12px;color:var(--txt2)}
 .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:800;border:1px solid rgba(234,179,8,.35);color:var(--yellow);background:rgba(234,179,8,.07);margin-left:8px}
-.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
-.metric{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:12px}
-.metric .label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:800}
-.metric .value{font-size:22px;font-weight:900;margin-top:4px;color:#fff}
-.metric .hint{font-size:11px;color:var(--txt2);margin-top:3px}
-.full-card{margin-top:14px}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.callout{border-left:3px solid var(--cyan);background:rgba(6,182,212,.07);padding:12px 14px;color:var(--txt);font-size:12px}
-.callout.warn{border-left-color:var(--yellow);background:rgba(234,179,8,.07)}
-.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
-.total-row td{font-weight:900;color:#fff;background:rgba(34,197,94,.08)}
-@media(max-width:1180px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:620px){.metrics{grid-template-columns:1fr}}
-.tag{display:inline-block;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);color:#bfdbfe;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:800;white-space:nowrap}
-.panel-layout{display:grid;grid-template-columns:1fr;gap:16px;padding:16px}
-.layout-bank{border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.02);padding:14px}
-.layout-title{font-size:13px;font-weight:900;color:#fff;margin-bottom:10px}
-.layout-row{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;gap:10px;align-items:stretch}
-.layout-box{border:1px solid rgba(148,163,184,.35);border-radius:8px;background:var(--card2);padding:12px;min-height:142px}
-.layout-box.ac{border-color:rgba(239,68,68,.45)}
-.layout-box.ps{border-color:rgba(234,179,8,.55)}
-.layout-box.lv{border-color:rgba(34,197,94,.45)}
-.layout-box h3{font-size:11px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;color:#fff}
-.layout-box ul{list-style:none;display:grid;gap:5px}
-.layout-box li{font-size:11px;color:var(--txt2)}
-.layout-arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);font-weight:900}
-.layout-note{font-size:11px;color:var(--txt2);margin-top:10px}
-.panel-drawing{padding:16px;border-top:1px solid rgba(42,58,85,.35)}
-.panel-drawing svg{width:100%;height:auto;display:block;background:#0f1726;border:1px solid var(--bdr);border-radius:8px}
-.panel-drawing text{font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.panel-drawing .cab{fill:#172235;stroke:#6b7f99;stroke-width:2}
-.panel-drawing .door{fill:none;stroke:#3d516d;stroke-width:1.5;stroke-dasharray:6 5}
-.panel-drawing .duct{fill:#24334d;stroke:#50627d;stroke-width:1}
-.panel-drawing .rail{stroke:#cbd5e1;stroke-width:4}
-.panel-drawing .breaker{fill:#3f1f2a;stroke:#ef4444;stroke-width:1.5}
-.panel-drawing .psu{fill:#3d3215;stroke:#eab308;stroke-width:1.5}
-.panel-drawing .fuse{fill:#173421;stroke:#22c55e;stroke-width:1.2}
-.panel-drawing .shelly{fill:#153447;stroke:#06b6d4;stroke-width:1.2}
-.panel-drawing .term{fill:#273244;stroke:#94a3b8;stroke-width:1.1}
-.panel-drawing .wire{fill:none;stroke:#94a3b8;stroke-width:2;marker-end:url(#arrow)}
-.panel-drawing .wire24{fill:none;stroke:#22c55e;stroke-width:2;marker-end:url(#arrowGreen)}
-.panel-drawing .wire120{fill:none;stroke:#ef4444;stroke-width:2;marker-end:url(#arrowRed)}
-.panel-drawing .title{fill:#fff;font-size:16px;font-weight:900}
-.panel-drawing .label{fill:#cbd5e1;font-size:11px;font-weight:800}
-.panel-drawing .small{fill:#94a3b8;font-size:9px}
-.panel-drawing .tiny{fill:#dbeafe;font-size:8px;font-weight:800}
-#panel-panels .old-panel-detail,#panel-panels .panel-layout,#panel-panels .panel-drawing ~ .panel-drawing,#panel-panels section.card.full-card + section.card,#panel-panels>section.card:not(.full-card){display:none}
-.tabs{margin-top:14px}
-.tabs input[type=radio]{position:absolute;opacity:0;pointer-events:none}
-.tab-labels{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--bdr);padding-bottom:8px}
-.tab-labels label{cursor:pointer;border:1px solid var(--bdr);background:var(--card);color:var(--txt2);border-radius:8px;padding:8px 10px;font-size:12px;font-weight:800;white-space:nowrap}
-.tab-labels label:hover{background:var(--hover);color:var(--txt)}
-.tab-panel{display:none;margin-top:14px}
-#tab-main-wall:checked ~ .tab-labels label[for=tab-main-wall],
-#tab-main-ceiling:checked ~ .tab-labels label[for=tab-main-ceiling],
-#tab-upper-wall:checked ~ .tab-labels label[for=tab-upper-wall],
-#tab-upper-ceiling:checked ~ .tab-labels label[for=tab-upper-ceiling],
-#tab-lower:checked ~ .tab-labels label[for=tab-lower],
-#tab-circuit-map:checked ~ .tab-labels label[for=tab-circuit-map],
-#tab-blinds:checked ~ .tab-labels label[for=tab-blinds],
-#tab-av:checked ~ .tab-labels label[for=tab-av],
-#tab-install:checked ~ .tab-labels label[for=tab-install],
-#tab-panels:checked ~ .tab-labels label[for=tab-panels]{background:var(--blue);border-color:var(--blue);color:#fff}
-#tab-main-wall:checked ~ .tab-panels #panel-main-wall,
-#tab-main-ceiling:checked ~ .tab-panels #panel-main-ceiling,
-#tab-upper-wall:checked ~ .tab-panels #panel-upper-wall,
-#tab-upper-ceiling:checked ~ .tab-panels #panel-upper-ceiling,
-#tab-lower:checked ~ .tab-panels #panel-lower,
-#tab-circuit-map:checked ~ .tab-panels #panel-circuit-map,
-#tab-blinds:checked ~ .tab-panels #panel-blinds,
-#tab-av:checked ~ .tab-panels #panel-av,
-#tab-install:checked ~ .tab-panels #panel-install,
-#tab-panels:checked ~ .tab-panels #panel-panels{display:block}
-@media(max-width:1100px){.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}.layout-row{grid-template-columns:1fr}.layout-arrow{min-height:18px}}
-@media(max-width:620px){.schedule-grid{grid-template-columns:1fr}}
-.plan-sheet-h{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.plan-sheet-h h3{font-size:14px;font-weight:800;color:var(--txt)}
-.plan-frame{width:100%;height:520px;border:1px solid var(--bdr);border-radius:8px;background:#0f1726}
-.plan-embed{margin-top:14px}
-.plan-embed .plan-sheet-h{padding:14px 16px 10px;margin-bottom:0}
-.plan-embed .plan-frame{height:560px;margin:0 16px 16px;width:calc(100% - 32px)}
-.plan-expand{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:800;border:1px solid var(--bdr);background:rgba(59,130,246,.10);color:#bfdbfe;cursor:pointer;white-space:nowrap}
-.plan-expand:hover{border-color:var(--blue);color:#fff;background:rgba(59,130,246,.22)}
-.plan-lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(8,12,20,.97);flex-direction:column}
-.plan-lightbox.open{display:flex}
-.plan-lightbox-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--bdr)}
-.plan-lightbox-bar span{font-weight:800;color:#fff;font-size:13px}
-.plan-lightbox-close{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:800;border:1px solid var(--bdr);background:transparent;color:var(--txt);cursor:pointer}
-.plan-lightbox-close:hover{border-color:var(--red);color:#fff}
-.plan-lightbox iframe{flex:1;width:100%;border:0;background:#0f1726}
   </style>
-</head>
-<body>
-<nav class="topnav"><div class="topnav-inner">
-    <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
-    <div class="topnav-links">
-      <a href="index.html">Dashboard</a>
-    <a href="subs.html" style="padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--orange);text-decoration:none;border:1px solid rgba(245,158,11,.3)">👷 Subs List</a>
-      <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer">Plans &amp; Permits</a>
-      <a href="selections.html">Selections</a>
-      <a href="electrical.html">Electrical</a>
-      <a class="active" href="plumbing.html">Plumbing</a>
-    </div>
-  </div></nav>
+</head><body>
+<nav class='topnav'><div class='topnav-inner'><a href='index.html' class='topnav-brand'><span class='dot'></span>OVE subs</a><div class='topnav-links'><a href='index.html'>Dashboard</a><a href='subs.html' style='padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--orange);text-decoration:none;border:1px solid rgba(245,158,11,.3)'>👷 Subs List</a><a href='https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si' target='_blank' rel='noopener noreferrer'>Plans &amp; Permits</a><a href='selections.html'>Selections</a><a href='electrical.html'>Electrical</a><a class='active' href='plumbing.html'>Plumbing</a></div></div></nav>
 <div class="container">
   <div class="h1">Plumbing Summary</div>
-  <div class="sub">Fixture schedule by room — from the priced plumbing list. Plan sheet: <b>P100 — Plumbing</b>.</div>
-  <section class="card plan-embed">
-    <div class="plan-sheet-h"><h3>P100 &mdash; Plumbing</h3><button class="plan-expand" type="button" data-pdf="plans/plumbing/P100-Plumbing.pdf" data-title="P100 — Plumbing">Expand full screen &#10530;</button></div>
-    <iframe class="plan-frame" src="plans/plumbing/P100-Plumbing.pdf#view=FitH" title="P100 - Plumbing" loading="lazy"></iframe>
-  </section>
+  <div class="sub">Fixture schedule by room — sourced from the priced plumbing list. Plan sheet: <b>P100 — Plumbing</b>.</div>
   <div class="note" style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
     <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer"
        style="padding:8px 12px;border-radius:8px;font-size:12px;font-weight:700;border:1px solid var(--bdr);background:transparent;color:var(--txt2);text-decoration:none">Open Plumbing Plan (P100) ↗</a>
   </div>
-  <div id="plumbTally" class="grid"></div>
-  <div id="plumbRooms"></div>
-  <div id="plumbError" class="note" style="margin-top:14px;display:none"></div>
-  <div class="note" style="margin-top:14px"><span class="badge">Note</span>
-    Generated live from the Rodriguez <a href="selections.html" style="color:var(--cyan);text-decoration:none">Selections</a> data &mdash; the single source of truth. Plumbing fixtures are filtered from Selections by the same classifier the Selections page uses; edit Selections and this page follows.</div>
-</div>
-
-  <script>
-(function(){
-  // ── Single source of truth: the Rodriguez Selections data (selections.html → SEED_ROOMS).
-  //    This page derives its plumbing fixtures at runtime so it can never drift from Selections.
-  var SEL_KEY='rodriguez_sel_v9';
-  // Plumbing classifier — copied verbatim from selections.html suggestTradeForItem().
-  function isPlumbing(item){
-    var s=((item.name||'')+' '+(item.vendor||'')+' '+(item.notes||'')).toLowerCase();
-    return /\b(plumb|sink|faucet|toilet|tub|drain|water heater|navien|softener|filtration|circulation)\b/.test(s);
-  }
-  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-  function qtyOf(item){
-    var m=String(item.name||'').match(/\(x\s*(\d+)\)/i);
-    if(m) return parseInt(m[1],10);
-    var n=String(item.notes||'').match(/\bqty\s*(\d+)\b/i);
-    if(n) return parseInt(n[1],10);
-    return 1;
-  }
-  // Load Selections the same precedence selections.html uses: localStorage SEL_KEY (chunked) first, SEED_ROOMS from the file as fallback.
-  function fromLocal(){
-    try{
-      var raw=localStorage.getItem(SEL_KEY);
-      if(!raw){
-        var chunks=localStorage.getItem(SEL_KEY+'_chunks');
-        if(chunks){var total=parseInt(chunks,10),a='';for(var i=0;i<total;i++){a+=(localStorage.getItem(SEL_KEY+'_c'+i)||'');}raw=a;}
-      }
-      if(raw){var p=JSON.parse(raw);if(Array.isArray(p)&&p.length)return p;}
-    }catch(e){}
-    return null;
-  }
-  function fromSelectionsFile(){
-    return fetch('selections.html',{cache:'no-store'}).then(function(r){return r.text();}).then(function(html){
-      var m=html.match(/const SEED_ROOMS\s*=\s*(\[.*\]);/);
-      if(!m) throw new Error('SEED_ROOMS not found in selections.html');
-      return JSON.parse(m[1]);
-    });
-  }
-  function render(data){
-    var rooms=data.map(function(r){
-      return {level:r.level||'',name:r.name||'',items:(r.items||[]).filter(isPlumbing)};
-    }).filter(function(r){return r.items.length;});
-    // Fixture-type tally (derived, never hand-typed).
-    var typeCounts={},total=0;
-    function bump(label,q){typeCounts[label]=(typeCounts[label]||0)+q;}
-    rooms.forEach(function(r){r.items.forEach(function(it){
-      var q=qtyOf(it),s=((it.name||'')+' '+(it.notes||'')).toLowerCase();total+=q;
-      if(/navien|water heater|tankless|softener|filtration|circulation/.test(s))bump('Mechanical (WH / water systems)',q);
-      else if(/toilet|bidet/.test(s))bump('Toilets / bidets',q);
-      else if(/\btub\b/.test(s)&&!/filler/.test(s))bump('Tubs',q);
-      else if(/faucet|filler/.test(s))bump('Faucets',q);
-      else if(/drain/.test(s))bump('Drains',q);
-      else if(/\bsink\b/.test(s))bump('Sinks',q);
-      else bump('Other plumbing',q);
-    });});
-    var order=['Sinks','Faucets','Toilets / bidets','Tubs','Drains','Mechanical (WH / water systems)','Other plumbing'];
-    var trows=order.filter(function(k){return typeCounts[k];}).map(function(k){return "<tr><td>"+k+"</td><td class='num'>"+typeCounts[k]+"</td></tr>";}).join('');
-    trows+="<tr style=\"font-weight:900\"><td>Total fixtures</td><td class='num'>"+total+"</td></tr>";
-    document.getElementById('plumbTally').innerHTML=
-      "<section class=\"card\"><div class=\"card-h\"><h2>House Fixture Tally</h2></div><div class=\"table-wrap\"><table><tr><th>Fixture type</th><th class=\"num\">Count</th></tr>"+trows+"</table></div></section>"+
-      "<section class=\"card\"><div class=\"card-h\"><h2>Rollup</h2></div><div class=\"note\"><div><b>"+rooms.length+"</b> rooms / areas with plumbing</div><div style=\"margin-top:6px\"><b>"+total+"</b> total plumbing fixtures &amp; equipment</div><div class=\"muted\" style=\"margin-top:8px;font-size:11px\">Derived from Selections via the plumbing classifier. Counts exclude countertops &amp; non-plumbing items.</div></div></section>";
-    var html=rooms.map(function(r){
-      var rows=r.items.map(function(it){
-        var sub=it.notes?"<div class='muted' style='font-size:11px;margin-top:2px'>"+esc(it.notes)+"</div>":"";
-        return "<tr><td>"+esc(it.name)+sub+"</td><td class='num'>"+qtyOf(it)+"</td><td>"+esc(it.vendor||'TBD')+"</td><td>"+esc(it.model||'')+"</td></tr>";
-      }).join('');
-      return "<section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>"+esc(r.name)+" <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>&middot; "+esc(r.level)+"</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>"+r.items.length+" fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th>Model</th></tr>"+rows+"</table></div></section>";
-    }).join('');
-    document.getElementById('plumbRooms').innerHTML=html;
-  }
-  function fail(msg){var el=document.getElementById('plumbError');if(el){el.style.display='block';el.innerHTML="<span class='badge' style='border-color:rgba(239,68,68,.4);color:var(--red);background:rgba(239,68,68,.07)'>Error</span> Could not load Selections data: "+esc(msg);}}
-  function go(data){ if(!data||!data.length){fail('No selection data found.');return;} try{render(data);}catch(e){fail(e.message);} }
-  var local=fromLocal();
-  if(local){ go(local); }
-  else { fromSelectionsFile().then(go).catch(function(e){fail(e.message);}); }
-})();
-  </script>
-
-  <div class="plan-lightbox" id="planLightbox" aria-hidden="true">
-    <div class="plan-lightbox-bar">
-      <span id="planLightboxTitle"></span>
-      <button class="plan-lightbox-close" id="planLightboxClose" type="button">Close &#10005;</button>
-    </div>
-    <iframe id="planLightboxFrame" title="Plan sheet full screen"></iframe>
+  <div class="grid">
+    <section class="card">
+      <div class="card-h"><h2>House Fixture Tally</h2></div>
+      <div class="table-wrap"><table>
+        <tr><th>Fixture type</th><th class="num">Count</th></tr>
+        <tr><td>Sinks</td><td class='num'>12</td></tr><tr><td>Hose bibbs</td><td class='num'>10</td></tr><tr><td>Faucets</td><td class='num'>7</td></tr><tr><td>Toilets / bidets</td><td class='num'>6</td></tr><tr><td>Mechanical (WH / water systems)</td><td class='num'>5</td></tr><tr><td>Shower valves</td><td class='num'>3</td></tr><tr><td>Gas fireplace stubs</td><td class='num'>2</td></tr><tr><td>Drains</td><td class='num'>2</td></tr><tr><td>Tubs</td><td class='num'>1</td></tr>
+        <tr style="font-weight:900"><td>Total fixtures</td><td class="num">48</td></tr>
+      </table></div>
+    </section>
+    <section class="card">
+      <div class="card-h"><h2>Rollup</h2></div>
+      <div class="note">
+        <div><b>13</b> rooms / areas with plumbing</div>
+        <div style="margin-top:6px"><b>48</b> total fixtures &amp; equipment</div>
+        <div style="margin-top:6px">Listed plumbing scope: <b>$29,275</b> <span class="muted">(fixtures + countertop allowances as priced)</span></div>
+        <div class="muted" style="margin-top:8px;font-size:11px">Counts exclude countertops, which are shown per-room for context.</div>
+      </div>
+    </section>
   </div>
-
-  <script>
-(function(){
-  var lb=document.getElementById('planLightbox');
-  var lf=document.getElementById('planLightboxFrame');
-  var lt=document.getElementById('planLightboxTitle');
-  if(!lb||!lf||!lt) return;
-  function openPlan(pdf,title){
-    lf.src=pdf+'#view=FitH';
-    lt.textContent=title||'';
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
-  }
-  function closePlan(){
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden','true');
-    lf.src='about:blank';
-    document.body.style.overflow='';
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('.plan-expand'),function(btn){
-    btn.addEventListener('click',function(){
-      openPlan(btn.getAttribute('data-pdf'),btn.getAttribute('data-title'));
-    });
-  });
-  document.getElementById('planLightboxClose').addEventListener('click',closePlan);
-  lb.addEventListener('click',function(e){ if(e.target===lb) closePlan(); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closePlan(); });
-})();
-  </script>
+  <section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Kitchen <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Main Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>4 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Glacier Bay 33&quot; Drop-In Sink<div class='muted' style='font-size:11px;margin-top:2px'>VT3322D1 SS single bowl w/ pull-down faucet (Home Depot)</div></td><td class='num'>1</td><td>Glacier Bay</td><td class='num'>$259</td></tr><tr><td>Kohler Crue Touchless Faucet (x2)<div class='muted' style='font-size:11px;margin-top:2px'>#22974 ~$750 ea (polished chrome)</div></td><td class='num'>2</td><td>Kohler</td><td class='num'>$1500</td></tr><tr><td>Kitchen Island Sink<div class='muted' style='font-size:11px;margin-top:2px'>Sink + disposal + air switch + labor (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$1500</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Office Bath <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Main Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>3 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>HOROW Undermount Sink<div class='muted' style='font-size:11px;margin-top:2px'>20–27 in undermount</div></td><td class='num'>1</td><td>HOROW</td><td class='num'>$90</td></tr><tr><td>ARCORA Arc/Waterfall Bathroom Faucet<div class='muted' style='font-size:11px;margin-top:2px'>Single-handle waterfall (arcorafaucet.com)</div></td><td class='num'>1</td><td>ARCORA</td><td class='num'>$60</td></tr><tr><td>HOROW Smart Toilet T05<div class='muted' style='font-size:11px;margin-top:2px'>Bidet combo elongated (horow.com)</div></td><td class='num'>1</td><td>HOROW</td><td class='num'>$949</td></tr><tr><td><span class='muted'>Countertop:</span> TBD</td><td class='num'>95</td><td>Countertop Source</td><td class='num'>$666</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Powder Bath <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Main Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>3 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>HOROW Undermount Sink</td><td class='num'>1</td><td>HOROW</td><td class='num'>$90</td></tr><tr><td>ARCORA Arc/Waterfall Bathroom Faucet</td><td class='num'>1</td><td>ARCORA</td><td class='num'>$60</td></tr><tr><td>HOROW Smart Toilet T05</td><td class='num'>1</td><td>HOROW</td><td class='num'>$949</td></tr><tr><td><span class='muted'>Countertop:</span> TBD</td><td class='num'>TBD</td><td>Countertop Source</td><td class='num'>$587</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Garage <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Main Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>2 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Mop Sink<div class='muted' style='font-size:11px;margin-top:2px'>Utility sink with faucet (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$200</td></tr><tr><td>Moen M-DURA Wall Mount Utility Faucet (8126)<div class='muted' style='font-size:11px;margin-top:2px'>Chrome 2-handle wall-mount utility (garage sink)</div></td><td class='num'>1</td><td>Moen</td><td class='num'>$383</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Outdoor / BBQ / Patio <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Main Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>11 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Outdoor BBQ Sink<div class='muted' style='font-size:11px;margin-top:2px'>Stainless outdoor sink + hot/cold faucet (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$350</td></tr><tr><td>Hose Bibbs w/ Vacuum Breaker (10 total)<div class='muted' style='font-size:11px;margin-top:2px'>Frost-free bibbs + vacuum breakers ~$45 ea (est.)</div></td><td class='num'>10</td><td>TBD</td><td class='num'>$450</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Primary Suite <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Upper Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>1 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Fireplace (1 of 3)<div class='muted' style='font-size:11px;margin-top:2px'>Gas line per plumbing bid (no fixture price)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$0</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Primary Bath <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Upper Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>11 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>HOROW Undermount Sink Rectangular (x2)<div class='muted' style='font-size:11px;margin-top:2px'>$90 ea</div></td><td class='num'>2</td><td>HOROW</td><td class='num'>$180</td></tr><tr><td>ARCORA Arc/Waterfall Bathroom Faucet</td><td class='num'>1</td><td>ARCORA</td><td class='num'>$60</td></tr><tr><td>HOROW Smart Toilet T05 (x2)<div class='muted' style='font-size:11px;margin-top:2px'>$949 ea</div></td><td class='num'>2</td><td>HOROW</td><td class='num'>$1898</td></tr><tr><td>GRANDJOY Thermostatic Shower Valve (x2)<div class='muted' style='font-size:11px;margin-top:2px'>~$493 ea (thermostatic valve + trim)</div></td><td class='num'>2</td><td>GRANDJOY</td><td class='num'>$986</td></tr><tr><td>Freestanding Tub<div class='muted' style='font-size:11px;margin-top:2px'>60&quot; acrylic freestanding (mid-range)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$1900</td></tr><tr><td>WOODBRIDGE Florence Single-Handle Freestanding Tub Faucet w/ Hand Shower Matte Black<div class='muted' style='font-size:11px;margin-top:2px'>Freestanding floor-mount; hand shower 60 in hose (F1015)</div></td><td class='num'>1</td><td>WOODBRIDGE</td><td class='num'>$222</td></tr><tr><td>Oatey 24&quot; Linear Drain (x2)<div class='muted' style='font-size:11px;margin-top:2px'>$122.40 ea (Home Depot DLS2240R2)</div></td><td class='num'>2</td><td>Oatey</td><td class='num'>$245</td></tr><tr><td><span class='muted'>Countertop:</span> TBD</td><td class='num'>TBD</td><td>Countertop Source</td><td class='num'>$1535</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Upper Laundry <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Upper Level</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>1 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Laundry Sink<div class='muted' style='font-size:11px;margin-top:2px'>Utility sink with pullout faucet (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$156</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Basement Living / Theater <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Basement</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>1 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Fireplace (1 of 3)<div class='muted' style='font-size:11px;margin-top:2px'>Gas line per plumbing bid</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$0</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Basement Bath <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Basement</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>2 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>HOROW Undermount Sink</td><td class='num'>1</td><td>HOROW</td><td class='num'>$90</td></tr><tr><td>HOROW Smart Toilet T05</td><td class='num'>1</td><td>HOROW</td><td class='num'>$949</td></tr><tr><td><span class='muted'>Countertop:</span> TBD</td><td class='num'>TBD</td><td>Countertop Source</td><td class='num'>$587</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>Mechanical Room <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· Basement</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>5 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Navien NPE-240A2 Tankless WH (x2)<div class='muted' style='font-size:11px;margin-top:2px'>$2189 ea (SupplyStop)</div></td><td class='num'>2</td><td>Navien</td><td class='num'>$4378</td></tr><tr><td>Water Softener<div class='muted' style='font-size:11px;margin-top:2px'>Rough-in labor + stub-out (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$500</td></tr><tr><td>Whole House Filtration<div class='muted' style='font-size:11px;margin-top:2px'>Rough-in labor + stub-out (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$500</td></tr><tr><td>Hot Water Circulation System<div class='muted' style='font-size:11px;margin-top:2px'>Dedicated loop + pump (est. $2k–7k)</div></td><td class='num'>1</td><td>Master Plumbing</td><td class='num'>$4000</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>ADU Kitchen <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· ADU / Casita</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>1 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>Guest Kitchenette Sink<div class='muted' style='font-size:11px;margin-top:2px'>Sink + disposal + air switch + icemaker line (est.)</div></td><td class='num'>1</td><td>TBD</td><td class='num'>$1200</td></tr></table></div></section><section class='card' style='margin-top:14px'><div class='card-h' style='display:flex;justify-content:space-between;align-items:center'><h2>ADU Bath 1 <span class='muted' style='text-transform:none;font-weight:600;font-size:11px'>· ADU / Casita</span></h2><span class='badge' style='border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.08)'>3 fixtures</span></div><div class='table-wrap'><table><tr><th>Fixture / item</th><th class='num'>Qty</th><th>Vendor</th><th class='num'>Price</th></tr><tr><td>HOROW Undermount Sink</td><td class='num'>1</td><td>HOROW</td><td class='num'>$90</td></tr><tr><td>ARCORA Arc/Waterfall Bathroom Faucet</td><td class='num'>1</td><td>ARCORA</td><td class='num'>$60</td></tr><tr><td>HOROW Smart Toilet T05</td><td class='num'>1</td><td>HOROW</td><td class='num'>$949</td></tr><tr><td><span class='muted'>Countertop:</span> ADU Bath Countertop TBD</td><td class='num'>TBD</td><td>Countertop Source</td><td class='num'>$697</td></tr></table></div></section>
+  <div class="note" style="margin-top:14px"><span class="badge">Note</span>
+    Built from the project's priced plumbing list. Update that list and rebuild to refresh counts.</div>
+</div>
 </body></html>

@@ -111,8 +111,9 @@ tr:last-child td{border-bottom:none}
     <div class="plogo">Rodriguez Residence · Oak Valley Estates Lot 5</div>
     <div class="plock">🔐</div>
     <div class="ptitle">Subcontractor Portal</div>
-    <div class="psub">Enter your 4-digit PIN</div>
-    <div id="vname" class="pvendor"></div>
+    <div class="psub">Enter your company name and 4-digit PIN</div>
+    <input class="sinput" id="vinput" placeholder="Company name (as on your contract)" autocomplete="organization" oninput="updateBtn()" onkeydown="if(event.key==='Enter')document.getElementById('p0').focus()" style="margin:0 auto 14px;max-width:280px;text-align:center">
+    <div id="vname" class="pvendor" style="display:none"></div>
     <div class="prow">
       <input class="pd" maxlength="1" inputmode="numeric" id="p0" autocomplete="off" oninput="pIn(0)" onkeydown="pKey(event,0)">
       <input class="pd" maxlength="1" inputmode="numeric" id="p1" autocomplete="off" oninput="pIn(1)" onkeydown="pKey(event,1)">
@@ -259,25 +260,11 @@ tr:last-child td{border-bottom:none}
 
 </div></div><!-- end portal-content -->
 <div id="sels-content" style="display:none;padding-top:56px"><div id="sels-inner" style="max-width:1200px;margin:0 auto;padding:24px 20px"></div></div>
-<script src="shared.js?v20260617_subs_url_fix"></script>
+<script src="shared.js?v20260513_schedule_fallback"></script>
 <script>
 const SUPA='https://mcvkkohtvywwvtndpuvw.supabase.co';
 const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdmtrb2h0dnl3d3Z0bmRwdXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3ODU1ODMsImV4cCI6MjA4NzM2MTU4M30.q-_tb3az_HbCpaZXS-wLUq1wcoZQ5x7hBFlw1zeIuJ8';
 const BUCKET='sub-docs';
-// Locally-served sub docs (Supabase store mcvkkohtvywwvtndpuvw was retired/deleted).
-// Files live under /subdocs/<Vendor>/<docId>.pdf in this deploy; checked before Supabase.
-const STATIC_DOCS={
-  'cherotech':{license:'subdocs/Cherotech/license.pdf',liability:'subdocs/Cherotech/liability.pdf',workmans_comp:'subdocs/Cherotech/workmans_comp.pdf',contract:'subdocs/Cherotech/contract.pdf',invoice:'subdocs/Cherotech/invoice.pdf'}
-};
-// Locally-served Company Information prefill (loadInfo falls back to this when localStorage is empty).
-const STATIC_INFO={
-  'cherotech':{company:'T Builds LLC',license:'14190465-5501',address:'2480 S 1200 E',city:'Hurricane',state:'UT',zip:'84737',contact:'Greg Bateman',website:'',phones:['435-862-4012'],emails:['Batemangregray@gmail.com']}
-};
-function staticDoc(vendor,id){
-  const k=(vendor||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-  const m=STATIC_DOCS[k];
-  return m&&m[id]?m[id]:null;
-}
 const DOCS=[
   {id:'license',label:"Contractor's License",req:true},
   {id:'liability',label:'Liability Insurance',req:true},
@@ -288,8 +275,9 @@ const DOCS=[
 ];
 
 const params=new URLSearchParams(location.search);
-const VENDOR=decodeURIComponent(params.get('v')||'').trim();
-const SKEY='sub_'+VENDOR.replace(/[^a-z0-9]/gi,'_');
+const URLVENDOR=decodeURIComponent(params.get('v')||'').trim();
+let VENDOR=URLVENDOR;
+const SKEY='sub_'+(URLVENDOR||'portal').replace(/[^a-z0-9]/gi,'_');
 
 // `?v=` in email/links may be a "business name" (e.g. DeezCabnuts) while the Subs sheet
 // col B (portal id) is shorter (e.g. Deez). One URL can match the same sheet row.
@@ -305,17 +293,18 @@ function urlVendorMatchesSheet(urlParam, sheetColB){
   return false;
 }
 
-// Show vendor name
-const vel=document.getElementById('vname');
-if(VENDOR){vel.textContent=VENDOR;vel.style.display='inline-block';}
+// Pre-fill the company name from a ?v= link if one was used
+const vinput=document.getElementById('vinput');
+if(URLVENDOR){vinput.value=URLVENDOR;}
 
+function vendorName(){return(document.getElementById('vinput').value||'').trim()||URLVENDOR;}
+function updateBtn(){document.getElementById('pinBtn').disabled=!(vendorName()&&getPin().length===4);document.getElementById('perr').textContent='';}
 function getPin(){return[0,1,2,3].map(i=>document.getElementById('p'+i).value).join('')}
 function pIn(i){
   const e=document.getElementById('p'+i);
   e.value=e.value.replace(/\D/g,'');
   if(e.value&&i<3)document.getElementById('p'+(i+1)).focus();
-  document.getElementById('pinBtn').disabled=getPin().length!==4;
-  document.getElementById('perr').textContent='';
+  updateBtn();
 }
 function pKey(e,i){
   if(e.key==='Backspace'&&!document.getElementById('p'+i).value&&i>0)document.getElementById('p'+(i-1)).focus();
@@ -330,17 +319,42 @@ async function checkPin(){
   try{
     const txt=await fetch(SUBS_URL+'&_='+Date.now()).then(r=>{if(!r.ok)throw new Error('Subs HTTP '+r.status);return r.text()});
     const rows=parseCSV(txt);
-    let found=null; const tradeSet=new Set();
-    for(let i=1;i<rows.length;i++){
-      const r=rows[i];if(!r||!r[1])continue;
-      const v=(r[1]||'').trim();
-      if(urlVendorMatchesSheet(VENDOR,v)){
-        if((r[0]||'').trim().length)tradeSet.add(norm((r[0]||'').trim()));
-        if(!found)found={vendor:v,pin:(r[2]||'').trim(),contract:parseAmt(r[3]),invoiced:parseAmt(r[4]),paid:parseAmt(r[5])};
-        else{found.contract+=parseAmt(r[3]);found.invoiced+=parseAmt(r[4]);found.paid+=parseAmt(r[5]);}
+    // Scan the Subs/budget tab, accumulating every row that `accept`s.
+    // Rows: A=trade(r[0]), B=vendor(r[1]), C=PIN(r[2]), D=contract, E=invoiced, F=paid.
+    function scanSubs(accept){
+      let f=null; const ts=new Set();
+      for(let i=1;i<rows.length;i++){
+        const r=rows[i];if(!r||!r[1])continue;
+        if(accept(r)){
+          if((r[0]||'').trim().length)ts.add(norm((r[0]||'').trim()));
+          if(!f)f={vendor:(r[1]||'').trim(),pin:(r[2]||'').trim(),contract:parseAmt(r[3]),invoiced:parseAmt(r[4]),paid:parseAmt(r[5])};
+          else{f.contract+=parseAmt(r[3]);f.invoiced+=parseAmt(r[4]);f.paid+=parseAmt(r[5]);}
+        }
       }
+      if(f)f.matchedTradeNorms=Array.from(ts);
+      return f;
     }
-    if(found)found.matchedTradeNorms=Array.from(tradeSet);
+    // 1) Direct: the login-link name matches a Subs-tab vendor (column B).
+    let found=scanSubs(r=>urlVendorMatchesSheet(VENDOR,(r[1]||'').trim()));
+    // 2) Bridge: a sub can be listed under one name on the SCHEDULE and a different
+    //    name in the Subs/budget tab (e.g. schedule "Bateman" = budget "Cherotech").
+    //    Resolve the typed name to its trade via the Schedule tab, then match the
+    //    Subs-tab row sharing that trade. Generalizes — unlocks every name-drift sub.
+    if(!found){
+      try{
+        const stxt=await fetch(SCHEDULE_URL+'&_='+Date.now()).then(r=>r.ok?r.text():'');
+        const srows=parseCSV(stxt);
+        const trades=new Set();
+        for(let i=1;i<srows.length;i++){
+          const r=srows[i];if(!r)continue;
+          if(urlVendorMatchesSheet(VENDOR,(r[1]||'').trim())&&(r[0]||'').trim())trades.add(norm((r[0]||'').trim()));
+        }
+        if(trades.size){
+          found=scanSubs(r=>trades.has(norm((r[0]||'').trim())));
+          if(found)found.vendor=VENDOR; // show the name the sub knows + match their schedule tasks
+        }
+      }catch(e){/* schedule unreachable — fall through to not-found */}
+    }
     if(!found){err('Vendor not found: "'+VENDOR+'". Check Subs tab. Name in column B or use a known alias (e.g. DeezCabnuts for Deez).');btn.disabled=false;msg('');return;}
     if(found.pin!==pin){
       err('Incorrect PIN.');
@@ -415,10 +429,9 @@ function showPortal(row,pd){
 }
 
 function spath(vendor,id){return encodeURIComponent(vendor)+'/'+id+'.pdf'}
-function pubUrl(vendor,id){const s=staticDoc(vendor,id);if(s)return s;return SUPA+'/storage/v1/object/public/'+BUCKET+'/'+spath(vendor,id)}
+function pubUrl(vendor,id){return SUPA+'/storage/v1/object/public/'+BUCKET+'/'+spath(vendor,id)}
 
 async function fileExists(vendor,id){
-  if(staticDoc(vendor,id))return true;
   try{const r=await fetch(SUPA+'/storage/v1/object/info/public/'+BUCKET+'/'+spath(vendor,id),{headers:{'apikey':KEY}});return r.ok}
   catch(e){return false}
 }
@@ -598,23 +611,17 @@ function renderEmails(){
   if(!siEmails.length)el.innerHTML='<div style="font-size:12px;color:var(--dim);margin-bottom:6px">No email addresses added yet.</div>';
 }
 
-function applyInfo(d){
-  ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
-    const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
-  });
-  siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
-  siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
-  renderPhones();renderEmails();
-}
 function loadInfo(vendor){
   try{
     const raw=localStorage.getItem('sub_info_'+vendor);
-    if(!raw){
-      const k=(vendor||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-      if(STATIC_INFO[k])return applyInfo(STATIC_INFO[k]);
-      return initInfo();
-    }
-    applyInfo(JSON.parse(raw));
+    if(!raw)return initInfo();
+    const d=JSON.parse(raw);
+    ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
+      const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
+    });
+    siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
+    siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
+    renderPhones();renderEmails();
   }catch(e){initInfo();}
 }
 function initInfo(){siPhones=[];siEmails=[];addPhone();addEmail();renderPhones();renderEmails();}

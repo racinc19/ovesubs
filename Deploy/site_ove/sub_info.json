@@ -177,19 +177,21 @@
     "updated": "2026-04-29T22:48:48.866902+00:00"
   },
   "cherotech": {
-    "company": "",
+    "company": "Bateman Bros LLC",
     "license": "13950801-5501",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "contact": "",
+    "contact": "Greg Bateman",
     "website": "",
     "phones": [],
-    "emails": [],
+    "emails": [
+      "batemangregray@gmail.com"
+    ],
     "source": "Construction\\Project\\Contracts\\Cherotech\\Cherotech_Framing_Subcontract (1).docx",
     "sheet_vendor": "Cherotech",
-    "updated": "2026-04-29T22:06:58.485928+00:00"
+    "updated": "2026-06-17T00:00:00.000000+00:00"
   },
   "master": {
     "company": "Master Plumbing Systems",
@@ -430,5 +432,26 @@
     "source": "Construction\\Bids\\Solar\\Estimate 1225 (1).pdf (bid) + Construction\\Bids\\Solar\\Estimate 1225 (1).pdf (letterhead)",
     "sheet_vendor": "D4",
     "updated": "2026-04-29T22:48:48.866902+00:00"
+  },
+  "peppermint": {
+    "company": "Peppermint Cabinets",
+    "license": "",
+    "address": "1601 E 4340 South Circle",
+    "city": "St. George",
+    "state": "UT",
+    "zip": "84790",
+    "contact": "Stanley Kelsch",
+    "website": "peppermintcabinets.com",
+    "phones": [
+      "801-599-7047",
+      "435-414-8033"
+    ],
+    "emails": [
+      "stanley@peppermintcabinets.com",
+      "stanleykelsch@popular-design.com"
+    ],
+    "source": "Adobe Sign Contract RAC-Oak Valley Estates 5_6-24-26, Addendum 001 bid $67,048.39",
+    "sheet_vendor": "Peppermint",
+    "updated": "2026-06-25T00:00:00.000000+00:00"
   }
 }

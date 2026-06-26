@@ -7,9 +7,8 @@ async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-2
 
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
-const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
-// SUBS tab — sub.html uses col B (index 1) as the portal vendor id (must match ?v=), col C (index 2) as the 4-digit PIN.
 const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
+const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -34,7 +33,8 @@ const CO_DOC_URLS={
   'CO-004':'CO-004.pdf','CO-005':'CO-005.pdf','CO-006':'CO-006.pdf',
   'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-010':'CO-010.pdf',
   'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
-  'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf','CO-015':'CO-015.docx'
+  'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf','CO-015':'CO-015.docx',
+  'CO-017':'CO-017.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
