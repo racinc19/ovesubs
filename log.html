@@ -333,9 +333,16 @@ async function saveEntry(){
   if(editingId){
     const idx=entries.findIndex(e=>e.id===editingId);
     if(idx>=0){
+      const oldPhotos = entries[idx].photos || [];
       entries[idx].date=date;entries[idx].tag=tag;entries[idx].notes=notes;
-      if(photoKeys.length)entries[idx].photos=photoKeys;
-      entries[idx].modified=new Date().toISOString()
+      entries[idx].photos=photoKeys;
+      entries[idx].modified=new Date().toISOString();
+      
+      // Delete removed photos from IndexedDB
+      const deletedKeys = oldPhotos.filter(k => !photoKeys.includes(k));
+      if(deletedKeys.length) {
+        deletePhotos(deletedKeys).catch(e => console.warn('photo cleanup failed', e));
+      }
     }
     editingId=null;
     document.getElementById('editingBanner').classList.remove('show');
