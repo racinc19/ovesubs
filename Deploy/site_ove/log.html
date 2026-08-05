@@ -222,7 +222,7 @@ html{overflow-y:scroll}body{overflow-x:hidden}
 
 <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg"></div>
 
-<script src="shared.js?v20260513_schedule_fallback"></script>
+<script src="shared.js?v20260805_pct_resolve"></script>
 <script>
 const LOG_KEY='rodriguez_daily_log';
 const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -334,16 +334,9 @@ async function saveEntry(){
   if(editingId){
     const idx=entries.findIndex(e=>e.id===editingId);
     if(idx>=0){
-      const oldPhotos = entries[idx].photos || [];
       entries[idx].date=date;entries[idx].tag=tag;entries[idx].notes=notes;
-      entries[idx].photos=photoKeys;
-      entries[idx].modified=new Date().toISOString();
-      
-      // Delete removed photos from IndexedDB
-      const deletedKeys = oldPhotos.filter(k => !photoKeys.includes(k));
-      if(deletedKeys.length) {
-        deletePhotos(deletedKeys).catch(e => console.warn('photo cleanup failed', e));
-      }
+      if(photoKeys.length)entries[idx].photos=photoKeys;
+      entries[idx].modified=new Date().toISOString()
     }
     editingId=null;
     document.getElementById('editingBanner').classList.remove('show');
