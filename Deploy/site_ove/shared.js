@@ -8,7 +8,12 @@ async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-2
 // 2026-07-08: the old /pub publish (2PACX-1vQew4OQL…) was stopped and 404'd,
 // blanking Budget & Schedule. Repointed to the source sheet's live /export
 // (Rodriguez Master, publicly shared, CORS-clean) — can't get "unpublished".
-const BUDGET_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/export?format=csv';
+// 2026-08-05: the gid-less export serves the FIRST tab in display order — since
+// the 2026-08-02 "sov fix" backups that is Contract_backup_before_sov_fix_, a
+// stale partial mirror with no %Comp/Invoiced/Paid/Outstanding. The budget page
+// silently read that and tracked nothing. Pin to the REAL Budget1 tab BY NAME
+// via gviz (tab-order-proof; survives future tabs inserted at the front).
+const BUDGET_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/gviz/tq?tqx=out:csv&sheet=Budget1';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/export?format=csv&gid=1440569226';
 const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
 
@@ -160,7 +165,7 @@ function parseBudgetTab(rows){
     const r=rows[i];if(!r||!r[0])continue;
     const n=(r[0]||'').trim();
     const nL=norm(n);
-    if(PHASE_NAMES.includes(nL))break;
+    // NOTE: no phase break here — COs live at the BOTTOM of the real Budget1 (rows ~84-100), so scan every row.
     if(!n.match(/^Change\s+\d+/i))continue;
     changeOrdersFromSheet.push({
       num:n,
@@ -205,6 +210,7 @@ function parseBudgetTab(rows){
     }
 
     if(!curPhase)continue;
+    if(nameL==='changes'||/^change\s+\d+/i.test(name))continue; // CO block is NOT budget items
     const vendor=(r[1]||'').trim();
     const itemized=parseAmt(r[2]);     // Contract (col C)
     const pct=parsePct(r[3]);          // %Comp (col D)
