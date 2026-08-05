@@ -611,18 +611,31 @@ function renderEmails(){
   if(!siEmails.length)el.innerHTML='<div style="font-size:12px;color:var(--dim);margin-bottom:6px">No email addresses added yet.</div>';
 }
 
+function applyInfo(d){
+  ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
+    const el=document.getElementById('si-'+k);if(el&&d[k])el.value=d[k];
+  });
+  siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
+  siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
+  renderPhones();renderEmails();
+}
 function loadInfo(vendor){
   try{
     const raw=localStorage.getItem('sub_info_'+vendor);
-    if(!raw)return initInfo();
-    const d=JSON.parse(raw);
-    ['company','license','address','city','state','zip','contact','website'].forEach(k=>{
-      const el=document.getElementById('si-'+k);if(el&&d[k]!=null)el.value=d[k];
-    });
-    siPhones=(d.phones||[]).map(v=>({id:'ph_'+Math.random().toString(36).slice(2),val:v}));
-    siEmails=(d.emails||[]).map(v=>({id:'em_'+Math.random().toString(36).slice(2),val:v}));
-    renderPhones();renderEmails();
-  }catch(e){initInfo();}
+    if(raw){applyInfo(JSON.parse(raw));return;}
+  }catch(e){}
+  // Fallback: pre-populate from sub_info.json (RAC's contact records)
+  fetch('sub_info.json?_='+Date.now()).then(r=>r.ok?r.json():null).then(all=>{
+    if(!all){initInfo();return;}
+    const vl=vendor.toLowerCase().replace(/\s+/g,' ').trim();
+    let d=all[vl];
+    if(!d){
+      for(const [,v] of Object.entries(all)){
+        if((v.sheet_vendor||'').toLowerCase()===vl||(v.company||'').toLowerCase()===vl){d=v;break;}
+      }
+    }
+    if(d)applyInfo(d);else initInfo();
+  }).catch(()=>initInfo());
 }
 function initInfo(){siPhones=[];siEmails=[];addPhone();addEmail();renderPhones();renderEmails();}
 

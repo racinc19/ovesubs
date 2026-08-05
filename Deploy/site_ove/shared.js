@@ -5,10 +5,43 @@
 const SITE_ACCESS_PIN_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
 async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(entered));const hex=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');return hex===SITE_ACCESS_PIN_HASH;}
 
-const BUDGET_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?output=csv';
-const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=1440569226&single=true&output=csv';
-const SUBS_URL='https://docs.google.com/spreadsheets/d/e/2PACX-1vQew4OQL4AsLo127rU7ZX8KC6Ur4BklOWahgzWE99HsNQzrEq2Re0cqFpDIofBkW39nXzTvx0cX5Los/pub?gid=2055446940&single=true&output=csv';
+// 2026-07-08: the old /pub publish (2PACX-1vQew4OQL…) was stopped and 404'd,
+// blanking Budget & Schedule. Repointed to the source sheet's live /export
+// (Rodriguez Master, publicly shared, CORS-clean) — can't get "unpublished".
+const BUDGET_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/export?format=csv';
+const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/export?format=csv&gid=1440569226';
 const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
+
+// ── DRAWS STORE (2026-07-17) — monthly draw/invoice rows on Craig's own Cloudflare
+// Worker+KV, the SHARED source of truth (was browser-localStorage only, so the owner
+// never saw entries). Mirrors the selections store. localStorage is now just a cache:
+// pages hydrate FROM the store on load, and writes push TO the store. ──
+const DRAWS_STORE_URL='https://ove-selections.racinc19.workers.dev/draws';
+const DRAWS_WRITE_TOKEN='e2b7c83eb4d76edee16503108fb0377482cefc0c'; // matches worker WRITE_TOKEN
+// NOTE: the localStorage key literal 'rac_monthly_invoice_rows_v1' is inlined below
+// on purpose — accounting.html already declares MONTHLY_ROWS_KEY, so re-declaring it
+// here would be a duplicate-const crash. Keep them the same literal string.
+// Pull the shared monthly rows into localStorage BEFORE any page renders from them.
+async function hydrateMonthlyRowsFromStore(){
+  try{
+    const r=await fetch(DRAWS_STORE_URL,{cache:'no-store'});
+    const j=await r.json();
+    if(j&&Array.isArray(j.data)&&j.data.length){
+      localStorage.setItem('rac_monthly_invoice_rows_v1',JSON.stringify(j.data));
+      return true;
+    }
+  }catch(e){/* offline / first run — fall back to whatever's cached locally */}
+  return false;
+}
+// Push the current monthly rows to the shared store (call after any local edit).
+async function saveMonthlyRowsToStore(rows){
+  try{
+    await fetch(DRAWS_STORE_URL,{method:'PUT',
+      headers:{'Content-Type':'application/json','X-OVE-Token':DRAWS_WRITE_TOKEN},
+      body:JSON.stringify({data:rows})});
+    return true;
+  }catch(e){return false;}
+}
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -31,10 +64,10 @@ const PHASE_KEYS=PHASE_NAMES.slice();
 const CO_DOC_URLS={
   'CO-001':'CO-001.pdf','CO-002':'CO-002.pdf','CO-003':'CO-003.pdf',
   'CO-004':'CO-004.pdf','CO-005':'CO-005.pdf','CO-006':'CO-006.pdf',
-  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-010':'CO-010.pdf',
+  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-009':'CO-009.pdf','CO-010':'CO-010.pdf',
   'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
-  'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf','CO-015':'CO-015.docx',
-  'CO-017':'CO-017.pdf'
+  'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf',
+  'CO-017':'CO-017.pdf','CO-018':'CO-018.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
@@ -402,7 +435,8 @@ function crossRefBudgetSchedule(budgetPhases,scheduleTasks){
         if(t.endDate)item.endDate=t.endDate;
         if(t.duration)item.duration=t.duration;
         if(t.vendor&&!item.vendor)item.vendor=t.vendor;
-        // Budget %comp is always truth - never override from schedule
+        // % COMPLETE resolves from the master sheet's marks (Craig 2026-08-05): the Schedule tab's Progress column is where % complete is actually marked — Budget1's %Comp column is empty, so "budget is always truth" left every item at 0. Budget col D still wins when it carries a real value; otherwise the schedule mark resolves it.
+        if(!item.progress&&t.progress)item.progress=t.progress;
         matchedTasks.add(t)
       }
       if(item.startDate&&(!pStart||item.startDate<pStart))pStart=item.startDate;
