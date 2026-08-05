@@ -69,10 +69,10 @@ const PHASE_KEYS=PHASE_NAMES.slice();
 const CO_DOC_URLS={
   'CO-001':'CO-001.pdf','CO-002':'CO-002.pdf','CO-003':'CO-003.pdf',
   'CO-004':'CO-004.pdf','CO-005':'CO-005.pdf','CO-006':'CO-006.pdf',
-  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-009':'CO-009.pdf','CO-010':'CO-010.pdf',
+  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-009':'change-orders/CO-009.pdf','CO-010':'CO-010.pdf',
   'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
   'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf',
-  'CO-017':'CO-017.pdf','CO-018':'CO-018.pdf'
+  'CO-017':'CO-017.pdf','CO-018':'change-orders/CO-018.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
