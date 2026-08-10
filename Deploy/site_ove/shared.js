@@ -764,31 +764,71 @@ function renderPhaseTrackerHTML(data){
   return html;
 }
 
+// ═══ SHEET FETCH HARDENING (2026-08-08) ═══
+// gviz/export sometimes answers HTTP 200 with an HTML error page — parseCSV then
+// yields nothing and pages rendered BLANK with no error (the "renders half the
+// time" complaint). Now: retry transient failures, reject non-CSV bodies, and
+// fall back to the last-good copy cached in localStorage before giving up.
+const SHEET_CACHE_KEY='rac_sheet_cache_v1';
+function csvUsable(t){if(typeof t!=='string')return false;const s=t.replace(/^\s+/,'');return s.length>50&&s.charAt(0)!=='<'}
+function sheetCacheRead(){try{return JSON.parse(localStorage.getItem(SHEET_CACHE_KEY)||'{}')}catch(e){return {}}}
+function sheetCacheWrite(patch){try{const c=sheetCacheRead();Object.assign(c,patch,{at:Date.now()});localStorage.setItem(SHEET_CACHE_KEY,JSON.stringify(c))}catch(e){}}
+async function fetchSheetText(url,fetchOpts,attempts){
+  const n=attempts||3;let lastErr=null;
+  for(let i=0;i<n;i++){
+    try{
+      const r=await fetch(url,fetchOpts);
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const t=await r.text();
+      if(!csvUsable(t))throw new Error('not CSV (HTML error page?)');
+      return t;
+    }catch(e){lastErr=e;if(i<n-1)await new Promise(res=>setTimeout(res,400*(i+1)*(i+1)))}
+  }
+  throw lastErr||new Error('fetch failed');
+}
+
 // ═══ LOAD ALL DATA LIVE ═══
 async function loadProjectData(){
   const ts=Date.now();
 
   const fetchOpts={cache:"no-store",redirect:"follow"};
-  const[budgetCSV,scheduleCSV]=await Promise.all([
-    fetch(BUDGET_URL+"&_="+ts,fetchOpts).then(r=>{if(!r.ok)throw new Error('Budget tab HTTP '+r.status);return r.text()}),
-    fetch(SCHEDULE_URL+"&_="+ts,fetchOpts).then(r=>{
-      if(!r.ok){console.warn('Schedule tab HTTP '+r.status);return ''}
-      return r.text()
-    }).catch(e=>{console.warn('Schedule fetch failed:',e.message);return ''})
-  ]);
+  const cache=sheetCacheRead();
+
+  // Budget has no local fallback file — retry live, then last-good cache, else
+  // throw so the page shows its real error box instead of rendering blank.
+  let budgetCSV;
+  try{
+    budgetCSV=await fetchSheetText(BUDGET_URL+"&_="+ts,fetchOpts,3);
+    sheetCacheWrite({budget:budgetCSV});
+  }catch(e){
+    console.warn('Budget fetch failed:',e.message);
+    if(csvUsable(cache.budget)){budgetCSV=cache.budget;console.warn('Using last-good cached budget copy.')}
+    else throw new Error('Budget tab unavailable: '+e.message);
+  }
 
   const budgetRows=parseCSV(budgetCSV);
   const{phases,headerInfo,changeOrders:sheetCOs,totalPaidOverride,buildGrossTotals}=parseBudgetTab(budgetRows);
+  if(!phases||!phases.length)throw new Error('Budget tab parsed empty — wrong tab or error page served.');
 
+  // Schedule: live, then last-good cache, then local fallback CSV, then empty
+  // (a dead schedule no longer takes the budget down with it).
   let scheduleTasks=[];
+  let scheduleCSV='';
+  try{
+    scheduleCSV=await fetchSheetText(SCHEDULE_URL+"&_="+ts,fetchOpts,2);
+    sheetCacheWrite({schedule:scheduleCSV});
+  }catch(e){console.warn('Schedule fetch failed:',e.message)}
   let scheduleRows=scheduleCSV?parseCSV(scheduleCSV):[];
+  if(!scheduleRowsHaveData(scheduleRows)&&csvUsable(cache.schedule)){
+    console.warn('Live schedule unusable; trying last-good cached copy.');
+    scheduleRows=parseCSV(cache.schedule);
+  }
   if(!scheduleRowsHaveData(scheduleRows)){
-    console.warn('Published schedule CSV is blank or unusable; loading local schedule fallback.');
-    const fallbackCSV=await fetch(SCHEDULE_FALLBACK_URL+"?_="+ts,fetchOpts).then(r=>{
-      if(!r.ok)throw new Error('Schedule fallback HTTP '+r.status);
-      return r.text()
-    });
-    scheduleRows=parseCSV(fallbackCSV);
+    console.warn('Loading local schedule fallback.');
+    try{
+      const fallbackCSV=await fetchSheetText(SCHEDULE_FALLBACK_URL+"?_="+ts,fetchOpts,2);
+      scheduleRows=parseCSV(fallbackCSV);
+    }catch(e){console.warn('Schedule fallback also failed:',e.message);scheduleRows=[]}
   }
   if(scheduleRowsHaveData(scheduleRows)){
     const sched=parseScheduleTab(scheduleRows);

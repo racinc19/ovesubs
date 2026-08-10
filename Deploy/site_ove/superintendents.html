@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OVE subs - Superintendent Notes</title>
+<style>
+:root{--bg:#0c1220;--card:#141e30;--card2:#1a2640;--hover:#1e2d4a;--bdr:#2a3a55;--txt:#e5e7eb;--txt2:#94a3b8;--dim:#64748b;--blue:#3b82f6;--green:#22c55e;--yellow:#eab308;--orange:#f59e0b;--red:#ef4444;--cyan:#06b6d4;--purple:#8b5cf6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-y:scroll}
+body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.5;overflow-x:hidden}
+.topnav{position:fixed;top:0;left:0;width:100vw;z-index:100;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px}
+.topnav-inner{max-width:1600px;margin:0 auto;display:flex;align-items:center;gap:8px;min-height:56px;flex-wrap:wrap;padding:8px 0}
+.topnav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:15px;white-space:nowrap;margin-right:8px}
+.topnav-brand .dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.topnav-links{display:flex;gap:4px;align-items:center;flex-wrap:wrap;flex:1}
+.topnav-links a{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--txt2);text-decoration:none;transition:all .2s;white-space:nowrap}
+.topnav-links a:hover{color:var(--txt);background:var(--hover)}
+.topnav-links a.active{color:white;background:var(--green)}
+.container{max-width:1260px;margin:0 auto;padding:22px 20px 44px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:linear-gradient(135deg,rgba(34,197,94,.14),rgba(6,182,212,.08));border:1px solid rgba(34,197,94,.24);border-radius:8px;padding:20px 22px;margin-bottom:18px}
+.eyebrow{font-size:11px;color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+h1{font-size:28px;line-height:1.15;margin:4px 0 3px}
+.sub{color:var(--txt2);font-size:14px;max-width:720px}
+.status-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--bdr);border-radius:999px;padding:6px 10px;color:var(--txt2);font-size:12px;font-weight:700;background:rgba(255,255,255,.03)}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.8fr);gap:16px}
+.panel{background:var(--card);border:1px solid var(--bdr);border-radius:8px;overflow:hidden}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--bdr)}
+.panel-head h2{font-size:16px}
+.count{color:var(--txt2);font-size:12px;font-weight:700}
+.form{display:grid;grid-template-columns:minmax(0,1fr) 132px 110px;gap:8px;padding:14px 16px;border-bottom:1px solid var(--bdr)}
+input,textarea,select{width:100%;border:1px solid var(--bdr);border-radius:8px;background:var(--bg);color:var(--txt);font:inherit;font-size:13px;outline:none}
+input,select{height:38px;padding:0 10px}
+textarea{min-height:130px;padding:12px;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--green)}
+button{border:1px solid var(--bdr);border-radius:8px;background:var(--card2);color:var(--txt);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;height:38px;padding:0 12px}
+button:hover{border-color:var(--green);color:#fff}
+.primary{background:var(--green);border-color:var(--green);color:#07130c}
+.list{display:grid;gap:10px;padding:14px 16px}
+.todo{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.025)}
+.todo.done{opacity:.62}
+.todo.done .todo-title{text-decoration:line-through;color:var(--txt2)}
+.todo-title{font-weight:800;font-size:14px;overflow-wrap:anywhere}
+.todo-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;color:var(--txt2);font-size:12px}
+.tag{border-radius:999px;padding:2px 7px;background:rgba(59,130,246,.15);color:#bfdbfe;font-weight:700}
+.tag.waiting{background:rgba(234,179,8,.15);color:#fde68a}
+.tag.done{background:rgba(34,197,94,.15);color:#bbf7d0}
+.remove{height:28px;padding:0 8px;color:var(--red);background:transparent}
+.notes{display:grid;gap:10px;padding:14px 16px}
+.note{border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.025);padding:12px}
+.note-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--txt2);font-size:12px;margin-bottom:7px}
+.note-body{font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.composer{padding:14px 16px;border-top:1px solid var(--bdr);display:grid;gap:8px}
+.empty{color:var(--dim);font-size:13px;padding:18px 16px}
+@media(max-width:820px){body{padding-top:96px}.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.hero{align-items:flex-start}.topnav-inner{align-items:flex-start}}
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="topnav-inner">
+  <a href="index.html" class="topnav-brand"><span class="dot"></span>OVE subs</a>
+  <div class="topnav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="subs.html" style="color:var(--orange);border:1px solid rgba(245,158,11,.3)">👷 Subs List</a>
+    <a href="https://drive.google.com/drive/u/0/folders/1kS-2awScLDAnGS973xD0D28RxynI49Si" target="_blank" rel="noopener noreferrer">Plans &amp; Permits</a>
+    <a href="selections.html" style="color:var(--purple);border:1px solid rgba(139,92,246,.3)">🎨 Selections</a>
+    <a href="superintendents.html" class="active">📝 Superintendent Notes</a>
+    <a href="electrical.html">Electrical</a>
+    <a href="plumbing.html">Plumbing</a>
+  </div>
+</div></nav>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Private jobsite workspace</div>
+      <h1>Superintendent Notes</h1>
+      <div class="sub">Track field to-dos and quick back-and-forth notes for Oak Valley Estates Lot 5.</div>
+    </div>
+    <div class="status-row">
+      <span class="chip" id="openChip">0 open</span>
+      <span class="chip" id="waitingChip">0 waiting</span>
+      <span class="chip" id="doneChip">0 done</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Field To-Dos</h2>
+        <span class="count" id="todoCount">0 items</span>
+      </div>
+      <div class="form">
+        <input id="todoText" placeholder="Add a field item">
+        <select id="todoStatus">
+          <option>Open</option>
+          <option>Waiting</option>
+          <option>Done</option>
+        </select>
+        <button class="primary" onclick="addTodo()">Add</button>
+      </div>
+      <div class="list" id="todoList"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Notes Thread</h2>
+        <span class="count" id="noteCount">0 notes</span>
+      </div>
+      <div class="notes" id="noteList"></div>
+      <div class="composer">
+        <textarea id="noteText" placeholder="Leave a note for Craig or the superintendent"></textarea>
+        <button class="primary" onclick="addNote()">Post Note</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+const KEY='ove_superintendent_workspace_v1';
+const seed={todos:[
+  {id:'t1',text:'Confirm current on-site priorities with superintendent',status:'Open',at:'2026-08-10'},
+  {id:'t2',text:'Use this space for punch items, access notes, and owner questions',status:'Open',at:'2026-08-10'}
+],notes:[
+  {id:'n1',author:'RAC Inc',body:'This is the shared superintendent space for field notes and quick coordination.',at:'2026-08-10'}
+]};
+function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||seed}catch(e){return seed}}
+function saveState(s){localStorage.setItem(KEY,JSON.stringify(s))}
+let state=loadState();
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function today(){return new Date().toISOString().slice(0,10)}
+function render(){
+  const todos=state.todos||[],notes=state.notes||[];
+  const open=todos.filter(t=>t.status==='Open').length,waiting=todos.filter(t=>t.status==='Waiting').length,done=todos.filter(t=>t.status==='Done').length;
+  openChip.textContent=open+' open';waitingChip.textContent=waiting+' waiting';doneChip.textContent=done+' done';todoCount.textContent=todos.length+' items';noteCount.textContent=notes.length+' notes';
+  todoList.innerHTML=todos.length?todos.map(t=>`<div class="todo ${t.status==='Done'?'done':''}"><input type="checkbox" ${t.status==='Done'?'checked':''} onchange="toggleTodo('${t.id}')"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span class="tag ${t.status.toLowerCase()}">${esc(t.status)}</span><span>${esc(t.at)}</span></div></div><button class="remove" onclick="removeTodo('${t.id}')">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
+  noteList.innerHTML=notes.length?notes.slice().reverse().map(n=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div></div>`).join(''):'<div class="empty">No notes yet.</div>';
+}
+function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';saveState(state);render()}
+function toggleTodo(id){state.todos=state.todos.map(t=>t.id===id?{...t,status:t.status==='Done'?'Open':'Done'}:t);saveState(state);render()}
+function removeTodo(id){state.todos=state.todos.filter(t=>t.id!==id);saveState(state);render()}
+function addNote(){const text=noteText.value.trim();if(!text)return;state.notes.push({id:'n'+Date.now(),author:'Superintendent',body:text,at:today()});noteText.value='';saveState(state);render()}
+render();
+</script>
+</body>
+</html>
