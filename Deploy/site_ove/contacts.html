@@ -112,7 +112,7 @@ const vendorOverride={
   'breck electric inc':'Noble House Electric',
   'breck electric inc.':'Noble House Electric'
 };
-const removedVendors=new Set(['deez','deezcabnuts','these cabinets']);
+const removedVendors=new Set(['clayworks','deez','deezcabnuts','these cabinets']);
 function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9&]+/g,' ').trim()}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function firstFilled(...vals){return vals.find(v=>String(v||'').trim())||''}
@@ -162,6 +162,22 @@ function buildRows(tasks,info){
     };
   }).sort((a,b)=>a.vendor.localeCompare(b.vendor));
 }
+function forceCraigRows(baseRows){
+  const required=[
+    {vendor:'Amy Pendleton',company:'Amy Pendleton',contact:'Amy Pendleton',trades:'Rammed Earth',phones:[],emails:[]},
+    {vendor:'Noble House Electric',company:'Noble House Electric',contact:'',trades:'Electrical',phones:[],emails:[]},
+    {vendor:'RG Ventures',company:'RG Ventures',contact:'Red Offo',trades:'Concrete',phones:[],emails:[]}
+  ];
+  const stale=new Set(['alysa oliver','allysa oliver','oliver finishing','breck','breck electric','breck electric inc','recelectric','clayworks','deez','deezcabnuts','these cabinets']);
+  const out=baseRows.filter(r=>!stale.has(norm(r.vendor))&&!stale.has(norm(r.company)));
+  required.forEach(row=>{
+    const key=norm(row.vendor);
+    const idx=out.findIndex(r=>norm(r.vendor)===key||norm(r.company)===key);
+    if(idx>=0)out[idx]=Object.assign({},out[idx],row);
+    else out.push(row);
+  });
+  return out.sort((a,b)=>a.vendor.localeCompare(b.vendor));
+}
 function render(){
   const q=norm(document.getElementById('search').value);
   const filtered=rows.filter(r=>!q||norm([r.vendor,r.company,r.contact,r.trades,(r.phones||[]).join(' '),(r.emails||[]).join(' ')].join(' ')).includes(q));
@@ -174,8 +190,8 @@ function render(){
 }
 async function init(){
   try{
-    const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20260810_contacts').then(r=>r.json())]);
-    rows=buildRows(project.main.scheduleTasks||[],info||{});
+    const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20260810_contacts2').then(r=>r.json())]);
+    rows=forceCraigRows(buildRows(project.main.scheduleTasks||[],info||{}));
     const q=new URLSearchParams(location.search).get('q');
     if(q)document.getElementById('search').value=q;
     render();
