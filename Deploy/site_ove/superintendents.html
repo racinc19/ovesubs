@@ -86,6 +86,7 @@ button:hover{border-color:var(--green);color:#fff}
       <span class="chip" id="openChip">0 open</span>
       <span class="chip" id="waitingChip">0 waiting</span>
       <span class="chip" id="doneChip">0 done</span>
+      <span class="chip" id="syncChip">Checking sync</span>
     </div>
   </section>
 
@@ -152,9 +153,11 @@ async function hydrateSharedState(){
       state=cleanState(j.data);
       saveLocalState(state);
       render();
+      syncChip.textContent='Shared sync on';
       return true;
     }
-  }catch(e){}
+  }catch(e){syncChip.textContent='Offline cache'}
+  syncChip.textContent=syncChip.textContent||'Offline cache';
   return false;
 }
 async function saveSharedState(){
@@ -163,8 +166,9 @@ async function saveSharedState(){
     const r=await fetch(STORE_URL,{method:'PUT',
       headers:{'Content-Type':'application/json','X-OVE-Token':STORE_TOKEN},
       body:JSON.stringify({data:cleanState(state)})});
+    syncChip.textContent=r.ok?'Shared sync on':'Sync failed';
     return r.ok;
-  }catch(e){return false}
+  }catch(e){syncChip.textContent='Sync failed';return false}
 }
 function render(){
   const todos=state.todos||[],notes=state.notes||[];
