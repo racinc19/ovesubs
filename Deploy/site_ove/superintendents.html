@@ -53,6 +53,9 @@ button:hover{border-color:var(--green);color:#fff}
 .note-top{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--txt2);font-size:12px;margin-bottom:7px}
 .note-body{font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
 .composer{padding:14px 16px;border-top:1px solid var(--bdr);display:grid;gap:8px}
+.send-status{min-height:18px;color:var(--txt2);font-size:12px;font-weight:700}
+.send-status.ok{color:var(--green)}
+.send-status.err{color:var(--red)}
 .empty{color:var(--dim);font-size:13px;padding:18px 16px}
 @media(max-width:820px){body{padding-top:96px}.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.hero{align-items:flex-start}.topnav-inner{align-items:flex-start}}
 </style>
@@ -111,7 +114,8 @@ button:hover{border-color:var(--green);color:#fff}
       <div class="notes" id="noteList"></div>
       <div class="composer">
         <textarea id="noteText" placeholder="Leave a note for Craig or the superintendent"></textarea>
-        <button class="primary" onclick="addNote()">Post Note</button>
+        <button class="primary" id="noteBtn" onclick="addNote()">Post Note</button>
+        <div class="send-status" id="noteStatus"></div>
       </div>
     </section>
   </div>
@@ -140,7 +144,27 @@ function render(){
 function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';saveState(state);render()}
 function toggleTodo(id){state.todos=state.todos.map(t=>t.id===id?{...t,status:t.status==='Done'?'Open':'Done'}:t);saveState(state);render()}
 function removeTodo(id){state.todos=state.todos.filter(t=>t.id!==id);saveState(state);render()}
-function addNote(){const text=noteText.value.trim();if(!text)return;state.notes.push({id:'n'+Date.now(),author:'Superintendent',body:text,at:today()});noteText.value='';saveState(state);render()}
+async function addNote(){
+  const text=noteText.value.trim();
+  if(!text)return;
+  const btn=noteBtn,status=noteStatus;
+  btn.disabled=true;status.className='send-status';status.textContent='Posting...';
+  const note={id:'n'+Date.now(),author:'Superintendent',body:text,at:today()};
+  state.notes.push(note);noteText.value='';saveState(state);render();
+  try{
+    const r=await fetch('https://broken-haze-7f97.racinc19.workers.dev',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({to:'racinc19@gmail.com',from:'noreply@racinc19.workers.dev',subject:'[OVE Superintendent Note] '+note.at,text:'Oak Valley Estates Lot 5 superintendent note\\n\\n'+text})
+    });
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    status.className='send-status ok';status.textContent='Posted to RAC Inc.';
+  }catch(e){
+    status.className='send-status err';status.textContent='Saved here. Email relay did not confirm.';
+  }
+  btn.disabled=false;
+  setTimeout(()=>{status.textContent='';status.className='send-status'},5000);
+}
 render();
 </script>
 </body>
