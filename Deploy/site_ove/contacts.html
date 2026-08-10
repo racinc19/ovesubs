@@ -176,6 +176,8 @@ async function init(){
   try{
     const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20260810_contacts').then(r=>r.json())]);
     rows=buildRows(project.main.scheduleTasks||[],info||{});
+    const q=new URLSearchParams(location.search).get('q');
+    if(q)document.getElementById('search').value=q;
     render();
   }catch(e){
     document.getElementById('sheet').innerHTML=`<div class="empty">Could not load contacts: ${esc(e.message)}</div>`;
