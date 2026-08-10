@@ -124,17 +124,48 @@ button:hover{border-color:var(--green);color:#fff}
 
 <script>
 const KEY='ove_superintendent_workspace_v1';
+const STORE_URL='https://ove-selections.racinc19.workers.dev/superintendent';
+const STORE_TOKEN='e2b7c83eb4d76edee16503108fb0377482cefc0c';
 const seed={todos:[
   {id:'t1',text:'Confirm current on-site priorities with superintendent',status:'Open',at:'2026-08-10'},
   {id:'t2',text:'Use this space for punch items, access notes, and owner questions',status:'Open',at:'2026-08-10'}
 ],notes:[
   {id:'n1',author:'RAC Inc',body:'This is the shared superintendent space for field notes and quick coordination.',at:'2026-08-10'}
 ]};
-function loadState(){try{return JSON.parse(localStorage.getItem(KEY))||seed}catch(e){return seed}}
-function saveState(s){localStorage.setItem(KEY,JSON.stringify(s))}
+function cleanState(s){
+  return {
+    todos:Array.isArray(s&&s.todos)?s.todos:seed.todos.slice(),
+    notes:Array.isArray(s&&s.notes)?s.notes:seed.notes.slice()
+  };
+}
+function loadState(){try{return cleanState(JSON.parse(localStorage.getItem(KEY))||seed)}catch(e){return cleanState(seed)}}
+function saveLocalState(s){localStorage.setItem(KEY,JSON.stringify(cleanState(s)))}
 let state=loadState();
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function today(){return new Date().toISOString().slice(0,10)}
+async function hydrateSharedState(){
+  try{
+    const r=await fetch(STORE_URL+'?_='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const j=await r.json();
+    if(j&&j.data&&Array.isArray(j.data.todos)&&Array.isArray(j.data.notes)){
+      state=cleanState(j.data);
+      saveLocalState(state);
+      render();
+      return true;
+    }
+  }catch(e){}
+  return false;
+}
+async function saveSharedState(){
+  saveLocalState(state);
+  try{
+    const r=await fetch(STORE_URL,{method:'PUT',
+      headers:{'Content-Type':'application/json','X-OVE-Token':STORE_TOKEN},
+      body:JSON.stringify({data:cleanState(state)})});
+    return r.ok;
+  }catch(e){return false}
+}
 function render(){
   const todos=state.todos||[],notes=state.notes||[];
   const open=todos.filter(t=>t.status==='Open').length,waiting=todos.filter(t=>t.status==='Waiting').length,done=todos.filter(t=>t.status==='Done').length;
@@ -142,16 +173,18 @@ function render(){
   todoList.innerHTML=todos.length?todos.map(t=>`<div class="todo ${t.status==='Done'?'done':''}"><input type="checkbox" ${t.status==='Done'?'checked':''} onchange="toggleTodo('${t.id}')"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span class="tag ${t.status.toLowerCase()}">${esc(t.status)}</span><span>${esc(t.at)}</span></div></div><button class="remove" onclick="removeTodo('${t.id}')">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
   noteList.innerHTML=notes.length?notes.slice().reverse().map(n=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div></div>`).join(''):'<div class="empty">No notes yet.</div>';
 }
-function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';saveState(state);render()}
-function toggleTodo(id){state.todos=state.todos.map(t=>t.id===id?{...t,status:t.status==='Done'?'Open':'Done'}:t);saveState(state);render()}
-function removeTodo(id){state.todos=state.todos.filter(t=>t.id!==id);saveState(state);render()}
+async function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;await hydrateSharedState();state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';render();saveSharedState()}
+function toggleTodo(id){state.todos=state.todos.map(t=>t.id===id?{...t,status:t.status==='Done'?'Open':'Done'}:t);render();saveSharedState()}
+function removeTodo(id){state.todos=state.todos.filter(t=>t.id!==id);render();saveSharedState()}
 async function addNote(){
   const text=noteText.value.trim();
   if(!text)return;
   const btn=noteBtn,status=noteStatus;
   btn.disabled=true;status.className='send-status';status.textContent='Posting...';
+  await hydrateSharedState();
   const note={id:'n'+Date.now(),author:'Superintendent',body:text,at:today()};
-  state.notes.push(note);noteText.value='';saveState(state);render();
+  state.notes.push(note);noteText.value='';saveLocalState(state);render();
+  const sharedOk=await saveSharedState();
   try{
     const r=await fetch('https://broken-haze-7f97.racinc19.workers.dev',{
       method:'POST',
@@ -159,14 +192,16 @@ async function addNote(){
       body:JSON.stringify({to:'racinc19@gmail.com',from:'noreply@racinc19.workers.dev',subject:'[OVE Superintendent Note] '+note.at,text:'Oak Valley Estates Lot 5 superintendent note\\n\\n'+text})
     });
     if(!r.ok)throw new Error('HTTP '+r.status);
-    status.className='send-status ok';status.textContent='Posted to RAC Inc.';
+    status.className=sharedOk?'send-status ok':'send-status err';status.textContent=sharedOk?'Shared and emailed to RAC Inc.':'Saved here, but shared sync did not confirm.';
   }catch(e){
-    status.className='send-status err';status.textContent='Saved here. Email relay did not confirm.';
+    status.className=sharedOk?'send-status ok':'send-status err';status.textContent=sharedOk?'Shared. Email relay did not confirm.':'Saved here. Shared sync and email relay did not confirm.';
   }
   btn.disabled=false;
   setTimeout(()=>{status.textContent='';status.className='send-status'},5000);
 }
 render();
+hydrateSharedState();
+window.addEventListener('focus',hydrateSharedState);
 </script>
 </body>
 </html>
