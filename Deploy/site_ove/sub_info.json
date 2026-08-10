@@ -16,56 +16,20 @@
     "sheet_vendor": "Creative Engineering",
     "updated": "2026-04-29T22:48:48.866902+00:00"
   },
-  "deezcabnuts": {
-    "company": "DeezCabnuts",
+  "amy pendleton": {
+    "company": "Amy Pendleton",
     "license": "",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "contact": "Cody",
+    "contact": "Amy Pendleton",
     "website": "",
     "phones": [],
-    "emails": [
-      "deezcabnuts@gmail.com"
-    ],
-    "source": "Construction\\Project\\Contracts\\Deez_Cabnuts\\DeezCabnuts_Cabinet_Contract_Rodriguez.docx",
-    "sheet_vendor": "Deez",
-    "updated": "2026-04-29T22:06:58.485908+00:00"
-  },
-  "deez": {
-    "company": "DeezCabnuts",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "Cody",
-    "website": "",
-    "phones": [],
-    "emails": [
-      "deezcabnuts@gmail.com"
-    ],
-    "source": "Construction\\Project\\Contracts\\Deez_Cabnuts\\DeezCabnuts_Cabinet_Contract_Rodriguez.docx",
-    "sheet_vendor": "Deez",
-    "updated": "2026-04-29T22:06:58.485908+00:00"
-  },
-  "alysa oliver": {
-    "company": "Allysa Oliver LLC",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "",
-    "website": "",
-    "phones": [],
-    "emails": [
-      "hello@oliverfinishing.com"
-    ],
-    "source": "Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\Oliver_Finishing_Clayworks_Subcontract_Rodriguez_v2.docx + Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\make_oliver_clayworks_contract.py",
-    "sheet_vendor": "Alysa Oliver",
-    "updated": "2026-04-29T22:06:58.485912+00:00"
+    "emails": [],
+    "source": "Craig update 2026-08-10: Amy Pendleton is handling rammed earth.",
+    "sheet_vendor": "Amy Pendleton",
+    "updated": "2026-08-10T00:00:00.000000+00:00"
   },
   "stg": {
     "company": "St George Windows, Doors & More LLC",
@@ -87,21 +51,19 @@
     "updated": "2026-04-29T22:06:58.485914+00:00"
   },
   "clayworks": {
-    "company": "Allysa Oliver LLC",
+    "company": "Amy Pendleton",
     "license": "",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "contact": "",
+    "contact": "Amy Pendleton",
     "website": "",
     "phones": [],
-    "emails": [
-      "hello@oliverfinishing.com"
-    ],
-    "source": "Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\Oliver_Finishing_Clayworks_Subcontract_Rodriguez_v2.docx + Construction\\Project\\Contracts\\Oliver_Finishing_Clayworks\\make_oliver_clayworks_contract.py",
+    "emails": [],
+    "source": "Craig update 2026-08-10: Amy Pendleton is handling rammed earth.",
     "sheet_vendor": "Clayworks",
-    "updated": "2026-04-29T22:06:58.485917+00:00"
+    "updated": "2026-08-10T00:00:00.000000+00:00"
   },
   "action target": {
     "company": "Action Target",
@@ -210,24 +172,20 @@
     "sheet_vendor": "Master",
     "updated": "2026-04-29T22:48:48.866902+00:00"
   },
-  "breck": {
-    "company": "Breck Electric Inc.",
+  "noble house electric": {
+    "company": "Noble House Electric",
     "license": "",
-    "address": "1130 South 375 East",
-    "city": "Ivins",
-    "state": "UT",
-    "zip": "84738",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
     "contact": "",
     "website": "",
-    "phones": [
-      "435-632-5322"
-    ],
-    "emails": [
-      "breckelectric@gmail.com"
-    ],
-    "source": "Construction\\Bids\\Electrical\\Breck Electric Inc. Estimate for RAC Inc - Rodriguez Home (1).pdf (bid) + Construction\\Bids\\Electrical\\Breck Electric Inc. Estimate for RAC Inc - Rodriguez Home (1).pdf (letterhead)",
-    "sheet_vendor": "Breck",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "phones": [],
+    "emails": [],
+    "source": "Craig update 2026-08-10: Noble House Electric replaced prior electrical vendor.",
+    "sheet_vendor": "Noble House Electric",
+    "updated": "2026-08-10T00:00:00.000000+00:00"
   },
   "sunroc": {
     "company": "",
@@ -453,5 +411,20 @@
     "source": "Adobe Sign Contract RAC-Oak Valley Estates 5_6-24-26, Addendum 001 bid $67,048.39",
     "sheet_vendor": "Peppermint",
     "updated": "2026-06-25T00:00:00.000000+00:00"
+  },
+  "rg ventures": {
+    "company": "RG Ventures",
+    "license": "",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "contact": "Red Offo",
+    "website": "",
+    "phones": [],
+    "emails": [],
+    "source": "Craig update 2026-08-10: add concrete contact.",
+    "sheet_vendor": "RG Ventures",
+    "updated": "2026-08-10T00:00:00.000000+00:00"
   }
 }

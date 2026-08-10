@@ -86,7 +86,7 @@ const alias={
   'blackstonex llc':'blackstone',
   'blackstone':'blackstone',
   'blvd':'blvd',
-  'breck electric inc.':'breck',
+  'noble house electric':'noble house electric',
   'creative engineering':'creative engineering',
   'd-iron works':'d-iron works',
   'd4':'d4',
@@ -96,12 +96,23 @@ const alias={
   'master':'master',
   'peppermint cabinets':'peppermint',
   'peppermint':'peppermint',
+  'rg ventures':'rg ventures',
   'randy frei construction':'frie',
   'stg - st george windows & doors':'stg',
   'sunpro':'sunpro',
   'sunroc':'sunroc',
   'the countertop source':'countertop source'
 };
+const vendorOverride={
+  'alysa oliver':'Amy Pendleton',
+  'allysa oliver':'Amy Pendleton',
+  'recelectric':'Noble House Electric',
+  'breck':'Noble House Electric',
+  'breck electric':'Noble House Electric',
+  'breck electric inc':'Noble House Electric',
+  'breck electric inc.':'Noble House Electric'
+};
+const removedVendors=new Set(['deez','deezcabnuts','these cabinets']);
 function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9&]+/g,' ').trim()}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function firstFilled(...vals){return vals.find(v=>String(v||'').trim())||''}
@@ -127,14 +138,18 @@ function buildRows(tasks,info){
   const vendors={};
   tasks.forEach(t=>{
     if(!t.vendor||t.isPhase)return;
-    const vendor=t.vendor.trim();
+    const rawVendor=t.vendor.trim();
+    const vendor=vendorOverride[norm(rawVendor)]||rawVendor;
+    if(removedVendors.has(norm(vendor)))return;
     if(!vendors[vendor])vendors[vendor]={vendor,trades:[]};
     if(t.name&&!vendors[vendor].trades.includes(t.name))vendors[vendor].trades.push(t.name);
   });
   Object.values(info).forEach(item=>{
     const vendor=firstFilled(item.sheet_vendor,item.company);
+    if(removedVendors.has(norm(vendor)))return;
     if(vendor&&!vendors[vendor])vendors[vendor]={vendor,trades:[]};
   });
+  if(!vendors['RG Ventures'])vendors['RG Ventures']={vendor:'RG Ventures',trades:['Concrete']};
   return Object.values(vendors).map(v=>{
     const item=findInfo(v.vendor,info);
     return {
