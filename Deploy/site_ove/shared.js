@@ -73,7 +73,7 @@ const CO_DOC_URLS={
   'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
   'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf',
   'CO-017':'CO-017.pdf','CO-018':'change-orders/CO-018.pdf',
-  'CO-022':'change-orders/CO-022_Mop_Sink_Faucet_Selections_REVIEW.pdf'
+  'CO-022':'change-orders/CO-022_Mop_Sink_Faucet_Selections_SIGNED.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
