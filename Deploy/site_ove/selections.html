@@ -1276,6 +1276,43 @@ function runMigrations(){
     if(!_mech.finishes.find(f=>f.type==='Door')){_mech.finishes.push({id:'f'+Math.random().toString(36).slice(2,9),type:'Door',material:'TBD',qty:'1',unit:'EA',vendor:'TBD',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''});dirty=true;}
     if(!_mech.finishes.find(f=>f.type==='Wall')){_mech.finishes.push({id:'f'+Math.random().toString(36).slice(2,9),type:'Wall',material:'Paint - color TBD',qty:'',unit:'',vendor:'Jose',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''});dirty=true;}
   }
+  // Frank Kuhn HVAC bid #29605308: keep the mechanical-room equipment list source-backed.
+  const _kuhnBidDoc='/api/email/attachment/view/19f95d1ed2b3ae9b/RAC%20Liberty%20Lane.pdf';
+  const _mechMain=DATA.find(r=>r.id==='mechanical');
+  if(_mechMain){
+    if(!Array.isArray(_mechMain.items))_mechMain.items=[];
+    const upsertMechItem=(id,name,patch)=>{
+      let item=_mechMain.items.find(i=>i.id===id||i.name===name);
+      if(!item){
+        item={id,name,vendor:"Kuhn's Heating and Air",link:'',manual:_kuhnBidDoc,notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''};
+        _mechMain.items.push(item);
+        dirty=true;
+      }
+      for(const [k,v] of Object.entries(patch)){
+        if(item[k]!==v){item[k]=v;dirty=true;}
+      }
+    };
+    upsertMechItem('mechanical_kuhn_estimate_29605308','Kuhn HVAC Estimate 29605308',{vendor:"Kuhn's Heating and Air",model:'29605308',link:_kuhnBidDoc,manual:_kuhnBidDoc,status:'selected',notes:'Frank Kuhn estimate dated Jul 19, 2026. Total HVAC scope $127,419. Source tab: Frank Kuhn Bid.'});
+    upsertMechItem('mechanical_kuhn_fan_coils','ACPro Air Handlers / Fan Coils',{vendor:"ACPro / Kuhn's Heating and Air",model:'AIRH-X-1100B; AIRH-X-1108B; AIRH-X-1150B',link:'',manual:_kuhnBidDoc,status:'selected',notes:'Six fan-coil installs in closets: 3 AIRH-X-1100B, 1 AIRH-X-1108B, 1 AIRH-X-1150B, plus one bid line for fan coil install in closet. Includes overflow switch, Easy Clean P-trap and surge protector.'});
+    upsertMechItem('mechanical_kuhn_heat_pumps','ACPro X-Series Heat Pump Condensers',{vendor:"ACPro / Kuhn's Heating and Air",model:'SPHP-X-I036B; SPHP-X-I060B',link:'',manual:_kuhnBidDoc,status:'selected',notes:'Five outdoor heat-pump condensers: four 2-3 ton SPHP-X-I036B and one 4-5 ton SPHP-X-I060B. Bid notes 18.5-19 SEER2 variable speed R32 equipment.'});
+    upsertMechItem('mechanical_kuhn_mini_split','ACPro Mini Split - Gun / Specialty Area',{vendor:"ACPro / Kuhn's Heating and Air",model:'MDUC-H-030BBB; MHPC-H-009BSB',link:'',manual:_kuhnBidDoc,status:'selected',notes:'One ducted mini-split indoor unit with wired controller and Wi-Fi plus one 9,000 BTU single-zone condenser. Coordinate final room assignment with HVAC plan.'});
+    upsertMechItem('mechanical_kuhn_zoning_ductwork','Zoning, Ductwork and Registers',{vendor:"Kuhn's Heating and Air",model:'2-zone board; 12 in motor dampers; 12 in bypass damper',link:'',manual:_kuhnBidDoc,status:'selected',notes:'One 2-zone package, six plenums, four 3-3.5 ton flex duct packages, one 5 ton flex duct package, one 2-2.5 ton finish package, four 3-3.5 ton finish packages, one 5 ton finish package.'});
+    upsertMechItem('mechanical_kuhn_ventilation','Ventilation, Louvers and Exhaust',{vendor:"Kuhn's Heating and Air",model:'Broan B150E75NS; Panasonic FV-06VE1; FV-11-15VK2; FV-0511VHL1; FV-WC10E1',link:'',manual:_kuhnBidDoc,status:'selected',notes:'Includes hood vent up to 8 in, six bath vents, two dryer vents, Broan ERV with VTTOUCHW, Fantech Eco-Touch controls, Panasonic ERV/fans/wall caps, special-order louvers, and gun room MAU/exhaust/ductwork.'});
+  }
+  for(const _mid of ['mechanical_2','mechanical_3','mechanical_4','mechanical_5']){
+    const _mr=DATA.find(r=>r.id===_mid);
+    if(!_mr)continue;
+    if(!Array.isArray(_mr.items))_mr.items=[];
+    let item=_mr.items.find(i=>i.id===_mid+'_hvac_coordination'||i.name==='HVAC / Plumbing Room Allocation');
+    const notes='Placeholder for assigning Kuhn HVAC equipment and Master Plumbing water systems to this exact mechanical room after the plan room-by-room layout is confirmed.';
+    if(!item){
+      _mr.items.push({id:_mid+'_hvac_coordination',name:'HVAC / Plumbing Room Allocation',vendor:"Kuhn's Heating and Air / Master Plumbing",link:_kuhnBidDoc,manual:_kuhnBidDoc,notes,status:'researching',model:'See source bid',color:'',leadTime:'',photo:''});
+      dirty=true;
+    }else{
+      const patch={vendor:"Kuhn's Heating and Air / Master Plumbing",link:_kuhnBidDoc,manual:_kuhnBidDoc,notes,status:'researching',model:'See source bid'};
+      for(const [k,v] of Object.entries(patch)){if(item[k]!==v){item[k]=v;dirty=true;}}
+    }
+  }
   // Add Primary Water Closet if missing
   if(!DATA.find(r=>r.id==='primary_water_closet')){
     const _pwc={level:'Upper Level',id:'primary_water_closet',name:'Primary Water Closet',automationInterface:'',finishes:[{id:'f'+Math.random().toString(36).slice(2,9),type:'Floor',material:'Carrara Giola 24x48 Polished Porcelain',qty:'incl. 688 SF upper',unit:'SF',vendor:'TileBar',link:'',notes:'Per A110 - matches primary bath',status:'not_started',model:'',color:'',leadTime:'',photo:''},{id:'f'+Math.random().toString(36).slice(2,9),type:'Door',material:'TruStile TS1000 MDF - Shaker Panel',qty:'1',unit:'EA',vendor:'TruStile / Sunpro',link:'https://www.trustile.com/interior-doors/ts-series/ts1000',notes:'DOOR 3 per plans. One-step shaker, flat panel. MDF, 1-3/4in thick, 8ft. TruStile design code: Au31tRnqMY',status:'not_started',model:'TS1000',color:'Bright Gray, ORB hinges',leadTime:'7-8 wks',photo:''},{id:'f'+Math.random().toString(36).slice(2,9),type:'Wall',material:'Paint - color TBD',qty:'',unit:'',vendor:'Jose',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''},{id:'f'+Math.random().toString(36).slice(2,9),type:'Ceiling',material:'Paint - color TBD',qty:'',unit:'',vendor:'Jose',link:'',notes:'',status:'not_started',model:'',color:'',leadTime:'',photo:''}],items:[{id:'i'+Math.random().toString(36).slice(2,9),name:'HOROW Smart Toilet T05',vendor:'HOROW',link:'https://www.horow.com/products/horow-best-bidet-toilet-combo-heated-toilet-seat-elongated-model-t05',notes:'Bidet combo, heated seat, elongated. Per primary bath plumbing bid',status:'not_started',model:'T05',color:'',leadTime:'',photo:''}],lightingType:'',lightingNotes:''};
