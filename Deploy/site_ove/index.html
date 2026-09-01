@@ -444,11 +444,34 @@ function buildSubNav(tasks){
   el.innerHTML=vendors.map(v=>`<a href="sub.html?v=${encodeURIComponent(v)}" class="topnav-links" style="padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;color:var(--txt2);text-decoration:none;white-space:nowrap;transition:all .2s" onmouseover="this.style.color='#fff';this.style.background='var(--hover)'" onmouseout="this.style.color='var(--txt2)';this.style.background=''">${v}</a>`).join('');
 }
 
+function websiteScheduleToDisplayTasks(tasks){
+  return(tasks||[]).map(t=>{
+    const start=t.start?new Date(t.start+'T00:00:00'):null;
+    const days=Math.max(0,parseInt(t.days,10)||0);
+    return Object.assign({},t,{
+      name:t.name||'',nameNorm:norm(t.name||''),vendor:t.vendor||'',section:t.section||'',
+      isPhase:!!t.isPhase,progress:parseFloat(t.progress)||0,delay:parseInt(t.delay,10)||0,
+      startDate:start,endDate:start?new Date(start.getTime()+days*864e5):null,duration:days,
+      _scheduleSource:'website'
+    });
+  });
+}
+async function fetchWebsiteSchedule(){
+  const r=await fetch(SCHEDULE_STORE_URL+'?_='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error('website schedule said '+r.status);
+  const j=await r.json();
+  const tasks=j&&j.data&&j.data.tasks;
+  if(!Array.isArray(tasks)||!tasks.length)throw new Error('website schedule is empty');
+  return websiteScheduleToDisplayTasks(tasks);
+}
 async function doRefresh(){document.getElementById('loading').style.display='flex';document.getElementById('app').style.display='none';await init()}
 async function init(){
   try{
     const{main}=await loadProjectData();
-    allTasks=main.scheduleTasks||[];
+    // The client Gantt publishes here. The sheet/CSV path above is retained only
+    // for budget metadata and as an emergency fallback, never as this chart's source.
+    allTasks=await fetchWebsiteSchedule();
+    main.scheduleTasks=allTasks;
     buildSubNav(allTasks);
     const pt=document.getElementById('ganttPhaseTracker');
     if(pt)pt.innerHTML=renderPhaseTrackerHTML(main);

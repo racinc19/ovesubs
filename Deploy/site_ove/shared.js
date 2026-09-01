@@ -22,6 +22,9 @@ const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
 // never saw entries). Mirrors the selections store. localStorage is now just a cache:
 // pages hydrate FROM the store on load, and writes push TO the store. ──
 const DRAWS_STORE_URL='https://ove-selections.racinc19.workers.dev/draws';
+// THE construction schedule. The website owns it; the Google Sheet is only ever
+// read once, to seed this store. After that the sheet is out of the loop.
+const SCHEDULE_STORE_URL='https://ove-selections.racinc19.workers.dev/schedule';
 const DRAWS_WRITE_TOKEN='e2b7c83eb4d76edee16503108fb0377482cefc0c'; // matches worker WRITE_TOKEN
 // NOTE: the localStorage key literal 'rac_monthly_invoice_rows_v1' is inlined below
 // on purpose — accounting.html already declares MONTHLY_ROWS_KEY, so re-declaring it
@@ -69,11 +72,12 @@ const PHASE_KEYS=PHASE_NAMES.slice();
 const CO_DOC_URLS={
   'CO-001':'CO-001.pdf','CO-002':'CO-002.pdf','CO-003':'CO-003.pdf',
   'CO-004':'CO-004.pdf','CO-005':'CO-005.pdf','CO-006':'CO-006.pdf',
-  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'CO-008.docx','CO-009':'change-orders/CO-009.pdf','CO-010':'CO-010.pdf',
+  'CO-007':'CO-007.pdf','CO-7.5':'CO-7.5.pdf','CO-008':'change-orders/CO-008.pdf','CO-009':'change-orders/CO-009.pdf','CO-010':'CO-010.pdf',
   'CO-011':'CO-011.pdf','CO-012':'CO-012.pdf',
   'CO-013':'CO-013.pdf','CO-014':'CO-014.pdf',
   'CO-017':'CO-017.pdf','CO-018':'change-orders/CO-018.pdf',
-  'CO-022':'change-orders/CO-022_Mop_Sink_Faucet_Selections_SIGNED.pdf'
+  'CO-022':'change-orders/CO-022.pdf',
+  'CO-023':'change-orders/CO-023.pdf'
 };
 function coDocKey(co){const n=(co.num||co.name||'').trim();const m=n.match(/^Change\s+(\d+)$/i);return m?'CO-'+String(parseInt(m[1],10)).padStart(3,'0'):(n.match(/^CO-\d+/i)?n:null);}
 // Normalized key for dedupe — CO-XXX or CO-X.Y (e.g. CO-7.5 stays distinct from CO-7)
@@ -774,16 +778,32 @@ const SHEET_CACHE_KEY='rac_sheet_cache_v1';
 function csvUsable(t){if(typeof t!=='string')return false;const s=t.replace(/^\s+/,'');return s.length>50&&s.charAt(0)!=='<'}
 function sheetCacheRead(){try{return JSON.parse(localStorage.getItem(SHEET_CACHE_KEY)||'{}')}catch(e){return {}}}
 function sheetCacheWrite(patch){try{const c=sheetCacheRead();Object.assign(c,patch,{at:Date.now()});localStorage.setItem(SHEET_CACHE_KEY,JSON.stringify(c))}catch(e){}}
-async function fetchSheetText(url,fetchOpts,attempts){
-  const n=attempts||3;let lastErr=null;
+// A STALLED request must fail, not hang. Without a timeout a slow gviz reply
+// never settles, so the retry below never fires, the last-good cache is never
+// used, and the page sits on its spinner forever (2026-08-18: gantt/index/budget
+// still spinning after 75s while accounting loaded in 2.7s).
+const SHEET_FETCH_TIMEOUT_MS=9000;
+async function fetchSheetText(url,fetchOpts,attempts,timeoutMs){
+  const n=attempts||3;
+  const ms=timeoutMs||SHEET_FETCH_TIMEOUT_MS;
+  let lastErr=null;
   for(let i=0;i<n;i++){
+    let timer=null,ctl=null;
     try{
-      const r=await fetch(url,fetchOpts);
+      try{ctl=(typeof AbortController!=='undefined')?new AbortController():null}catch(e){ctl=null}
+      const opts=Object.assign({},fetchOpts||{});
+      if(ctl){opts.signal=ctl.signal;timer=setTimeout(function(){try{ctl.abort()}catch(e){}},ms)}
+      const r=await fetch(url,opts);
       if(!r.ok)throw new Error('HTTP '+r.status);
       const t=await r.text();
       if(!csvUsable(t))throw new Error('not CSV (HTML error page?)');
       return t;
-    }catch(e){lastErr=e;if(i<n-1)await new Promise(res=>setTimeout(res,400*(i+1)*(i+1)))}
+    }catch(e){
+      lastErr=(e&&e.name==='AbortError')?new Error('timed out after '+ms+'ms'):e;
+      if(i<n-1)await new Promise(res=>setTimeout(res,400*(i+1)*(i+1)));
+    }finally{
+      if(timer)clearTimeout(timer);
+    }
   }
   throw lastErr||new Error('fetch failed');
 }
