@@ -109,7 +109,7 @@ html{overflow-y:scroll}
     <div class="hero-badge">Oak Valley Estates Lot 5</div>
   </div>
 
-  <section id="lopez-records-link" style="margin:0 0 18px;padding:16px 20px;background:var(--card);border:1px solid var(--bdr);border-radius:10px"><a href="sub-docs/lopez-construction/index.html" style="color:var(--cyan);font-weight:700">Lopez Construction · Framing contact and all records →</a><div style="font-size:13px;color:var(--txt2);margin-top:5px">Fidencio Lopez · 435-229-8167 · fidencio.lopezconstruction@gmail.com<br>Contract, bid, insurance, correspondence and missing paperwork checklist.</div></section>
+
 
   <div class="section-header">
     <h2>Subcontractors</h2>
@@ -206,11 +206,30 @@ function buildCards(tasks){
   document.getElementById('subCount').textContent=`${vendors.length} subcontractor${vendors.length===1?'':'s'} on this project`;
 }
 
+function addLopezRecordsCard(){
+  const grid=document.getElementById('cardsGrid');
+  const existing=Array.from(grid.querySelectorAll('.sub-card')).find(card=>
+    (card.querySelector('.card-vendor')?.textContent||'').trim().toLowerCase()==='lopez construction');
+  const card=existing||document.createElement('a');
+  card.id='lopez-records-card';
+  card.className='sub-card';
+  card.href='sub-docs/lopez-construction/index.html';
+  card.innerHTML=`<div class="card-vendor">Lopez Construction</div>
+    <div class="card-trade">Framing · Fidencio Lopez</div>
+    <div style="font-size:13px;line-height:1.7;color:var(--txt2)">435-229-8167<br>fidencio.lopezconstruction@gmail.com</div>
+    <div style="margin-top:14px;font-size:13px;line-height:1.7">Contract and bid<br>Signed W-9 · Utah contractor license<br>Liability and workers' compensation certificates<br>Correspondence and remaining follow-up</div>
+    <div style="margin-top:16px;color:var(--cyan);font-weight:700">Open documents →</div>`;
+  if(!existing)grid.prepend(card);
+  const count=grid.querySelectorAll('.sub-card').length;
+  document.getElementById('subCount').textContent=`${count} subcontractor${count===1?'':'s'} on this project`;
+}
+
 async function init(){
   try{
     const data=await loadProjectData();
     const tasks=data.main.scheduleTasks||[];
     buildCards(tasks);
+    addLopezRecordsCard();
     document.getElementById('loading').style.display='none';
     document.getElementById('app').style.display='block';
   }catch(e){
