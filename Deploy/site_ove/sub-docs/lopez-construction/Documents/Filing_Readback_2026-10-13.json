@@ -1,0 +1,90 @@
+{
+  "review_date": "2026-10-13",
+  "project": "Oak Valley Estates",
+  "subcontractor": "Lopez Construction Company",
+  "new_pdfs": 3,
+  "emails_filed": 9,
+  "files": [
+    {
+      "file": "Bids/Lopez_Estimate_412_2026-09-25.pdf",
+      "bytes": 4367228,
+      "sha256": "446a51ae09f45e940c69fee44eb2d132b8df7623a58d2068ab8e3de7929bf31d"
+    },
+    {
+      "file": "COI.pdf",
+      "bytes": 411865,
+      "sha256": "116df7dc0c63fb5a489ae0c72147206190676784658d12a2f1d52c13f9a26fe6"
+    },
+    {
+      "file": "Documents/Correspondence/2026-09-25_1a0d9f13a56e2959.txt",
+      "bytes": 1002,
+      "sha256": "c7366cac292d4b57e35f895a56ee9e32f66c3610dbf642a277beda2160027f6b"
+    },
+    {
+      "file": "Documents/Correspondence/2026-09-25_1a0da063009c8034.txt",
+      "bytes": 1386,
+      "sha256": "217a70a67080f4418f2dedc5745a8639ba8e3a1af6731d8f50acba0d2f5f1000"
+    },
+    {
+      "file": "Documents/Correspondence/2026-09-30_1a0f45fda209a620.txt",
+      "bytes": 515,
+      "sha256": "ef475600524eebd6cd708e116238f9633d88011d2c1f8173b38a424ae6c58b05"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-02_1a0ffc9b72ff696a.txt",
+      "bytes": 891,
+      "sha256": "66994ed7abd9b810a0f5e506a933ffba3799f5961a94b7aa26d154c133060221"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-05_1a10d12ef758a054.txt",
+      "bytes": 830,
+      "sha256": "48b450f078f3d809983ae113af857670d4b3e464bc43b03d09399760939580df"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-05_1a10d8775de66348.txt",
+      "bytes": 474,
+      "sha256": "b1c28d2597f08d182de3da9803ea3d0c6b6a24376298080560100864d1e142d6"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-05_1a10dbb6e7fa0c34.txt",
+      "bytes": 518,
+      "sha256": "107684a91d592b7e51338122ac3c0270985475bd6712fdb76ea864f3b278a5cb"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-05_1a10e3fa7b805349.txt",
+      "bytes": 880,
+      "sha256": "8699ef5edfa3656c250f3f4b006d40382edd116aeaeeb860594f266da5073424"
+    },
+    {
+      "file": "Documents/Correspondence/2026-10-05_1a10e480fdad5e9a.txt",
+      "bytes": 362,
+      "sha256": "2aac09a7992e26a46481ae6d7bf863a18c3f3a5f0d4e81e57345fd845d850625"
+    },
+    {
+      "file": "Documents/Lopez_Framing_Subcontract_2026-10-05_Rev3.pdf",
+      "bytes": 4373208,
+      "sha256": "b4918e7eaeb92357734a2a833f812d56f542c4042c9e3ed9546252141c9e08c5"
+    },
+    {
+      "file": "Documents/Lopez_Framing_Subcontract_DRAFT_2026-10-05.pdf",
+      "bytes": 4372996,
+      "sha256": "b7e5c35b06600b5405c7d7ce527a283a3c9a1d4059487c7020311dab896f16d2"
+    },
+    {
+      "file": "Documents/Lopez_Framing_Subcontract_DRAFT_2026-10-05_Rev2.pdf",
+      "bytes": 4373109,
+      "sha256": "3fae90375bf75f2d3eb24c47019bfe3290c51787f202b324ed3b97fc6196a756"
+    },
+    {
+      "file": "Documents/Lopez_Liability_COI_2026-10-05.pdf",
+      "bytes": 107772,
+      "sha256": "9eb69c8f8365e6a116cbb277542b42583a63a1da991880adeb7418936f29b412"
+    },
+    {
+      "file": "Documents/Lopez_Subcontract_Returned_2026-10-05.pdf",
+      "bytes": 1996769,
+      "sha256": "8d4fcdea8ed6e2f5bcf94e106c8b72171270b8e2f876be31f61915a7e297fb83"
+    }
+  ],
+  "search_scope": "Gmail including spam/trash, project Lopez folder, framing bids, admin contract directory, indexed Lopez filenames, Downloads filenames, Google Drive Lopez/Fidencio searches. The general project files endpoint was truncated at 800 and was not used as an exhaustive negative check."
+}

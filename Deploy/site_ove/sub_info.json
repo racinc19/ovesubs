@@ -426,5 +426,26 @@
     "source": "Craig update 2026-08-10: add concrete contact.",
     "sheet_vendor": "RG Ventures",
     "updated": "2026-08-10T00:00:00.000000+00:00"
+  },
+  "lopez construction": {
+    "company": "Lopez Construction Company",
+    "sheet_vendor": "Lopez Construction",
+    "contact": "Fidencio Lopez",
+    "phones": [
+      "435-229-8167"
+    ],
+    "emails": [
+      "fidencio.lopezconstruction@gmail.com"
+    ],
+    "address": "724 W 1300 S",
+    "city": "Hurricane",
+    "state": "UT",
+    "zip": "84737",
+    "license": "",
+    "website": "",
+    "trade": "Framing",
+    "records_url": "sub-docs/lopez-construction/index.html",
+    "source": "Estimate 412 and returned subcontract, 2026-10-05",
+    "updated": "2026-10-13"
   }
 }
