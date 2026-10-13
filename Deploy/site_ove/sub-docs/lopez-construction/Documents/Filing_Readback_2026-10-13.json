@@ -17,48 +17,48 @@
     },
     {
       "file": "Documents/Correspondence/2026-09-25_1a0d9f13a56e2959.txt",
-      "bytes": 1002,
-      "sha256": "c7366cac292d4b57e35f895a56ee9e32f66c3610dbf642a277beda2160027f6b"
+      "bytes": 979,
+      "sha256": "7deca2dfc78b7543b584d5deeacf5d9c989b46e5feb655e1091d9329748105ee"
     },
     {
       "file": "Documents/Correspondence/2026-09-25_1a0da063009c8034.txt",
-      "bytes": 1386,
-      "sha256": "217a70a67080f4418f2dedc5745a8639ba8e3a1af6731d8f50acba0d2f5f1000"
+      "bytes": 1345,
+      "sha256": "6746b11c19de33352cf24dd4d42020021b5d344548326a2bbe68ba8120f1f279"
     },
     {
       "file": "Documents/Correspondence/2026-09-30_1a0f45fda209a620.txt",
-      "bytes": 515,
-      "sha256": "ef475600524eebd6cd708e116238f9633d88011d2c1f8173b38a424ae6c58b05"
+      "bytes": 499,
+      "sha256": "ad244a6b68c972e8d3b24debdc0f72d171f5c408be1cf5e678bc5a561a0c46a0"
     },
     {
       "file": "Documents/Correspondence/2026-10-02_1a0ffc9b72ff696a.txt",
-      "bytes": 891,
-      "sha256": "66994ed7abd9b810a0f5e506a933ffba3799f5961a94b7aa26d154c133060221"
+      "bytes": 867,
+      "sha256": "7489ee69981845168874aef3bdd49fcf2e13545a6e6279bdf47b72ec5664b922"
     },
     {
       "file": "Documents/Correspondence/2026-10-05_1a10d12ef758a054.txt",
-      "bytes": 830,
-      "sha256": "48b450f078f3d809983ae113af857670d4b3e464bc43b03d09399760939580df"
+      "bytes": 812,
+      "sha256": "813320899aaaa136691225d0779b97c3ac1302cf7501a2488183d798f04c6197"
     },
     {
       "file": "Documents/Correspondence/2026-10-05_1a10d8775de66348.txt",
-      "bytes": 474,
-      "sha256": "b1c28d2597f08d182de3da9803ea3d0c6b6a24376298080560100864d1e142d6"
+      "bytes": 460,
+      "sha256": "86f916058abe7a425a7cfc0bb35b50815546c62a7be19c08c41967ddd9f76e8d"
     },
     {
       "file": "Documents/Correspondence/2026-10-05_1a10dbb6e7fa0c34.txt",
-      "bytes": 518,
-      "sha256": "107684a91d592b7e51338122ac3c0270985475bd6712fdb76ea864f3b278a5cb"
+      "bytes": 504,
+      "sha256": "2d53b8c432ffa986018c11353023cc611011dbf77104d6b4143433cfde9acf1e"
     },
     {
       "file": "Documents/Correspondence/2026-10-05_1a10e3fa7b805349.txt",
-      "bytes": 880,
-      "sha256": "8699ef5edfa3656c250f3f4b006d40382edd116aeaeeb860594f266da5073424"
+      "bytes": 861,
+      "sha256": "e3247f05acd5e3ab96656b77009ef1d3957e8cbb40613929bf2112b17f11e263"
     },
     {
       "file": "Documents/Correspondence/2026-10-05_1a10e480fdad5e9a.txt",
-      "bytes": 362,
-      "sha256": "2aac09a7992e26a46481ae6d7bf863a18c3f3a5f0d4e81e57345fd845d850625"
+      "bytes": 354,
+      "sha256": "a9995ccbdd0f67a08b11de7fcb2a4db581adec4488dd8140bc3203ba49ec173f"
     },
     {
       "file": "Documents/Lopez_Framing_Subcontract_2026-10-05_Rev3.pdf",
@@ -86,5 +86,6 @@
       "sha256": "8d4fcdea8ed6e2f5bcf94e106c8b72171270b8e2f876be31f61915a7e297fb83"
     }
   ],
-  "search_scope": "Gmail including spam/trash, project Lopez folder, framing bids, admin contract directory, indexed Lopez filenames, Downloads filenames, Google Drive Lopez/Fidencio searches. The general project files endpoint was truncated at 800 and was not used as an exhaustive negative check."
+  "search_scope": "Gmail including spam/trash, project Lopez folder, framing bids, admin contract directory, indexed Lopez filenames, Downloads filenames, Google Drive Lopez/Fidencio searches. The general project files endpoint was truncated at 800 and was not used as an exhaustive negative check.",
+  "checksum_note": "Website text file hashes reflect Git LF line endings; PDF bytes are unchanged."
 }
