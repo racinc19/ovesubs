@@ -1,0 +1,26 @@
+{
+  "source_thread": "1a1370d8e3b6e7a0",
+  "source_message": "1a13779c611f2360",
+  "received": "2026-10-13",
+  "files": [
+    {
+      "filename": "Lopez_Utah_Contractor_License_Received_2026-10-13.pdf",
+      "original_filename": "DOPLContractorLICENSE2.pdf",
+      "bytes": 1076080,
+      "sha256": "d4421c0c6f61d7a130ff0e78be88f2de59934ac68e805ad2c788418751067a7a"
+    },
+    {
+      "filename": "Lopez_Liability_and_Workers_Comp_COI_2026-10-13.pdf",
+      "original_filename": "RacInc101326v2.pdf",
+      "bytes": 107694,
+      "sha256": "29d75f824313c1a749e2594f3851d6fc90400fa404a68aa2251a3101429f0c62"
+    },
+    {
+      "filename": "Lopez_W9_Received_2026-10-13.pdf",
+      "original_filename": "W9 2025 Lo\u0301pezConstuction .pdf",
+      "bytes": 565844,
+      "sha256": "1272d1ae49b22a9dbf5bd525df47f6fa90625525b4e0ab1ca1db75076456a495"
+    }
+  ],
+  "readback": "All three project, authoring and deployment copies match downloaded attachments by SHA-256."
+}
