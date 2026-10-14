@@ -1,0 +1,67 @@
+REQUEST FOR PROPOSAL
+Solar Electrical Vault — Excavator Scope (Excavator Adds the Vault)
+
+--------------------------------------------------------------------------------
+
+Project: Rodriguez Residence
+Location: Oak Valley Estates Lot 5, Kanarraville, UT — Well / solar array area
+Trade: Excavator — this RFP is for the excavator. The excavator adds the vault (excavation, vault structure, hatch, drainage, backfill). Trench for DC/AC conduit is in initial scope — not part of this RFP unless priced separately.
+Delivery: Lump sum for vault only (excavation and construction). Electrical install is a separate trade/RFP.
+Reference: Well Pump\HTML\4_Well_Solar_Visual.html — vault houses MPPT, battery bank, inverter. Specified vault: fiberglass (FRP) underground enclosure, 48" depth, hatch at grade (see Scope).
+
+--------------------------------------------------------------------------------
+
+1. SCOPE OF WORK — VAULT ONLY
+
+The Owner/General Contractor requests proposals for the **excavation and construction of the solar electrical vault** only. The trench for conduit (panel to vault, vault to VFD) is already in the initial project scope; this RFP adds **the vault itself**.
+
+Required work includes:
+
+• **Excavation**: Excavate for vault at the designated location (per site plan / coordination with GC). Size to suit vault dimensions below; allow for structure, backfill, and drainage as needed. Contractor shall state excavation dimensions and depth. Remove and dispose of or stockpile spoil per agreement.
+• **Vault structure**: Furnish and install an **underground fiberglass (FRP) storage vault** suitable for housing electrical equipment (Victron MPPT charge controller, 24V battery bank, Victron MultiPlus-II inverter). **Specified container**: FRP vault with interior clear dimensions **36" W x 60" L x 48" D** (depth 48"). Acceptable product: Hubbell Power Systems / Quazite model B1A366048B (or equivalent FRP underground electrical enclosure meeting same dimensions and Tier 8 / ANSI-type rating). Solid bottom; frame and cover at grade. Minimum alternative: 36" x 48" footprint, 48" depth, fiberglass/FRP. Must accommodate conduit entry for DC cable (from array) and AC cable (to VFD); Contractor to provide or coordinate stub-ups or entry points.
+• **Hatch / access**: Hatch or lid at grade for personnel access. Secure, weatherproof, and able to support expected loads (e.g. foot traffic). Finish flush or slightly above grade as specified or proposed.
+• **Drainage / ventilation**: Contractor shall state how drainage and ventilation are handled (e.g. sump, weep, vents) to protect equipment. **Ventilation is required**: passive ventilation (e.g. high and low vents, louvered frame, or vented cover) so heat from batteries and inverter can escape; vault must not be fully sealed. No electrical equipment furnished under this RFP — vault only.
+• **Backfill and restoration**: Backfill around vault; compact and restore grade. Leave site clean. Coordinate with GC for any tie-in to existing trench or conduit runs (trench by others).
+
+--------------------------------------------------------------------------------
+
+2. EXCLUDED FROM THIS RFP
+
+• **Trench**: Conduit trench from solar array to vault and from vault to VFD is in the initial project scope. Not part of this vault RFP unless Contractor explicitly includes it and prices separately.
+• **Electrical**: No panels, combiner, MPPT, batteries, inverter, or wiring. Electrical installation is a separate RFP (Well Pump Solar Electrical Install). Vault to be ready for electrical contractor to install equipment per reference.
+
+--------------------------------------------------------------------------------
+
+3. COORDINATION
+
+• Location of vault to be confirmed with Owner/GC to align with wellhead, solar array, and trench routes. Contractor to confirm dimensions and elevation with GC before excavation.
+• Conduit entry points (size and location) to match electrical scope: DC in (from array), AC out (to VFD). Contractor may provide empty conduit stubs or open entries for electrical contractor to pull cable; state what is included.
+
+--------------------------------------------------------------------------------
+
+4. PRICING
+
+• Lump sum for vault only: excavation, vault structure, hatch, drainage/ventilation as proposed, backfill and restoration.
+• If trench is to be added to this scope, price as separate line item (optional).
+• Payment terms: e.g. balance on completion; or per GC draw schedule.
+• Exclusions and assumptions (e.g. soil conditions, access, existing utilities).
+
+--------------------------------------------------------------------------------
+
+5. PROPOSAL FORMAT AND DUE DATE
+
+Please provide:
+
+1. Cover letter with company name, contact person, phone, and email.
+2. Scope summary: vault product (make/model or equivalent), interior dimensions (W x L x D), hatch/frame type, drainage and ventilation approach (vents required).
+3. Lump sum for vault only; optional separate price for trench if included.
+4. Lead time and availability. Coordination with electrical scope (conduit entries).
+5. Exceptions or assumptions.
+
+Submit proposals to: [Insert contact name/email]
+
+Due date: [Insert date]
+
+--------------------------------------------------------------------------------
+
+This RFP adds the solar electrical vault only. Trench is in initial scope. Vault to be fiberglass (FRP) underground enclosure 36" x 60" x 48" (W x L x D) or equivalent, with hatch at grade and passive ventilation, ready for electrical contractor per Well Pump\HTML\4_Well_Solar_Visual.html.

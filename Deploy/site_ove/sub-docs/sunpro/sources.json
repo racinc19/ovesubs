@@ -1,0 +1,754 @@
+{
+  "files": [
+    {
+      "name": "Sunpro_Bid_vs_Invoices.xlsx",
+      "ref": "files/3f7fdd322032-Sunpro_Bid_vs_Invoices.xlsx",
+      "bytes": 6458,
+      "sha256": "3f7fdd3220325a0e241f31a9bfc1610f76c36b397ce7fd25c4c8e8b44bc69111",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Sunpro_Bid_vs_Invoices.xlsx",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Door Quote 936543 2025-09-02.pdf",
+      "ref": "files/13dda5cbb915-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Door_Quote_936543_2025-09-02.pdf",
+      "bytes": 61809,
+      "sha256": "13dda5cbb9156575bdf85de73225f5eca98ca5b356966def6e670796e157c4e5",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Door Quote 936543 2025-09-02.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Door Quote 949599 2026-02-04.pdf",
+      "ref": "files/d21608a54ccc-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Door_Quote_949599_2026-02-04.pdf",
+      "bytes": 64277,
+      "sha256": "d21608a54ccceca9cebb5be577dbdc13d1b7171f8cf8967784409fdd96b237f7",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Door Quote 949599 2026-02-04.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Lumber Quote 936458 2025-09-02.pdf",
+      "ref": "files/76c2ef30e576-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Lumber_Quote_936458_2025-09-02.pdf",
+      "bytes": 73642,
+      "sha256": "76c2ef30e576b3f2ba7b76b3bf1651212c1464fad3565021978b284a36d8d6dc",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Lumber Quote 936458 2025-09-02.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Main Floor Truss Order 254084-MF 2026-04-28.pdf",
+      "ref": "files/1685e19ad4cd-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Main_Floor_Truss_Order_254084-MF_2026-04-28.pdf",
+      "bytes": 568515,
+      "sha256": "1685e19ad4cd16e3c4eebcd8a9da2a6dcdefe8ab39247a7b926a3fdedb9115ba",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Main Floor Truss Order 254084-MF 2026-04-28.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Roof Truss Order 254084-R 2026-05-04.pdf",
+      "ref": "files/7ca962a82ae2-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Roof_Truss_Order_254084-R_2026-05-04.pdf",
+      "bytes": 723685,
+      "sha256": "7ca962a82ae2d411d5fd7becf891c1e1b335297a0c55062d444b4273c5955503",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Roof Truss Order 254084-R 2026-05-04.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Trustile Door Quote 2025-09-02.pdf",
+      "ref": "files/2c1d56d37cd8-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Trustile_Door_Quote_2025-09-02.pdf",
+      "bytes": 328139,
+      "sha256": "2c1d56d37cd8a3eff686c1730f31cf6b8a6cf3bcb55adcb09dff0f1fc02bffe2",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Trustile Door Quote 2025-09-02.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Upper Floor Truss Order 254084-UF 2026-05-04.pdf",
+      "ref": "files/efaf340a0a34-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Bid_Upper_Floor_Truss_Order_254084-UF_2026-05-04.pdf",
+      "bytes": 720027,
+      "sha256": "efaf340a0a340db8c088d124b57e6c57177bd4cd9c19bac575a173d29a4dce01",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Bid Upper Floor Truss Order 254084-UF 2026-05-04.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Contract Roof Order 254084-R (unsigned) 2026-04-28.pdf",
+      "ref": "files/67e8df0e16b7-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Contract_Roof_Order_254084-R_unsigned_2026-04-28.pdf",
+      "bytes": 723992,
+      "sha256": "67e8df0e16b78a94bb12c5635d3ddcc7f31048e56cdea529a5f4531a8baa17c8",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Contract Roof Order 254084-R (unsigned) 2026-04-28.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request (Budget) 2025-10-07.pdf",
+      "ref": "files/67992525beb5-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Estimate_Request_Budget_2025-10-07.pdf",
+      "bytes": 106441,
+      "sha256": "67992525beb511e82c93c6aa6777d0cac44ab4ae981bf0210a8c1aa05a6ccfb1",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request (Budget) 2025-10-07.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Door Order 2026-02-02.xlsx",
+      "ref": "files/d3f1f7d63853-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Estimate_Request_Door_Order_2026-02-02.xlsx",
+      "bytes": 8896,
+      "sha256": "d3f1f7d638536bc89951d59f62d218db55e300ddb42216356da37aeaf957fef6",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Door Order 2026-02-02.xlsx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Exterior Door Quote (email) 2026-03-31.txt",
+      "ref": "files/a092a361c5a0-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Estimate_Request_Exterior_Door_Quote_email_2026-03-31.txt",
+      "bytes": 1674,
+      "sha256": "a092a361c5a086c96df5aff3eaeee2536da750b2e623daa72b9678091abb03c7",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Exterior Door Quote (email) 2026-03-31.txt",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Lumber Takeoff 2026-02-02.xlsx",
+      "ref": "files/d3917ae31090-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Estimate_Request_Lumber_Takeoff_2026-02-02.xlsx",
+      "bytes": 23279,
+      "sha256": "d3917ae3109034f06acd7bd96c485dbd064c71fa5faef4f1d6c55df3a16e1159",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Estimate Request Lumber Takeoff 2026-02-02.xlsx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Main Floor Truss Order 254084-MF 2026-04-28.pdf",
+      "ref": "files/47a326b8b262-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Signed_Contract_Main_Floor_Truss_Order_254084-MF_2026-04-28.pdf",
+      "bytes": 636159,
+      "sha256": "47a326b8b2620095314e309e14c2e3e9e525ebc678e1037c4650632dc80735da",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Main Floor Truss Order 254084-MF 2026-04-28.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Roof Order 254084-R 2026-04-28.pdf",
+      "ref": "files/40f7748ae8d6-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Signed_Contract_Roof_Order_254084-R_2026-04-28.pdf",
+      "bytes": 791481,
+      "sha256": "40f7748ae8d63abc65e8132c2151b96622a5ec34629bab91a0c2cdf1a55016c8",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Roof Order 254084-R 2026-04-28.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Upper Floor Truss Order 254084-UF 2026-04-28.pdf",
+      "ref": "files/45df1df5e934-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Signed_Contract_Upper_Floor_Truss_Order_254084-UF_2026-04-28.pdf",
+      "bytes": 787880,
+      "sha256": "45df1df5e934c50c1fea36ac3941577df070ca85fb1319fa4d63c271ba2bfe7a",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Signed Contract Upper Floor Truss Order 254084-UF 2026-04-28.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Statement 2026-06-30.pdf",
+      "ref": "files/af62e9b6c80c-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Statement_2026-06-30.pdf",
+      "bytes": 70577,
+      "sha256": "af62e9b6c80cd21e7e12e701004758c9f0bb61cffa9d7315788ec18360ea0012",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Documents\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Statement 2026-06-30.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - Invoice 3961664 2026-09-14.pdf",
+      "ref": "files/dfa63880424a-Sunpro_-_Invoice_3961664_2026-09-14.pdf",
+      "bytes": 79206,
+      "sha256": "dfa63880424a58fec7ae74c29232669587894b6c3ff98a4b6e713dc9f6c2c0fe",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - Invoice 3961664 2026-09-14.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - Invoice 3963544 2026-09-16.pdf",
+      "ref": "files/4e61fb157132-Sunpro_-_Invoice_3963544_2026-09-16.pdf",
+      "bytes": 83293,
+      "sha256": "4e61fb1571327c0aa5367d054a9290c8d30d221c0b6afe53f3dffb047a6768f0",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - Invoice 3963544 2026-09-16.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - Invoice 3965755 2026-09-18.pdf",
+      "ref": "files/a2e5f4e775d3-Sunpro_-_Invoice_3965755_2026-09-18.pdf",
+      "bytes": 79333,
+      "sha256": "a2e5f4e775d3d222043c3e3e2eb7675e180b3f2f66ff93580c74fcf592e451ce",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - Invoice 3965755 2026-09-18.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Credit Note 257064 2026-08-20.pdf",
+      "ref": "files/5210da20990d-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Credit_Note_257064_2026-08-20.pdf",
+      "bytes": 64524,
+      "sha256": "5210da20990dcc7c47b6963bc044b894aebcea1b8614ae0168e6128d516e33b1",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Credit Note 257064 2026-08-20.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3890718 2026-06-29.pdf",
+      "ref": "files/2cfc2c65615c-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3890718_2026-06-29.pdf",
+      "bytes": 83510,
+      "sha256": "2cfc2c65615c448d17df736fc0882669e520be857c39fba9929ed0e4e2c296ff",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3890718 2026-06-29.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3891720 2026-06-29.pdf",
+      "ref": "files/ef1271896b3a-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3891720_2026-06-29.pdf",
+      "bytes": 88547,
+      "sha256": "ef1271896b3a0e8b3cef8576c6498196c848dfbc4911cd29253e82d4149745c8",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3891720 2026-06-29.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3894241 2026-07-01.pdf",
+      "ref": "files/837afae7ef7a-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3894241_2026-07-01.pdf",
+      "bytes": 78980,
+      "sha256": "837afae7ef7a5490353a78a55526b8ea5d7c6a5ffcdf32d986c12aaa364d29db",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3894241 2026-07-01.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3897876 2026-07-06.pdf",
+      "ref": "files/66b711c4a98a-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3897876_2026-07-06.pdf",
+      "bytes": 79518,
+      "sha256": "66b711c4a98a45ee91df748d60788a9f0e1e98b950aae4d38fc72d60c3041a88",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3897876 2026-07-06.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3899137 2026-07-07.pdf",
+      "ref": "files/cc662a1f3b1d-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3899137_2026-07-07.pdf",
+      "bytes": 79788,
+      "sha256": "cc662a1f3b1d4b44304b76dee0c8796dc9f5818ca56b7785f9792ea01446f9c7",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3899137 2026-07-07.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3899710 2026-07-08.pdf",
+      "ref": "files/77df7ae79580-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3899710_2026-07-08.pdf",
+      "bytes": 79435,
+      "sha256": "77df7ae79580f5ddef3062edc6827ce1f3c1523de12ddc851673461be33352be",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3899710 2026-07-08.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3900730 2026-07-09.pdf",
+      "ref": "files/1c833fe78947-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3900730_2026-07-09.pdf",
+      "bytes": 78676,
+      "sha256": "1c833fe78947d78f0dabbb28fd87fcb60a9792c8c0e437a363c698278a1f241f",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3900730 2026-07-09.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3902213 2026-07-10.pdf",
+      "ref": "files/adce06b62743-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3902213_2026-07-10.pdf",
+      "bytes": 79005,
+      "sha256": "adce06b627439ff52d3c29b9172fa77242f33efcfe995d62d62a244e5e9e564c",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3902213 2026-07-10.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3904841 2026-07-14.pdf",
+      "ref": "files/12321202bf00-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3904841_2026-07-14.pdf",
+      "bytes": 79564,
+      "sha256": "12321202bf00ac5367246abdfd4b4fd3fbb9dc3c4895af014a8f415f98b3e110",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3904841 2026-07-14.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3907414 2026-07-16.pdf",
+      "ref": "files/4f43e4a0d412-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3907414_2026-07-16.pdf",
+      "bytes": 87526,
+      "sha256": "4f43e4a0d4128c2f30368451982180bbfc1116bf953af144d44baf0f5613a4e7",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3907414 2026-07-16.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3921247 2026-07-31 Hardware and Rebar.pdf",
+      "ref": "files/849ce1797f3b-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Invoice_3921247_2026-07-31_Hardware_and_Rebar.pdf",
+      "bytes": 79611,
+      "sha256": "849ce1797f3b86efed3e81a637b735359117f685dcc13ae5768a8b70b591d5ba",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Invoice 3921247 2026-07-31 Hardware and Rebar.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Statement 2026-07-31.pdf",
+      "ref": "files/e3ee0fcc701e-Sunpro_-_SunPro_Lumber_Door_Base_Case_Truss_-_Statement_2026-07-31.pdf",
+      "bytes": 73646,
+      "sha256": "e3ee0fcc701e86c4da94cbd0afbc0e64d874da3be1871bee086afd43a02cfde5",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss) - Statement 2026-07-31.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Customer Statement.pdf",
+      "ref": "files/9c0f6128e98a-Customer_Statement.pdf",
+      "bytes": 71304,
+      "sha256": "9c0f6128e98a629213cadb324c600b05fa5c1a31e10807d4d9acacb6e1608abc",
+      "source": "Email 1a0fded28548984d: Sunpro STATEMENT (Fri, 02 Oct 2026 18:42:52 +0000 (UTC))",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Lot 5 Truss Pricing Record.pdf",
+      "ref": "files/9495324eaa08-Lot_5_Truss_Pricing_Record.pdf",
+      "bytes": 179408,
+      "sha256": "9495324eaa080454dd8ad85045f7c09912782a11ef167058f1bd062f9285d35a",
+      "source": "Email 19ed6be3b4844561: Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached) (Wed, 17 Jun 2026 14:00:51 -0400)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "2540840 Red lines.pdf",
+      "ref": "files/109d1f15d4dc-2540840_Red_lines.pdf",
+      "bytes": 976726,
+      "sha256": "109d1f15d4dc2e04f0da3c8e18acd5ca912080c15b72e7e453f5881800bb63d8",
+      "source": "Email 19ed29bfbb8bf839: OVE Floor Truss redlines (Tue, 16 Jun 2026 16:44:56 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "framing_lumber_takeoff_simple.csv",
+      "ref": "files/54235cb0b974-framing_lumber_takeoff_simple.csv",
+      "bytes": 610,
+      "sha256": "54235cb0b974a2ea0a9d41bc2665ab6e07ebb9dad42b2285369f922522c6ba35",
+      "source": "Email 19e17b909d7dd956: Oak Valley Estates - Simplified Lumber Takeoff Update (Mon, 11 May 2026 08:47:42 -0700)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-MF_Preliminary TPD.pdf",
+      "ref": "files/246005cc70f0-254084-MF_Preliminary_TPD.pdf",
+      "bytes": 317593,
+      "sha256": "246005cc70f09c645a6cbdb6dd34afdc6591718e5404a5c2acf99246c6ccb8e2",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "ref": "files/fca268ea5ae3-254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "bytes": 785631,
+      "sha256": "fca268ea5ae355c005a35f5294051ea843c5d2345736596626c85da99ac53df4",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-UF_Preliminary TPD.pdf",
+      "ref": "files/c6b972553a1a-254084-UF_Preliminary_TPD.pdf",
+      "bytes": 340995,
+      "sha256": "c6b972553a1a1524de2b7179100a2173cbb90ec71b8859db8a2301c104a51011",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-UF_Preliminary _Eng_Drwgs.pdf",
+      "ref": "files/a15be9a1cd7e-254084-UF_Preliminary__Eng_Drwgs.pdf",
+      "bytes": 6761386,
+      "sha256": "a15be9a1cd7eeab627decd6a1cbc6b3044fa79b911e0de4c58521a0c89a2b5f0",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-R_Preliminary_Eng_Drwgs.pdf",
+      "ref": "files/a06369e12b6a-254084-R_Preliminary_Eng_Drwgs.pdf",
+      "bytes": 7536801,
+      "sha256": "a06369e12b6addf799a882a95cb05769e750f229b5d8a6d2e1e2ab0e78903043",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-R_Preliminary TPD.pdf",
+      "ref": "files/257ae6840a20-254084-R_Preliminary_TPD.pdf",
+      "bytes": 339928,
+      "sha256": "257ae6840a205e3e2d2ce3049a0e72680f9402ad0d47dbbcd9a1de80b015205e",
+      "source": "Email 19df53b531df9057: Rodriguez truss specs (Mon, 4 May 2026 23:01:07 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-UF_Order_Rodriguez Residence_20260428.Pdf",
+      "ref": "files/adaf69e2c4d8-254084-UF_Order_Rodriguez_Residence_20260428.Pdf",
+      "bytes": 720360,
+      "sha256": "adaf69e2c4d8a632e8ebeb3f33e1fd25541d5f3880cd27432b3648fd1de43c4f",
+      "source": "Email 19dd55db6d2dc933: Rodriguez (Tue, 28 Apr 2026 18:32:52 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Red Line 32526 254084-UF_Preliminary TPD.pdf",
+      "ref": "files/f85e939a034e-Red_Line_32526_254084-UF_Preliminary_TPD.pdf",
+      "bytes": 358076,
+      "sha256": "f85e939a034e8250b2076acc8637a4be55c7d2b92b8dc6c6e80996d2f2595ba4",
+      "source": "Email 19d26f7ef6db49ff: Please add Blind Pockets per the red line (Wed, 25 Mar 2026 15:47:56 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Red Line 32526-254084-R_Preliminary TPD.pdf",
+      "ref": "files/4c59663a4c68-Red_Line_32526-254084-R_Preliminary_TPD.pdf",
+      "bytes": 349435,
+      "sha256": "4c59663a4c68e1770896c8d90f7bd63cd2b313b5e5f3650e63dac39768b21146",
+      "source": "Email 19d26f7ef6db49ff: Please add Blind Pockets per the red line (Wed, 25 Mar 2026 15:47:56 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Red Line 254084-UF_Preliminary TPD.pdf",
+      "ref": "files/73e610251302-Red_Line_254084-UF_Preliminary_TPD.pdf",
+      "bytes": 350959,
+      "sha256": "73e61025130286dc2948733868fd6de0c7ce9de794d79c0677164fcb1b9de5d3",
+      "source": "Email 19d01347bc6f2ec1: Re: Fw: Rodriguez Res Truss Submittal (Wed, 18 Mar 2026 07:48:29 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Red line 254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "ref": "files/1c187174da93-Red_line_254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "bytes": 600726,
+      "sha256": "1c187174da935a823b320ef6b13f872f22dffa8a570acb9125f7e0899f8be1f9",
+      "source": "Email 19d01347bc6f2ec1: Re: Fw: Rodriguez Res Truss Submittal (Wed, 18 Mar 2026 07:48:29 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Red Line 254084-R_Preliminary TPD.pdf",
+      "ref": "files/3b659f0e938c-Red_Line_254084-R_Preliminary_TPD.pdf",
+      "bytes": 358140,
+      "sha256": "3b659f0e938c602ad9d17c88b28e7cf2592f500909ba92fa729837ab5b6210c0",
+      "source": "Email 19d01347bc6f2ec1: Re: Fw: Rodriguez Res Truss Submittal (Wed, 18 Mar 2026 07:48:29 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-MF_Preliminary TPD.pdf",
+      "ref": "files/f51db233d1f0-254084-MF_Preliminary_TPD.pdf",
+      "bytes": 322687,
+      "sha256": "f51db233d1f0316727b432b3d40f3b6ea981f3007cc72cf0823feba11ed4e50c",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "ref": "files/fce6de43431c-254084-MF_Preliminary_Eng_Drwgs.pdf",
+      "bytes": 597803,
+      "sha256": "fce6de43431c1b8e5b589a1dae0d7b63fa5ef337e3815e61f77c15d8194970a1",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-R_Preliminary_Eng_Drwgs.pdf",
+      "ref": "files/d80a43f21a21-254084-R_Preliminary_Eng_Drwgs.pdf",
+      "bytes": 7512694,
+      "sha256": "d80a43f21a2111a985766709c79fa7987a7c11b536f9cda0788889ab1a5ab013",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-R_Preliminary TPD.pdf",
+      "ref": "files/62c8935ed732-254084-R_Preliminary_TPD.pdf",
+      "bytes": 339568,
+      "sha256": "62c8935ed7321c0ca9227e979781deb5dc9178c1b60ecd85ad231919d17b9cf9",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-UF_Preliminary _Eng_Drwgs.pdf",
+      "ref": "files/ad560b5cdd42-254084-UF_Preliminary__Eng_Drwgs.pdf",
+      "bytes": 6116475,
+      "sha256": "ad560b5cdd4219f86a9fc18882aa16af198f61d85bc7a63064438dcf77805168",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "254084-UF_Preliminary TPD.pdf",
+      "ref": "files/c92b1bc15f86-254084-UF_Preliminary_TPD.pdf",
+      "bytes": 339230,
+      "sha256": "c92b1bc15f8672942bbcf5307972ece6aa5d9c777d628a0b7f110484adebed42",
+      "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
+      "category": "Email attachments"
+    }
+  ],
+  "emails": [
+    {
+      "subject": "Sunpro STATEMENT",
+      "date": "Fri, 02 Oct 2026 18:42:52 +0000 (UTC)",
+      "sender": "Sunpro <btadmin@sunpro.build>",
+      "ref": "mail/1a0fded28548984d.html",
+      "id": "1a0fded28548984d"
+    },
+    {
+      "subject": "Sunpro Invoice",
+      "date": "Sat, 19 Sep 2026 11:16:16 +0000 (UTC)",
+      "sender": "Sunpro <btadmin@sunpro.build>",
+      "ref": "mail/1a0b9619d9c7e3ff.html",
+      "id": "1a0b9619d9c7e3ff"
+    },
+    {
+      "subject": "Sunpro Invoice",
+      "date": "Thu, 17 Sep 2026 11:18:44 +0000 (UTC)",
+      "sender": "Sunpro <btadmin@sunpro.build>",
+      "ref": "mail/1a0af172eeff9384.html",
+      "id": "1a0af172eeff9384"
+    },
+    {
+      "subject": "Re: Rodriguez Residence / Oak Valley Lot 5 — corrected framing lumber order, first delivery Monday 9/14",
+      "date": "Wed, 9 Sep 2026 19:31:03 +0000",
+      "sender": "Scott Mitchell <srmitchell@sunpro.build>",
+      "ref": "mail/1a087a72c38bf227.html",
+      "id": "1a087a72c38bf227"
+    },
+    {
+      "subject": "Sunpro Invoice",
+      "date": "Wed, 15 Jul 2026 11:20:30 +0000 (UTC)",
+      "sender": "Sunpro <btadmin@sunpro.build>",
+      "ref": "mail/19f6581c70817d35.html",
+      "id": "19f6581c70817d35"
+    },
+    {
+      "subject": "RE: Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached)",
+      "date": "Thu, 18 Jun 2026 00:33:25 +0000",
+      "sender": "Lamont Backus <lbackus@sunpro.build>",
+      "ref": "mail/19ed825d12e00787.html",
+      "id": "19ed825d12e00787"
+    },
+    {
+      "subject": "Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached)",
+      "date": "Wed, 17 Jun 2026 14:00:51 -0400",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19ed6be3b4844561.html",
+      "id": "19ed6be3b4844561"
+    },
+    {
+      "subject": "Re: Oak Valley / Rodriguez Lot 5 Trusses - pricing history & where we stand",
+      "date": "Wed, 17 Jun 2026 17:47:08 +0000",
+      "sender": "Lamont Backus <lbackus@sunpro.build>",
+      "ref": "mail/19ed6b1eac7b6aae.html",
+      "id": "19ed6b1eac7b6aae"
+    },
+    {
+      "subject": "Oak Valley / Rodriguez Lot 5 Trusses - pricing history & where we stand",
+      "date": "Wed, 17 Jun 2026 13:31:20 -0400",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19ed6a3344f4f576.html",
+      "id": "19ed6a3344f4f576"
+    },
+    {
+      "subject": "OVE Floor Truss redlines",
+      "date": "Tue, 16 Jun 2026 16:44:56 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19ed29bfbb8bf839.html",
+      "id": "19ed29bfbb8bf839"
+    },
+    {
+      "subject": "Oak Valley Estates - Simplified Lumber Takeoff Update",
+      "date": "Mon, 11 May 2026 08:47:42 -0700",
+      "sender": "racinc19@gmail.com",
+      "ref": "mail/19e17b909d7dd956.html",
+      "id": "19e17b909d7dd956"
+    },
+    {
+      "subject": "Rodriguez truss specs",
+      "date": "Mon, 4 May 2026 23:01:07 +0000",
+      "sender": "Lamont Backus <lbackus@sunpro.build>",
+      "ref": "mail/19df53b531df9057.html",
+      "id": "19df53b531df9057"
+    },
+    {
+      "subject": "Rodriguez Pricing",
+      "date": "Mon, 4 May 2026 22:54:23 +0000",
+      "sender": "Lamont Backus <lbackus@sunpro.build>",
+      "ref": "mail/19df5333c5f12930.html",
+      "id": "19df5333c5f12930"
+    },
+    {
+      "subject": "Fwd: Signed: 254084-R Roof Order - Rodriguez Residence",
+      "date": "Wed, 29 Apr 2026 10:34:51 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19dda17e23171612.html",
+      "id": "19dda17e23171612"
+    },
+    {
+      "subject": "Signed: 254084-R Roof Order - Rodriguez Residence",
+      "date": "Wed, 29 Apr 2026 10:20:41 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19dda0aed52cf4a3.html",
+      "id": "19dda0aed52cf4a3"
+    },
+    {
+      "subject": "Roof",
+      "date": "Wed, 29 Apr 2026 13:49:01 +0000",
+      "sender": "Chris Zimmerschied <dazimmerschied@sunpro.build>",
+      "ref": "mail/19dd9802fdd0593f.html",
+      "id": "19dd9802fdd0593f"
+    },
+    {
+      "subject": "Re: Rodriguez",
+      "date": "Tue, 28 Apr 2026 23:49:21 +0000",
+      "sender": "Chris Zimmerschied <dazimmerschied@sunpro.build>",
+      "ref": "mail/19dd67f59b229597.html",
+      "id": "19dd67f59b229597"
+    },
+    {
+      "subject": "Re: Rodriguez",
+      "date": "Tue, 28 Apr 2026 23:48:09 +0000",
+      "sender": "Chris Zimmerschied <dazimmerschied@sunpro.build>",
+      "ref": "mail/19dd67e450a9c6fe.html",
+      "id": "19dd67e450a9c6fe"
+    },
+    {
+      "subject": "Re: Rodriguez",
+      "date": "Tue, 28 Apr 2026 17:32:52 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19dd6703f6dbb7c1.html",
+      "id": "19dd6703f6dbb7c1"
+    },
+    {
+      "subject": "Rodriguez",
+      "date": "Tue, 28 Apr 2026 18:32:52 +0000",
+      "sender": "Chris Zimmerschied <dazimmerschied@sunpro.build>",
+      "ref": "mail/19dd55db6d2dc933.html",
+      "id": "19dd55db6d2dc933"
+    },
+    {
+      "subject": "RE: Rodriguez Residence - Framing Lumber Takeoff and Header Schedule",
+      "date": "Mon, 27 Apr 2026 14:41:29 +0000",
+      "sender": "Scott Mitchell <srmitchell@sunpro.build>",
+      "ref": "mail/19dcf636f04d35a0.html",
+      "id": "19dcf636f04d35a0"
+    },
+    {
+      "subject": "Rodriguez Residence - Framing Lumber Takeoff and Header Schedule",
+      "date": "Fri, 24 Apr 2026 15:54:19 -0400",
+      "sender": "racinc19@gmail.com",
+      "ref": "mail/19dc10eb4c78ed22.html",
+      "id": "19dc10eb4c78ed22"
+    },
+    {
+      "subject": "FW: Rodriguez Res - Updated truss design Submittal",
+      "date": "Thu, 9 Apr 2026 14:39:02 +0000",
+      "sender": "Sam Garcia Ontiveros <sagarcia@sunpro.build>",
+      "ref": "mail/19d72af062eeb45d.html",
+      "id": "19d72af062eeb45d"
+    },
+    {
+      "subject": "Re: Exterior Door Quote + Early Release for Immediate Post-Framing Install",
+      "date": "Tue, 31 Mar 2026 15:00:21 +0000",
+      "sender": "Tirel Mitchell <timitchell@sunpro.build>",
+      "ref": "mail/19d4469091b7c916.html",
+      "id": "19d4469091b7c916"
+    },
+    {
+      "subject": "Re: Exterior Door Quote + Early Release for Immediate Post-Framing Install",
+      "date": "Tue, 31 Mar 2026 08:48:46 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19d445e5871ca06b.html",
+      "id": "19d445e5871ca06b"
+    },
+    {
+      "subject": "Re: Exterior Door Quote + Early Release for Immediate Post-Framing Install",
+      "date": "Tue, 31 Mar 2026 14:46:37 +0000",
+      "sender": "Tirel Mitchell <timitchell@sunpro.build>",
+      "ref": "mail/19d445c6e228317e.html",
+      "id": "19d445c6e228317e"
+    },
+    {
+      "subject": "Exterior Door Quote + Early Release for Immediate Post-Framing Install",
+      "date": "Tue, 31 Mar 2026 08:30:38 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19d444dbd080d099.html",
+      "id": "19d444dbd080d099"
+    },
+    {
+      "subject": "Please add Blind Pockets per the red line",
+      "date": "Wed, 25 Mar 2026 15:47:56 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19d26f7ef6db49ff.html",
+      "id": "19d26f7ef6db49ff"
+    },
+    {
+      "subject": "Oak Valley Estates Blind Pocket",
+      "date": "Mon, 23 Mar 2026 19:28:42 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19d1d7557f59ed7e.html",
+      "id": "19d1d7557f59ed7e"
+    },
+    {
+      "subject": "Re: Fw: Rodriguez Res Truss Submittal",
+      "date": "Wed, 18 Mar 2026 07:48:29 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19d01347bc6f2ec1.html",
+      "id": "19d01347bc6f2ec1"
+    },
+    {
+      "subject": "Red lines OVE 5",
+      "date": "Tue, 17 Mar 2026 16:37:02 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19cfdf20597fc105.html",
+      "id": "19cfdf20597fc105"
+    },
+    {
+      "subject": "Fw: Rodriguez Res Truss Submittal",
+      "date": "Tue, 17 Mar 2026 18:20:01 +0000",
+      "sender": "Sam Garcia Ontiveros <sagarcia@sunpro.build>",
+      "ref": "mail/19cfd073f457622c.html",
+      "id": "19cfd073f457622c"
+    },
+    {
+      "subject": "Subject: Rodriguez Residence — Corrected Door Schedule & Specs (OVE Lot 5)",
+      "date": "Mon, 9 Mar 2026 13:18:57 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19cd409cf79f1100.html",
+      "id": "19cd409cf79f1100"
+    },
+    {
+      "subject": "Rodriguez - Floor Deck Review",
+      "date": "Wed, 25 Feb 2026 21:48:59 +0000",
+      "sender": "Sam Garcia Ontiveros <sagarcia@sunpro.build>",
+      "ref": "mail/19c96c6e1f337650.html",
+      "id": "19c96c6e1f337650"
+    },
+    {
+      "subject": "Oak Valley Estates rvt",
+      "date": "Tue, 24 Feb 2026 09:08:27 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c9068b32d60b45.html",
+      "id": "19c9068b32d60b45"
+    },
+    {
+      "subject": "Re: Oak valley estates Lot 5",
+      "date": "Tue, 10 Feb 2026 08:40:42 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c483647dfd568f.html",
+      "id": "19c483647dfd568f"
+    },
+    {
+      "subject": "FW: RIGAN Oak Valley Lot 5 Door Take Off",
+      "date": "Wed, 4 Feb 2026 15:11:49 +0000",
+      "sender": "Scott Mitchell <srmitchell@sunpro.build>",
+      "ref": "mail/19c2935c765d57d2.html",
+      "id": "19c2935c765d57d2"
+    },
+    {
+      "subject": "Oak Valley Estates Lot 5",
+      "date": "Mon, 2 Feb 2026 15:03:31 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c2061e49d8411c.html",
+      "id": "19c2061e49d8411c"
+    },
+    {
+      "subject": "Re: Oak valley estates Lot 5",
+      "date": "Mon, 2 Feb 2026 20:54:02 +0000",
+      "sender": "Chris Zimmerschied <dazimmerschied@sunpro.build>",
+      "ref": "mail/19c2022680ca46ba.html",
+      "id": "19c2022680ca46ba"
+    },
+    {
+      "subject": "Oak valley estates Lot 5",
+      "date": "Mon, 2 Feb 2026 11:33:37 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c1fa1b80cdd1db.html",
+      "id": "19c1fa1b80cdd1db"
+    },
+    {
+      "subject": "FW: RIGAN: Lot 5 Oak Valley Lumber",
+      "date": "Tue, 2 Sep 2025 15:02:49 +0000",
+      "sender": "Scott Mitchell <srmitchell@sunpro.build>",
+      "ref": "mail/1990af3c6700091d.html",
+      "id": "1990af3c6700091d"
+    },
+    {
+      "subject": "Re: FW: RIGAN Lot 5 Oak Valley Door Take Off",
+      "date": "Tue, 2 Sep 2025 08:56:06 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/1990aed974a1cb87.html",
+      "id": "1990aed974a1cb87"
+    },
+    {
+      "subject": "FW: RIGAN Lot 5 Oak Valley Door Take Off",
+      "date": "Tue, 2 Sep 2025 14:47:48 +0000",
+      "sender": "Scott Mitchell <srmitchell@sunpro.build>",
+      "ref": "mail/1990ae60bdb70217.html",
+      "id": "1990ae60bdb70217"
+    },
+    {
+      "subject": "Oak Valley estates #5",
+      "date": "Tue, 19 Aug 2025 11:24:42 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198c35c9ab5df2e4.html",
+      "id": "198c35c9ab5df2e4"
+    }
+  ]
+}

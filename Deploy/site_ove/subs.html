@@ -120,6 +120,7 @@ html{overflow-y:scroll}
 </div>
 
 <script src="shared.js?v20260805_co_docs"></script>
+<script src="contractor-roster.js?v=20261013"></script>
 <script>
 function slugify(s){return encodeURIComponent(s.trim())}
 function fmtD(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()}
@@ -230,6 +231,7 @@ async function init(){
     const tasks=data.main.scheduleTasks||[];
     buildCards(tasks);
     addLopezRecordsCard();
+    reconcileSubCards();
     document.getElementById('loading').style.display='none';
     document.getElementById('app').style.display='block';
   }catch(e){

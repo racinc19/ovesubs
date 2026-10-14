@@ -1,0 +1,138 @@
+{
+  "files": [
+    {
+      "name": "BSM_Stone_Subcontract.docx",
+      "ref": "files/456d2bd16300-BSM_Stone_Subcontract.docx",
+      "bytes": 39604,
+      "sha256": "456d2bd163007b9a6450d0b742414c9c0fd84202095574530ad598e04bbefce5",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\BSM_Stone_Subcontract.docx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Received (Stone Veneer - BSM) 2025-09-11.pdf",
+      "ref": "files/4f8838471edd-Simco_Exterior_Stucco_Rancho_Stone_Veneer_BSM_Stone_-_Estimate_Received_Stone_Veneer_-_BSM_2025-09-11.pdf",
+      "bytes": 210275,
+      "sha256": "4f8838471eddeb07ddfe4a2a57592301d69f466cfef1615eb5de1ac1e195204a",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Received (Stone Veneer - BSM) 2025-09-11.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Received - Stone Area Markup 2025-09-11.pdf",
+      "ref": "files/bb0e676aef8e-Simco_Exterior_Stucco_Rancho_Stone_Veneer_BSM_Stone_-_Estimate_Received_-_Stone_Area_Markup_2025-09-11.pdf",
+      "bytes": 3222121,
+      "sha256": "bb0e676aef8e2d46596ab522eb3f9cdecb2939aac473f15859d03b9afcf675bb",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Received - Stone Area Markup 2025-09-11.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Request (Stone Veneer) 2025-08-17.txt",
+      "ref": "files/09233914ea9e-Simco_Exterior_Stucco_Rancho_Stone_Veneer_BSM_Stone_-_Estimate_Request_Stone_Veneer_2025-08-17.txt",
+      "bytes": 415,
+      "sha256": "09233914ea9e53e41f9aead5603f01280a2efed64204cd2e8154d3d0181c725b",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate Request (Stone Veneer) 2025-08-17.txt",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "fastset-CS2024.SEPT24.pdf",
+      "ref": "files/5005a07b7c37-fastset-CS2024.SEPT24.pdf",
+      "bytes": 9855681,
+      "sha256": "5005a07b7c37601a0b71501e9930b1a1f59c174d1b1d155c6a3a147bc445c8b7",
+      "source": "Email 1a0fd95a55eb4bb8: Oak Valley Estates lot 5-Koni Fast Set Calabria (Fri, 2 Oct 2026 17:06:23 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Oak Valley Estates lot 5 SA stucco.pdf",
+      "ref": "files/4c5bb35119e0-Oak_Valley_Estates_lot_5_SA_stucco.pdf",
+      "bytes": 217384,
+      "sha256": "4c5bb35119e0b8bd1c0f670045ff1eda40d6fc2004171c8d875631cbc0055916",
+      "source": "Email 19939025376f0ffd: Oak Valley Estates lot 5 (Thu, 11 Sep 2025 13:41:01 +0000)",
+      "category": "Email attachments"
+    }
+  ],
+  "emails": [
+    {
+      "subject": "Oak Valley Estates lot 5-Koni Fast Set Calabria",
+      "date": "Fri, 2 Oct 2026 17:06:23 +0000",
+      "sender": "Josette Stubbs <josette@bsmmasonry.com>",
+      "ref": "mail/1a0fd95a55eb4bb8.html",
+      "id": "1a0fd95a55eb4bb8"
+    },
+    {
+      "subject": "Rodriguez Residence - Subcontract for stone thin veneer",
+      "date": "Sun, 15 Mar 2026 17:14:11 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19cf3c74f07ff338.html",
+      "id": "19cf3c74f07ff338"
+    },
+    {
+      "subject": "Oak Valley Estates Lot 5 – Subcontractor Portal Access ---",
+      "date": "Wed, 25 Feb 2026 16:26:21 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c971ff98ba6228.html",
+      "id": "19c971ff98ba6228"
+    },
+    {
+      "subject": "Re: Oak Valley Estates lot 5",
+      "date": "Thu, 11 Sep 2025 08:28:01 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/199392d1d3a0acfe.html",
+      "id": "199392d1d3a0acfe"
+    },
+    {
+      "subject": "Oak Valley Estates lot 5",
+      "date": "Thu, 11 Sep 2025 13:41:01 +0000",
+      "sender": "Josette Stubbs <josette@bsmmasonry.com>",
+      "ref": "mail/19939025376f0ffd.html",
+      "id": "19939025376f0ffd"
+    },
+    {
+      "subject": "Oak Valley Eatates",
+      "date": "Tue, 2 Sep 2025 10:56:39 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/1990b5bf23dea55d.html",
+      "id": "1990b5bf23dea55d"
+    },
+    {
+      "subject": "Re: Oak Valley estates #5",
+      "date": "Fri, 29 Aug 2025 08:28:30 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198f63ade75b59d5.html",
+      "id": "198f63ade75b59d5"
+    },
+    {
+      "subject": "RE: Oak Valley estates #5",
+      "date": "Mon, 18 Aug 2025 15:53:15 +0000",
+      "sender": "Greg Baker <greg.baker@bsmmasonry.com>",
+      "ref": "mail/198bde29cbd63819.html",
+      "id": "198bde29cbd63819"
+    },
+    {
+      "subject": "Oak Valley estates #5",
+      "date": "Sun, 17 Aug 2025 14:57:16 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198b9d27b21ee7ba.html",
+      "id": "198b9d27b21ee7ba"
+    },
+    {
+      "subject": "Re: Oak Valley Estates Lot #5",
+      "date": "Mon, 9 Jun 2025 09:32:59 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/1975552cfa5ff137.html",
+      "id": "1975552cfa5ff137"
+    },
+    {
+      "subject": "Re: Oak Valley Estates Lot #5",
+      "date": "Mon, 9 Jun 2025 14:01:12 +0000",
+      "sender": "Josette Stubbs <josette@bsmmasonry.com>",
+      "ref": "mail/19754fef9391d022.html",
+      "id": "19754fef9391d022"
+    },
+    {
+      "subject": "Oak Valley Estates Lot #5",
+      "date": "Wed, 4 Jun 2025 09:27:44 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/1973b8e32640df98.html",
+      "id": "1973b8e32640df98"
+    }
+  ]
+}

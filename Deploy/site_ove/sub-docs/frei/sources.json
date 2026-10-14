@@ -1,0 +1,813 @@
+{
+  "files": [
+    {
+      "name": "Frei_Bid_vs_Invoices.xlsx",
+      "ref": "files/48c87c224801-Frei_Bid_vs_Invoices.xlsx",
+      "bytes": 8653,
+      "sha256": "48c87c224801bba29fa247c9439340547ab3944e138a3b693208d69ab8c1ad6a",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Frei_Bid_vs_Invoices.xlsx",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Frei_Invoice_Review_Lot5_2026-07-11.pdf",
+      "ref": "files/0a37b4c19ba5-Frei_Invoice_Review_Lot5_2026-07-11.pdf",
+      "bytes": 123349,
+      "sha256": "0a37b4c19ba55959eb13555b6db0274cc7bbe4dccf3293d78f6a06e8754f55bc",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Frei_Invoice_Review_Lot5_2026-07-11.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - COI Insurance ACORD (2026-02-10).pdf",
+      "ref": "files/86b3a7bb7d1e-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_COI_Insurance_ACORD_2026-02-10_.pdf",
+      "bytes": 21318,
+      "sha256": "86b3a7bb7d1ec7c653d2ad3af6709940e9c1f1ece1ba0038d4685d09f42a890c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - COI Insurance ACORD (2026-02-10).pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - COI Insurance Renewal ACORD (2026-03-30).pdf",
+      "ref": "files/6dd9bad178e3-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_COI_Insurance_Renewal_ACORD_2026-03-30_.pdf",
+      "bytes": 21294,
+      "sha256": "6dd9bad178e341da8dc37a86416bcee395cb507e8437a7238f6300d321039292",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - COI Insurance Renewal ACORD (2026-03-30).pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - DOPL License 2026.pdf",
+      "ref": "files/eafbf2fd0a72-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_DOPL_License_2026.pdf",
+      "bytes": 414260,
+      "sha256": "eafbf2fd0a72ef40a9498df307bf748ba4ad86a67ffe01c1840b78336df2eef1",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - DOPL License 2026.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Estimate 19643 (received 2025-12-17).pdf",
+      "ref": "files/533e5edf58d7-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Estimate_19643_received_2025-12-17_.pdf",
+      "bytes": 142691,
+      "sha256": "533e5edf58d798515045f58d5ba84b682f425724afe668251ee19da076ff2a4d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Estimate 19643 (received 2025-12-17).pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Estimate 19643 (resent 2026-02-04).pdf",
+      "ref": "files/8f63beea0552-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Estimate_19643_resent_2026-02-04_.pdf",
+      "bytes": 142685,
+      "sha256": "8f63beea05521d8614409473e7bc9c8955d4de2e9308af436eaf16d350414ce0",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Estimate 19643 (resent 2026-02-04).pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Signed Subcontract 2026-02-09.pdf",
+      "ref": "files/fb88a05633f6-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Signed_Subcontract_2026-02-09.pdf",
+      "bytes": 848048,
+      "sha256": "fb88a05633f693ab4ee573138145e91da1b304f1da5d631b0ff12fe5587c1d92",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Signed Subcontract 2026-02-09.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Subcontract UNSIGNED 2026-02-06.docx",
+      "ref": "files/25899e0c8a2b-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Subcontract_UNSIGNED_2026-02-06.docx",
+      "bytes": 14438,
+      "sha256": "25899e0c8a2b3c10f9db085e86cee9dcf3ffa2027959bec7c7103d3f017049ff",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Subcontract UNSIGNED 2026-02-06.docx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - W9 2026.pdf",
+      "ref": "files/0d26698639ee-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_W9_2026.pdf",
+      "bytes": 119799,
+      "sha256": "0d26698639ee0cbfb4a3bcf094952f429829a1e6d29218e6cc6c6126172d0367",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - W9 2026.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy_Frei_Concrete_Bid_vs_Invoices.xlsx",
+      "ref": "files/dcc9d0db2b0a-Randy_Frei_Concrete_Bid_vs_Invoices.xlsx",
+      "bytes": 8526,
+      "sha256": "dcc9d0db2b0a1c14e61515b158ab7d431556608b93678676e1e5608cce3e40a1",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Documents\\Randy_Frei_Concrete_Bid_vs_Invoices.xlsx",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Invoice_2644.txt",
+      "ref": "files/06c513e84278-Invoice_2644.txt",
+      "bytes": 150,
+      "sha256": "06c513e84278421e60e9ac1267ed108b0bb2176a0f0b032577899fc5dca89f58",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Invoice_2644.txt",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Inv_2647_REVISED_48503_2026-07-16.pdf",
+      "ref": "files/ca011fee3976-Inv_2647_REVISED_48503_2026-07-16.pdf",
+      "bytes": 131355,
+      "sha256": "ca011fee3976e5ce45533934bacab74f22283dd5ce239b6c07c9ed60871d0d8a",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Inv_2647_REVISED_48503_2026-07-16.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Invoice 2622 (2026-04-14).pdf",
+      "ref": "files/215c4161962d-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Invoice_2622_2026-04-14_.pdf",
+      "bytes": 136084,
+      "sha256": "215c4161962daa089e5b49cade44208300676d6ea48c1230537e2b9c7f11782c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Invoice 2622 (2026-04-14).pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Invoice 2644 (2026-06-17).pdf",
+      "ref": "files/4c5cf1875a03-Randy_Frei_Construction_Inc._Concrete_-_Ftgs_Wall_Slab_Pan_-_Invoice_2644_2026-06-17_.pdf",
+      "bytes": 133454,
+      "sha256": "4c5cf1875a03d97d01701e34d81ccc5b8ae8a542b90a3e15a21baa2bd996fd63",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan) - Invoice 2644 (2026-06-17).pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Randy_Frei_Signed_Conditional_Waiver_25602.29_2026-07-20.pdf",
+      "ref": "files/72612ec58764-Randy_Frei_Signed_Conditional_Waiver_25602.29_2026-07-20.pdf",
+      "bytes": 62449,
+      "sha256": "72612ec58764d4a358f1fa39312d3e9e31d10874ec865789e1dfad1058127001",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Randy_Frei_Signed_Conditional_Waiver_25602.29_2026-07-20.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Suncore_Signed_Lien_Waiver_22901.19_2026-07-21.pdf",
+      "ref": "files/876ad3d8f3c3-Suncore_Signed_Lien_Waiver_22901.19_2026-07-21.pdf",
+      "bytes": 115738,
+      "sha256": "876ad3d8f3c3ce562853c0f16c5b95b89dc4572c498d06e94a18b93f0491daf8",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Invoices\\Suncore_Signed_Lien_Waiver_22901.19_2026-07-21.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "20260710_105420.jpg",
+      "ref": "files/e53aa10f4c83-20260710_105420.jpg",
+      "bytes": 413078,
+      "sha256": "e53aa10f4c83a34b22ae8c118bf0474f2e2e5f5487489922f99fddc71103bd42",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105420.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105425.jpg",
+      "ref": "files/46b2a35c8205-20260710_105425.jpg",
+      "bytes": 357734,
+      "sha256": "46b2a35c82052195a2f9cda728958076e1ed4e3550f887ace20c5dd1ec2b01cc",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105425.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105438.jpg",
+      "ref": "files/07e0436fcf69-20260710_105438.jpg",
+      "bytes": 346483,
+      "sha256": "07e0436fcf69910dca6e00765594e52e6adacf898eb250d942f86aeecff16560",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105438.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105444.jpg",
+      "ref": "files/17f614caddcd-20260710_105444.jpg",
+      "bytes": 441780,
+      "sha256": "17f614caddcd1404b505bf836cae0774832c19086be489d123e7d4a9bcbb920c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105444.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105458.jpg",
+      "ref": "files/a7347484ad3c-20260710_105458.jpg",
+      "bytes": 414832,
+      "sha256": "a7347484ad3c96ebf5ba6d468cd2699010c2541b7b0b580b08bfd470fddfe07d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105458.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105505.jpg",
+      "ref": "files/62834a42e673-20260710_105505.jpg",
+      "bytes": 406782,
+      "sha256": "62834a42e673b5fc21588a5c664d88d3fc2f42c162ee1b9ffd511f18141da268",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105505.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105510.jpg",
+      "ref": "files/3f9d848dd052-20260710_105510.jpg",
+      "bytes": 365333,
+      "sha256": "3f9d848dd052731c3fe630a0828716e6a77bf533d2b90caa4438fa137ad7e9db",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105510.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105526.jpg",
+      "ref": "files/d85fd66123bd-20260710_105526.jpg",
+      "bytes": 413496,
+      "sha256": "d85fd66123bd9a1ed797c444d661e665edc253e2556c2411671bb2b02cb23464",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105526.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105532.jpg",
+      "ref": "files/525ed4e76099-20260710_105532.jpg",
+      "bytes": 431495,
+      "sha256": "525ed4e7609900bb07f1e2de60d5c3fde6c8f626de2527725160b087ed0a3584",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105532.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105551.jpg",
+      "ref": "files/e9750b4ef4a4-20260710_105551.jpg",
+      "bytes": 402487,
+      "sha256": "e9750b4ef4a4429c306c7d34abe2122dbcf987f774245700281a0bb6e00b438c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105551.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105559.jpg",
+      "ref": "files/ddddbfcf2343-20260710_105559.jpg",
+      "bytes": 469873,
+      "sha256": "ddddbfcf2343372ddf3409167722e1e1a29446cd8a40dfcd4a00cb0cc0a3a983",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105559.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105613.jpg",
+      "ref": "files/e2a57f2d9e59-20260710_105613.jpg",
+      "bytes": 354376,
+      "sha256": "e2a57f2d9e59ca3bdb8d4e78c720b509deb3a3499444cbc379358b212dc86b87",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105613.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105624.jpg",
+      "ref": "files/cd885a110bb9-20260710_105624.jpg",
+      "bytes": 379110,
+      "sha256": "cd885a110bb958c429ffb67bf0c3b69bc88a51c8b5b17facca1d23f47703181c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105624.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105639.jpg",
+      "ref": "files/3d93bc7923d2-20260710_105639.jpg",
+      "bytes": 322403,
+      "sha256": "3d93bc7923d2975722f00f10c75c747366b8e517e017effc60369e785509cde2",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105639.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105656.jpg",
+      "ref": "files/f8e7b7be0b7f-20260710_105656.jpg",
+      "bytes": 425603,
+      "sha256": "f8e7b7be0b7f99cd1375b0e8bc01c6413fbc0d3d4bed66128f14ce9661de0cc3",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105656.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105703.jpg",
+      "ref": "files/4114e221879c-20260710_105703.jpg",
+      "bytes": 316747,
+      "sha256": "4114e221879c6f8884c70255dbd5d001debc5d6b0d1dd21c2658ebe5e5581dd4",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105703.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105710.jpg",
+      "ref": "files/78d58a8eaad3-20260710_105710.jpg",
+      "bytes": 450419,
+      "sha256": "78d58a8eaad37a28799f5e95d92c52550f126c3a0b53e6feab2733eb46dd687a",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105710.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105715.jpg",
+      "ref": "files/b6869779db95-20260710_105715.jpg",
+      "bytes": 365015,
+      "sha256": "b6869779db953f5230e4f55d3205539d128e443a4c80fd1ba746279e4aa6ee76",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105715.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105725.jpg",
+      "ref": "files/4741b40a5f80-20260710_105725.jpg",
+      "bytes": 422113,
+      "sha256": "4741b40a5f80042ad15bde8526837dad2c0b962fddf532b51844ac5a3dc6f591",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105725.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105730.jpg",
+      "ref": "files/1ffa66744484-20260710_105730.jpg",
+      "bytes": 332151,
+      "sha256": "1ffa6674448434d8b9fd14e347962564b35901a95089e2a7e8d62e2534bc1665",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105730.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105738.jpg",
+      "ref": "files/3cd17a4fd039-20260710_105738.jpg",
+      "bytes": 408264,
+      "sha256": "3cd17a4fd0394516dd65fbc98f08bb7dc01c7af17a257ba30e3b82ad57a5f3fd",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105738.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105757.jpg",
+      "ref": "files/192e230a8204-20260710_105757.jpg",
+      "bytes": 448900,
+      "sha256": "192e230a82045bc14f179cff19b16d682856c1f12b69ca39e204c00c8262025f",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105757.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105803.jpg",
+      "ref": "files/b3cfc396b621-20260710_105803.jpg",
+      "bytes": 368191,
+      "sha256": "b3cfc396b621c515da7c60edb837a54f8d50cb4fecd652f84325a9bc81a39e04",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105803.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105812.jpg",
+      "ref": "files/e95e12c45a88-20260710_105812.jpg",
+      "bytes": 329991,
+      "sha256": "e95e12c45a885945d493da08012d483c6e56c36a01938d8f22d46cd9adc5e5a7",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105812.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105819.jpg",
+      "ref": "files/1c6b2cce67a3-20260710_105819.jpg",
+      "bytes": 379044,
+      "sha256": "1c6b2cce67a3255b59643d8ff0b1ad69317a40d4163a3baa29f63a34fc4e6c1d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105819.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105824.jpg",
+      "ref": "files/c513c2969790-20260710_105824.jpg",
+      "bytes": 409888,
+      "sha256": "c513c29697900cf95351f527d5c89d5bc679ad7caadfc4adda4e07da2b52c532",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105824.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105833.jpg",
+      "ref": "files/85aee4d35f4b-20260710_105833.jpg",
+      "bytes": 484419,
+      "sha256": "85aee4d35f4be9396d0b250aad3a13f89707d98191b27e240e37aa6fcac74f4d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105833.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105839.jpg",
+      "ref": "files/8097af52223c-20260710_105839.jpg",
+      "bytes": 448926,
+      "sha256": "8097af52223ce5cdb29fde21e03a6f2376a25fe943ba995150dcae6e1807bf91",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105839.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105844.jpg",
+      "ref": "files/6efbddc2741a-20260710_105844.jpg",
+      "bytes": 416905,
+      "sha256": "6efbddc2741aa7353406e222a5cec2c51bda0654d71202f9e6ba6cf1af030897",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105844.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105856.jpg",
+      "ref": "files/09201f40ba08-20260710_105856.jpg",
+      "bytes": 351815,
+      "sha256": "09201f40ba08ecee71551bdcfe483228d883e2ecabcf242410d29b5060f1a996",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_105856.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110011.jpg",
+      "ref": "files/2fd6a079a2aa-20260710_110011.jpg",
+      "bytes": 251831,
+      "sha256": "2fd6a079a2aa1b77129b63d284c1ed205505f205bbda85bdcedec63825cc3f72",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_110011.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110507.jpg",
+      "ref": "files/ed3ebb8f5110-20260710_110507.jpg",
+      "bytes": 314129,
+      "sha256": "ed3ebb8f5110d38549e4516b01e12c69bcb82433ea55cfee46391481930493ab",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_110507.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110528.jpg",
+      "ref": "files/6c8c90b2e498-20260710_110528.jpg",
+      "bytes": 364219,
+      "sha256": "6c8c90b2e49832b7ed352672300dea2ee5130c79b9f78aae9db13d31db59fa51",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260710_110528.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_103818.jpg",
+      "ref": "files/361210bc6ba9-20260711_103818.jpg",
+      "bytes": 237770,
+      "sha256": "361210bc6ba91ddeaaa285c6c60f8c476bfc7264abdf08d12c38c36e61208cad",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_103818.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104152.jpg",
+      "ref": "files/5a16d9237010-20260711_104152.jpg",
+      "bytes": 204004,
+      "sha256": "5a16d92370100633d901fab253e554db8c204322ab812ddda12109dad14d491b",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104152.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104159.jpg",
+      "ref": "files/3a19ea5535fc-20260711_104159.jpg",
+      "bytes": 213562,
+      "sha256": "3a19ea5535fcaef9d6f1bc5126f9abcf01170632df7c65b979b701996fb64b44",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104159.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104357.jpg",
+      "ref": "files/016f36f52738-20260711_104357.jpg",
+      "bytes": 208942,
+      "sha256": "016f36f52738af15705694a95b2b3afceef28c01c24cabcb0e3b89711d886d2c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104357.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104400.jpg",
+      "ref": "files/ba205a5919d0-20260711_104400.jpg",
+      "bytes": 206084,
+      "sha256": "ba205a5919d02857552b480b7087b29999ddefcf0e865dea428ccdea9f657b0d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104400.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104403.jpg",
+      "ref": "files/12fd73e75e02-20260711_104403.jpg",
+      "bytes": 172476,
+      "sha256": "12fd73e75e02889c7b5ab6aa549567cefad6be52578a4a108b53650826d65135",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104403.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104409.jpg",
+      "ref": "files/04343a86bdea-20260711_104409.jpg",
+      "bytes": 272174,
+      "sha256": "04343a86bdea4d13990dbeadbcbac189a641516d4121d2236755e60217d3859d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_104409.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_111302.jpg",
+      "ref": "files/e155b2d2d801-20260711_111302.jpg",
+      "bytes": 203931,
+      "sha256": "e155b2d2d80148bf22deae42b25172f723583295e0547c31b48a34d569ff08d0",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos_Email\\20260711_111302.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "Invoices__Invoice_2647.pdf",
+      "ref": "files/b05802506925-Invoices__Invoice_2647.pdf",
+      "bytes": 131826,
+      "sha256": "b058025069259588ae7a1c816ac6cf9f6ebe2c948e6094be07f7afcf8ce2b9a5",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\_VOID_invoices\\Invoices__Invoice_2647.pdf",
+      "category": "Invoices and statements"
+    },
+    {
+      "name": "Inv_2647_from_RANDY_FREI_CONSTRUCTION_INC._27752.pdf",
+      "ref": "files/b0b36d48a1d0-Inv_2647_from_RANDY_FREI_CONSTRUCTION_INC._27752.pdf",
+      "bytes": 1023,
+      "sha256": "b0b36d48a1d065a6d35540b817221a8c38d1d5a082f4cb158cee8d3faf95f5e3",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\_VOID_invoices\\Inv_2647_from_RANDY_FREI_CONSTRUCTION_INC._27752.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "20260710_105420.jpg",
+      "ref": "files/86a9f68cf61f-20260710_105420.jpg",
+      "bytes": 5511529,
+      "sha256": "86a9f68cf61fc53a32a585d88f741fc04a1261eb8e6e50796df7280329e48ea1",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105420.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105425.jpg",
+      "ref": "files/378d7c48517b-20260710_105425.jpg",
+      "bytes": 4977450,
+      "sha256": "378d7c48517b5bba39d7a2da282dcacb77e1336a5bcc567c2015bbca206435fb",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105425.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105438.jpg",
+      "ref": "files/6e6af3531a3a-20260710_105438.jpg",
+      "bytes": 5009612,
+      "sha256": "6e6af3531a3af12b428c6c90f4a07086d754ffaf5c58abefc0152ed3a3759a2d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105438.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105444.jpg",
+      "ref": "files/2a05115f8a6d-20260710_105444.jpg",
+      "bytes": 5560973,
+      "sha256": "2a05115f8a6dade2562443874d4ac346d55f979548ba14caf3f812e704d73d1f",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105444.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105458.jpg",
+      "ref": "files/3e7b446770b6-20260710_105458.jpg",
+      "bytes": 5559850,
+      "sha256": "3e7b446770b6cd3ec91ccca52d308aec254e8c6ffc227815edc9d155e3b2ca8a",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105458.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105505.jpg",
+      "ref": "files/c36f1272d96a-20260710_105505.jpg",
+      "bytes": 5445720,
+      "sha256": "c36f1272d96a2e534a8c4baa952f5e8514954cd3602b09ecf45f76ff5f9b6f58",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105505.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105510.jpg",
+      "ref": "files/accedd66ced4-20260710_105510.jpg",
+      "bytes": 5149946,
+      "sha256": "accedd66ced45f4aab34bdf35889329a3351c9f1385474021c70878132f11c1c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105510.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105526.jpg",
+      "ref": "files/268776133539-20260710_105526.jpg",
+      "bytes": 5471821,
+      "sha256": "2687761335394cfc315cb1ace73a77f508a36f053712afd9a091f2a50141e05c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105526.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105532.jpg",
+      "ref": "files/f8b423daaee3-20260710_105532.jpg",
+      "bytes": 5572542,
+      "sha256": "f8b423daaee3108ec4bdfe4ab28e949940c0f9a2a2c0a8c8c5f32b3550f5b5ab",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105532.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105551.jpg",
+      "ref": "files/f17cb92d8288-20260710_105551.jpg",
+      "bytes": 5294524,
+      "sha256": "f17cb92d828885376b656011cf9baa47a41ba2f4ae0aea8bd7175db8bc4605be",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105551.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105559.jpg",
+      "ref": "files/e47dab0c8168-20260710_105559.jpg",
+      "bytes": 5981028,
+      "sha256": "e47dab0c8168e284e5b66fe3683a342e753c7a5695ab475eb4a36ae0f9442ef7",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105559.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105613.jpg",
+      "ref": "files/c274b06cc6f9-20260710_105613.jpg",
+      "bytes": 4994512,
+      "sha256": "c274b06cc6f9d2bc3f29267c51781ace3b7f9b312f42261292883743419cc194",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105613.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105624.jpg",
+      "ref": "files/4a3483c0e9a7-20260710_105624.jpg",
+      "bytes": 5224851,
+      "sha256": "4a3483c0e9a77b04f0c806855a8e562a60f41ef60d8978c0d0874d0330ec0477",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105624.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105639.jpg",
+      "ref": "files/1cfefc39e2da-20260710_105639.jpg",
+      "bytes": 4973610,
+      "sha256": "1cfefc39e2da81b0e9cfb1fb91516e26f7fcfb90c9bc2b4378d1ab9bc553b612",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105639.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105656.jpg",
+      "ref": "files/d9c8b1e9b883-20260710_105656.jpg",
+      "bytes": 5656082,
+      "sha256": "d9c8b1e9b88352ff252d4c8dee989be546e840fe81c86112df4fa23240b9ed9e",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105656.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105703.jpg",
+      "ref": "files/59183a6565d5-20260710_105703.jpg",
+      "bytes": 4533023,
+      "sha256": "59183a6565d5f551aafdaad86e49e6660a59420d3b66b1bf40d750fd9b9f462e",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105703.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105710.jpg",
+      "ref": "files/7b5831e4a849-20260710_105710.jpg",
+      "bytes": 5866543,
+      "sha256": "7b5831e4a84966c72abc42307f4a1ccfcd076dcb10e34ccadaa7957015780f44",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105710.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105715.jpg",
+      "ref": "files/14a5221f59e3-20260710_105715.jpg",
+      "bytes": 4931373,
+      "sha256": "14a5221f59e39776452cfc361ad88153d8613bcfe73d2036b48c8056ff9507e8",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105715.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105725.jpg",
+      "ref": "files/2db8f8b2ce9c-20260710_105725.jpg",
+      "bytes": 5579425,
+      "sha256": "2db8f8b2ce9c121b9a2c11ead8b418d377f7ecd650f5d42672588341ce9a570e",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105725.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105730.jpg",
+      "ref": "files/b2eb94e3f607-20260710_105730.jpg",
+      "bytes": 4945240,
+      "sha256": "b2eb94e3f6070f58ed19a1014f9f5ee1f7f7da5441a9ed418410e200c6e63b1a",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105730.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105738.jpg",
+      "ref": "files/b8885cdab4db-20260710_105738.jpg",
+      "bytes": 5473082,
+      "sha256": "b8885cdab4dbceabe0e2f20fbdfc421e3a6fe7359d5ee7b2440ebdb5c2259ffd",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105738.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105757.jpg",
+      "ref": "files/2c24b0ddb09d-20260710_105757.jpg",
+      "bytes": 5585354,
+      "sha256": "2c24b0ddb09d889b07c195b8d029991406ab69c1d4ce4add87d1ac46c4e1fe1b",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105757.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105803.jpg",
+      "ref": "files/ded22b56c3b0-20260710_105803.jpg",
+      "bytes": 5277308,
+      "sha256": "ded22b56c3b01aaeace58b1241f017551aa9938e92c275d7db3fb5787a6472af",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105803.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105812.jpg",
+      "ref": "files/d802b1ecd0d6-20260710_105812.jpg",
+      "bytes": 5037099,
+      "sha256": "d802b1ecd0d65b877e7883bcd86de251c76cb2b240c632f6945162a8e350e371",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105812.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105819.jpg",
+      "ref": "files/424c37ea8dd2-20260710_105819.jpg",
+      "bytes": 5285819,
+      "sha256": "424c37ea8dd2e6b0328286b0371e24be1a41197349513b80aee3f5334a954d15",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105819.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105824.jpg",
+      "ref": "files/c1fc95630a5c-20260710_105824.jpg",
+      "bytes": 5531562,
+      "sha256": "c1fc95630a5c92f2d4d8e76b5118009bde9c334a884aacee5f456aa197f33c08",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105824.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105833.jpg",
+      "ref": "files/eab09e2911b8-20260710_105833.jpg",
+      "bytes": 5738757,
+      "sha256": "eab09e2911b8c6b3894017423f7ba0378060a92102a626ceb7cd0c2719b7cbfa",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105833.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105839.jpg",
+      "ref": "files/edb6c36d0512-20260710_105839.jpg",
+      "bytes": 5804184,
+      "sha256": "edb6c36d0512f931cdeed248a3bce93a7e343bba0cdac4cc46fd71f7d715191f",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105839.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105844.jpg",
+      "ref": "files/8414c3387c55-20260710_105844.jpg",
+      "bytes": 5454170,
+      "sha256": "8414c3387c553a78a1fd63863364b19140fe183ea969185de5854187b9033974",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105844.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_105856.jpg",
+      "ref": "files/7098cd49334f-20260710_105856.jpg",
+      "bytes": 4598099,
+      "sha256": "7098cd49334f6286d2c2d06f0b4813d784c8141f8d3f2d0249a640d4231c3659",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_105856.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110011.jpg",
+      "ref": "files/71584c2e85e4-20260710_110011.jpg",
+      "bytes": 3962806,
+      "sha256": "71584c2e85e4868c03967e79ad35e3b164ae18628b176da87b1d6610e1a76f4c",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_110011.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110507.jpg",
+      "ref": "files/e2d549ffe409-20260710_110507.jpg",
+      "bytes": 4522414,
+      "sha256": "e2d549ffe4091bf25511cc4fc84d5dbcbb372ddabd60ad24657fa028f5e126a7",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_110507.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260710_110528.jpg",
+      "ref": "files/90eb3690f608-20260710_110528.jpg",
+      "bytes": 4798746,
+      "sha256": "90eb3690f60808abfb611868846476883871d997cdc716b1a152fe08aa5a0080",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260710_110528.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_103818.jpg",
+      "ref": "files/2da1ba9c7b54-20260711_103818.jpg",
+      "bytes": 3501606,
+      "sha256": "2da1ba9c7b546c72abd4f9b8fa592a3587453b2064450273f16a4b806091d15b",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_103818.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104152.jpg",
+      "ref": "files/26d7725b17ae-20260711_104152.jpg",
+      "bytes": 3331173,
+      "sha256": "26d7725b17aee0725f3364d9250e07b0823d289471eadc6bf2c3ea1e40d9c4fa",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104152.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104159.jpg",
+      "ref": "files/5982267305d9-20260711_104159.jpg",
+      "bytes": 3486666,
+      "sha256": "5982267305d94b5f3ec71461099aebc7cd16646161652de8d986724ead7ea12b",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104159.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104357.jpg",
+      "ref": "files/6dafb7de05ab-20260711_104357.jpg",
+      "bytes": 2886587,
+      "sha256": "6dafb7de05abce00100ff4457ef6854ae7351e4d3b2d1988f5a7dd84ad93f577",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104357.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104400.jpg",
+      "ref": "files/82d0820d10dc-20260711_104400.jpg",
+      "bytes": 3788914,
+      "sha256": "82d0820d10dc2a59431a48566a0ff868cd7ec87d4e1bf856f4b7a283e4901fe0",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104400.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104403.jpg",
+      "ref": "files/75922ed6a7d8-20260711_104403.jpg",
+      "bytes": 3189402,
+      "sha256": "75922ed6a7d8fd56f3f9378ab8f3172a0e437b61c220ab08a35a09555675dd6d",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104403.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_104409.jpg",
+      "ref": "files/728d2ca1e260-20260711_104409.jpg",
+      "bytes": 3618266,
+      "sha256": "728d2ca1e2607522a33c9b384a2f368fa956435b57b4b92bf0a07470b7666fbc",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_104409.jpg",
+      "category": "Photos and samples"
+    },
+    {
+      "name": "20260711_111302.jpg",
+      "ref": "files/9aecdabdbcd4-20260711_111302.jpg",
+      "bytes": 3290099,
+      "sha256": "9aecdabdbcd41d4b7c01e271c2b063f2264d48330a0501135e7f40bab021b404",
+      "source": "Subcontractors\\Randy Frei Construction Inc. (Concrete - Ftgs, Wall, Slab, Pan)\\Photos\\Footings 2026-07-10\\20260711_111302.jpg",
+      "category": "Photos and samples"
+    }
+  ],
+  "emails": []
+}

@@ -1,0 +1,7 @@
+Invoice 2644 details:
+
+- Invoice Number: 2644
+- Amount: $59,359
+- Description: Lot 5 construction work
+
+Attached PDF: Your Advantage (2) (1).pdf

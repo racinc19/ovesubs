@@ -80,6 +80,7 @@ tr:hover td{background:rgba(30,45,74,.55)}
 </main>
 
 <script src="shared.js?v20260805_co_docs"></script>
+<script src="contractor-roster.js?v=20261013"></script>
 <script>
 let rows=[];
 const alias={
@@ -188,12 +189,12 @@ function render(){
     document.getElementById('sheet').innerHTML='<div class="empty">No matching subcontractors.</div>';
     return;
   }
-  document.getElementById('sheet').innerHTML=`<table><thead><tr><th>Subcontractor</th><th>Trade</th><th>Contact</th><th>Phone</th><th>Email</th></tr></thead><tbody>${filtered.map(r=>`<tr><td><div class="vendor">${esc(r.vendor)}</div><div class="muted">${esc(r.company)}</div></td><td class="trade">${esc(r.trades||'Not listed')}</td><td>${r.contact?esc(r.contact):'<span class="muted">Not listed</span>'}</td><td>${contactLinks(r.phones,'phone')}</td><td>${contactLinks(r.emails,'email')}</td></tr>`).join('')}</tbody></table>`;
+  document.getElementById('sheet').innerHTML=`<table><thead><tr><th>Subcontractor</th><th>Trade</th><th>Contact</th><th>Phone</th><th>Email</th></tr></thead><tbody>${filtered.map(r=>`<tr><td><div class="vendor">${r.records_url?`<a href="${esc(r.records_url)}">${esc(r.vendor)}</a>`:esc(r.vendor)}</div><div class="muted">${esc(r.company)}</div></td><td class="trade">${esc(r.trades||'Not listed')}</td><td>${r.contact?esc(r.contact):'<span class="muted">Not listed</span>'}</td><td>${contactLinks(r.phones,'phone')}</td><td>${contactLinks(r.emails,'email')}</td></tr>`).join('')}</tbody></table>`;
 }
 async function init(){
   try{
     const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20260810_contacts2').then(r=>r.json())]);
-    rows=forceCraigRows(buildRows(project.main.scheduleTasks||[],info||{}));
+    rows=reconcileContactRows(forceCraigRows(buildRows(project.main.scheduleTasks||[],info||{})));
     const q=new URLSearchParams(location.search).get('q');
     if(q)document.getElementById('search').value=q;
     render();

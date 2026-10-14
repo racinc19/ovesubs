@@ -1,0 +1,213 @@
+{
+  "files": [
+    {
+      "name": "BLVD (Appliance) - Bid Acceptance (orig) 2025-09-03.txt",
+      "ref": "files/1e56e3c8ca1a-BLVD_Appliance_-_Bid_Acceptance_orig_2025-09-03.txt",
+      "bytes": 830,
+      "sha256": "1e56e3c8ca1a089ec3b4ec6dc9878cd703c3a3749978c196812ccab7650cc31a",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Bid Acceptance (orig) 2025-09-03.txt",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "BLVD (Appliance) - Bid Accepted + Order Timing 2026-05-20.txt",
+      "ref": "files/dc2e7fe4b848-BLVD_Appliance_-_Bid_Accepted_Order_Timing_2026-05-20.txt",
+      "bytes": 7539,
+      "sha256": "dc2e7fe4b848cd85af0d969e5a1ee720cd8f0b2844bacfa01d005b5e19a7f56c",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Bid Accepted + Order Timing 2026-05-20.txt",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "BLVD (Appliance) - Bid Received (Updated Pricing) 2026-05-13.pdf",
+      "ref": "files/1ce7b850976b-BLVD_Appliance_-_Bid_Received_Updated_Pricing_2026-05-13.pdf",
+      "bytes": 240478,
+      "sha256": "1ce7b850976b0acca7cf32aa78d76fce577755546934e2409d33193e4f87d2b7",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Bid Received (Updated Pricing) 2026-05-13.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "BLVD (Appliance) - Bid Received 2025-09-03.pdf",
+      "ref": "files/8e3f6aefc08d-BLVD_Appliance_-_Bid_Received_2025-09-03.pdf",
+      "bytes": 240704,
+      "sha256": "8e3f6aefc08de5aebf729bc058b2e1b56fbf35baf0af0ffefba08aea0ffe124f",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Bid Received 2025-09-03.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "BLVD (Appliance) - Estimate Request (RFP) 2026-05-13.docx",
+      "ref": "files/093e42ad346b-BLVD_Appliance_-_Estimate_Request_RFP_2026-05-13.docx",
+      "bytes": 39954,
+      "sha256": "093e42ad346bd9a50c41c8f43d91227c8ed206a274b4fb06db04f8eba91afe0a",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Estimate Request (RFP) 2026-05-13.docx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "BLVD (Appliance) - Spec Package 2026-05-13.pdf",
+      "ref": "files/c40b2973037e-BLVD_Appliance_-_Spec_Package_2026-05-13.pdf",
+      "bytes": 9945656,
+      "sha256": "c40b2973037e37e7d84abf451226ad9f13916863bdf47cd47c1176f2f70dd145",
+      "source": "Subcontractors\\BLVD (Appliance)\\Documents\\BLVD (Appliance) - Spec Package 2026-05-13.pdf",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Rac Inc - Oak Valley Estates Lot 5 - Rodriguez Residence.pdf",
+      "ref": "files/db0d2702e320-Rac_Inc_-_Oak_Valley_Estates_Lot_5_-_Rodriguez_Residence.pdf",
+      "bytes": 378145,
+      "sha256": "db0d2702e3201d8905b4f1f9768617ac7496cf90c158d49227acf750af750d21",
+      "source": "Email 1a003126934e507b: RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request (Fri, 14 Aug 2026 19:38:48 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Rac Inc - Oak Valley Estates Lot 5 - Rodriguez Residence.pdf",
+      "ref": "files/aa5255719eca-Rac_Inc_-_Oak_Valley_Estates_Lot_5_-_Rodriguez_Residence.pdf",
+      "bytes": 345926,
+      "sha256": "aa5255719eca6544747772ce98447bc6400ef0a757c2524e9d50bb5944620185",
+      "source": "Email 1a001d87146784a0: RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request (Fri, 14 Aug 2026 13:55:54 -0600)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Oak_Valley_Appliance_Selections_Corrected_2026-08-10.pdf",
+      "ref": "files/18ce580dd1f9-Oak_Valley_Appliance_Selections_Corrected_2026-08-10.pdf",
+      "bytes": 4393,
+      "sha256": "18ce580dd1f972a5a4649d2201af7549c93ccc7418456cc9aa79dc079484ba3f",
+      "source": "Email 19fec0295a3c746c: Oak Valley Estates Lot 5 - Appliance Selections Quote Request (Mon, 10 Aug 2026 07:10:19 -0700)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "Oak_Valley_Updated_Appliance_List_2026-08-07.csv",
+      "ref": "files/e5ea2554ba08-Oak_Valley_Updated_Appliance_List_2026-08-07.csv",
+      "bytes": 3851,
+      "sha256": "e5ea2554ba080acb58299a0d8c1e79eb6d4f64cae32d84864f910d93743fd5b5",
+      "source": "Email 19fddff0a89cd185: Updated Oak Valley Appliance List (Fri, 7 Aug 2026 20:51:46 +0000)",
+      "category": "Email attachments"
+    },
+    {
+      "name": "SALE93489.pdf",
+      "ref": "files/d4457777221a-SALE93489.pdf",
+      "bytes": 28818,
+      "sha256": "d4457777221a855380799b2183775bd2970d7af3ec4af381eb872675c9845f56",
+      "source": "Email 19ef72e8ce8c9fd5: RE: Rodriguez Residence (Oak Valley Estates Lot 5) - signed sales order / contract request (Tue, 23 Jun 2026 19:11:20 -0600)",
+      "category": "Email attachments"
+    }
+  ],
+  "emails": [
+    {
+      "subject": "RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Fri, 14 Aug 2026 19:38:48 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/1a003126934e507b.html",
+      "id": "1a003126934e507b"
+    },
+    {
+      "subject": "Re: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Fri, 14 Aug 2026 16:29:25 -0400",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/1a001f715a438c8d.html",
+      "id": "1a001f715a438c8d"
+    },
+    {
+      "subject": "RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Fri, 14 Aug 2026 13:55:54 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/1a001d87146784a0.html",
+      "id": "1a001d87146784a0"
+    },
+    {
+      "subject": "Re: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Fri, 14 Aug 2026 12:54:40 -0400",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/1a001327aa7c13ad.html",
+      "id": "1a001327aa7c13ad"
+    },
+    {
+      "subject": "RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Thu, 13 Aug 2026 19:32:09 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/19ffde5ecf953467.html",
+      "id": "19ffde5ecf953467"
+    },
+    {
+      "subject": "RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Thu, 13 Aug 2026 19:25:14 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/19ffddf964222a78.html",
+      "id": "19ffddf964222a78"
+    },
+    {
+      "subject": "Re: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Wed, 12 Aug 2026 23:12:16 -0400",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19ff91b333744231.html",
+      "id": "19ff91b333744231"
+    },
+    {
+      "subject": "RE: Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Mon, 10 Aug 2026 18:49:44 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/19fee4c09fba40a2.html",
+      "id": "19fee4c09fba40a2"
+    },
+    {
+      "subject": "Oak Valley Estates Lot 5 - Appliance Selections Quote Request",
+      "date": "Mon, 10 Aug 2026 07:10:19 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19fec0295a3c746c.html",
+      "id": "19fec0295a3c746c"
+    },
+    {
+      "subject": "Updated Oak Valley Appliance List",
+      "date": "Fri, 7 Aug 2026 20:51:46 +0000",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19fddff0a89cd185.html",
+      "id": "19fddff0a89cd185"
+    },
+    {
+      "subject": "RE: Rodriguez Residence (Oak Valley Estates Lot 5) - signed sales order / contract request",
+      "date": "Tue, 23 Jun 2026 19:11:20 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/19ef72e8ce8c9fd5.html",
+      "id": "19ef72e8ce8c9fd5"
+    },
+    {
+      "subject": "Oak Valley Estates Lot 5 – Subcontractor Portal Access",
+      "date": "Wed, 25 Feb 2026 16:33:58 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c9726f1245d58a.html",
+      "id": "19c9726f1245d58a"
+    },
+    {
+      "subject": "Re: Appliance Bid, Oak Valley Estates Lot 5",
+      "date": "Wed, 3 Sep 2025 20:02:48 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/199127656467c8dc.html",
+      "id": "199127656467c8dc"
+    },
+    {
+      "subject": "Appliance Bid, Oak Valley Estates Lot 5",
+      "date": "Wed, 3 Sep 2025 17:59:54 -0600",
+      "sender": "<haley.benware@blvdhome.com>",
+      "ref": "mail/1991205dd5079708.html",
+      "id": "1991205dd5079708"
+    },
+    {
+      "subject": "Oak Valley Estates #5",
+      "date": "Tue, 26 Aug 2025 20:03:17 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198e943e3ef9a8a8.html",
+      "id": "198e943e3ef9a8a8"
+    },
+    {
+      "subject": "Oak Valley Estates #5",
+      "date": "Fri, 22 Aug 2025 15:53:04 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198d3c56101a23fc.html",
+      "id": "198d3c56101a23fc"
+    },
+    {
+      "subject": "Oak Valley estates #5",
+      "date": "Sun, 17 Aug 2025 14:51:37 -0600",
+      "sender": "\"RAC INC.\" <racinc19@gmail.com>",
+      "ref": "mail/198b9cd4f741ecad.html",
+      "id": "198b9cd4f741ecad"
+    }
+  ]
+}

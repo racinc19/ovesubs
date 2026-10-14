@@ -17,19 +17,19 @@
     "updated": "2026-04-29T22:48:48.866902+00:00"
   },
   "amy pendleton": {
-    "company": "Amy Pendleton",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "Amy Pendleton",
-    "website": "",
-    "phones": [],
-    "emails": [],
-    "source": "Craig update 2026-08-10: Amy Pendleton is handling rammed earth.",
-    "sheet_vendor": "Amy Pendleton",
-    "updated": "2026-08-10T00:00:00.000000+00:00"
+    "company": "Artistic Wall Textures",
+    "sheet_vendor": "Artistic Wall Textures",
+    "contact": "Aimee Pendleton",
+    "phones": [
+      "435-467-0700"
+    ],
+    "emails": [
+      "artisticwalltextures@gmail.com"
+    ],
+    "trade": "Rammed earth finish / decorative plaster",
+    "records_url": "sub-docs/artistic/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "stg": {
     "company": "St George Windows, Doors & More LLC",
@@ -51,19 +51,19 @@
     "updated": "2026-04-29T22:06:58.485914+00:00"
   },
   "clayworks": {
-    "company": "Amy Pendleton",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "Amy Pendleton",
-    "website": "",
-    "phones": [],
-    "emails": [],
-    "source": "Craig update 2026-08-10: Amy Pendleton is handling rammed earth.",
-    "sheet_vendor": "Amy Pendleton",
-    "updated": "2026-08-10T00:00:00.000000+00:00"
+    "company": "Artistic Wall Textures",
+    "sheet_vendor": "Artistic Wall Textures",
+    "contact": "Aimee Pendleton",
+    "phones": [
+      "435-467-0700"
+    ],
+    "emails": [
+      "artisticwalltextures@gmail.com"
+    ],
+    "trade": "Rammed earth finish / decorative plaster",
+    "records_url": "sub-docs/artistic/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "action target": {
     "company": "Action Target",
@@ -102,41 +102,42 @@
     "updated": "2026-04-29T22:06:58.485922+00:00"
   },
   "frie": {
-    "company": "RANDY FREI CONSTRUCTION INC.",
+    "company": "Randy Frei Construction",
     "license": "",
     "address": "1028 North West Ridge Drive #A",
     "city": "St. George",
     "state": "UT",
     "zip": "84770",
-    "contact": "",
+    "contact": "Randy Frei Construction office",
     "website": "",
     "phones": [
-      "435.986.3993",
-      "435.986.0440"
+      "435-986-3993",
+      "435-986-0440"
     ],
     "emails": [
       "rafconstruction@infowest.com"
     ],
-    "source": "Construction\\Bids\\Concrete\\Est_19643_from_RANDY_FREI_CONSTRUCTION_INC._16620.pdf (bid) + Construction\\Bids\\Concrete\\Est_19643_from_RANDY_FREI_CONSTRUCTION_INC._16620.pdf (letterhead)",
-    "sheet_vendor": "Frie",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "Randy Frei Construction",
+    "updated": "2026-10-13",
+    "trade": "Concrete",
+    "records_url": "sub-docs/frei/index.html"
   },
   "sunpro": {
-    "company": "",
-    "license": "",
-    "address": "1177 East Venture Drive",
-    "city": "St. George",
-    "state": "UT",
-    "zip": "84790",
-    "contact": "",
-    "website": "",
+    "company": "Sunpro",
+    "sheet_vendor": "Sunpro",
+    "contact": "Scott R. Mitchell; Tim Mitchell",
     "phones": [
       "435-634-2220"
     ],
-    "emails": [],
-    "source": "Construction\\Bids\\Lumber\\Quote 936458.pdf (bid) + Construction\\Bids\\Lumber\\Quote 936458.pdf (letterhead)",
-    "sheet_vendor": "Sunpro",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "emails": [
+      "srmitchell@sunpro.build",
+      "timitchell@sunpro.build"
+    ],
+    "trade": "Lumber / trusses / doors and trim",
+    "records_url": "sub-docs/sunpro/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "cherotech": {
     "company": "Bateman Bros LLC",
@@ -173,91 +174,99 @@
     "updated": "2026-04-29T22:48:48.866902+00:00"
   },
   "noble house electric": {
-    "company": "Noble House Electric",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "",
-    "website": "",
-    "phones": [],
-    "emails": [],
-    "source": "Craig update 2026-08-10: Noble House Electric replaced prior electrical vendor.",
-    "sheet_vendor": "Noble House Electric",
-    "updated": "2026-08-10T00:00:00.000000+00:00"
+    "company": "D4 Electric and Solar",
+    "sheet_vendor": "D4 Electric and Solar",
+    "contact": "Darcey Dockstader; Leslie Dockstader",
+    "phones": [
+      "435-879-3007",
+      "435-817-6796",
+      "435-212-0177"
+    ],
+    "emails": [
+      "ddock@d4electrical.com",
+      "ldock@d4electrical.com"
+    ],
+    "trade": "Electrical / solar",
+    "records_url": "sub-docs/d4/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "sunroc": {
-    "company": "",
-    "license": "",
-    "address": "1177 East Venture Drive",
-    "city": "St. George",
-    "state": "UT",
-    "zip": "84790",
-    "contact": "",
-    "website": "",
-    "phones": [
-      "435-634-2220"
-    ],
-    "emails": [],
-    "source": "Construction\\Bids\\Doors\\Exterior\\Quote 936543.pdf (bid) + Construction\\Bids\\Doors\\Exterior\\Quote 936543.pdf (letterhead)",
+    "company": "Sunroc",
     "sheet_vendor": "Sunroc",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "contact": "",
+    "phones": [],
+    "emails": [],
+    "trade": "Exterior doors / garage doors (filed scope)",
+    "records_url": "sub-docs/sunroc/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "rancho": {
-    "company": "Rancho Stucco LLC",
+    "company": "Rancho Stucco",
     "license": "",
     "address": "PO Box 790195",
     "city": "Virgin",
     "state": "UT",
     "zip": "84779",
-    "contact": "",
+    "contact": "Rancho Stucco office",
     "website": "",
     "phones": [],
     "emails": [
       "ranchostuccollc@gmail.com"
     ],
-    "source": "Construction\\Project\\Contracts\\Rancho_Stucco\\Rancho_Stucco_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\Rancho_Stucco\\make_rancho_stucco_contract.py",
-    "sheet_vendor": "Rancho",
-    "updated": "2026-04-29T22:06:58.485936+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "Rancho Stucco",
+    "updated": "2026-10-13",
+    "trade": "Stucco",
+    "records_url": "sub-docs/rancho/index.html"
   },
   "simco": {
-    "company": "BSM Residential",
+    "company": "Simco / BSM Stone",
     "license": "",
     "address": "3376 E 380 St N",
     "city": "St. George",
     "state": "UT",
     "zip": "84790",
-    "contact": "",
+    "contact": "Josette Stubbs; Greg Baker",
     "website": "www.bsmresidential.com",
     "phones": [
-      "(435) 466-1100"
+      "435-656-1466",
+      "702-755-1216",
+      "435-466-1100"
     ],
     "emails": [
-      "josette@bsmmasonry.com"
+      "josette@bsmmasonry.com",
+      "greg.baker@bsmmasonry.com"
     ],
-    "source": "Construction\\Project\\Contracts\\BSM_Stone\\BSM_Stone_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\BSM_Stone\\make_bsm_stone_contract.py",
-    "sheet_vendor": "Simco",
-    "updated": "2026-04-29T22:06:58.485948+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "Simco / BSM Stone",
+    "updated": "2026-10-13",
+    "trade": "Stone veneer",
+    "records_url": "sub-docs/stone/index.html"
   },
   "lp": {
-    "company": "D2 Building Solutions",
+    "company": "LP / D2 Building Solutions",
     "license": "",
     "address": "5099 Wheeler Way",
     "city": "Hurricane",
     "state": "UT",
     "zip": "84737",
-    "contact": "",
+    "contact": "Nathan Johnson",
     "website": "",
     "phones": [
-      "(435) 688-1337"
+      "435-688-1337",
+      "435-862-7375"
     ],
     "emails": [
-      "nathan@d2bldg.com"
+      "nathan@d2bldg.com",
+      "office@d2bldg.com"
     ],
-    "source": "Construction\\Project\\Contracts\\D2_Insulation\\D2_Insulation_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\D2_Insulation\\make_d2_insulation_contract.py",
-    "sheet_vendor": "LP",
-    "updated": "2026-04-29T22:06:58.485950+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "LP / D2 Building Solutions",
+    "updated": "2026-10-13",
+    "trade": "Insulation",
+    "records_url": "sub-docs/lp/index.html"
   },
   "h&e": {
     "company": "H & E Drywall",
@@ -279,23 +288,17 @@
     "updated": "2026-04-29T22:06:58.485952+00:00"
   },
   "jose": {
-    "company": "Advanced Concrete and Deck Coating",
-    "license": "",
-    "address": "2106 E 40 N",
-    "city": "St. George",
-    "state": "UT",
-    "zip": "84790",
-    "contact": "",
-    "website": "",
-    "phones": [
-      "(435) 256-1387"
-    ],
+    "company": "Red Hills Painting",
+    "sheet_vendor": "Red Hills Painting",
+    "contact": "Jose Espinoza",
+    "phones": [],
     "emails": [
-      "coatingprosllc@gmail.com"
+      "redhillspaintingllc@gmail.com"
     ],
-    "source": "Construction\\Bids\\Coatings\\Coatings.pdf (bid) + Construction\\Bids\\Coatings\\Coatings.pdf (footer p2)",
-    "sheet_vendor": "Jose",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "trade": "Paint",
+    "records_url": "sub-docs/paint/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "countertop source": {
     "company": "Countertop Source",
@@ -354,42 +357,46 @@
     "updated": "2026-04-29T22:06:58.485960+00:00"
   },
   "blvd": {
-    "company": "",
+    "company": "BLVD Home",
     "license": "",
     "address": "",
     "city": "",
     "state": "",
     "zip": "",
-    "contact": "",
+    "contact": "Haley Benware; Emma Thomas (assistant)",
     "website": "",
     "phones": [
-      "(435) 229-9475"
+      "435-229-9475",
+      "435-703-4463",
+      "435-619-0401"
     ],
     "emails": [
-      "haley.benware@blvdhome.com"
+      "haley.benware@blvdhome.com",
+      "emma.thomas@blvdhome.com"
     ],
-    "source": "Construction\\Bids\\Appliance\\Rac Inc - Oak Valley Estates Lot 5 - Rodriguez Residence.pdf (bid)",
-    "sheet_vendor": "Blvd",
-    "updated": "2026-04-29T22:06:58.485963+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "BLVD Home",
+    "updated": "2026-10-13",
+    "trade": "Appliances",
+    "records_url": "sub-docs/blvd/index.html"
   },
   "d4": {
-    "company": "Cannonball Welding Design",
-    "license": "",
-    "address": "552 N 800 W #4",
-    "city": "Cedar City",
-    "state": "UT",
-    "zip": "84721",
-    "contact": "",
-    "website": "",
+    "company": "D4 Electric and Solar",
+    "sheet_vendor": "D4 Electric and Solar",
+    "contact": "Darcey Dockstader; Leslie Dockstader",
     "phones": [
-      "435-572-5132"
+      "435-879-3007",
+      "435-817-6796",
+      "435-212-0177"
     ],
     "emails": [
-      "tigmatic@gmail.com"
+      "ddock@d4electrical.com",
+      "ldock@d4electrical.com"
     ],
-    "source": "Construction\\Bids\\Solar\\Estimate 1225 (1).pdf (bid) + Construction\\Bids\\Solar\\Estimate 1225 (1).pdf (letterhead)",
-    "sheet_vendor": "D4",
-    "updated": "2026-04-29T22:48:48.866902+00:00"
+    "trade": "Electrical / solar",
+    "records_url": "sub-docs/d4/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
   },
   "peppermint": {
     "company": "Peppermint Cabinets",
@@ -405,12 +412,13 @@
       "435-414-8033"
     ],
     "emails": [
-      "stanley@peppermintcabinets.com",
-      "stanleykelsch@popular-design.com"
+      "stanley@peppermintcabinets.com"
     ],
-    "source": "Adobe Sign Contract RAC-Oak Valley Estates 5_6-24-26, Addendum 001 bid $67,048.39",
-    "sheet_vendor": "Peppermint",
-    "updated": "2026-06-25T00:00:00.000000+00:00"
+    "source": "Project documents and correspondence; see linked source records",
+    "sheet_vendor": "Peppermint Cabinets",
+    "updated": "2026-10-13",
+    "trade": "Cabinetry",
+    "records_url": "sub-docs/peppermint/index.html"
   },
   "rg ventures": {
     "company": "RG Ventures",
@@ -446,6 +454,166 @@
     "trade": "Framing",
     "records_url": "sub-docs/lopez-construction/index.html",
     "source": "Estimate 412 and returned subcontract, 2026-10-05",
+    "updated": "2026-10-13"
+  },
+  "artistic wall textures": {
+    "company": "Artistic Wall Textures",
+    "sheet_vendor": "Artistic Wall Textures",
+    "contact": "Aimee Pendleton",
+    "phones": [
+      "435-467-0700"
+    ],
+    "emails": [
+      "artisticwalltextures@gmail.com"
+    ],
+    "trade": "Rammed earth finish / decorative plaster",
+    "records_url": "sub-docs/artistic/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "blvd home": {
+    "company": "BLVD Home",
+    "sheet_vendor": "BLVD Home",
+    "contact": "Haley Benware; Emma Thomas (assistant)",
+    "phones": [
+      "435-229-9475",
+      "435-703-4463",
+      "435-619-0401"
+    ],
+    "emails": [
+      "haley.benware@blvdhome.com",
+      "emma.thomas@blvdhome.com"
+    ],
+    "trade": "Appliances",
+    "records_url": "sub-docs/blvd/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "d4 electric and solar": {
+    "company": "D4 Electric and Solar",
+    "sheet_vendor": "D4 Electric and Solar",
+    "contact": "Darcey Dockstader; Leslie Dockstader",
+    "phones": [
+      "435-879-3007",
+      "435-817-6796",
+      "435-212-0177"
+    ],
+    "emails": [
+      "ddock@d4electrical.com",
+      "ldock@d4electrical.com"
+    ],
+    "trade": "Electrical / solar",
+    "records_url": "sub-docs/d4/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "dixie fireplaces": {
+    "company": "Dixie Fireplaces",
+    "sheet_vendor": "Dixie Fireplaces",
+    "contact": "Chris",
+    "phones": [
+      "435-634-1177",
+      "435-632-2245"
+    ],
+    "emails": [
+      "dixiefireplaces@infowest.com"
+    ],
+    "trade": "Fireplace",
+    "records_url": "sub-docs/dixie/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "randy frei construction": {
+    "company": "Randy Frei Construction",
+    "sheet_vendor": "Randy Frei Construction",
+    "contact": "Randy Frei Construction office",
+    "phones": [
+      "435-986-3993",
+      "435-986-0440"
+    ],
+    "emails": [
+      "rafconstruction@infowest.com"
+    ],
+    "trade": "Concrete",
+    "records_url": "sub-docs/frei/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "red hills painting": {
+    "company": "Red Hills Painting",
+    "sheet_vendor": "Red Hills Painting",
+    "contact": "Jose Espinoza",
+    "phones": [],
+    "emails": [
+      "redhillspaintingllc@gmail.com"
+    ],
+    "trade": "Paint",
+    "records_url": "sub-docs/paint/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "peppermint cabinets": {
+    "company": "Peppermint Cabinets",
+    "sheet_vendor": "Peppermint Cabinets",
+    "contact": "Stanley Kelsch",
+    "phones": [
+      "801-599-7047",
+      "435-414-8033"
+    ],
+    "emails": [
+      "stanley@peppermintcabinets.com"
+    ],
+    "trade": "Cabinetry",
+    "records_url": "sub-docs/peppermint/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "lp / d2 building solutions": {
+    "company": "LP / D2 Building Solutions",
+    "sheet_vendor": "LP / D2 Building Solutions",
+    "contact": "Nathan Johnson",
+    "phones": [
+      "435-688-1337",
+      "435-862-7375"
+    ],
+    "emails": [
+      "nathan@d2bldg.com",
+      "office@d2bldg.com"
+    ],
+    "trade": "Insulation",
+    "records_url": "sub-docs/lp/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "simco / bsm stone": {
+    "company": "Simco / BSM Stone",
+    "sheet_vendor": "Simco / BSM Stone",
+    "contact": "Josette Stubbs; Greg Baker",
+    "phones": [
+      "435-656-1466",
+      "702-755-1216",
+      "435-466-1100"
+    ],
+    "emails": [
+      "josette@bsmmasonry.com",
+      "greg.baker@bsmmasonry.com"
+    ],
+    "trade": "Stone veneer",
+    "records_url": "sub-docs/stone/index.html",
+    "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "rancho stucco": {
+    "company": "Rancho Stucco",
+    "sheet_vendor": "Rancho Stucco",
+    "contact": "Rancho Stucco office",
+    "phones": [],
+    "emails": [
+      "ranchostuccollc@gmail.com"
+    ],
+    "trade": "Stucco",
+    "records_url": "sub-docs/rancho/index.html",
+    "source": "Project documents and correspondence; see linked source records",
     "updated": "2026-10-13"
   }
 }

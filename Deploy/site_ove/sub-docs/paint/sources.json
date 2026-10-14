@@ -1,0 +1,29 @@
+{
+  "files": [
+    {
+      "name": "Jose (Paint) - Subcontractor Portal Access Email 2026-02-25.txt",
+      "ref": "files/e54d6dac8eea-Jose_Paint_-_Subcontractor_Portal_Access_Email_2026-02-25.txt",
+      "bytes": 1230,
+      "sha256": "e54d6dac8eeab94cbe27c995842eec0bfc7fc2e9b039aa3b91208463ca1c21f3",
+      "source": "Subcontractors\\Jose (Paint)\\Documents\\Jose (Paint) - Subcontractor Portal Access Email 2026-02-25.txt",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Paint_Subcontract_RedHills_OVE_Lot5_UNSIGNED.docx",
+      "ref": "files/c6bacd129fd5-Paint_Subcontract_RedHills_OVE_Lot5_UNSIGNED.docx",
+      "bytes": 11243,
+      "sha256": "c6bacd129fd5f58745999909700212ceccbc3b65ca69a0fd23c93a9bb697d70e",
+      "source": "Subcontractors\\Jose (Paint)\\Documents\\Paint_Subcontract_RedHills_OVE_Lot5_UNSIGNED.docx",
+      "category": "Bids, contracts and documents"
+    }
+  ],
+  "emails": [
+    {
+      "subject": "Oak Valley Estates Lot 5 – Subcontractor Portal Access --- Hi Jose,",
+      "date": "Wed, 25 Feb 2026 16:29:44 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19c97231233f5848.html",
+      "id": "19c97231233f5848"
+    }
+  ]
+}

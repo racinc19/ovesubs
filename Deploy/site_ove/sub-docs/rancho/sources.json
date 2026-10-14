@@ -1,0 +1,50 @@
+{
+  "files": [
+    {
+      "name": "Rancho_Stucco_Subcontract.docx",
+      "ref": "files/dfaa2eb1e1ae-Rancho_Stucco_Subcontract.docx",
+      "bytes": 38857,
+      "sha256": "dfaa2eb1e1aec8709390d931cfd54419d6748047ee27522191aed99b478f1cef",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\Rancho_Stucco_Subcontract.docx",
+      "category": "Bids, contracts and documents"
+    },
+    {
+      "name": "Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate 1947 Received (Exterior Stucco - Rancho) 2025-09-18.pdf",
+      "ref": "files/b34af617dec6-Simco_Exterior_Stucco_Rancho_Stone_Veneer_BSM_Stone_-_Estimate_1947_Received_Exterior_Stucco_-_Rancho_2025-09-18.pdf",
+      "bytes": 36438,
+      "sha256": "b34af617dec6fe7a4447c2233f858d77be960da16d815b5be4dcf8d3480b5c6b",
+      "source": "Subcontractors\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone)\\Documents\\Simco — Exterior Stucco (Rancho) & Stone Veneer (BSM Stone) - Estimate 1947 Received (Exterior Stucco - Rancho) 2025-09-18.pdf",
+      "category": "Bids, contracts and documents"
+    }
+  ],
+  "emails": [
+    {
+      "subject": "Re: Rodriguez Residence - Subcontract for stone thin veneer",
+      "date": "Tue, 9 Jun 2026 06:53:17 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19eaca8b06681718.html",
+      "id": "19eaca8b06681718"
+    },
+    {
+      "subject": "Re: Rodriguez Residence - Subcontract for stone thin veneer",
+      "date": "Mon, 1 Jun 2026 13:47:12 -0700",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19e84f0c7cc858f9.html",
+      "id": "19e84f0c7cc858f9"
+    },
+    {
+      "subject": "Re: Rodriguez Residence - Subcontract for exterior stucco",
+      "date": "Mon, 1 Jun 2026 15:31:21 -0500",
+      "sender": "Eagle Custom Exteriors <ranchostuccollc@gmail.com>",
+      "ref": "mail/19e84e272f0eb523.html",
+      "id": "19e84e272f0eb523"
+    },
+    {
+      "subject": "Rodriguez Residence - Subcontract for exterior stucco",
+      "date": "Sun, 15 Mar 2026 17:14:30 -0600",
+      "sender": "Guardian AI <racinc19@gmail.com>",
+      "ref": "mail/19cf3c79a6309c71.html",
+      "id": "19cf3c79a6309c71"
+    }
+  ]
+}
