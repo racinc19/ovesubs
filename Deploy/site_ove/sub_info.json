@@ -357,28 +357,21 @@
     "updated": "2026-04-29T22:06:58.485960+00:00"
   },
   "blvd": {
-    "company": "BLVD Home",
-    "license": "",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "Haley Benware; Emma Thomas (assistant)",
-    "website": "",
+    "company": "Carpets Plus Luxury Home Products",
+    "sheet_vendor": "Carpets Plus Luxury Home Products",
+    "contact": "Dave Evans",
     "phones": [
-      "435-229-9475",
-      "435-703-4463",
-      "435-619-0401"
+      "435-628-0870",
+      "801-891-6033"
     ],
     "emails": [
-      "haley.benware@blvdhome.com",
-      "emma.thomas@blvdhome.com"
+      "dave@carpetsplusdesign.com",
+      "dave@cplhp.com"
     ],
-    "source": "Project documents and correspondence; see linked source records",
-    "sheet_vendor": "BLVD Home",
-    "updated": "2026-10-13",
     "trade": "Appliances",
-    "records_url": "sub-docs/blvd/index.html"
+    "records_url": "sub-docs/carpets-plus/index.html",
+    "source": "Saved Dave Evans contact and signed appliance estimate 70289",
+    "updated": "2026-10-13"
   },
   "d4": {
     "company": "D4 Electric and Solar",
@@ -472,21 +465,20 @@
     "updated": "2026-10-13"
   },
   "blvd home": {
-    "company": "BLVD Home",
-    "sheet_vendor": "BLVD Home",
-    "contact": "Haley Benware; Emma Thomas (assistant)",
+    "company": "Carpets Plus Luxury Home Products",
+    "sheet_vendor": "Carpets Plus Luxury Home Products",
+    "contact": "Dave Evans",
     "phones": [
-      "435-229-9475",
-      "435-703-4463",
-      "435-619-0401"
+      "435-628-0870",
+      "801-891-6033"
     ],
     "emails": [
-      "haley.benware@blvdhome.com",
-      "emma.thomas@blvdhome.com"
+      "dave@carpetsplusdesign.com",
+      "dave@cplhp.com"
     ],
     "trade": "Appliances",
-    "records_url": "sub-docs/blvd/index.html",
-    "source": "Project documents and correspondence; see linked source records",
+    "records_url": "sub-docs/carpets-plus/index.html",
+    "source": "Saved Dave Evans contact and signed appliance estimate 70289",
     "updated": "2026-10-13"
   },
   "d4 electric and solar": {
@@ -614,6 +606,23 @@
     "trade": "Stucco",
     "records_url": "sub-docs/rancho/index.html",
     "source": "Project documents and correspondence; see linked source records",
+    "updated": "2026-10-13"
+  },
+  "carpets plus luxury home products": {
+    "company": "Carpets Plus Luxury Home Products",
+    "sheet_vendor": "Carpets Plus Luxury Home Products",
+    "contact": "Dave Evans",
+    "phones": [
+      "435-628-0870",
+      "801-891-6033"
+    ],
+    "emails": [
+      "dave@carpetsplusdesign.com",
+      "dave@cplhp.com"
+    ],
+    "trade": "Appliances",
+    "records_url": "sub-docs/carpets-plus/index.html",
+    "source": "Saved Dave Evans contact and signed appliance estimate 70289",
     "updated": "2026-10-13"
   }
 }
