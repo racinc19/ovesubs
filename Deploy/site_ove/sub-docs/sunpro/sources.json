@@ -3,8 +3,8 @@
     {
       "name": "Sunpro_Bid_vs_Invoices.xlsx",
       "ref": "files/3f7fdd322032-Sunpro_Bid_vs_Invoices.xlsx",
-      "bytes": 6458,
-      "sha256": "3f7fdd3220325a0e241f31a9bfc1610f76c36b397ce7fd25c4c8e8b44bc69111",
+      "bytes": 5982,
+      "sha256": "7b03f807c789e4369091d536dba8ce053679d5fd8561d1d0c5e28db68315afa2",
       "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Sunpro_Bid_vs_Invoices.xlsx",
       "category": "Invoices and statements"
     },
@@ -277,7 +277,7 @@
       "ref": "files/9495324eaa08-Lot_5_Truss_Pricing_Record.pdf",
       "bytes": 179408,
       "sha256": "9495324eaa080454dd8ad85045f7c09912782a11ef167058f1bd062f9285d35a",
-      "source": "Email 19ed6be3b4844561: Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached) (Wed, 17 Jun 2026 14:00:51 -0400)",
+      "source": "Email 19ed6be3b4844561: Oak Valley / Rodriguez Lot 5 Trusses \u2014 pricing timeline (record attached) (Wed, 17 Jun 2026 14:00:51 -0400)",
       "category": "Email attachments"
     },
     {
@@ -439,6 +439,14 @@
       "sha256": "c92b1bc15f8672942bbcf5307972ece6aa5d9c777d628a0b7f110484adebed42",
       "source": "Email 19cfd073f457622c: Fw: Rodriguez Res Truss Submittal (Tue, 17 Mar 2026 18:20:01 +0000)",
       "category": "Email attachments"
+    },
+    {
+      "name": "Invoice 3984650.pdf",
+      "ref": "files/Invoice_3984650.pdf",
+      "bytes": 79796,
+      "sha256": "36675dfd690b9262687a5690eb3419d3b95536e99b7686193616cc2b5aa2e422",
+      "source": "Subcontractors\\Sunpro - SunPro (Lumber, Door, Base & Case, Truss)\\Invoices\\Invoice 3984650.pdf",
+      "category": "Invoices and statements"
     }
   ],
   "emails": [
@@ -464,7 +472,7 @@
       "id": "1a0af172eeff9384"
     },
     {
-      "subject": "Re: Rodriguez Residence / Oak Valley Lot 5 — corrected framing lumber order, first delivery Monday 9/14",
+      "subject": "Re: Rodriguez Residence / Oak Valley Lot 5 \u2014 corrected framing lumber order, first delivery Monday 9/14",
       "date": "Wed, 9 Sep 2026 19:31:03 +0000",
       "sender": "Scott Mitchell <srmitchell@sunpro.build>",
       "ref": "mail/1a087a72c38bf227.html",
@@ -478,14 +486,14 @@
       "id": "19f6581c70817d35"
     },
     {
-      "subject": "RE: Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached)",
+      "subject": "RE: Oak Valley / Rodriguez Lot 5 Trusses \u2014 pricing timeline (record attached)",
       "date": "Thu, 18 Jun 2026 00:33:25 +0000",
       "sender": "Lamont Backus <lbackus@sunpro.build>",
       "ref": "mail/19ed825d12e00787.html",
       "id": "19ed825d12e00787"
     },
     {
-      "subject": "Oak Valley / Rodriguez Lot 5 Trusses — pricing timeline (record attached)",
+      "subject": "Oak Valley / Rodriguez Lot 5 Trusses \u2014 pricing timeline (record attached)",
       "date": "Wed, 17 Jun 2026 14:00:51 -0400",
       "sender": "Guardian AI <racinc19@gmail.com>",
       "ref": "mail/19ed6be3b4844561.html",
@@ -667,7 +675,7 @@
       "id": "19cfd073f457622c"
     },
     {
-      "subject": "Subject: Rodriguez Residence — Corrected Door Schedule & Specs (OVE Lot 5)",
+      "subject": "Subject: Rodriguez Residence \u2014 Corrected Door Schedule & Specs (OVE Lot 5)",
       "date": "Mon, 9 Mar 2026 13:18:57 -0600",
       "sender": "Guardian AI <racinc19@gmail.com>",
       "ref": "mail/19cd409cf79f1100.html",
