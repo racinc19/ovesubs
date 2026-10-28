@@ -1,0 +1,15 @@
+[
+  {
+    "date": "2026-10-27",
+    "invoice_no": null,
+    "description": "First Draft",
+    "amount": 26000,
+    "payment_status": "Unpaid; payment not verified",
+    "source_thread": "1a17f95afc1efdfe",
+    "contract": 78000,
+    "invoiced": 26000,
+    "remaining_to_invoice": 52000,
+    "file": "Lopez_Invoice_First_Draft_2026-10-27_26000.pdf",
+    "sha256": "e812cc0f06d634787f5304421274e24c1e61f785ef6ceb29473376a1f0b8e3e8"
+  }
+]
