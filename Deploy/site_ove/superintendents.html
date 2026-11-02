@@ -222,11 +222,12 @@ function render(){
   const open=todos.filter(t=>itemStatus(t)==='Do now').length,waiting=todos.filter(t=>itemStatus(t)==='Waiting').length,done=todos.filter(t=>itemStatus(t)==='In progress').length;
   openChip.textContent=open+' do now';waitingChip.textContent=waiting+' waiting';doneChip.textContent=done+' in progress';todoCount.textContent=todos.length+' items';noteCount.textContent=notes.length+' notes';
   todoList.innerHTML=todos.length?todos.map((t,i)=>`<div class="todo"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span>${esc(t.at)}</span></div>${controls('todos',t,i,todos.length)}</div><button class="remove" ${saving?'disabled':''} onclick="removeTodo(${i})">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
-  noteList.innerHTML=notes.length?notes.map((n,i)=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div>${controls('notes',n,i,notes.length)}</div>`).join(''):'<div class="empty">No notes yet.</div>';
+  noteList.innerHTML=notes.length?notes.map((n,i)=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span><button class="remove" aria-label="Remove note ${i+1}" ${saving?'disabled':''} onclick="removeNote(${i})">Remove</button></div><div class="note-body">${esc(n.body)}</div>${controls('notes',n,i,notes.length)}</div>`).join(''):'<div class="empty">No notes yet.</div>';
   document.querySelectorAll('.form button,#noteBtn').forEach(button=>button.disabled=saving);
 }
 async function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;await hydrateSharedState();state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';render();saveSharedState()}
 function removeTodo(index){const item=displayedItems('todos')[index];return updateItem('todos',item.id,(items,i)=>{items.splice(i,1)})}
+function removeNote(index){const item=displayedItems('notes')[index];if(!item)return;return updateItem('notes',item.id,(items,i)=>{items.splice(i,1)})}
 async function addNote(){
   const text=noteText.value.trim();
   if(!text)return;
