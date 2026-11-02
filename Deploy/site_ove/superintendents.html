@@ -39,7 +39,7 @@ button{border:1px solid var(--bdr);border-radius:8px;background:var(--card2);col
 button:hover{border-color:var(--green);color:#fff}
 .primary{background:var(--green);border-color:var(--green);color:#07130c}
 .list{display:grid;gap:10px;padding:14px 16px}
-.todo{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.025)}
+.todo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px;border:1px solid var(--bdr);border-radius:8px;background:rgba(255,255,255,.025)}
 .todo.done{opacity:.62}
 .todo.done .todo-title{text-decoration:line-through;color:var(--txt2)}
 .todo-title{font-weight:800;font-size:14px;overflow-wrap:anywhere}
@@ -88,9 +88,9 @@ button:disabled{opacity:.4;cursor:default}
       <div class="sub">Track field to-dos and quick back-and-forth notes for Oak Valley Estates Lot 5.</div>
     </div>
     <div class="status-row">
-      <span class="chip" id="openChip">0 open</span>
+      <span class="chip" id="openChip">0 do now</span>
       <span class="chip" id="waitingChip">0 waiting</span>
-      <span class="chip" id="doneChip">0 done</span>
+      <span class="chip" id="doneChip">0 in progress</span>
       <span class="chip" id="syncChip">Checking sync</span>
     </div>
   </section>
@@ -105,14 +105,12 @@ button:disabled{opacity:.4;cursor:default}
         <input id="todoText" placeholder="Add a field item">
         <select id="todoStatus">
           <option>Do now</option>
-          <option>Upcoming</option>
-          <option>Open</option>
+          <option>In progress</option>
           <option>Waiting</option>
-          <option>Done</option>
         </select>
         <button class="primary" onclick="addTodo()">Add</button>
       </div>
-      <p class="list-help">Use ↑ and ↓ to change the order. Status and order are shared across devices.</p>
+      <p class="list-help">Sorted by Do now, In progress, then Waiting. Use ↑ and ↓ within a status.</p>
       <div class="list" id="todoList"></div>
     </section>
 
@@ -124,7 +122,7 @@ button:disabled{opacity:.4;cursor:default}
       <div class="notes" id="noteList"></div>
       <div class="composer">
         <textarea id="noteText" placeholder="Leave a note for Craig or the superintendent"></textarea>
-        <select id="newNoteStatus" aria-label="New note status"><option>Upcoming</option><option>Do now</option><option>Waiting</option><option>Done</option></select>
+        <select id="newNoteStatus" aria-label="New note status"><option>Do now</option><option>In progress</option><option>Waiting</option></select>
         <button class="primary" id="noteBtn" onclick="addNote()">Post Note</button>
         <div class="send-status" id="noteStatus"></div>
       </div>
@@ -152,13 +150,14 @@ function loadState(){try{return cleanState(JSON.parse(localStorage.getItem(KEY))
 function saveLocalState(s){localStorage.setItem(KEY,JSON.stringify(cleanState(s)))}
 let state=loadState();
 let saving=false;
-const STATUSES=['Do now','Upcoming','Open','Waiting','Done'];
-function itemStatus(item){return STATUSES.includes(item.status)?item.status:'Upcoming'}
+const STATUSES=['Do now','In progress','Waiting'];
+function itemStatus(item){return item.status==='Do now'?'Do now':['Open','In progress'].includes(item.status)?'In progress':'Waiting'}
 function controls(kind,item,index,total){
   const label=kind==='todos'?'field item':'note';
-  return `<div class="item-controls"><select aria-label="Status for ${label} ${index+1}" data-kind="${kind}" data-index="${index}" onchange="changeStatus(this)" ${saving?'disabled':''}>${STATUSES.map(s=>`<option ${itemStatus(item)===s?'selected':''}>${s}</option>`).join('')}</select><button aria-label="Move ${label} ${index+1} up" onclick="moveItem('${kind}',${index},-1)" ${saving||index===0?'disabled':''}>↑</button><button aria-label="Move ${label} ${index+1} down" onclick="moveItem('${kind}',${index},1)" ${saving||index===total-1?'disabled':''}>↓</button></div>`;
+  const items=displayedItems(kind),same=i=>items[i]&&itemStatus(items[i])===itemStatus(item);
+  return `<div class="item-controls"><select aria-label="Status for ${label} ${index+1}" data-kind="${kind}" data-index="${index}" onchange="changeStatus(this)" ${saving?'disabled':''}>${STATUSES.map(s=>`<option ${itemStatus(item)===s?'selected':''}>${s}</option>`).join('')}</select><button aria-label="Move ${label} ${index+1} up" onclick="moveItem('${kind}',${index},-1)" ${saving||!same(index-1)?'disabled':''}>↑</button><button aria-label="Move ${label} ${index+1} down" onclick="moveItem('${kind}',${index},1)" ${saving||!same(index+1)?'disabled':''}>↓</button></div>`;
 }
-function displayedItems(kind){return kind==='notes'?state.notes.slice().reverse():state.todos.slice()}
+function displayedItems(kind){const items=kind==='notes'?state.notes.slice().reverse():state.todos.slice();return items.sort((a,b)=>STATUSES.indexOf(itemStatus(a))-STATUSES.indexOf(itemStatus(b)))}
 async function updateItem(kind,id,apply){
   if(saving)return;
   saving=true;render();
@@ -179,7 +178,7 @@ async function updateItem(kind,id,apply){
 }
 function moveItem(kind,index,direction){
   const item=displayedItems(kind)[index];if(!item)return;
-  return updateItem(kind,item.id,(items,i)=>{const j=i+direction;if(j<0||j>=items.length)return;[items[i],items[j]]=[items[j],items[i]]});
+  return updateItem(kind,item.id,(items,i)=>{const j=i+direction;if(j<0||j>=items.length||itemStatus(items[i])!==itemStatus(items[j]))return;[items[i],items[j]]=[items[j],items[i]]});
 }
 function changeStatus(select){
   const kind=select.dataset.kind,item=displayedItems(kind)[Number(select.dataset.index)],status=select.value;
@@ -219,16 +218,15 @@ async function saveSharedState(){
   }catch(e){syncChip.textContent='Sync failed';return false}
 }
 function render(){
-  const todos=state.todos||[],notes=state.notes||[];
-  const open=todos.filter(t=>!['Done','Waiting'].includes(t.status)).length,waiting=todos.filter(t=>t.status==='Waiting').length,done=todos.filter(t=>t.status==='Done').length;
-  openChip.textContent=open+' open';waitingChip.textContent=waiting+' waiting';doneChip.textContent=done+' done';todoCount.textContent=todos.length+' items';noteCount.textContent=notes.length+' notes';
-  todoList.innerHTML=todos.length?todos.map((t,i)=>`<div class="todo ${t.status==='Done'?'done':''}"><input type="checkbox" aria-label="Complete field item ${i+1}" ${t.status==='Done'?'checked':''} ${saving?'disabled':''} onchange="toggleTodo(${i})"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span>${esc(t.at)}</span></div>${controls('todos',t,i,todos.length)}</div><button class="remove" ${saving?'disabled':''} onclick="removeTodo(${i})">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
-  noteList.innerHTML=notes.length?notes.slice().reverse().map((n,i)=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div>${controls('notes',n,i,notes.length)}</div>`).join(''):'<div class="empty">No notes yet.</div>';
+  const todos=displayedItems('todos'),notes=displayedItems('notes');
+  const open=todos.filter(t=>itemStatus(t)==='Do now').length,waiting=todos.filter(t=>itemStatus(t)==='Waiting').length,done=todos.filter(t=>itemStatus(t)==='In progress').length;
+  openChip.textContent=open+' do now';waitingChip.textContent=waiting+' waiting';doneChip.textContent=done+' in progress';todoCount.textContent=todos.length+' items';noteCount.textContent=notes.length+' notes';
+  todoList.innerHTML=todos.length?todos.map((t,i)=>`<div class="todo"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span>${esc(t.at)}</span></div>${controls('todos',t,i,todos.length)}</div><button class="remove" ${saving?'disabled':''} onclick="removeTodo(${i})">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
+  noteList.innerHTML=notes.length?notes.map((n,i)=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div>${controls('notes',n,i,notes.length)}</div>`).join(''):'<div class="empty">No notes yet.</div>';
   document.querySelectorAll('.form button,#noteBtn').forEach(button=>button.disabled=saving);
 }
 async function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;await hydrateSharedState();state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';render();saveSharedState()}
-function toggleTodo(index){const item=state.todos[index];return updateItem('todos',item.id,(items,i)=>{items[i]={...items[i],status:items[i].status==='Done'?'Do now':'Done'}})}
-function removeTodo(index){const item=state.todos[index];return updateItem('todos',item.id,(items,i)=>{items.splice(i,1)})}
+function removeTodo(index){const item=displayedItems('todos')[index];return updateItem('todos',item.id,(items,i)=>{items.splice(i,1)})}
 async function addNote(){
   const text=noteText.value.trim();
   if(!text)return;
