@@ -57,6 +57,11 @@ button:hover{border-color:var(--green);color:#fff}
 .send-status.ok{color:var(--green)}
 .send-status.err{color:var(--red)}
 .empty{color:var(--dim);font-size:13px;padding:18px 16px}
+.item-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px}
+.item-controls select{width:132px}
+.item-controls button{min-width:44px}
+button:disabled{opacity:.4;cursor:default}
+.list-help{padding:10px 16px 0;color:var(--txt2);font-size:12px}
 @media(max-width:820px){body{padding-top:96px}.grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.hero{align-items:flex-start}.topnav-inner{align-items:flex-start}}
 </style>
 </head>
@@ -99,12 +104,15 @@ button:hover{border-color:var(--green);color:#fff}
       <div class="form">
         <input id="todoText" placeholder="Add a field item">
         <select id="todoStatus">
+          <option>Do now</option>
+          <option>Upcoming</option>
           <option>Open</option>
           <option>Waiting</option>
           <option>Done</option>
         </select>
         <button class="primary" onclick="addTodo()">Add</button>
       </div>
+      <p class="list-help">Use ↑ and ↓ to change the order. Status and order are shared across devices.</p>
       <div class="list" id="todoList"></div>
     </section>
 
@@ -116,6 +124,7 @@ button:hover{border-color:var(--green);color:#fff}
       <div class="notes" id="noteList"></div>
       <div class="composer">
         <textarea id="noteText" placeholder="Leave a note for Craig or the superintendent"></textarea>
+        <select id="newNoteStatus" aria-label="New note status"><option>Upcoming</option><option>Do now</option><option>Waiting</option><option>Done</option></select>
         <button class="primary" id="noteBtn" onclick="addNote()">Post Note</button>
         <div class="send-status" id="noteStatus"></div>
       </div>
@@ -142,6 +151,40 @@ function cleanState(s){
 function loadState(){try{return cleanState(JSON.parse(localStorage.getItem(KEY))||seed)}catch(e){return cleanState(seed)}}
 function saveLocalState(s){localStorage.setItem(KEY,JSON.stringify(cleanState(s)))}
 let state=loadState();
+let saving=false;
+const STATUSES=['Do now','Upcoming','Open','Waiting','Done'];
+function itemStatus(item){return STATUSES.includes(item.status)?item.status:'Upcoming'}
+function controls(kind,item,index,total){
+  const label=kind==='todos'?'field item':'note';
+  return `<div class="item-controls"><select aria-label="Status for ${label} ${index+1}" data-kind="${kind}" data-index="${index}" onchange="changeStatus(this)" ${saving?'disabled':''}>${STATUSES.map(s=>`<option ${itemStatus(item)===s?'selected':''}>${s}</option>`).join('')}</select><button aria-label="Move ${label} ${index+1} up" onclick="moveItem('${kind}',${index},-1)" ${saving||index===0?'disabled':''}>↑</button><button aria-label="Move ${label} ${index+1} down" onclick="moveItem('${kind}',${index},1)" ${saving||index===total-1?'disabled':''}>↓</button></div>`;
+}
+function displayedItems(kind){return kind==='notes'?state.notes.slice().reverse():state.todos.slice()}
+async function updateItem(kind,id,apply){
+  if(saving)return;
+  saving=true;render();
+  try{
+    // Read the current shared list before applying just this change.
+    if(!await hydrateSharedState())throw new Error('Shared list unavailable');
+    const before=JSON.parse(JSON.stringify(state));
+    const items=displayedItems(kind),index=items.findIndex(item=>item.id===id);
+    if(index<0)throw new Error('Item changed; please try again');
+    apply(items,index);
+    state[kind]=kind==='notes'?items.reverse():items;
+    if(!await saveSharedState()){
+      state=before;saveLocalState(state);
+      throw new Error('Save did not confirm; please try again');
+    }
+  }catch(error){syncChip.textContent=error.message}
+  finally{saving=false;render()}
+}
+function moveItem(kind,index,direction){
+  const item=displayedItems(kind)[index];if(!item)return;
+  return updateItem(kind,item.id,(items,i)=>{const j=i+direction;if(j<0||j>=items.length)return;[items[i],items[j]]=[items[j],items[i]]});
+}
+function changeStatus(select){
+  const kind=select.dataset.kind,item=displayedItems(kind)[Number(select.dataset.index)],status=select.value;
+  if(item)return updateItem(kind,item.id,(items,i)=>{items[i]={...items[i],status}});
+}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function today(){return new Date().toISOString().slice(0,10)}
 async function hydrateSharedState(){
@@ -166,27 +209,33 @@ async function saveSharedState(){
     const r=await fetch(STORE_URL,{method:'PUT',
       headers:{'Content-Type':'application/json','X-OVE-Token':STORE_TOKEN},
       body:JSON.stringify({data:cleanState(state)})});
-    syncChip.textContent=r.ok?'Shared sync on':'Sync failed';
-    return r.ok;
+    if(!r.ok)throw new Error('Sync failed');
+    const check=await fetch(STORE_URL+'?_='+Date.now(),{cache:'no-store'});
+    if(!check.ok)throw new Error('Readback failed');
+    const saved=await check.json();
+    const verified=JSON.stringify(cleanState(saved.data))===JSON.stringify(cleanState(state));
+    syncChip.textContent=verified?'Shared sync on':'Save not confirmed';
+    return verified;
   }catch(e){syncChip.textContent='Sync failed';return false}
 }
 function render(){
   const todos=state.todos||[],notes=state.notes||[];
-  const open=todos.filter(t=>t.status==='Open').length,waiting=todos.filter(t=>t.status==='Waiting').length,done=todos.filter(t=>t.status==='Done').length;
+  const open=todos.filter(t=>!['Done','Waiting'].includes(t.status)).length,waiting=todos.filter(t=>t.status==='Waiting').length,done=todos.filter(t=>t.status==='Done').length;
   openChip.textContent=open+' open';waitingChip.textContent=waiting+' waiting';doneChip.textContent=done+' done';todoCount.textContent=todos.length+' items';noteCount.textContent=notes.length+' notes';
-  todoList.innerHTML=todos.length?todos.map(t=>`<div class="todo ${t.status==='Done'?'done':''}"><input type="checkbox" ${t.status==='Done'?'checked':''} onchange="toggleTodo('${t.id}')"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span class="tag ${t.status.toLowerCase()}">${esc(t.status)}</span><span>${esc(t.at)}</span></div></div><button class="remove" onclick="removeTodo('${t.id}')">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
-  noteList.innerHTML=notes.length?notes.slice().reverse().map(n=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div></div>`).join(''):'<div class="empty">No notes yet.</div>';
+  todoList.innerHTML=todos.length?todos.map((t,i)=>`<div class="todo ${t.status==='Done'?'done':''}"><input type="checkbox" aria-label="Complete field item ${i+1}" ${t.status==='Done'?'checked':''} ${saving?'disabled':''} onchange="toggleTodo(${i})"><div><div class="todo-title">${esc(t.text)}</div><div class="todo-meta"><span>${esc(t.at)}</span></div>${controls('todos',t,i,todos.length)}</div><button class="remove" ${saving?'disabled':''} onclick="removeTodo(${i})">Remove</button></div>`).join(''):'<div class="empty">No field items yet.</div>';
+  noteList.innerHTML=notes.length?notes.slice().reverse().map((n,i)=>`<div class="note"><div class="note-top"><strong>${esc(n.author||'Field note')}</strong><span>${esc(n.at)}</span></div><div class="note-body">${esc(n.body)}</div>${controls('notes',n,i,notes.length)}</div>`).join(''):'<div class="empty">No notes yet.</div>';
+  document.querySelectorAll('.form button,#noteBtn').forEach(button=>button.disabled=saving);
 }
 async function addTodo(){const input=todoText;const text=input.value.trim();if(!text)return;await hydrateSharedState();state.todos.unshift({id:'t'+Date.now(),text,status:todoStatus.value,at:today()});input.value='';render();saveSharedState()}
-function toggleTodo(id){state.todos=state.todos.map(t=>t.id===id?{...t,status:t.status==='Done'?'Open':'Done'}:t);render();saveSharedState()}
-function removeTodo(id){state.todos=state.todos.filter(t=>t.id!==id);render();saveSharedState()}
+function toggleTodo(index){const item=state.todos[index];return updateItem('todos',item.id,(items,i)=>{items[i]={...items[i],status:items[i].status==='Done'?'Do now':'Done'}})}
+function removeTodo(index){const item=state.todos[index];return updateItem('todos',item.id,(items,i)=>{items.splice(i,1)})}
 async function addNote(){
   const text=noteText.value.trim();
   if(!text)return;
   const btn=noteBtn,status=noteStatus;
   btn.disabled=true;status.className='send-status';status.textContent='Posting...';
   await hydrateSharedState();
-  const note={id:'n'+Date.now(),author:'Superintendent',body:text,at:today()};
+  const note={id:'n'+Date.now(),author:'Superintendent',body:text,status:newNoteStatus.value,at:today()};
   state.notes.push(note);noteText.value='';saveLocalState(state);render();
   const sharedOk=await saveSharedState();
   try{
@@ -205,7 +254,7 @@ async function addNote(){
 }
 render();
 hydrateSharedState();
-window.addEventListener('focus',hydrateSharedState);
+window.addEventListener('focus',()=>{if(!saving)hydrateSharedState()});
 </script>
 </body>
 </html>
