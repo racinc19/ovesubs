@@ -1,0 +1,98 @@
+{
+  "vendor": "Sunpro",
+  "project": "oak-valley-estates",
+  "statement_date": "2026-10-31",
+  "statement_balance": 12609.39,
+  "statement_is_not_additional_charge": true,
+  "statement_reported_payment": {
+    "amount": 59372.69,
+    "date": "2026-10-05",
+    "allocation": "Not itemized on statement. Do not create a second payment or guess invoice allocations."
+  },
+  "post_statement_invoice": 4900,
+  "known_balance_before_later_payments": 17509.39,
+  "payment_status": "Later payments unverified",
+  "invoices": [
+    {
+      "invoice_no": "3982298",
+      "date": "2026-10-06",
+      "amount": 839.2,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due 2026-11-06. Sunpro invoice 3982298; source email 1a1161a563165bc6, Invoice 3982298.pdf.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "3984650",
+      "date": "2026-10-08 12:00:00",
+      "amount": 538.91,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due November 8, 2026. Source: Sunpro Invoice 3984650.pdf",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "3985065",
+      "date": "2026-10-09",
+      "amount": 225,
+      "category": "Truss",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due 2026-11-09. Email 1a1258d7bcc31ca7; Invoice 3985065.pdf.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "3991387",
+      "date": "2026-10-16",
+      "amount": 3796.56,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due 2026-11-16. Forwarded to Tammy for payment. Source: Invoice 3991387.pdf; Sunpro email 2026-10-17.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "3995534",
+      "date": "2026-10-21",
+      "amount": 979.19,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "Due 2026-11-21; unpaid on Oct31 statement. Source email 1a163596d1e44064.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "4000265",
+      "date": "2026-10-27",
+      "amount": 479.28,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due 2026-11-27. Source invoice 4000265; email 1a1823bccded66db, PDF page 1.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "4000277",
+      "date": "2026-10-27",
+      "amount": 3681.18,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "No payment recorded. Due 2026-11-27. Source invoice 4000277; email 1a1823bccded66db, PDF page 2.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "4003792",
+      "date": "2026-10-30",
+      "amount": 2070.07,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "Due 2026-11-30; unpaid on Oct31 statement. Source email 1a191b132bb84022.",
+      "statement_2026_10_31": true
+    },
+    {
+      "invoice_no": "4008365",
+      "date": "2026-11-04",
+      "amount": 4900,
+      "category": "Truss",
+      "recorded_paid": 0,
+      "status": "HOLD: bid/order reconciliation; no payment recorded. Due 2026-12-05. Source email 1a1aba50fa320034; Invoice 4008365.pdf.",
+      "statement_2026_10_31": false
+    }
+  ]
+}
