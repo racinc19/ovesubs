@@ -1,0 +1,21 @@
+{
+  "vendor": "Suncore",
+  "project": "oak-valley-estates",
+  "scope": "This register currently covers only the November 4 invoice; it is not a complete historical register.",
+  "invoices": [
+    {
+      "invoice_no": "004CINV000176183",
+      "date": "2026-11-04",
+      "due": "2026-12-04",
+      "amount": 3763.87,
+      "recorded_paid": 0,
+      "status": "Payment unverified. Contract rates and delivery charges require confirmation; older payment-status discrepancy unresolved.",
+      "tickets": [
+        "10434950",
+        "10434973"
+      ],
+      "cubic_yards": 18,
+      "document": "Invoice_004CINV000176183.pdf"
+    }
+  ]
+}

@@ -10,7 +10,7 @@
     "allocation": "Not itemized on statement. Do not create a second payment or guess invoice allocations."
   },
   "post_statement_invoice": 4900,
-  "known_balance_before_later_payments": 17509.39,
+  "known_balance_before_later_payments": 22476.93,
   "payment_status": "Later payments unverified",
   "invoices": [
     {
@@ -93,6 +93,28 @@
       "recorded_paid": 0,
       "status": "HOLD: bid/order reconciliation; no payment recorded. Due 2026-12-05. Source email 1a1aba50fa320034; Invoice 4008365.pdf.",
       "statement_2026_10_31": false
+    },
+    {
+      "invoice_no": "4011822",
+      "date": "2026-11-09",
+      "amount": 4508.42,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "Payment unverified; due December 10. Original packet forwarded to Tammy with Leonard copied. No payment approval.",
+      "statement_2026_10_31": false,
+      "document": "Invoices_4011822_4012385.pdf"
+    },
+    {
+      "invoice_no": "4012385",
+      "date": "2026-11-09",
+      "amount": 459.12,
+      "category": "Lumber",
+      "recorded_paid": 0,
+      "status": "Payment unverified; due December 10. Original packet forwarded to Tammy with Leonard copied. No payment approval.",
+      "statement_2026_10_31": false,
+      "document": "Invoices_4011822_4012385.pdf"
     }
-  ]
+  ],
+  "additional_post_statement_invoices": 4967.54,
+  "updated": "2026-11-12"
 }
