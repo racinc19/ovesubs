@@ -11,5 +11,18 @@
     "remaining_to_invoice": 52000,
     "file": "Lopez_Invoice_First_Draft_2026-10-27_26000.pdf",
     "sha256": "e812cc0f06d634787f5304421274e24c1e61f785ef6ceb29473376a1f0b8e3e8"
+  },
+  {
+    "date": "2026-11-12",
+    "invoice_no": null,
+    "description": "Second Draft",
+    "amount": 26000,
+    "payment_status": "Payment not verified",
+    "source_thread": "1a1d1daf9f46213e",
+    "contract": 78000,
+    "invoiced": 52000,
+    "remaining_to_invoice": 26000,
+    "file": "Lopez_Invoice_Second_Draft_2026-11-12_26000.pdf",
+    "sha256": "801f05901814f7cb10b19399e14124e45cd471670bec3aa1eef2af80ce4dd642"
   }
 ]
