@@ -30,12 +30,19 @@ const DRAWS_WRITE_TOKEN='e2b7c83eb4d76edee16503108fb0377482cefc0c'; // matches w
 // on purpose — accounting.html already declares MONTHLY_ROWS_KEY, so re-declaring it
 // here would be a duplicate-const crash. Keep them the same literal string.
 // Pull the shared monthly rows into localStorage BEFORE any page renders from them.
+var drawsUpdatedAt=null,drawsWriteBusy=false;
 async function hydrateMonthlyRowsFromStore(){
+  if(drawsWriteBusy)return false;
   try{
     const r=await fetch(DRAWS_STORE_URL,{cache:'no-store'});
+    if(!r.ok)throw new Error('draw history read failed: '+r.status);
     const j=await r.json();
     if(j&&Array.isArray(j.data)&&j.data.length){
-      localStorage.setItem('rac_monthly_invoice_rows_v1',JSON.stringify(j.data));
+      drawsUpdatedAt=j.updated_at;
+      const next=JSON.stringify(j.data);
+      const prev=localStorage.getItem('rac_monthly_invoice_rows_v1');
+      localStorage.setItem('rac_monthly_invoice_rows_v1',next);
+      if(prev!==null&&prev!==next)window.dispatchEvent(new CustomEvent('ove-monthly-rows-updated',{detail:{rows:j.data}}));
       return true;
     }
   }catch(e){/* offline / first run — fall back to whatever's cached locally */}
@@ -43,13 +50,22 @@ async function hydrateMonthlyRowsFromStore(){
 }
 // Push the current monthly rows to the shared store (call after any local edit).
 async function saveMonthlyRowsToStore(rows){
+  if(drawsWriteBusy||!drawsUpdatedAt)return false;
+  drawsWriteBusy=true;
   try{
-    await fetch(DRAWS_STORE_URL,{method:'PUT',
-      headers:{'Content-Type':'application/json','X-OVE-Token':DRAWS_WRITE_TOKEN},
-      body:JSON.stringify({data:rows})});
-    return true;
-  }catch(e){return false;}
+    const put=await fetch(DRAWS_STORE_URL,{method:'PUT',headers:{'Content-Type':'application/json','X-OVE-Token':DRAWS_WRITE_TOKEN},body:JSON.stringify({data:rows,expected_updated_at:drawsUpdatedAt})});
+    if(!put.ok)throw Error('Draws changed or save rejected: '+put.status);
+    for(let attempt=0;attempt<5;attempt++){
+      const read=await fetch(DRAWS_STORE_URL+'?readback='+Date.now(),{cache:'no-store'});
+      if(read.ok){const saved=await read.json();if(JSON.stringify(saved.data)===JSON.stringify(rows)){drawsUpdatedAt=saved.updated_at;return true;}}
+      await new Promise(resolve=>setTimeout(resolve,600));
+    }
+    throw Error('Draws readback mismatch');
+  }catch(e){console.error(e);return false;}finally{drawsWriteBusy=false;}
 }
+
+// Load shared history when a page opens or explicitly refreshes it.
+// Saves retain their readback verification; idle pages do not poll.
 
 const PHASE_NAMES=['deposit','pre construction','site','structural','mechanical rough',
   'exterior sealing','wall/cieling finish','carpentery','equipment/ finishes','landscape',
@@ -388,6 +404,70 @@ function parseScheduleTab(rows){
   if(latest){P_END=latest}
   TOTAL_DAYS=Math.max(1,Math.round((P_END-P_START)/864e5));
 
+  return{tasks,earliest,latest}
+}
+
+/** Convert the schedule edited on gantt.html into the same task shape used by
+    the dashboard. The website store is authoritative after the Gantt is
+    published; phase rows are always recomputed from their edited children. */
+function parseWebsiteSchedule(data){
+  const raw=data&&Array.isArray(data.tasks)?data.tasks:[];
+  const tasks=[];
+  let currentPhase='';
+  let earliest=null,latest=null;
+  const localDate=v=>{
+    const m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(!m)return parseDate(v);
+    const d=new Date(+m[1],+m[2]-1,+m[3]);d.setHours(0,0,0,0);return d;
+  };
+  const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+
+  for(const row of raw){
+    if(!row)continue;
+    const name=String(row.name||'').trim();
+    if(!name)continue;
+    const isPhase=!!row.isPhase;
+    const nameNorm=norm(name);
+    if(isPhase)currentPhase=nameNorm;
+    const start=localDate(row.start);
+    const duration=Math.max(0,parseInt(row.days,10)||0);
+    const end=start?addDays(start,duration):null;
+    const task={
+      name,nameNorm,
+      vendor:String(row.vendor||''),
+      section:isPhase?'':norm(row.section||currentPhase),
+      isPhase,
+      progress:Math.max(0,Math.min(100,Number(row.progress)||0)),
+      startDate:start,
+      duration,
+      endDate:end,
+      delay:parseDelayDays(row.delay),
+      status:String(row.status||'')
+    };
+    tasks.push(task);
+    if(!isPhase&&start&&(!earliest||start<earliest))earliest=start;
+    if(!isPhase&&end&&(!latest||end>latest))latest=end;
+  }
+
+  for(let p=0;p<tasks.length;p++){
+    if(!tasks[p].isPhase)continue;
+    let minStart=null,maxEnd=null,total=0,count=0;
+    for(let c=p+1;c<tasks.length;c++){
+      if(tasks[c].isPhase)break;
+      const child=tasks[c];
+      if(child.startDate&&(!minStart||child.startDate<minStart))minStart=child.startDate;
+      if(child.endDate&&(!maxEnd||child.endDate>maxEnd))maxEnd=child.endDate;
+      total+=child.progress;count++;
+    }
+    if(minStart)tasks[p].startDate=minStart;
+    if(maxEnd)tasks[p].endDate=maxEnd;
+    if(minStart&&maxEnd)tasks[p].duration=Math.max(0,daysBetween(minStart,maxEnd));
+    if(count)tasks[p].progress=total/count;
+  }
+
+  if(earliest)P_START=earliest;
+  if(latest)P_END=latest;
+  TOTAL_DAYS=Math.max(1,Math.round((P_END-P_START)/864e5));
   return{tasks,earliest,latest}
 }
 
@@ -831,29 +911,43 @@ async function loadProjectData(){
   const{phases,headerInfo,changeOrders:sheetCOs,totalPaidOverride,buildGrossTotals}=parseBudgetTab(budgetRows);
   if(!phases||!phases.length)throw new Error('Budget tab parsed empty — wrong tab or error page served.');
 
-  // Schedule: live, then last-good cache, then local fallback CSV, then empty
-  // (a dead schedule no longer takes the budget down with it).
+  // Schedule: the shared website store edited by gantt.html is authoritative.
+  // The old Google Sheet is only a seed/fallback when that store is unavailable
+  // or has never been published.
   let scheduleTasks=[];
-  let scheduleCSV='';
+  let websiteSchedule=null;
   try{
-    scheduleCSV=await fetchSheetText(SCHEDULE_URL+"&_="+ts,fetchOpts,2);
-    sheetCacheWrite({schedule:scheduleCSV});
-  }catch(e){console.warn('Schedule fetch failed:',e.message)}
-  let scheduleRows=scheduleCSV?parseCSV(scheduleCSV):[];
-  if(!scheduleRowsHaveData(scheduleRows)&&csvUsable(cache.schedule)){
-    console.warn('Live schedule unusable; trying last-good cached copy.');
-    scheduleRows=parseCSV(cache.schedule);
+    const r=await fetch(SCHEDULE_STORE_URL+"?_="+ts,fetchOpts);
+    if(!r.ok)throw new Error('schedule store said '+r.status);
+    const j=await r.json();
+    websiteSchedule=j&&j.data&&Array.isArray(j.data.tasks)&&j.data.tasks.length?j.data:null;
+    if(websiteSchedule)sheetCacheWrite({scheduleStore:websiteSchedule});
+  }catch(e){console.warn('Website schedule fetch failed:',e.message)}
+  if(!websiteSchedule&&cache.scheduleStore&&Array.isArray(cache.scheduleStore.tasks)&&cache.scheduleStore.tasks.length){
+    console.warn('Using last-good website schedule cache.');
+    websiteSchedule=cache.scheduleStore;
   }
-  if(!scheduleRowsHaveData(scheduleRows)){
-    console.warn('Loading local schedule fallback.');
+  if(websiteSchedule){
+    scheduleTasks=parseWebsiteSchedule(websiteSchedule).tasks;
+  }else{
+    let scheduleCSV='';
     try{
-      const fallbackCSV=await fetchSheetText(SCHEDULE_FALLBACK_URL+"?_="+ts,fetchOpts,2);
-      scheduleRows=parseCSV(fallbackCSV);
-    }catch(e){console.warn('Schedule fallback also failed:',e.message);scheduleRows=[]}
-  }
-  if(scheduleRowsHaveData(scheduleRows)){
-    const sched=parseScheduleTab(scheduleRows);
-    scheduleTasks=sched.tasks;
+      scheduleCSV=await fetchSheetText(SCHEDULE_URL+"&_="+ts,fetchOpts,2);
+      sheetCacheWrite({schedule:scheduleCSV});
+    }catch(e){console.warn('Sheet schedule fetch failed:',e.message)}
+    let scheduleRows=scheduleCSV?parseCSV(scheduleCSV):[];
+    if(!scheduleRowsHaveData(scheduleRows)&&csvUsable(cache.schedule)){
+      console.warn('Live sheet schedule unusable; trying last-good cached copy.');
+      scheduleRows=parseCSV(cache.schedule);
+    }
+    if(!scheduleRowsHaveData(scheduleRows)){
+      console.warn('Loading local schedule fallback.');
+      try{
+        const fallbackCSV=await fetchSheetText(SCHEDULE_FALLBACK_URL+"?_="+ts,fetchOpts,2);
+        scheduleRows=parseCSV(fallbackCSV);
+      }catch(e){console.warn('Schedule fallback also failed:',e.message);scheduleRows=[]}
+    }
+    if(scheduleRowsHaveData(scheduleRows))scheduleTasks=parseScheduleTab(scheduleRows).tasks;
   }
 
   crossRefBudgetSchedule(phases,scheduleTasks);

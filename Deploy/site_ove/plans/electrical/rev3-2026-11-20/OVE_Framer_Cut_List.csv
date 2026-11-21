@@ -1,0 +1,14 @@
+Sheet,Mechanical Room / Wall,Bay Callout,Equipment,RO Width,RO Height,Sill AFF,Top RO AFF,Box Depth,Framer Notes
+F-1,ADU Mech — Wall A (Own Wall),MDP-400,400A Main Split (Square D NQ),"20.5""","56.5""","21.5""","78.0""","5.75""","23.5"" total wall. Widen existing 14.5"" bay +6"" to right; DO NOT move 3"" conduit (3"" off left stud). FLUSH in 2×6 or 2×8."
+F-1,ADU Mech — Wall B,P1,ADU Breaker Panel (QO154),"14.5""","40.0""","38.0""","78.0""","3.75""","Wall B total run = 61.5"" (5'-1.5""). FLUSH in 2×4, 2×6, or 2×8."
+F-1,ADU Mech — Wall B,P1-SH,ADU Shelly 120/240V Cab,"20.5""","37.0""","41.0""","78.0""","6.0""","FLUSH in 2×6 or 2×8. Single 1.5"" stud between bays."
+F-1,ADU Mech — Wall B,P1-LTG,ADU 24V Lighting Cab,"20.5""","48.5""","29.5""","78.0""","8.0""","FLUSH in 2×8 (2"" proud in 2×6)."
+F-2,Main Mech Room,P2,Main Breaker Panel (QO160),"14.5""","43.75""","34.25""","78.0""","3.75""","Total 5-bay run = 99.5"" (8'-3.5""). FLUSH in 2×4, 2×6, or 2×8."
+F-2,Main Mech Room,P3,Lower Breaker Panel (QO140),"14.5""","40.0""","38.0""","78.0""","3.75""",Beside P2. Gun/Panic room + overflow.
+F-2,Main Mech Room,P2/P3-SH,Shared Shelly 120/240V Cab,"20.5""","48.5""","29.5""","78.0""","6.0""",FLUSH in 2×6 or 2×8.
+F-2,Main Mech Room,P2/P3-LTG-A,Main/Lower Lighting Bay A,"20.5""","48.5""","29.5""","78.0""","8.0""","FLUSH in 2×8 (2"" proud in 2×6)."
+F-2,Main Mech Room,P2/P3-LTG-B,Main/Lower Lighting Bay B,"20.5""","48.5""","29.5""","78.0""","8.0""","FLUSH in 2×8 (2"" proud in 2×6)."
+F-3,Upstairs Mech Room,P4,Upper Breaker Panel (QO154),"14.5""","40.0""","38.0""","78.0""","3.75""","Total 4-bay run = 83.5"" (6'-11.5""). FLUSH in 2×4, 2×6, or 2×8."
+F-3,Upstairs Mech Room,P4-SH,Upper Shelly 120/240V Cab,"20.5""","37.0""","41.0""","78.0""","6.0""",FLUSH in 2×6 or 2×8.
+F-3,Upstairs Mech Room,P4-LTG-A,Upper Lighting Supplies (7× MW),"20.5""","37.0""","41.0""","78.0""","8.0""","FLUSH in 2×8 (2"" proud in 2×6). Vented door."
+F-3,Upstairs Mech Room,P4-LTG-B,Upper RGBWW + TL-SG1048,"20.5""","37.0""","41.0""","78.0""","8.0""","FLUSH in 2×8 (2"" proud in 2×6)."

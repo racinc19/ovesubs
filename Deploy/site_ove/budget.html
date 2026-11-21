@@ -181,12 +181,13 @@ html{overflow-y:scroll}body{overflow-x:hidden}
   </div>
   <label class="co-label">Notes<input class="co-input" id="coNotes" placeholder="Optional notes"></label>
   <div class="co-modal-btns">
+    <span id="coSaveStatus" style="margin-right:auto;color:var(--txt2);font-size:12px;align-self:center"></span>
     <button class="co-btn co-btn-cancel" onclick="closeCOModal()">Cancel</button>
-    <button class="co-btn co-btn-save" onclick="saveCO()">Save</button>
+    <button class="co-btn co-btn-save" id="coSaveBtn" onclick="saveCO()">Save</button>
   </div>
 </div>
 
-<script src="shared.js?v20260805_co_docs"></script>
+<script src="shared.js?v20260908_shared_dollars"></script>
 <script>
 var CO_KEY='rodriguez_change_orders_v3';
 var CO_SEED=[{
@@ -206,6 +207,8 @@ function openCOModal(idx){
   var isEdit=typeof idx==='number'&&idx>=0;
   document.getElementById('coModalTitle').textContent=isEdit?'Edit Change Order':'Add Change Order';
   document.getElementById('coEditIdx').value=isEdit?idx:-1;
+  document.getElementById('coSaveStatus').textContent='';
+  document.getElementById('coSaveStatus').style.color='var(--txt2)';
   if(isEdit){
     var co=changeOrders[idx];
     document.getElementById('coNum').value=co.num||'';
@@ -235,8 +238,9 @@ function closeCOModal(){
   document.getElementById('coOverlay').classList.remove('open');
   document.getElementById('coModal').classList.remove('open');
 }
-function saveCO(){
+async function saveCO(){
   var idx=parseInt(document.getElementById('coEditIdx').value);
+  var before=changeOrders.slice();
   var co={
     num:document.getElementById('coNum').value.trim()||'CO-???',
     desc:document.getElementById('coDesc').value.trim(),
@@ -249,11 +253,26 @@ function saveCO(){
     notes:document.getElementById('coNotes').value.trim()
   };
   if(idx>=0)changeOrders[idx]=co;else changeOrders.push(co);
-  saveCOs();closeCOModal();doRefresh();
+  saveCOs();
+  var btn=document.getElementById('coSaveBtn'),status=document.getElementById('coSaveStatus');
+  btn.disabled=true;status.textContent='Saving for everyone…';
+  try{
+    await saveSharedChangeOrders(changeOrders);
+    status.textContent='Saved and read back';
+    closeCOModal();
+    await doRefresh();
+  }catch(e){
+    changeOrders=before;saveCOs();
+    status.textContent='Not saved — '+e.message;
+    status.style.color='var(--red)';
+  }finally{btn.disabled=false}
 }
-function deleteCO(idx){
+async function deleteCO(idx){
   if(!confirm('Delete '+changeOrders[idx].num+'?'))return;
-  changeOrders.splice(idx,1);saveCOs();doRefresh();
+  var before=changeOrders.slice();
+  changeOrders.splice(idx,1);saveCOs();
+  try{await saveSharedChangeOrders(changeOrders);await doRefresh()}
+  catch(e){changeOrders=before;saveCOs();alert('Not deleted for everyone: '+e.message)}
 }
 
 function render(phases,paidData){
@@ -490,6 +509,8 @@ async function doRefresh(){
 }
 async function init(){
   try{
+    try{await hydrateChangeOrdersFromStore()}
+    catch(e){console.warn('Shared change-order read unavailable; using last read-back cache.',e)}
     var d=await loadProjectData();
     var phases=d.main.phases;
     var paidData={map:{},progressMap:{},basePaid:d.totals.basePaid||0,totalPaid:d.totals.totalPaid,scheduleTasks:d.main.scheduleTasks||[],sheetCOs:d.main.sheetCOs||[]};
@@ -530,6 +551,13 @@ async function init(){
   }
 }
 init();
+setInterval(async function(){
+  if(document.hidden||document.getElementById('coModal').classList.contains('open'))return;
+  try{
+    var sync=await hydrateChangeOrdersFromStore();
+    if(sync.changed)await doRefresh();
+  }catch(e){/* keep the last read-back cache visible while temporarily offline */}
+},2500);
 </script>
 </body>
 </html>
