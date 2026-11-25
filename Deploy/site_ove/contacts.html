@@ -79,8 +79,8 @@ tr:hover td{background:rgba(30,45,74,.55)}
   </section>
 </main>
 
-<script src="shared.js?v20260805_co_docs"></script>
-<script src="contractor-roster.js?v=20261013-dave"></script>
+<script src="shared.js?v20261125_subs"></script>
+<script src="contractor-roster.js?v=20261125_subs"></script>
 <script>
 let rows=[];
 const alias={
@@ -107,15 +107,16 @@ const alias={
   'the countertop source':'countertop source'
 };
 const vendorOverride={
-  'alysa oliver':'Amy Pendleton',
-  'allysa oliver':'Amy Pendleton',
-  'recelectric':'Noble House Electric',
-  'breck':'Noble House Electric',
-  'breck electric':'Noble House Electric',
-  'breck electric inc':'Noble House Electric',
-  'breck electric inc.':'Noble House Electric'
+  'alysa oliver':'Artistic Wall Textures',
+  'allysa oliver':'Artistic Wall Textures',
+  'amy pendleton':'Artistic Wall Textures',
+  'recelectric':'Breck Electric Inc.',
+  'breck':'Breck Electric Inc.',
+  'breck electric':'Breck Electric Inc.',
+  'breck electric inc':'Breck Electric Inc.',
+  'breck electric inc.':'Breck Electric Inc.'
 };
-const removedVendors=new Set(['clayworks','deez','deezcabnuts','these cabinets']);
+const removedVendors=new Set(['clayworks','deez','deezcabnuts','these cabinets','dixie','dixie fireplace','dixie fireplaces','dixie (placeholder)','noble house','noble house electric','noble house - caleb williams (placeholder)','caleb williams','red hills','red hills painting','jose','undetermined','undetermined (placeholder)','to be assigned','gs','bateman','cherotech']);
 function norm(s){return String(s||'').toLowerCase().replace(/[^a-z0-9&]+/g,' ').trim()}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function firstFilled(...vals){return vals.find(v=>String(v||'').trim())||''}
@@ -167,11 +168,12 @@ function buildRows(tasks,info){
 }
 function forceCraigRows(baseRows){
   const required=[
-    {vendor:'Amy Pendleton',company:'Amy Pendleton',contact:'Amy Pendleton',trades:'Rammed Earth',phones:[],emails:[]},
-    {vendor:'Noble House Electric',company:'Noble House Electric',contact:'Noble House Electric',trades:'Electrical',phones:[],emails:[]},
+    {vendor:'Artistic Wall Textures',company:'Artistic Wall Textures',contact:'Aimee Pendleton',trades:'Rammed Earth',phones:['435-467-0700'],emails:['artisticwalltextures@gmail.com'],records_url:'sub-docs/artistic/index.html'},
+    {vendor:'Breck Electric Inc.',company:'Breck Electric Inc.',contact:'Breck McArthur',trades:'Electrical',phones:['435-632-5322'],emails:['breckelectric@gmail.com'],records_url:'sub-docs/breck/index.html'},
+    {vendor:'Lopez Construction',company:'Lopez Construction Company',contact:'Fidencio Lopez',trades:'Framing Labor',phones:['435-229-8167'],emails:['fidencio.lopezconstruction@gmail.com'],records_url:'sub-docs/lopez-construction/index.html'},
     {vendor:'RG Ventures',company:'RG Ventures',contact:'Red Offo',trades:'Concrete',phones:[],emails:[]}
   ];
-  const stale=new Set(['alysa oliver','allysa oliver','oliver finishing','breck','breck electric','breck electric inc','recelectric','clayworks','deez','deezcabnuts','these cabinets']);
+  const stale=new Set(['alysa oliver','allysa oliver','oliver finishing','amy pendleton','noble house','noble house electric','noble house contracting llc','caleb williams','dixie','dixie fireplace','dixie fireplaces','red hills','red hills painting','jose','jose espinoza','undetermined','to be assigned','gs','bateman','cherotech','clayworks','deez','deezcabnuts','these cabinets']);
   const out=baseRows.filter(r=>!stale.has(norm(r.vendor))&&!stale.has(norm(r.company)));
   required.forEach(row=>{
     const key=norm(row.vendor);
@@ -193,7 +195,7 @@ function render(){
 }
 async function init(){
   try{
-    const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20260810_contacts2').then(r=>r.json())]);
+    const [project,info]=await Promise.all([loadProjectData(),fetch('sub_info.json?v20261125_subs').then(r=>r.json())]);
     rows=reconcileContactRows(forceCraigRows(buildRows(project.main.scheduleTasks||[],info||{})));
     const q=new URLSearchParams(location.search).get('q');
     if(q)document.getElementById('search').value=q;

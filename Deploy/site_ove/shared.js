@@ -14,6 +14,7 @@ async function checkSitePin(entered){const buf=await crypto.subtle.digest('SHA-2
 // silently read that and tracked nothing. Pin to the REAL Budget1 tab BY NAME
 // via gviz (tab-order-proof; survives future tabs inserted at the front).
 const BUDGET_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/gviz/tq?tqx=out:csv&sheet=Budget1';
+const SUBS_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/gviz/tq?tqx=out:csv&sheet=Subs';
 const SCHEDULE_URL='https://docs.google.com/spreadsheets/d/1RUC_dbWiRjrpBf9L9UKYWQkjQfYPKVK9881uXAwKcS8/export?format=csv&gid=1440569226';
 const SCHEDULE_FALLBACK_URL='schedule-fallback.csv';
 

@@ -250,7 +250,7 @@ body{padding-top:56px;font-family:'SF Pro Display',-apple-system,BlinkMacSystemF
   </div>
 </div>
 
-<script src="shared.js?v20260805_co_docs"></script>
+<script src="shared.js?v20261125_subs"></script>
 <script>
 const ADMIN_PIN_HASH='b44772b12eec5b5e73b363df835f2f14c12f1c740e99145429f12765e7cee0c8';
 const ADMIN_KEY='rac_admin';
@@ -287,10 +287,26 @@ function exitAdmin(){
   render(allTasks);
 }
 function cancelEdits(){pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks)}
-function saveEdits(){
+async function saveEdits(){
   for(const t of allTasks){if(pending[t.nameNorm]!==undefined)t.progress=pending[t.nameNorm]}
   pending={};document.getElementById('saveBar').classList.remove('vis');render(allTasks);
-  alert('Saved locally. Update the Google Sheet %Comp column to make it permanent.');
+  try{
+    const cur=await fetch(SCHEDULE_STORE_URL+'?_='+Date.now(),{cache:'no-store'}).then(r=>r.json());
+    const rawTasks=(cur&&cur.data&&cur.data.tasks)||[];
+    for(const rt of rawTasks){
+      const m=allTasks.find(at=>(rt.id&&at.id===rt.id)||(norm(rt.name||'')===at.nameNorm&&norm(rt.section||'')===norm(at.section||'')));
+      if(m)rt.progress=m.progress;
+    }
+    const put=await fetch(SCHEDULE_STORE_URL,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-OVE-Token':DRAWS_WRITE_TOKEN},
+      body:JSON.stringify({data:{tasks:rawTasks,seeded_from:(cur&&cur.data&&cur.data.seeded_from)||'OVE subs dashboard',saved_by:'OVE subs dashboard'}})
+    });
+    if(!put.ok)throw new Error('HTTP '+put.status);
+    alert('Saved to live website schedule for everyone.');
+  }catch(e){
+    alert('Saved in browser, but cloud sync failed: '+e.message);
+  }
 }
 
 // HERO + on-site / up-next strip (shared.js — same as client Gantt page)

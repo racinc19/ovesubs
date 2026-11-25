@@ -119,8 +119,8 @@ html{overflow-y:scroll}
   <div class="cards-grid" id="cardsGrid"></div>
 </div>
 
-<script src="shared.js?v20260805_co_docs"></script>
-<script src="contractor-roster.js?v=20261013-dave"></script>
+<script src="shared.js?v20261125_subs"></script>
+<script src="contractor-roster.js?v=20261125_subs"></script>
 <script>
 function slugify(s){return encodeURIComponent(s.trim())}
 function fmtD(d){if(!d)return'—';return(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear()}
@@ -137,7 +137,10 @@ function buildCards(tasks){
   const vendorMap={};
   tasks.forEach(t=>{
     if(!t.vendor||t.isPhase)return;
-    const v=t.vendor.trim();
+    const rawV=t.vendor.trim();
+    if(!rawV||typeof rosterRemoved==='function'&&rosterRemoved(rawV))return;
+    const matched=(typeof rosterMatch==='function')?rosterMatch(rawV):null;
+    const v=matched?matched.name:(rawV==='Blackstone'?'BlackstoneX':rawV);
     if(!vendorMap[v])vendorMap[v]={trades:[],tasks:[],vendor:v};
     vendorMap[v].tasks.push(t);
     if(t.name&&!vendorMap[v].trades.includes(t.name))vendorMap[v].trades.push(t.name);
@@ -230,7 +233,6 @@ async function init(){
     const data=await loadProjectData();
     const tasks=data.main.scheduleTasks||[];
     buildCards(tasks);
-    addLopezRecordsCard();
     reconcileSubCards();
     document.getElementById('loading').style.display='none';
     document.getElementById('app').style.display='block';

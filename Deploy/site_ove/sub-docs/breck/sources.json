@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "name": "Breck Electric Inc. (Electrical) - Estimate 2026-02-26.pdf",
+      "ref": "files/b15e7ffe530d-Breck_Electric_Inc._Electrical_-_Estimate_2026-02-26.pdf",
+      "bytes": 115682,
+      "sha256": "b15e7ffe530dd1cd21bfb435c53dd0fe140496c0ea97002e90999fc4f7b85dc7",
+      "source": "Subcontractors\\Breck Electric Inc. (Electrical)\\Documents\\Breck Electric Inc. (Electrical) - Estimate 2026-02-26.pdf"
+    },
+    {
+      "name": "Breck Electric Inc. (Electrical) - Estimate Request (RFP) 2026-02-18.docx",
+      "ref": "files/3dbca7dfec78-Breck_Electric_Inc._Electrical_-_Estimate_Request_RFP_2026-02-18.docx",
+      "bytes": 16779,
+      "sha256": "3dbca7dfec782a997f33eea0fda700fb651b2cfa2293f09e7d46efd801269edc",
+      "source": "Subcontractors\\Breck Electric Inc. (Electrical)\\Documents\\Breck Electric Inc. (Electrical) - Estimate Request (RFP) 2026-02-18.docx"
+    },
+    {
+      "name": "Breck Electric Inc. (Electrical) - Subcontract (Signed) 2026-03-03.docx",
+      "ref": "files/1e01bdb7f45f-Breck_Electric_Inc._Electrical_-_Subcontract_Signed_2026-03-03.docx",
+      "bytes": 14534,
+      "sha256": "1e01bdb7f45fcd49591e3f3ea49d6dee93ab35373d2820aa3261243cf073d5c3",
+      "source": "Subcontractors\\Breck Electric Inc. (Electrical)\\Documents\\Breck Electric Inc. (Electrical) - Subcontract (Signed) 2026-03-03.docx"
+    },
+    {
+      "name": "Breck Electric Inc. (Electrical) - Subcontract (Unsigned) 2026-03-03.docx",
+      "ref": "files/71ce0e3787e6-Breck_Electric_Inc._Electrical_-_Subcontract_Unsigned_2026-03-03.docx",
+      "bytes": 11725,
+      "sha256": "71ce0e3787e6d6ca0c6d0b3bd1d32e0f6eb4ec0c6bd2ba17cf1eb27fdbbb0cde",
+      "source": "Subcontractors\\Breck Electric Inc. (Electrical)\\Documents\\Breck Electric Inc. (Electrical) - Subcontract (Unsigned) 2026-03-03.docx"
+    },
+    {
+      "name": "Breck_Electric_Subcontract.docx",
+      "ref": "files/71ce0e3787e6-Breck_Electric_Subcontract.docx",
+      "bytes": 11725,
+      "sha256": "71ce0e3787e6d6ca0c6d0b3bd1d32e0f6eb4ec0c6bd2ba17cf1eb27fdbbb0cde",
+      "source": "Subcontractors\\Breck Electric Inc. (Electrical)\\Documents\\Breck_Electric_Subcontract.docx"
+    }
+  ],
+  "emails": []
+}

@@ -6,7 +6,7 @@
     "city": "",
     "state": "",
     "zip": "",
-    "contact": "Noble House Electric",
+    "contact": "Adam Stock",
     "website": "",
     "phones": [
       "480-899-3477"
@@ -139,23 +139,6 @@
     "source": "Project documents and correspondence; see linked source records",
     "updated": "2026-10-13"
   },
-  "cherotech": {
-    "company": "Bateman Bros LLC",
-    "license": "13950801-5501",
-    "address": "",
-    "city": "",
-    "state": "",
-    "zip": "",
-    "contact": "Greg Bateman",
-    "website": "",
-    "phones": [],
-    "emails": [
-      "batemangregray@gmail.com"
-    ],
-    "source": "Construction\\Project\\Contracts\\Cherotech\\Cherotech_Framing_Subcontract (1).docx",
-    "sheet_vendor": "Cherotech",
-    "updated": "2026-06-17T00:00:00.000000+00:00"
-  },
   "master": {
     "company": "Master Plumbing Systems",
     "license": "",
@@ -172,24 +155,6 @@
     "source": "Construction\\Bids\\Plumbing\\Est_3486_from_Master_Plumbing_Systems_4192.pdf (bid) + Construction\\Bids\\Plumbing\\Est_3486_from_Master_Plumbing_Systems_4192.pdf (letterhead - city/state not printed)",
     "sheet_vendor": "Master",
     "updated": "2026-04-29T22:48:48.866902+00:00"
-  },
-  "noble house electric": {
-    "company": "D4 Electric and Solar",
-    "sheet_vendor": "D4 Electric and Solar",
-    "contact": "Darcey Dockstader; Leslie Dockstader",
-    "phones": [
-      "435-879-3007",
-      "435-817-6796",
-      "435-212-0177"
-    ],
-    "emails": [
-      "ddock@d4electrical.com",
-      "ldock@d4electrical.com"
-    ],
-    "trade": "Electrical / solar",
-    "records_url": "sub-docs/d4/index.html",
-    "source": "Project documents and correspondence; see linked source records",
-    "updated": "2026-10-13"
   },
   "sunroc": {
     "company": "Sunroc",
@@ -286,19 +251,6 @@
     "source": "Construction\\Project\\Contracts\\H_E_Drywall\\H_E_Drywall_Subcontract_Rodriguez.docx + Construction\\Project\\Contracts\\H_E_Drywall\\make_he_drywall_contract.py",
     "sheet_vendor": "H&E",
     "updated": "2026-04-29T22:06:58.485952+00:00"
-  },
-  "jose": {
-    "company": "Red Hills Painting",
-    "sheet_vendor": "Red Hills Painting",
-    "contact": "Jose Espinoza",
-    "phones": [],
-    "emails": [
-      "redhillspaintingllc@gmail.com"
-    ],
-    "trade": "Paint",
-    "records_url": "sub-docs/paint/index.html",
-    "source": "Project documents and correspondence; see linked source records",
-    "updated": "2026-10-13"
   },
   "countertop source": {
     "company": "Countertop Source",
@@ -499,22 +451,6 @@
     "source": "Project documents and correspondence; see linked source records",
     "updated": "2026-10-13"
   },
-  "dixie fireplaces": {
-    "company": "Dixie Fireplaces",
-    "sheet_vendor": "Dixie Fireplaces",
-    "contact": "Chris",
-    "phones": [
-      "435-634-1177",
-      "435-632-2245"
-    ],
-    "emails": [
-      "dixiefireplaces@infowest.com"
-    ],
-    "trade": "Fireplace",
-    "records_url": "sub-docs/dixie/index.html",
-    "source": "Project documents and correspondence; see linked source records",
-    "updated": "2026-10-13"
-  },
   "randy frei construction": {
     "company": "Randy Frei Construction",
     "sheet_vendor": "Randy Frei Construction",
@@ -528,19 +464,6 @@
     ],
     "trade": "Concrete",
     "records_url": "sub-docs/frei/index.html",
-    "source": "Project documents and correspondence; see linked source records",
-    "updated": "2026-10-13"
-  },
-  "red hills painting": {
-    "company": "Red Hills Painting",
-    "sheet_vendor": "Red Hills Painting",
-    "contact": "Jose Espinoza",
-    "phones": [],
-    "emails": [
-      "redhillspaintingllc@gmail.com"
-    ],
-    "trade": "Paint",
-    "records_url": "sub-docs/paint/index.html",
     "source": "Project documents and correspondence; see linked source records",
     "updated": "2026-10-13"
   },
@@ -624,5 +547,62 @@
     "records_url": "sub-docs/carpets-plus/index.html",
     "source": "Saved Dave Evans contact and signed appliance estimate 70289",
     "updated": "2026-10-13"
+  },
+  "breck": {
+    "company": "Breck Electric Inc.",
+    "sheet_vendor": "Breck Electric Inc.",
+    "contact": "Breck McArthur",
+    "address": "1130 S 375 E",
+    "city": "Ivins",
+    "state": "UT",
+    "zip": "84738",
+    "phones": [
+      "435-632-5322"
+    ],
+    "emails": [
+      "breckelectric@gmail.com"
+    ],
+    "trade": "Electrical",
+    "records_url": "sub-docs/breck/index.html",
+    "source": "Breck Electric subcontract and estimate ($68,485.00)",
+    "updated": "2026-11-25"
+  },
+  "breck electric": {
+    "company": "Breck Electric Inc.",
+    "sheet_vendor": "Breck Electric Inc.",
+    "contact": "Breck McArthur",
+    "address": "1130 S 375 E",
+    "city": "Ivins",
+    "state": "UT",
+    "zip": "84738",
+    "phones": [
+      "435-632-5322"
+    ],
+    "emails": [
+      "breckelectric@gmail.com"
+    ],
+    "trade": "Electrical",
+    "records_url": "sub-docs/breck/index.html",
+    "source": "Breck Electric subcontract and estimate ($68,485.00)",
+    "updated": "2026-11-25"
+  },
+  "breck electric inc.": {
+    "company": "Breck Electric Inc.",
+    "sheet_vendor": "Breck Electric Inc.",
+    "contact": "Breck McArthur",
+    "address": "1130 S 375 E",
+    "city": "Ivins",
+    "state": "UT",
+    "zip": "84738",
+    "phones": [
+      "435-632-5322"
+    ],
+    "emails": [
+      "breckelectric@gmail.com"
+    ],
+    "trade": "Electrical",
+    "records_url": "sub-docs/breck/index.html",
+    "source": "Breck Electric subcontract and estimate ($68,485.00)",
+    "updated": "2026-11-25"
   }
 }
